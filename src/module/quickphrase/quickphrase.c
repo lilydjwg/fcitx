@@ -355,6 +355,7 @@ boolean QuickPhrasePreFilter(void *arg, FcitxKeySym sym,
     *retval = QuickPhraseDoInput(qpstate, keymain, state);
     if (*retval != IRV_TO_PROCESS)
         return true;
+    qpstate->useDupKeyInput = false;
     if (FcitxHotkeyIsHotKeySimple(keymain, state)) {
         if (c[0] && strlen(qpstate->buffer) == 0 &&
             ((qpstate->useDupKeyInput &&
