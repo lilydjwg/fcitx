@@ -56,8 +56,9 @@
 static void* FcitxKeyboardCreate(FcitxInstance* instance);
 static boolean FcitxKeyboardInit(void *arg);
 static void  FcitxKeyboardResetIM(void *arg);
-void FcitxKeyboardOnClose(void* arg, FcitxIMCloseEventType event);
-static INPUT_RETURN_VALUE FcitxKeyboardDoInput(void *arg, FcitxKeySym, unsigned int);
+static void FcitxKeyboardOnClose(void* arg, FcitxIMCloseEventType event);
+static INPUT_RETURN_VALUE FcitxKeyboardDoInput(void *arg, FcitxKeySym,
+                                               unsigned int);
 static void  FcitxKeyboardSave(void *arg);
 static void  FcitxKeyboardReloadConfig(void *arg);
 static INPUT_RETURN_VALUE FcitxKeyboardGetCandWords(void* arg);
@@ -277,6 +278,8 @@ void FcitxKeyboardLayoutCreate(FcitxKeyboard* keyboard,
 
 void* SimpleCopy(void* arg, void* dest, void* src)
 {
+    FCITX_UNUSED(arg);
+    FCITX_UNUSED(dest);
     return src;
 }
 
@@ -779,8 +782,8 @@ INPUT_RETURN_VALUE FcitxKeyboardGetCandWords(void* arg)
     static const unsigned int cmodtable[] = {
         FcitxKeyState_None, FcitxKeyState_Alt,
         FcitxKeyState_Ctrl, FcitxKeyState_Shift};
-    if (keyboard->config.chooseModifier > CM_CTRL)
-        keyboard->config.chooseModifier = CM_CTRL;
+    if (fcitx_unlikely(keyboard->config.chooseModifier >= _CM_COUNT))
+        keyboard->config.chooseModifier = _CM_COUNT - 1;
     FcitxCandidateWordList *mainList = FcitxInputStateGetCandidateList(input);
     FcitxCandidateWordSetPageSize(mainList, keyboard->config.maximumHintLength);
     FcitxCandidateWordSetChooseAndModifier(

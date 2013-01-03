@@ -48,6 +48,7 @@ typedef enum {
     AECM_ALT,
     AECM_CTRL,
     AECM_SHIFT,
+    _AECM_COUNT
 } AutoEngChooseModifier;
 
 typedef struct {
@@ -162,7 +163,7 @@ FCITX_DEFINE_PLUGIN(fcitx_autoeng, module ,FcitxModule) = {
 static void
 AutoEngSetBuffLen(FcitxAutoEngState* autoEngState, size_t len)
 {
-    int size = (len / MAX_USER_INPUT + 1) * MAX_USER_INPUT;
+    unsigned int size = (len / MAX_USER_INPUT + 1) * MAX_USER_INPUT;
     if (autoEngState->buf) {
         if (autoEngState->buff_size != size) {
             autoEngState->buf = realloc(autoEngState->buf, size);
@@ -491,8 +492,8 @@ LoadAutoEngConfig(FcitxAutoEngConfig *config)
     FcitxConfigFile *cfile = FcitxConfigParseConfigFileFp(fp, configDesc);
     FcitxAutoEngConfigConfigBind(config, cfile, configDesc);
     FcitxConfigBindSync(&config->gconfig);
-    if (config->chooseModifier > AECM_CTRL)
-        config->chooseModifier = AECM_CTRL;
+    if (fcitx_unlikely(config->chooseModifier >= _AECM_COUNT))
+        config->chooseModifier = _AECM_COUNT - 1;
 
     if (fp)
         fclose(fp);

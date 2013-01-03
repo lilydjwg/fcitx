@@ -1,5 +1,5 @@
 #!/bin/sh
-#   Copyright (C) 2012~2012 by Yichao Yu
+#   Copyright (C) 2012~2013 by Yichao Yu
 #   yyc1992@gmail.com
 #
 #   This program is free software; you can redistribute it and/or modify
@@ -70,15 +70,16 @@ download_cmake() {
     done
     if [[ -z "${stdin_file}" ]]; then
         tmpdir="${FCITX_CMAKE_CACHE_BASE}/cmake_download"
-        cmake -E make_directory "${tmpdir}"
+        "${FCITX_HELPER_CMAKE_CMD}" -E make_directory "${tmpdir}"
         fname="$(mktemp "${tmpdir}/tmp.XXXXXX")" || return 1
         __print_cmake_download_cmd > "${fname}"
-        cmake -P "${fname}"
+        "${FCITX_HELPER_CMAKE_CMD}" -P "${fname}"
         res=$?
         rm "${fname}"
         return $res
     else
-        __print_cmake_download_cmd | cmake -P "${stdin_file}" || return 1
+        __print_cmake_download_cmd | "${FCITX_HELPER_CMAKE_CMD}" \
+            -P "${stdin_file}" || return 1
         return $?
     fi
 }
@@ -166,10 +167,13 @@ case "${action}" in
         ;;
     --clean)
         rm -f "${src_cache}" "${po_cache}" "${handler_cache}"
+        "${FCITX_HELPER_CMAKE_CMD}" -E touch \
+            "${src_cache}" "${po_cache}" "${handler_cache}"
         exit 0
         ;;
     --uninstall)
         while read file; do
+            [ -z "${file}" ] && continue
             file="${DESTDIR}/${file}"
             [ -f "${file}" ] || [ -L "${file}" ] || {
                 echo "File: ${file}, doesn't exist or is not a regular file."

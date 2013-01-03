@@ -20,7 +20,7 @@
 
 #==============================================================================
 # Copyright 2011, 2012 Xuetian Weng
-# Copyright 2012 Yichao Yu
+# Copyright 2012, 2013 Yichao Yu
 #
 # Distributed under the GPLv2 License
 # see accompanying file COPYRIGHT for details
@@ -28,7 +28,15 @@
 # (To distribute this file outside of Fcitx, substitute the full
 #  License text for the above reference.)
 
-find_package(Gettext REQUIRED)
+find_program(GETTEXT_MSGFMT_EXECUTABLE msgfmt)
+
+set(_FCITX_DISABLE_GETTEXT "Off" CACHE INTERNAL "Disable Gettext" FORCE)
+function(fcitx_disable_gettext)
+  set(_FCITX_DISABLE_GETTEXT "On" CACHE INTERNAL "Disable Gettext" FORCE)
+endfunction()
+if(NOT GETTEXT_MSGFMT_EXECUTABLE)
+  fcitx_disable_gettext()
+endif()
 
 # The following definition of fcitx_parse_arguments is copied from
 # CMakeParseArguments.cmake, which is a standard cmake module since 2.8.3,
@@ -158,6 +166,7 @@ function(__fcitx_cmake_init)
   add_custom_target(fcitx-modules.target ALL)
   add_custom_target(fcitx-scan-addons.target)
   add_custom_target(fcitx-extract-traslation.dependency)
+  add_custom_target(fcitx-parse-pos.dependency)
   add_dependencies(fcitx-modules.target fcitx-scan-addons.target)
   set(fcitx_cmake_cache_base "${PROJECT_BINARY_DIR}/fcitx_cmake_cache")
   file(MAKE_DIRECTORY "${fcitx_cmake_cache_base}")
@@ -175,6 +184,12 @@ function(__fcitx_cmake_init)
   else()
     find_program(FCITX_SCANNER_EXECUTABLE fcitx-scanner)
     find_program(FCITX_PO_PARSER_EXECUTABLE fcitx-po-parser)
+    execute_process(COMMAND env ${FCITX_PO_PARSER_EXECUTABLE}
+      --gettext-support RESULT_VARIABLE result)
+    if(result)
+      # not 0
+      fcitx_disable_gettext()
+    endif()
   endif()
   set(__FCITX_CMAKE_HELPER_EXPORT
     "_FCITX_MACRO_CMAKE_DIR=${FCITX_MACRO_CMAKE_DIR}"
@@ -391,8 +406,7 @@ function(__fcitx_scan_addon name in_file out_file)
     message(FATAL_ERROR "Cannot find fcitx-scanner")
   endif()
   add_custom_command(
-    COMMAND "${FCITX_SCANNER_EXECUTABLE}"
-    "${in_file}" "${out_file}"
+    COMMAND "${FCITX_SCANNER_EXECUTABLE}" "${in_file}" "${out_file}"
     OUTPUT "${out_file}" DEPENDS "${in_file}" "${FCITX_SCANNER_EXECUTABLE}"
     WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}")
   __fcitx_addon_get_unique_name("${name}--scan" target_name)
@@ -404,7 +418,7 @@ function(__fcitx_addon_config_file target conf_file dest_dir)
   set(SRC_FILE "${conf_file}.in")
   get_filename_component(base_name "${conf_file}" NAME)
   set(TGT_FILE "${CMAKE_CURRENT_BINARY_DIR}/${base_name}")
-  fcitx_translate_add_apply_source("${SRC_FILE}" "${TGT_FILE}")
+  fcitx_translate_add_apply_source("${SRC_FILE}" "${TGT_FILE}" NOT_ALL)
   __fcitx_addon_get_unique_name("${target}--conf" conf_target)
   add_custom_target("${conf_target}" DEPENDS "${TGT_FILE}")
   add_dependencies("${target}" "${conf_target}")
@@ -525,6 +539,11 @@ _fcitx_translate_add_handler("${FCITX_TRANSLATION_EXTRACT_KDE}" kde)
 # Proper handler script has to be added before this macro is called, or there
 # will be a FATAL_ERROR
 function(fcitx_translate_add_apply_source in_file out_file)
+  set(options NOT_ALL)
+  set(one_value_args)
+  set(multi_value_args)
+  fcitx_parse_arguments(FCITX_APPLY_SRC
+    "${options}" "${one_value_args}" "${multi_value_args}" ${ARGN})
   get_property(scripts GLOBAL
     PROPERTY FCITX_TRANSLATION_APPLY_HANDLERS)
   get_filename_component(in_file "${in_file}" ABSOLUTE)
@@ -549,11 +568,14 @@ function(fcitx_translate_add_apply_source in_file out_file)
         COMMAND env ${__FCITX_CMAKE_HELPER_EXPORT}
         "${FCITX_CMAKE_HELPER_SCRIPT}" --apply-po-merge
         "${script}" "${in_file}" "${out_file}"
-        DEPENDS fcitx-parse-pos.target "${in_file}" "${script}"
+        DEPENDS fcitx-parse-pos.dependency "${in_file}" "${script}"
         "${FCITX_CMAKE_HELPER_SCRIPT}" ${all_po_files}
+        "${FCITX_PO_PARSER_EXECUTABLE}"
         WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}")
-      __fcitx_addon_get_unique_name("apply-translation" target_name)
-      add_custom_target("${target_name}" ALL DEPENDS "${out_file}")
+      if(NOT FCITX_APPLY_SRC_NOT_ALL)
+        __fcitx_addon_get_unique_name("apply-translation" target_name)
+        add_custom_target("${target_name}" ALL DEPENDS "${out_file}")
+      endif()
       return()
     endif()
   endforeach()
@@ -631,27 +653,30 @@ function(fcitx_translate_set_pot_target target domain pot_file)
   get_property(po_lang_files GLOBAL PROPERTY "FCITX_TRANSLATION_PO_FILES")
   set(all_mo_files)
   set(all_po_files)
-  foreach(po_lang_file ${po_lang_files})
-    string(REGEX REPLACE "^[^ ]* " "" po_file "${po_lang_file}")
-    string(REGEX REPLACE " .*$" "" po_lang "${po_lang_file}")
-    set(po_dir "${fcitx_cmake_cache_base}/mo/${po_lang}")
-    add_custom_command(OUTPUT "${po_dir}/${domain}.mo"
-      COMMAND mkdir -p "${po_dir}"
-      COMMAND "${GETTEXT_MSGFMT_EXECUTABLE}"
-      -o "${po_dir}/${domain}.mo" "${po_file}"
-      DEPENDS "${po_file}")
-    install(FILES "${po_dir}/${domain}.mo"
-      DESTINATION "share/locale/${po_lang}/LC_MESSAGES")
-    list(APPEND all_mo_files "${po_dir}/${domain}.mo")
-    list(APPEND all_po_files "${po_file}")
-  endforeach()
+  if(NOT _FCITX_DISABLE_GETTEXT)
+    foreach(po_lang_file ${po_lang_files})
+      string(REGEX REPLACE "^[^ ]* " "" po_file "${po_lang_file}")
+      string(REGEX REPLACE " .*$" "" po_lang "${po_lang_file}")
+      set(po_dir "${fcitx_cmake_cache_base}/mo/${po_lang}")
+      add_custom_command(OUTPUT "${po_dir}/${domain}.mo"
+        COMMAND "${CMAKE_COMMAND}" -E make_directory "${po_dir}"
+        COMMAND "${GETTEXT_MSGFMT_EXECUTABLE}"
+        -o "${po_dir}/${domain}.mo" "${po_file}"
+        DEPENDS "${po_file}")
+      install(FILES "${po_dir}/${domain}.mo"
+        DESTINATION "share/locale/${po_lang}/LC_MESSAGES")
+      list(APPEND all_mo_files "${po_dir}/${domain}.mo")
+      list(APPEND all_po_files "${po_file}")
+    endforeach()
+    add_custom_target(fcitx-compile-mo.target ALL
+      DEPENDS ${all_mo_files})
+  endif()
   add_custom_target(fcitx-parse-pos.target
     COMMAND env ${__FCITX_CMAKE_HELPER_EXPORT}
     "${FCITX_CMAKE_HELPER_SCRIPT}" --parse-pos
     WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}"
     DEPENDS "${FCITX_PO_PARSER_EXECUTABLE}" ${all_po_files})
-  add_custom_target(fcitx-compile-mo.target ALL
-    DEPENDS ${all_mo_files})
+  add_dependencies(fcitx-parse-pos.dependency fcitx-parse-pos.target)
 endfunction()
 
 # Add translated po files to be updated and installed.
@@ -680,8 +705,11 @@ function(fcitx_translate_add_po_file locale po_file)
   # message(WARNING "PO files should be added before the pot target is set.")
   get_property(domain GLOBAL PROPERTY "__FCITX_TRANSLATION_TARGET_DOMAIN")
   set(po_dir "${fcitx_cmake_cache_base}/fcitx_mo/${locale}")
+  if(_FCITX_DISABLE_GETTEXT)
+    return()
+  endif()
   add_custom_command(OUTPUT "${po_dir}/${domain}.mo"
-    COMMAND mkdir -p "${po_dir}"
+    COMMAND "${CMAKE_COMMAND}" -E make_directory "${po_dir}"
     COMMAND "${GETTEXT_MSGFMT_EXECUTABLE}"
     -o "${po_dir}/${domain}.mo" "${po_file}"
     DEPENDS "${po_file}")

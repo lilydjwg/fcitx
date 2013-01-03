@@ -56,14 +56,12 @@ FCITX_DEFINE_PLUGIN(fcitx_clipboard, module, FcitxModule) = {
     .ReloadConfig = ClipboardReloadConfig
 };
 
-static const unsigned int cmodifiers[] = {
-    FcitxKeyState_None,
-    FcitxKeyState_Alt,
-    FcitxKeyState_Ctrl,
-    FcitxKeyState_Shift
+static const unsigned int cmodifiers[_CBCM_COUNT] = {
+    [CBCM_NONE] = FcitxKeyState_None,
+    [CBCM_ALT] = FcitxKeyState_Alt,
+    [CBCM_CTRL] = FcitxKeyState_Ctrl,
+    [CBCM_SHIFT] = FcitxKeyState_Shift
 };
-
-#define MODIFIERS_COUNT (sizeof(cmodifiers) / sizeof(unsigned int))
 
 static boolean
 ClipboardSelectionEqual(ClipboardSelectionStr *sel, const char *str, size_t len)
@@ -75,7 +73,7 @@ static int
 ClipboardSelectionClipboardFind(FcitxClipboard *clipboard,
                                 const char *str, size_t len)
 {
-    int i;
+    unsigned int i;
     for (i = 0;i < clipboard->clp_hist_len;i++) {
         if (ClipboardSelectionEqual(clipboard->clp_hist_lst + i, str, len)) {
             return i;
@@ -122,7 +120,7 @@ ClipboardWriteHistory(FcitxClipboard *clipboard)
         goto out;
     fcitx_utils_write_uint32(fp, clipboard->clp_hist_len);
     fcitx_utils_write_uint32(fp, clipboard->primary.len);
-    int i;
+    unsigned int i;
     for (i = 0;i < clipboard->clp_hist_len;i++) {
         fcitx_utils_write_uint32(fp, clipboard->clp_hist_lst[i].len);
     }
@@ -150,13 +148,13 @@ ClipboardInitReadHistory(FcitxClipboard *clipboard)
     if (!fcitx_utils_read_uint32(fp, &len))
         goto out;
     fcitx_utils_read_uint32(fp, &clipboard->primary.len);
-    int i;
-    if (len > clipboard->config.history_len) {
+    if (len > (uint32_t)clipboard->config.history_len) {
         clipboard->clp_hist_len = clipboard->config.history_len;
     } else {
         clipboard->clp_hist_len = len;
     }
     ClipboardSelectionStr *clp_hist_lst = clipboard->clp_hist_lst;
+    unsigned int i;
     for (i = 0;i < clipboard->clp_hist_len;i++) {
         fcitx_utils_read_uint32(fp, &clp_hist_lst[i].len);
     }
@@ -287,7 +285,7 @@ ClipboardSelectionStrip(FcitxClipboard *clipboard,
     len = end - begin;
     char *res;
     char *p;
-    if (len < clipboard->config.cand_max_len) {
+    if (len < (uint32_t)clipboard->config.cand_max_len) {
         res = fcitx_utils_set_str_with_len(NULL, begin, len);
         goto out;
     }
@@ -348,7 +346,6 @@ ClipboardPostHook(void *arg, FcitxKeySym sym, unsigned int state,
     clipboard->active = true;
     FcitxCandidateWordList *cand_list = FcitxInputStateGetCandidateList(input);
     FcitxGlobalConfig *gconfig = FcitxInstanceGetGlobalConfig(instance);
-    int i;
     FcitxMessages *msg;
     FcitxCandidateWord cand_word = {
         .callback = ClipboardCommitCallback,
@@ -381,8 +378,9 @@ skip_primary:
     FcitxMessagesSetMessageCount(msg, 0);
     FcitxMessagesAddMessageStringsAtLast(msg, MSG_TIPS,
                                          _("Select to paste"));
+    unsigned int i;
     for (i = 1;i < clipboard->clp_hist_len;i++) {
-        if (i == primary_found)
+        if ((int)i == primary_found)
             continue;
         ClipboardSetCandWord(clipboard, &cand_word,
                              clipboard->clp_hist_lst + i);
@@ -456,13 +454,12 @@ ApplyClipboardConfig(FcitxClipboard *clipboard)
     } else if (config->history_len > CLIPBOARD_MAX_LEN) {
         config->history_len = CLIPBOARD_MAX_LEN;
     }
-    while (clipboard->clp_hist_len > config->history_len) {
+    while (clipboard->clp_hist_len > (uint32_t)config->history_len) {
         char *str = clipboard->clp_hist_lst[--clipboard->clp_hist_len].str;
         fcitx_utils_free(str);
     }
-    if (config->choose_modifier >= MODIFIERS_COUNT) {
-        config->choose_modifier = MODIFIERS_COUNT - 1;
-    }
+    if (fcitx_unlikely(config->choose_modifier >= _CBCM_COUNT))
+        config->choose_modifier = _CBCM_COUNT - 1;
     ClipboardWriteHistory(clipboard);
     if (config->cand_max_len < CAND_MAX_LEN_MIN) {
         config->cand_max_len = CAND_MAX_LEN_MIN;
@@ -524,7 +521,7 @@ ClipboardPushClipboard(FcitxClipboard *clipboard, uint32_t len, const char *str)
         return;
     }
     char *new_str;
-    if (clipboard->clp_hist_len < clipboard->config.history_len) {
+    if (clipboard->clp_hist_len < (uint32_t)clipboard->config.history_len) {
         clipboard->clp_hist_len++;
         new_str = NULL;
     } else {

@@ -69,19 +69,14 @@ void
 fcitx_obj_pool_init_with_prealloc(FcitxObjPool* pool, size_t size,
                                   size_t prealloc)
 {
-    size_t rem = size % sizeof(int);
-    if (rem) {
-        size += 2 * sizeof(int) - rem;
-    } else {
-        size += sizeof(int);
-    }
+    size = fcitx_utils_align_to(size + sizeof(int), sizeof(int));
     pool->ele_size = size;
     pool->next_free = 0;
     pool->alloc = size * prealloc;
     pool->array = malloc(pool->alloc);
 
     size_t offset = 0;
-    int i = 0;
+    unsigned int i = 0;
     for (offset = 0, i = 0; i < prealloc - 1; offset += size, i++) {
         *(int*)(pool->array + offset) = i + 1;
     }
@@ -108,8 +103,9 @@ int fcitx_obj_pool_alloc_id(FcitxObjPool* pool)
         *(int*)(pool->array + pool->alloc / 2) = FCITX_OBJECT_POOL_ALLOCED_ID;
 
         size_t offset;
-        int i;
-        for (offset = pool->alloc / 2 + pool->ele_size, i = pool->alloc / 2 / pool->ele_size + 1;
+        unsigned int i;
+        for (offset = pool->alloc / 2 + pool->ele_size,
+                 i = pool->alloc / 2 / pool->ele_size + 1;
              i < pool->alloc / pool->ele_size - 1;
              offset += pool->ele_size, i++) {
             *(int*)(pool->array + offset) = i + 1;

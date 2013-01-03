@@ -395,10 +395,10 @@ static void
 FcitxXkbGetCurrentLayoutInternal(FcitxXkb *xkb, char **layout, char **variant)
 {
     int cur_group = FcitxXkbGetCurrentGroup(xkb);
-    char* const *layoutName = (char* const*)utarray_eltptr(xkb->defaultLayouts,
-                                                           cur_group);
-    char* const *pVariantName = (char* const*)utarray_eltptr(
-        xkb->defaultVariants, cur_group);
+    char* const *layoutName = fcitx_array_eltptr(xkb->defaultLayouts,
+                                                 cur_group);
+    char* const *pVariantName = fcitx_array_eltptr(xkb->defaultVariants,
+                                                   cur_group);
     if (layoutName)
         *layout = strdup(*layoutName);
     else
@@ -600,8 +600,8 @@ static void FcitxXkbIMKeyboardLayoutChanged(void* arg, const void* value)
             const char* layout = (const char*) value;
             if (layout) {
                 s = fcitx_utils_split_string(layout, ',');
-                char** pLayoutString = (char**) utarray_eltptr(s, 0);
-                char** pVariantString = (char**) utarray_eltptr(s, 1);
+                char  **pLayoutString = (char**)utarray_eltptr(s, 0);
+                char **pVariantString = (char**)utarray_eltptr(s, 1);
                 layoutString = (pLayoutString)? *pLayoutString: NULL;
                 variantString = (pVariantString)? *pVariantString: NULL;
             }
@@ -627,7 +627,7 @@ static int FcitxXkbFindLayoutIndex(FcitxXkb* xkb, const char* layout, const char
     if (layout == NULL)
         return -1;
 
-    int i = 0;
+    unsigned int i = 0;
     for (i = 0;i < utarray_len(xkb->defaultLayouts);i++) {
         layoutName = (char**)utarray_eltptr(xkb->defaultLayouts, i);
         pVariantName = (char**)utarray_eltptr(xkb->defaultVariants, i);
@@ -656,6 +656,21 @@ FcitxXkbSaveCloseGroup(FcitxXkb *xkb)
     xkb->closeVariant = tmpvariant;
 }
 
+static void
+FcitxXkbGetDefaultXmodmap(FcitxXkb *xkb)
+{
+    static char *home = NULL;
+    if (fcitx_likely(xkb->defaultXmodmapPath))
+        return;
+    if (fcitx_likely(!home)) {
+        home = getenv("HOME");
+        if (fcitx_unlikely(!home)) {
+            return;
+        }
+    }
+    fcitx_utils_alloc_cat_str(xkb->defaultXmodmapPath, home, "/.Xmodmap");
+}
+
 static void* FcitxXkbCreate(FcitxInstance* instance)
 {
     FcitxAddon* addon = FcitxAddonsGetAddonByName(FcitxInstanceGetAddons(instance), "fcitx-xkb");
@@ -671,10 +686,6 @@ static void* FcitxXkbCreate(FcitxInstance* instance)
 
         if (!LoadXkbConfig(xkb)) {
             break;
-        }
-
-        if (getenv("HOME")) {
-            asprintf(&xkb->defaultXmodmapPath, "%s/.Xmodmap", getenv("HOME"));
         }
 
         char* rulesPath = FcitxXkbFindXkbRulesFile(xkb);
@@ -743,7 +754,10 @@ static boolean FcitxXkbEventHandler(void* arg, XEvent* event)
                 FcitxXkbSaveCloseGroup(xkb);
         }
 
-        if (xkbEvent->any.xkb_type == XkbNewKeyboardNotify) {
+        if (xkbEvent->any.xkb_type == XkbNewKeyboardNotify
+            && xkbEvent->new_kbd.serial != xkb->lastSerial
+        ) {
+            xkb->lastSerial = xkbEvent->new_kbd.serial;
             XSync(xkb->dpy, False);
             FcitxUIUpdateInputWindow(xkb->owner);
             FcitxXkbInitDefaultLayout(xkb);
@@ -782,6 +796,7 @@ static void FcitxXkbDestroy(void* arg)
     fcitx_utils_free_string_list(xkb->defaultOptions);
     fcitx_utils_free(xkb->closeLayout);
     fcitx_utils_free(xkb->closeVariant);
+    fcitx_utils_free(xkb->defaultXmodmapPath);
     free(xkb);
 }
 
@@ -797,7 +812,8 @@ static void FcitxXkbReloadConfig(void* arg)
 
 static void* FcitxXkbGetRules(void* arg, FcitxModuleFunctionArg args)
 {
-    FcitxXkb* xkb = (FcitxXkb*) arg;
+    FCITX_UNUSED(args);
+    FcitxXkb *xkb = (FcitxXkb*)arg;
     return xkb->rules;
 }
 
@@ -812,33 +828,34 @@ static void* FcitxXkbLayoutExists(void* arg, FcitxModuleFunctionArg args)
 
 static void FcitxXkbApplyCustomScript(FcitxXkb* xkb)
 {
-    if (!xkb->config.bOverrideSystemXKBSettings)
+    FcitxXkbConfig *config = &xkb->config;
+    if (!config->bOverrideSystemXKBSettings || !config->xmodmapCommand ||
+        !config->xmodmapCommand[0])
         return;
 
-    if (!xkb->config.xmodmapCommand || !xkb->config.xmodmapCommand[0])
-        return;
-
-    char* XModmapScript = NULL;
-    char* customXModmapScript = NULL;
-    if (!xkb->config.customXModmapScript || !xkb->config.customXModmapScript[0]) {
-        if (xkb->defaultXmodmapPath
-            && (fcitx_utils_isreg(xkb->defaultXmodmapPath) || fcitx_utils_isreg(xkb->defaultXmodmapPath)))
-            XModmapScript = xkb->defaultXmodmapPath;
+    char *to_free = NULL;
+    char *xmodmap_script = NULL;
+    if (!config->customXModmapScript || !config->customXModmapScript[0]) {
+        if (strcmp(config->xmodmapCommand, "xmodmap") == 0) {
+            FcitxXkbGetDefaultXmodmap(xkb);
+            if (!(xkb->defaultXmodmapPath &&
+                  fcitx_utils_isreg(xkb->defaultXmodmapPath)))
+                return;
+            xmodmap_script = xkb->defaultXmodmapPath;
+        }
     } else {
-        FcitxXDGGetFileUserWithPrefix("data", xkb->config.customXModmapScript, NULL, &customXModmapScript);
-        XModmapScript = customXModmapScript;
+        FcitxXDGGetFileUserWithPrefix("data", config->customXModmapScript,
+                                      NULL, &to_free);
+        xmodmap_script = to_free;
     }
 
-    if (!XModmapScript)
-        return;
-
     char* args[] = {
-        xkb->config.xmodmapCommand,
-        XModmapScript,
-        0
+        config->xmodmapCommand,
+        xmodmap_script,
+        NULL
     };
     fcitx_utils_start_process(args);
-    fcitx_utils_free(customXModmapScript);
+    fcitx_utils_free(to_free);
 }
 
 static inline void LayoutOverrideFree(LayoutOverride* item) {
@@ -872,9 +889,9 @@ void LoadLayoutOverride(FcitxXkb* xkb)
         trimedbuf = fcitx_utils_trim(buf);
 
         UT_array* s = fcitx_utils_split_string(trimedbuf, ',');
-        char** pIMString = (char**) utarray_eltptr(s, 0);
-        char** pLayoutString = (char**) utarray_eltptr(s, 1);
-        char** pVariantString = (char**) utarray_eltptr(s, 2);
+        char** pIMString = (char**)utarray_eltptr(s, 0);
+        char** pLayoutString = (char**)utarray_eltptr(s, 1);
+        char** pVariantString = (char**)utarray_eltptr(s, 2);
         char* imString = (pIMString)? *pIMString: NULL;
         char* layoutString = (pLayoutString)? *pLayoutString: NULL;
         char* variantString = (pVariantString)? *pVariantString: NULL;

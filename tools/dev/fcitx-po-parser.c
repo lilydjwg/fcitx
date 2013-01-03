@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2012~2012 by Yichao Yu                                  *
+ *   Copyright (C) 2012~2013 by Yichao Yu                                  *
  *   yyc1992@gmail.com                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -25,9 +25,14 @@
 #include <stdarg.h>
 #include <unistd.h>
 #include <string.h>
+#include <fcitx/fcitx.h>
 #include <fcitx-utils/utils.h>
 #include <fcitx-utils/log.h>
 #include <fcitx-utils/utarray.h>
+#include "config.h"
+
+#ifndef _FCITX_DISABLE_GETTEXT
+
 #include <gettext-po.h>
 
 static void
@@ -35,6 +40,12 @@ _xerror_handler(int severity, po_message_t message, const char *filename,
                 size_t lineno, size_t column, int multiline_p,
                 const char *message_text)
 {
+    FCITX_UNUSED(message);
+    FCITX_UNUSED(filename);
+    FCITX_UNUSED(lineno);
+    FCITX_UNUSED(column);
+    FCITX_UNUSED(multiline_p);
+    FCITX_UNUSED(message_text);
     if (severity == PO_SEVERITY_FATAL_ERROR) {
         exit(1);
     }
@@ -47,6 +58,18 @@ _xerror2_handler(int severity, po_message_t message1, const char *filename1,
                  const char *filename2, size_t lineno2, size_t column2,
                  int multiline_p2, const char *message_text2)
 {
+    FCITX_UNUSED(message1);
+    FCITX_UNUSED(filename1);
+    FCITX_UNUSED(lineno1);
+    FCITX_UNUSED(column1);
+    FCITX_UNUSED(multiline_p1);
+    FCITX_UNUSED(message_text1);
+    FCITX_UNUSED(message2);
+    FCITX_UNUSED(filename2);
+    FCITX_UNUSED(lineno2);
+    FCITX_UNUSED(column2);
+    FCITX_UNUSED(multiline_p2);
+    FCITX_UNUSED(message_text2);
     if (severity == PO_SEVERITY_FATAL_ERROR) {
         exit(1);
     }
@@ -55,6 +78,8 @@ static const struct po_xerror_handler handler = {
     .xerror = _xerror_handler,
     .xerror2 = _xerror2_handler
 };
+
+#endif
 
 static inline void
 encode_char(char *out, char c)
@@ -74,6 +99,8 @@ encode_string(const char *in, char *out, size_t l)
     }
     out[l * 2] = '\0';
 }
+
+#ifndef _FCITX_DISABLE_GETTEXT
 
 static int
 lang_to_prefix(const char *lang, char **out)
@@ -106,7 +133,7 @@ parse_po(const char *lang, const char *fname)
             continue;
         int id_len = strlen(msg_id);
         int str_len = strlen(msg_str);
-        int len = (id_len + str_len) * 2 + prefix_len + 2;
+        unsigned int len = (id_len + str_len) * 2 + prefix_len + 2;
         if (len > buff_len) {
             buff_len = len;
             buff = realloc(buff, buff_len);
@@ -144,6 +171,24 @@ fix_header(const char *header, const char *fname)
     po_file_write(po_file, "-", &handler);
     po_file_free(po_file);
 }
+
+#else
+
+static void
+parse_po(const char *lang, const char *fname)
+{
+    FCITX_UNUSED(lang);
+    FCITX_UNUSED(fname);
+}
+
+static void
+fix_header(const char *header, const char *fname)
+{
+    FCITX_UNUSED(header);
+    FCITX_UNUSED(fname);
+}
+
+#endif
 
 static void
 encode_stdin()
@@ -209,6 +254,12 @@ decode_stdin()
     }
 }
 
+static inline const char*
+std_filename(const char *fname)
+{
+    return (fname && *fname) ? fname : "-";
+}
+
 int
 main(int argc, char **argv)
 {
@@ -219,10 +270,7 @@ main(int argc, char **argv)
         const char *lang = argv[2];
         if (!lang)
             return 1;
-        const char *fname = argv[3];
-        if (!fname || !*fname)
-            fname = "-";
-        parse_po(lang, fname);
+        parse_po(lang, std_filename(argv[3]));
     } else if (strcmp(action, "--encode") == 0) {
         encode_stdin();
     } else if (strcmp(action, "--decode") == 0) {
@@ -231,10 +279,15 @@ main(int argc, char **argv)
         const char *header = argv[2];
         if (!header)
             return 1;
-        const char *fname = argv[3];
-        if (!fname || !*fname)
-            fname = "-";
-        fix_header(header, fname);
+        fix_header(header, std_filename(argv[3]));
+    } else if (strcmp(action, "--gettext-support") == 0) {
+#ifndef _FCITX_DISABLE_GETTEXT
+        return 0;
+#else
+        return 1;
+#endif
+    } else {
+        return 1;
     }
     return 0;
 }

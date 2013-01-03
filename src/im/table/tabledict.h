@@ -80,6 +80,7 @@ typedef enum {
     CM_ALT,
     CM_CTRL,
     CM_SHIFT,
+    _CM_COUNT
 } ChooseModifier;
 
 typedef struct {
@@ -105,7 +106,7 @@ typedef struct {
     int32_t iAutoPhrase;
     int iTableChanged;
     int iHZLastInputCount;
-    SINGLE_HZ       hzLastInput[PHRASE_MAX_LENGTH]; //Records last HZ input
+    SINGLE_HZ hzLastInput[PHRASE_MAX_LENGTH]; //Records last HZ input
     RECORD* promptCode[256];
     FcitxMemoryPool* pool;
 } TableDict;

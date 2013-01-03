@@ -1,4 +1,4 @@
-#   Copyright (C) 2012~2012 by Yichao Yu
+#   Copyright (C) 2012~2013 by Yichao Yu
 #   yyc1992@gmail.com
 #
 #   This program is free software; you can redistribute it and/or modify
@@ -77,11 +77,13 @@ fcitx_parse_all_pos() {
     local po_parse_cache_file
     local line
     while read line; do
+        [ -z "${line}" ] && continue
         po_lang="${line%% *}"
         po_file="${line#* }"
         prefix="$(fcitx_lang_to_prefix "${po_lang}")"
         po_parse_cache_file="${po_parse_cache_dir}/${prefix}.fxpo"
         if [ "${po_parse_cache_file}" -ot "${po_file}" ] ||
+            [ "${po_parse_cache_file}" -ot "${_FCITX_PO_PARSER_EXECUTABLE}" ] ||
             ! [ -f "${po_parse_cache_file}" ]; then
             echo "Parsing po file: ${po_file}"
             local unique_fname="${po_parse_cache_file}.$$"
@@ -103,6 +105,7 @@ fcitx_load_all_pos() {
     local po_parse_cache_file
     local line
     while read line; do
+        [ -z "${line}" ] && continue
         po_lang="${line%% *}"
         po_file="${line#* }"
         prefix="$(fcitx_lang_to_prefix "${po_lang}")"

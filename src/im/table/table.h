@@ -64,8 +64,6 @@ typedef struct _FcitxTableState {
     TableMetaData* curLoadedTable;
     RECORD         *pCurCandRecord; //Records current cand word selected, to update the hit-frequency information
 
-    RECORD_INDEX   *recordIndex;
-
     char            strTableRemindSource[PHRASE_MAX_LENGTH * UTF8_MAX_LENGTH + 1];
 
     boolean         bIsTableDelPhrase;
@@ -109,7 +107,7 @@ INPUT_RETURN_VALUE _TableGetCandWord(TableMetaData* table, TABLECANDWORD* tableC
 INPUT_RETURN_VALUE TableGetCandWord(void* arg, FcitxCandidateWord* candWord);
 boolean            TablePhraseTips(void* arg);
 
-void               UpdateHZLastInput(TableMetaData* table, char* str);
+void UpdateHZLastInput(TableMetaData* table, const char* str);
 
 FcitxConfigFileDesc *GetTableConfigDesc();
 FcitxConfigFileDesc *GetTableGlobalConfigDesc();

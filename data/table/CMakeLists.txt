@@ -1,3 +1,5 @@
+set(TXT2MB_BIN "${PROJECT_BINARY_DIR}/tools/cli/txt2mb")
+
 set(TABLE_DATA
   "${CMAKE_CURRENT_BINARY_DIR}/db.mb"
   "${CMAKE_CURRENT_BINARY_DIR}/erbi.mb"
@@ -26,19 +28,25 @@ foreach(tableconffile ${TABLE_CONF})
   set(INSTALL_TABLE_CONF ${INSTALL_TABLE_CONF}
     ${CMAKE_CURRENT_BINARY_DIR}/${tableconffile})
 endforeach()
-add_custom_target(table_conf ALL DEPENDS ${INSTALL_TABLE_CONF} )
+add_custom_target(table_conf ALL DEPENDS ${INSTALL_TABLE_CONF})
 add_custom_target(table_data ALL DEPENDS ${TABLE_DATA})
 
 fcitx_download(table-data-download "${TABLE_URL}" "${TABLE_TAR}"
   MD5SUM acb0b112423474ab2c1a22cee590d636)
+set(TABLE_STAMP "${CMAKE_CURRENT_BINARY_DIR}/table-extract.stamp")
+add_custom_command(OUTPUT "${TABLE_STAMP}"
+  COMMAND "${TAR}" xzmvf "${TABLE_TAR}"
+  COMMAND "${CMAKE_COMMAND}" -E touch "${TABLE_STAMP}"
+  DEPENDS table-data-download "${TABLE_TAR}")
+add_custom_target(table-data-extract ALL
+  DEPENDS "${TABLE_STAMP}")
 add_custom_command(OUTPUT ${TABLEORG_DATA}
-  DEPENDS table-data-download "${TABLE_TAR}"
-  COMMAND "${TAR}" xzmvf "${TABLE_TAR}")
+  DEPENDS table-data-extract)
 
 foreach(tblname ${TABLE_NAME})
   add_custom_command(OUTPUT ${tblname}.mb
-    DEPENDS ${tblname}.txt
-    COMMAND txt2mb ${tblname}.txt ${tblname}.mb)
+    DEPENDS ${tblname}.txt "${TXT2MB_BIN}" table-data-extract
+    COMMAND "${TXT2MB_BIN}" ${tblname}.txt ${tblname}.mb)
 endforeach()
 
 install(FILES ${TABLE_DATA} DESTINATION ${pkgdatadir}/table )
