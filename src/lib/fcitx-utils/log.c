@@ -35,18 +35,47 @@ static iconv_t iconvW = NULL;
 static int init = 0;
 static int is_utf8 = 0;
 
+#ifndef _DEBUG
+static FcitxLogLevel errorLevel = FCITX_WARNING;
+#else
+static FcitxLogLevel errorLevel = FCITX_DEBUG;
+#endif
+
+static const int RealLevelIndex[] = {0, 2, 3, 4, 1, 6};
+
 FCITX_EXPORT_API
-void FcitxLogFunc(ErrorLevel e, const char* filename, const int line, const char* fmt, ...)
+void FcitxLogSetLevel(FcitxLogLevel e) {
+    if ((int) e < 0)
+        e = 0;
+    else if (e > FCITX_NONE)
+        e = FCITX_NONE;
+    errorLevel = e;
+}
+
+FcitxLogLevel FcitxLogGetLevel()
+{
+    return errorLevel;
+}
+
+FCITX_EXPORT_API
+void FcitxLogFunc(FcitxLogLevel e, const char* filename, const int line, const char* fmt, ...)
 {
     if (!init) {
         init = 1;
         is_utf8 = fcitx_utils_current_locale_is_utf8();
     }
 
-#ifndef _DEBUG
-    if (e == FCITX_DEBUG)
+    if ((int) e < 0)
+        e = 0;
+    else if (e >= FCITX_NONE)
+        e = FCITX_INFO;
+
+    int realLevel = RealLevelIndex[e];
+    int globalRealLevel = RealLevelIndex[errorLevel];
+
+    if (realLevel < globalRealLevel)
         return;
-#endif
+
     switch (e) {
     case FCITX_INFO:
         fprintf(stderr, "(INFO-");
@@ -62,6 +91,8 @@ void FcitxLogFunc(ErrorLevel e, const char* filename, const int line, const char
         break;
     case FCITX_FATAL:
         fprintf(stderr, "(FATAL-");
+        break;
+    default:
         break;
     }
 
