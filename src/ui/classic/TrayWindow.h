@@ -53,6 +53,7 @@ typedef struct _TrayWindow {
 TrayWindow* CreateTrayWindow(struct _FcitxClassicUI *classicui);
 void DrawTrayWindow(TrayWindow* trayWindow);
 void RedrawTrayWindow(TrayWindow* trayWindow);
+/* these two function can be called more than once */
 void ReleaseTrayWindow(TrayWindow* trayWindow);
 void InitTrayWindow(TrayWindow *trayWindow);
 #endif

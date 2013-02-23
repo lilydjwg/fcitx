@@ -103,7 +103,7 @@ TrayWindow* CreateTrayWindow(FcitxClassicUI *classicui)
     TrayWindow *trayWindow = fcitx_utils_malloc0(sizeof(TrayWindow));
     trayWindow->owner = classicui;
     FcitxX11AddXEventHandler(classicui->owner, TrayEventHandler, trayWindow);
-    InitTrayWindow(trayWindow);
+    /* We used to init trayWindow here, but now we should delay it */
     return trayWindow;
 }
 
@@ -131,14 +131,15 @@ void DrawTrayWindow(TrayWindow* trayWindow)
     if (!classicui->bUseTrayIcon)
         return;
 
+    if (!trayWindow->bTrayMapped)
+        return;
+
     if (FcitxInstanceGetCurrentState(classicui->owner) == IS_ACTIVE)
         f_state = ACTIVE_ICON;
     else
         f_state = INACTIVE_ICON;
     cairo_t *c;
-    cairo_surface_t *png_surface ;
-    if (!trayWindow->bTrayMapped)
-        return;
+    cairo_surface_t *png_surface;
 
     /* 画png */
     if (f_state) {
@@ -219,6 +220,8 @@ boolean TrayEventHandler(void *arg, XEvent* event)
     case ClientMessage:
         if (event->xclient.message_type == trayWindow->atoms[ATOM_MANAGER]
                 && event->xclient.data.l[1] == trayWindow->atoms[ATOM_SELECTION]) {
+            if (classicui->notificationItemAvailable)
+                return true;
             if (trayWindow->window == None)
                 InitTrayWindow(trayWindow);
             TrayFindDock(dpy, trayWindow);

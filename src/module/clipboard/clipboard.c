@@ -48,6 +48,8 @@ static void ClipboardDestroy(void *arg);
 static void ClipboardReloadConfig(void *arg);
 static void ApplyClipboardConfig(FcitxClipboard *clipboard);
 
+DECLARE_ADDFUNCTIONS(Clipboard)
+
 FCITX_DEFINE_PLUGIN(fcitx_clipboard, module, FcitxModule) = {
     .Create = ClipboardCreate,
     .Destroy = ClipboardDestroy,
@@ -82,22 +84,9 @@ ClipboardSelectionClipboardFind(FcitxClipboard *clipboard,
     return -1;
 }
 
-static void*
-ClipboardGetPrimary(void *arg, FcitxModuleFunctionArg args)
+static const char*
+ClipboardGetClipboard(FcitxClipboard *clipboard, unsigned index, unsigned *len)
 {
-    FcitxClipboard *clipboard = arg;
-    unsigned int *len = args.args[0];
-    if (len)
-        *len = clipboard->primary.len;
-    return clipboard->primary.str;
-}
-
-static void*
-ClipboardGetClipboard(void *arg, FcitxModuleFunctionArg args)
-{
-    FcitxClipboard *clipboard = arg;
-    unsigned int index = (intptr_t)args.args[0];
-    unsigned int *len = args.args[1];
     if (index >= clipboard->clp_hist_len) {
         if (len)
             *len = 0;
@@ -345,7 +334,6 @@ ClipboardPostHook(void *arg, FcitxKeySym sym, unsigned int state,
         return false;
     clipboard->active = true;
     FcitxCandidateWordList *cand_list = FcitxInputStateGetCandidateList(input);
-    FcitxGlobalConfig *gconfig = FcitxInstanceGetGlobalConfig(instance);
     FcitxMessages *msg;
     FcitxCandidateWord cand_word = {
         .callback = ClipboardCommitCallback,
@@ -354,9 +342,13 @@ ClipboardPostHook(void *arg, FcitxKeySym sym, unsigned int state,
     };
     FcitxInstanceCleanInputWindow(instance);
     FcitxCandidateWordSetLayoutHint(cand_list, CLH_Vertical);
-    FcitxCandidateWordSetPageSize(cand_list, gconfig->iMaxCandWord);
+    int page_size = config->cand_max_len;
+    if (page_size > 10)
+        page_size = 10;
+    FcitxCandidateWordSetPageSize(cand_list, page_size);
     FcitxCandidateWordSetChooseAndModifier(
         cand_list, DIGIT_STR_CHOOSE, cmodifiers[config->choose_modifier]);
+    FcitxCandidateWordSetOverrideDefaultHighlight(cand_list, false);
     if (clipboard->clp_hist_len) {
         ClipboardSetCandWord(clipboard, &cand_word, clipboard->clp_hist_lst);
         FcitxCandidateWordAppend(cand_list, &cand_word);
@@ -387,6 +379,8 @@ skip_primary:
         FcitxCandidateWordAppend(cand_list, &cand_word);
     }
     *ret_val = IRV_FLAG_UPDATE_INPUT_WINDOW;
+    FcitxCandidateWordSetType(FcitxCandidateWordGetFirst(cand_list),
+                              MSG_CANDIATE_CURSOR);
     return true;
 }
 
@@ -427,9 +421,7 @@ ClipboardCreate(FcitxInstance *instance)
         .func = ClipboardReset
     };
     FcitxInstanceRegisterResetInputHook(instance, reset_hook);
-    FcitxAddon *self = FcitxClipboardGetAddon(instance);
-    FcitxModuleAddFunction(self, ClipboardGetPrimary);
-    FcitxModuleAddFunction(self, ClipboardGetClipboard);
+    FcitxClipboardAddFunctions(instance);
     return clipboard;
 }
 
@@ -533,3 +525,5 @@ ClipboardPushClipboard(FcitxClipboard *clipboard, uint32_t len, const char *str)
     clipboard->clp_hist_lst->len = len;
     clipboard->clp_hist_lst->str = new_str;
 }
+
+#include "fcitx-clipboard-addfunctions.h"

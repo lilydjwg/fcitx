@@ -254,7 +254,24 @@ typedef struct {
         (a)->i -= (len);                                                \
     } while(0)
 
+/**
+ * this actually steal the content away, doesn't destroy the content
+ * so the name doesn't actually accurate, use it carefully.
+ */
 #define utarray_remove_quick(a, pos) do {                               \
+        if ((a)->i - 1 != (pos))                                        \
+            memcpy(_utarray_eltptr(a, pos), _utarray_eltptr(a, (a)->i - 1), \
+                   (a)->icd->sz);                                       \
+        (a)->i--;                                                       \
+    } while(0)
+
+/**
+ * this is the "real" remove_quick with destroy,
+ */
+#define utarray_remove_quick_full(a, pos) do {                          \
+        if ((a)->icd->dtor) {                                           \
+            (a)->icd->dtor(utarray_eltptr(a, pos));                     \
+        }                                                               \
         if ((a)->i - 1 != (pos))                                        \
             memcpy(_utarray_eltptr(a, pos), _utarray_eltptr(a, (a)->i - 1), \
                    (a)->icd->sz);                                       \
@@ -347,7 +364,7 @@ static const UT_icd ut_int_icd _UNUSED_ = {
          key = (type*)utarray_next((array), key))
 
 static inline UT_array*
-utarray_clone(UT_array *from)
+utarray_clone(const UT_array *from)
 {
     UT_array *to;
     utarray_new(to, from->icd);

@@ -1,6 +1,8 @@
 /***************************************************************************
- *   Copyright (C) 2010~2010 by CSSlayer                                   *
+ *   Copyright (C) 2010~2012 by CSSlayer                                   *
  *   wengxt@gmail.com                                                      *
+ *   Copyright (C) 2012~2013 by Yichao Yu                                  *
+ *   yyc1992@gmail.com                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -107,7 +109,7 @@ extern "C" {
     void* FcitxModuleInvokeFunction(FcitxAddon* addon, int functionId, FcitxModuleFunctionArg args);
 #define FcitxModuleInvokeVaArgs(addon, functionId, ARGV...)             \
     (FcitxModuleInvokeFunction(addon, functionId,                       \
-                               (FcitxModuleFunctionArg){ .args = {ARGV} }))
+                               (FcitxModuleFunctionArg){ {ARGV} }))
 
     /**
      * invoke inter module function with addon name, returns NULL when fails (the function itself can also return NULL)
@@ -131,7 +133,7 @@ extern "C" {
 #define InvokeVaArgs(INST, MODULE, FUNC, ARGV...)                       \
     ((MODULE##_##FUNC##_RETURNTYPE)FcitxModuleInvokeFunctionByName(     \
         INST, MODULE##_NAME, MODULE##_##FUNC,                           \
-        (FcitxModuleFunctionArg){ .args = {ARGV} }))
+        (FcitxModuleFunctionArg){ {ARGV} }))
 
 /** add a function to a addon */
 #define AddFunction(ADDON, Realname)                                    \
@@ -148,16 +150,30 @@ extern "C" {
      **/
     void FcitxModuleAddFunction(FcitxAddon *addon, FcitxModuleFunction func);
 
+#ifdef __cplusplus
+#define DECLARE_ADDFUNCTIONS(prefix)                                    \
+    extern "C" {                                                        \
+        static inline FcitxAddon*                                       \
+        Fcitx_##prefix##_GetAddon(FcitxInstance *instance);             \
+        static void Fcitx##prefix##AddFunctions(FcitxInstance *instance); \
+    }
+#else
+#define DECLARE_ADDFUNCTIONS(prefix)                                    \
+    static inline FcitxAddon*                                           \
+    Fcitx_##prefix##_GetAddon(FcitxInstance *instance);                 \
+    static void Fcitx##prefix##AddFunctions(FcitxInstance *instance);
+#endif
+
 // Well won't work if there are multiple instances, but that will also break
 // lots of other things anyway.
 #define DEFINE_GET_ADDON(name, prefix)                           \
     static inline FcitxAddon*                                    \
     Fcitx##prefix##GetAddon(FcitxInstance *instance)             \
     {                                                            \
-        static int _init = false;                                \
         static FcitxAddon *addon = NULL;                         \
-        if (fcitx_unlikely(!_init)) {                            \
-            _init = true;                                        \
+        static FcitxInstance *_instance = NULL;                  \
+        if (fcitx_unlikely(_instance != instance)) {             \
+            _instance = instance;                                \
             addon = FcitxAddonsGetAddonByName(                   \
                 FcitxInstanceGetAddons(instance), name);         \
         }                                                        \
@@ -166,15 +182,19 @@ extern "C" {
 
 #define DEFINE_GET_AND_INVOKE_FUNC(prefix, suffix, id)                  \
     DEFINE_GET_AND_INVOKE_FUNC_WITH_ERROR(prefix, suffix, id, NULL)
-
 #define DEFINE_GET_AND_INVOKE_FUNC_WITH_ERROR(prefix, suffix, id, err_ret) \
+    DEFINE_GET_AND_INVOKE_FUNC_WITH_TYPE_AND_ERROR(prefix, suffix, id,  \
+                                                   intptr_t, (intptr_t)err_ret)
+
+#define DEFINE_GET_AND_INVOKE_FUNC_WITH_TYPE_AND_ERROR(prefix, suffix,  \
+                                                       id, type, err_ret) \
     static inline FcitxModuleFunction                                  \
     Fcitx##prefix##Find##suffix(FcitxAddon *addon)                     \
     {                                                                  \
-        static int _init = false;                                      \
+        static FcitxAddon *_addon = NULL;                              \
         static FcitxModuleFunction func = NULL;                        \
-        if (fcitx_unlikely(!_init)) {                                  \
-            _init = true;                                              \
+        if (fcitx_unlikely(addon != _addon)) {                         \
+            _addon = addon;                                            \
             func = FcitxModuleFindFunction(addon, id);                 \
         }                                                              \
         return func;                                                   \
@@ -183,7 +203,8 @@ extern "C" {
     Fcitx##prefix##Invoke##suffix(FcitxInstance *instance,             \
                                   FcitxModuleFunctionArg args)         \
     {                                                                  \
-        static void *const on_err = (void*)(intptr_t)(err_ret);        \
+        static type _on_err = (err_ret);                               \
+        FCITX_DEF_CAST_TO_PTR(on_err, type, _on_err);                  \
         FcitxAddon *addon = Fcitx##prefix##GetAddon(instance);         \
         if (fcitx_unlikely(!addon))                                    \
             return on_err;                                             \
@@ -194,15 +215,16 @@ extern "C" {
     }
 
 #define FCITX_DEF_MODULE_ARGS(var, ARGV...)             \
-    FcitxModuleFunctionArg var = { .args = {ARGV} }
+    FcitxModuleFunctionArg var = { {ARGV} }
     /* void *__##var##_array[] = {ARGV};                                   \ */
     /* size_t __##var##_length = sizeof(__##var##_array) / sizeof(void*);  \ */
     /* FcitxModuleFunctionArg var[] = { { .n = __##var##_length,           \ */
     /*                                    .args = __##var##_array } } */
 
-#define FCITX_MODULE_FUNCTION_ARGS void* arg, FcitxModuleFunctionArg args
-#define FCITX_MODULE_SELF(NAME, TYPE) TYPE* NAME = (TYPE*) arg;
-#define FCITX_MODULE_ARG(NAME, TYPE, INDEX) TYPE NAME = (TYPE) (intptr_t) args.args[(INDEX)]
+#define FCITX_MODULE_FUNCTION_ARGS void *arg, FcitxModuleFunctionArg args
+#define FCITX_MODULE_SELF(NAME, TYPE) TYPE *NAME = (TYPE*)arg
+#define FCITX_MODULE_ARG(NAME, TYPE, INDEX)                     \
+    FCITX_DEF_CAST_FROM_PTR(TYPE, NAME, args.args[(INDEX)])
 
 #ifdef __cplusplus
 }

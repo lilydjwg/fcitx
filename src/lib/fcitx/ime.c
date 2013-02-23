@@ -187,7 +187,7 @@ int IMPriorityCmp(const void *a, const void *b)
 void FcitxInstanceInitBuiltInHotkey(FcitxInstance *instance)
 {
     FcitxHotkeyHook hk;
-    hk.hotkey = FCITX_CTRL_5;
+    hk.hotkey = instance->config->hkReloadConfig;
     hk.hotkeyhandle = ImProcessReload;
     hk.arg = instance;
     FcitxInstanceRegisterHotkeyFilter(instance, hk);
@@ -276,7 +276,7 @@ void FcitxInstanceLoadIM(FcitxInstance* instance, FcitxAddon* addon)
             return;
         }
         fclose(fp);
-        handle = dlopen(modulePath, RTLD_NOW | RTLD_GLOBAL);
+        handle = dlopen(modulePath, RTLD_NOW | (addon->loadLocal ? RTLD_LOCAL : RTLD_GLOBAL));
         if (!handle) {
             FcitxLog(ERROR, _("IM: open %s fail %s") , modulePath , dlerror());
             free(modulePath);
@@ -1136,7 +1136,8 @@ void FcitxInstanceReloadAddonConfig(FcitxInstance *instance, const char* addonna
         FcitxInstanceLoadAllIM(instance);
     } else {
         do {
-            FcitxIM* im = FcitxInstanceGetIMByName(instance, addonname);
+            FcitxIM* im;
+            im = FcitxInstanceGetIMByName(instance, addonname);
             if (im && im->ReloadConfig) {
                 im->ReloadConfig(im->klass);
                 break;
@@ -1157,6 +1158,21 @@ void FcitxInstanceReloadAddonConfig(FcitxInstance *instance, const char* addonna
                 case AC_FRONTEND:
                     if (addon->frontend->ReloadConfig)
                         addon->frontend->ReloadConfig(addon->addonInstance);
+                case AC_INPUTMETHOD:
+                    /* imclass and imclass2 are in same union, only check one of them */
+                    if (addon->imclass) {
+                        for (im = (FcitxIM*) utarray_front(&instance->availimes);
+                             im != NULL;
+                             im = (FcitxIM*) utarray_next(&instance->availimes, im)) {
+                            if (im->owner == addon && im->ReloadConfig) {
+                                im->ReloadConfig(im->klass);
+                            }
+                        }
+
+                        if (addon->isIMClass2 && addon->imclass2->ReloadConfig) {
+                            addon->imclass2->ReloadConfig(addon->addonInstance);
+                        }
+                    }
                     break;
                 default:
                     break;

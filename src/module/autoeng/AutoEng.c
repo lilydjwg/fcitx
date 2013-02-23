@@ -69,6 +69,9 @@ typedef struct _FcitxAutoEngState {
     boolean auto_space;
     FcitxInstance *owner;
     FcitxAutoEngConfig config;
+    boolean cursor_moved;
+    char *back_buff;
+    size_t back_buff_size;
 } FcitxAutoEngState;
 
 static const unsigned int cmodtable[] = {
@@ -161,16 +164,11 @@ FCITX_DEFINE_PLUGIN(fcitx_autoeng, module ,FcitxModule) = {
 };
 
 static void
-AutoEngSetBuffLen(FcitxAutoEngState* autoEngState, size_t len)
+AutoEngSetBuffLen(FcitxAutoEngState *autoEngState, size_t len)
 {
-    unsigned int size = (len / MAX_USER_INPUT + 1) * MAX_USER_INPUT;
-    if (autoEngState->buf) {
-        if (autoEngState->buff_size != size) {
-            autoEngState->buf = realloc(autoEngState->buf, size);
-            autoEngState->buff_size = size;
-        }
-    } else {
-        autoEngState->buf = malloc(size);
+    unsigned int size = fcitx_utils_align_to(len + 1, MAX_USER_INPUT);
+    if (autoEngState->buff_size != size) {
+        autoEngState->buf = realloc(autoEngState->buf, size);
         autoEngState->buff_size = size;
     }
     autoEngState->buf[len] = '\0';
@@ -189,6 +187,17 @@ AutoEngSetBuff(FcitxAutoEngState* autoEngState, const char *str, char extra)
     if (extra) {
         autoEngState->buf[len] = extra;
     }
+}
+
+static void
+AutoEngSwapBuff(FcitxAutoEngState* autoEngState)
+{
+    size_t tmp_size = autoEngState->buff_size;
+    char *tmp_buf = autoEngState->buf;
+    autoEngState->buf = autoEngState->back_buff;
+    autoEngState->buff_size = autoEngState->back_buff_size;
+    autoEngState->back_buff = tmp_buf;
+    autoEngState->back_buff_size = tmp_size;
 }
 
 static boolean
@@ -311,59 +320,81 @@ AutoEngCheckSelect(FcitxAutoEngState *autoEngState,
     int key;
     FcitxCandidateWord *cand_word;
     if (FcitxHotkeyIsHotKey(sym, state, fc->nextWord)) {
-        cand_word = FcitxCandidateWordGetFocus(cand_list, true);
-        cand_word = FcitxCandidateWordGetNext(cand_list, cand_word);
-        if (!cand_word) {
-            FcitxCandidateWordSetPage(cand_list, 0);
-            cand_word = FcitxCandidateWordGetFirst(cand_list);
+        if (!autoEngState->cursor_moved) {
+            cand_word = FcitxCandidateWordGetCurrentWindow(cand_list);
         } else {
-            FcitxCandidateWordSetFocus(
-                cand_list, FcitxCandidateWordGetIndex(cand_list, cand_word));
+            cand_word = FcitxCandidateWordGetFocus(cand_list, true);
+            cand_word = FcitxCandidateWordGetNext(cand_list, cand_word);
+            if (!cand_word) {
+                FcitxCandidateWordSetPage(cand_list, 0);
+            } else {
+                FcitxCandidateWordSetFocus(
+                    cand_list, FcitxCandidateWordGetIndex(cand_list,
+                                                          cand_word));
+            }
         }
     } else if (FcitxHotkeyIsHotKey(sym, state, fc->prevWord)) {
-        cand_word = FcitxCandidateWordGetFocus(cand_list, true);
-        cand_word = FcitxCandidateWordGetPrev(cand_list, cand_word);
-        if (!cand_word) {
-            FcitxCandidateWordSetPage(
-                cand_list, FcitxCandidateWordPageCount(cand_list) - 1);
-            cand_word = FcitxCandidateWordGetLast(cand_list);
+        if (!autoEngState->cursor_moved) {
+            cand_word = FcitxCandidateWordGetByIndex(
+                cand_list,
+                FcitxCandidateWordGetCurrentWindowSize(cand_list) - 1);
         } else {
-            FcitxCandidateWordSetFocus(
-                cand_list, FcitxCandidateWordGetIndex(cand_list, cand_word));
+            cand_word = FcitxCandidateWordGetFocus(cand_list, true);
+            cand_word = FcitxCandidateWordGetPrev(cand_list, cand_word);
+            if (cand_word) {
+                FcitxCandidateWordSetFocus(
+                    cand_list, FcitxCandidateWordGetIndex(cand_list,
+                                                          cand_word));
+            }
         }
     } else if (FcitxHotkeyIsHotKey(sym, state,
                                    FcitxConfigPrevPageKey(instance, fc))) {
+        boolean has_prev_page;
         cand_word = FcitxCandidateWordGetFocus(cand_list, true);
-        if (!FcitxCandidateWordGoPrevPage(cand_list)) {
-            FcitxCandidateWordSetType(cand_word, MSG_CANDIATE_CURSOR);
-            return IRV_TO_PROCESS;
+        has_prev_page = FcitxCandidateWordGoPrevPage(cand_list);
+        if (!autoEngState->cursor_moved) {
+            cand_word = NULL;
+        } else if (has_prev_page) {
+            cand_word = FcitxCandidateWordGetCurrentWindow(cand_list) +
+                FcitxCandidateWordGetCurrentWindowSize(cand_list) - 1;
         }
-        cand_word = FcitxCandidateWordGetCurrentWindow(cand_list) +
-            FcitxCandidateWordGetCurrentWindowSize(cand_list) - 1;
     } else if (FcitxHotkeyIsHotKey(sym, state,
                                    FcitxConfigNextPageKey(instance, fc))) {
+        boolean has_next_page;
         cand_word = FcitxCandidateWordGetFocus(cand_list, true);
-        if (!FcitxCandidateWordGoNextPage(cand_list)) {
-            FcitxCandidateWordSetType(cand_word, MSG_CANDIATE_CURSOR);
-            return IRV_TO_PROCESS;
+        has_next_page = FcitxCandidateWordGoNextPage(cand_list);
+        if (!autoEngState->cursor_moved) {
+            cand_word = NULL;
+        } else if (has_next_page) {
+            cand_word = FcitxCandidateWordGetCurrentWindow(cand_list);
         }
-        cand_word = FcitxCandidateWordGetCurrentWindow(cand_list);
     } else if ((key = FcitxCandidateWordCheckChooseKey(cand_list,
                                                        sym, state)) >= 0) {
         return FcitxCandidateWordChooseByIndex(cand_list, key);
     } else {
         return IRV_TO_PROCESS;
     }
-    FcitxCandidateWordSetType(cand_word, MSG_CANDIATE_CURSOR);
-    AutoEngSetBuff(autoEngState, cand_word->strWord, '\0');
+    if (cand_word) {
+        FcitxCandidateWordSetType(cand_word, MSG_CANDIATE_CURSOR);
+        if (!autoEngState->cursor_moved)
+            AutoEngSwapBuff(autoEngState);
+        AutoEngSetBuff(autoEngState, cand_word->strWord, '\0');
+        autoEngState->cursor_moved = true;
+    } else if (autoEngState->cursor_moved) {
+        AutoEngSwapBuff(autoEngState);
+        autoEngState->cursor_moved = false;
+    } else {
+        return IRV_FLAG_UPDATE_INPUT_WINDOW;
+    }
     FcitxMessages *client_preedit = FcitxInputStateGetClientPreedit(input);
     FcitxMessages *preedit = FcitxInputStateGetPreedit(input);
     FcitxMessagesSetMessageCount(client_preedit, 0);
+    FcitxMessagesSetMessageCount(preedit, 0);
     FcitxMessagesAddMessageStringsAtLast(client_preedit, MSG_INPUT,
                                          autoEngState->buf);
-    FcitxMessagesSetMessageCount(preedit, 0);
     FcitxMessagesAddMessageStringsAtLast(preedit, MSG_INPUT,
                                          autoEngState->buf);
+    FcitxInputStateSetCursorPos(input, autoEngState->index);
     FcitxInputStateSetClientCursorPos(input, autoEngState->index);
     return IRV_FLAG_UPDATE_INPUT_WINDOW;
 }
@@ -375,6 +406,17 @@ AutoEngCommit(FcitxAutoEngState *autoEngState)
     FcitxInputContext *currentIC = FcitxInstanceGetCurrentIC(instance);
     FcitxInstanceCommitString(instance, currentIC, autoEngState->buf);
     AutoEngSetBuffLen(autoEngState, 0);
+}
+
+static void
+AutoEngActivate(FcitxAutoEngState *autoEngState, FcitxInputState* input,
+                INPUT_RETURN_VALUE *retval)
+{
+    FcitxInputStateSetShowCursor(input, false);
+    *retval = IRV_DISPLAY_MESSAGE;
+    autoEngState->active = true;
+    autoEngState->cursor_moved = false;
+    ShowAutoEngMessage(autoEngState, retval);
 }
 
 static boolean PreInputProcessAutoEng(void* arg, FcitxKeySym sym,
@@ -394,10 +436,7 @@ static boolean PreInputProcessAutoEng(void* arg, FcitxKeySym sym,
             AutoEngSetBuff(autoEngState,
                            FcitxInputStateGetRawInputBuffer(input), keymain);
             if (SwitchToEng(autoEngState, autoEngState->buf)) {
-                *retval = IRV_DISPLAY_MESSAGE;
-                FcitxInputStateSetShowCursor(input, false);
-                autoEngState->active = true;
-                ShowAutoEngMessage(autoEngState, retval);
+                AutoEngActivate(autoEngState, input, retval);
                 return true;
             }
         }
@@ -441,12 +480,9 @@ boolean PostInputProcessAutoEng(void* arg, FcitxKeySym sym, unsigned int state, 
         (FcitxInputStateGetRawInputBufferSize(input) != 0 ||
          (FcitxInputStateGetKeyState(input) & FcitxKeyState_CapsLock) == 0) &&
         AutoEngCheckPreedit(autoEngState)) {
-        *retval = IRV_DISPLAY_MESSAGE;
-        FcitxInputStateSetShowCursor(input, false);
         AutoEngSetBuff(autoEngState, FcitxInputStateGetRawInputBuffer(input),
                        FcitxHotkeyPadToMain(sym));
-        autoEngState->active = true;
-        ShowAutoEngMessage(autoEngState, retval);
+        AutoEngActivate(autoEngState, input, retval);
         return true;
     }
 
@@ -460,6 +496,7 @@ void ResetAutoEng(void *arg)
     autoEngState->index = 0;
     AutoEngSetBuffLen(autoEngState, 0);
     autoEngState->active = false;
+    autoEngState->cursor_moved = false;
 }
 
 static CONFIG_DESC_DEFINE(GetAutoEngConfigDesc, "fcitx-autoeng.desc");
@@ -530,13 +567,21 @@ void LoadAutoEng(FcitxAutoEngState* autoEngState)
     fclose(fp);
 }
 
-void FreeAutoEng(void* arg)
+static void
+AutoEngFreeList(FcitxAutoEngState* autoEngState)
 {
-    FcitxAutoEngState* autoEngState = (FcitxAutoEngState*) arg;
     if (autoEngState->autoEng) {
         utarray_free(autoEngState->autoEng);
         autoEngState->autoEng = NULL;
     }
+}
+
+void FreeAutoEng(void* arg)
+{
+    FcitxAutoEngState *autoEngState = (FcitxAutoEngState*)arg;
+    AutoEngFreeList(autoEngState);
+    fcitx_utils_free(autoEngState->buf);
+    fcitx_utils_free(autoEngState->back_buff);
 }
 
 boolean SwitchToEng(FcitxAutoEngState *autoEngState, const char *str)
@@ -590,6 +635,7 @@ AutoEngGetSpellHint(FcitxAutoEngState *autoEngState)
     if (candList) {
         FcitxInputState *input = FcitxInstanceGetInputState(autoEngState->owner);
         FcitxCandidateWordList *iList = FcitxInputStateGetCandidateList(input);
+        FcitxCandidateWordSetOverrideDefaultHighlight(iList, false);
         FcitxCandidateWordSetChooseAndModifier(
             iList, DIGIT_STR_CHOOSE,
             cmodtable[autoEngState->config.chooseModifier]);
@@ -644,8 +690,8 @@ ShowAutoEngMessage(FcitxAutoEngState *autoEngState, INPUT_RETURN_VALUE *retval)
 
 void ReloadAutoEng(void* arg)
 {
-    FcitxAutoEngState* autoEngState = (FcitxAutoEngState*) arg;
-    FreeAutoEng(autoEngState);
+    FcitxAutoEngState *autoEngState = (FcitxAutoEngState*)arg;
+    AutoEngFreeList(autoEngState);
     LoadAutoEng(autoEngState);
 }
 // kate: indent-mode cstyle; space-indent on; indent-width 0;

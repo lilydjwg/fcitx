@@ -52,10 +52,20 @@ FcitxQtConfigUIFactory::~FcitxQtConfigUIFactory()
 FcitxQtConfigUIWidget* FcitxQtConfigUIFactory::create(const QString& file)
 {
     Q_D(FcitxQtConfigUIFactory);
+
+    if (!d->plugins.contains(file))
+        return 0;
+
     char* localepath = fcitx_utils_get_fcitx_path("localedir");
     bindtextdomain(d->plugins[file]->domain().toUtf8().data(), localepath);
     free(localepath);
     return d->plugins[file]->create(file);
+}
+
+bool FcitxQtConfigUIFactory::test(const QString& file) {
+    Q_D(FcitxQtConfigUIFactory);
+
+    return d->plugins.contains(file);
 }
 
 void FcitxQtConfigUIFactoryPrivate::scan()
@@ -92,15 +102,15 @@ void FcitxQtConfigUIFactoryPrivate::scan()
             QString filePath = fi.filePath(); // file name with path
             QString fileName = fi.fileName(); // just file name
 
-            qDebug() << filePath;
+            // qDebug() << filePath;
 
             if (!QLibrary::isLibrary (filePath)) {
                 continue;
             }
 
             QPluginLoader* loader = new QPluginLoader (filePath, this);
-            qDebug() << loader->load();
-            qDebug() << loader->errorString();
+            // qDebug() << loader->load();
+            // qDebug() << loader->errorString();
             FcitxQtConfigUIFactoryInterface* plugin = qobject_cast< FcitxQtConfigUIFactoryInterface* > (loader->instance());
             if (plugin) {
                 QStringList list = plugin->files();
