@@ -43,7 +43,8 @@ struct _FcitxClassicUIStatus;
 typedef enum _HIDE_MAINWINDOW {
     HM_SHOW = 0,
     HM_AUTO = 1,
-    HM_HIDE = 2
+    HM_HIDE_WHEN_TRAY_AVAILABLE = 2,
+    HM_HIDE = 3
 } HIDE_MAINWINDOW;
 
 /**
@@ -57,7 +58,6 @@ typedef struct _FcitxClassicUI {
     Atom killAtom;
     struct _InputWindow* inputWindow;
     struct _MainWindow* mainWindow;
-    struct _MessageWindow* messageWindow;
     struct _TrayWindow* trayWindow;
     FcitxUIMenu skinMenu;
 
@@ -86,14 +86,12 @@ typedef struct _FcitxClassicUI {
     int dpi;
     uint64_t trayTimeout;
     boolean notificationItemAvailable;
+
+    unsigned int epoch;
 } FcitxClassicUI;
 
 void GetScreenSize(FcitxClassicUI* classicui, int* width, int* height);
 FcitxRect GetScreenGeometry(FcitxClassicUI* classicui, int x, int y);
-void
-ClassicUIInitWindowAttribute(FcitxClassicUI* classicui, Visual ** vs, Colormap * cmap,
-                             XSetWindowAttributes * attrib,
-                             unsigned long *attribmask, int *depth);
 Visual * ClassicUIFindARGBVisual(FcitxClassicUI* classicui);
 boolean ClassicUIMouseClick(FcitxClassicUI* classicui, Window window, int *x, int *y);
 boolean IsInRspArea(int x0, int y0, struct _FcitxClassicUIStatus* status);
@@ -104,6 +102,9 @@ void SaveClassicUIConfig(FcitxClassicUI* classicui);
 boolean WindowIsVisable(Display* dpy, Window window);
 boolean EnlargeCairoSurface(cairo_surface_t** sur, int w, int h);
 void ResizeSurface(cairo_surface_t** surface, int w, int h);
+
+#define FCITX_MIN(a,b) ((a) < (b)?(a) : (b))
+#define FCITX_MAX(a,b) ((a) > (b)?(a) : (b))
 
 #define GetPrivateStatus(status) ((FcitxClassicUIStatus*)(status)->uipriv[classicui->isfallback])
 
