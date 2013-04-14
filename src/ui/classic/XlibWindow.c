@@ -51,6 +51,14 @@ void FcitxXlibWindowInit(FcitxXlibWindow* window,
         window->height = cairo_image_surface_get_height(back->image);
     }
 
+    if (window->width == 0) {
+        window->width = 1;
+    }
+
+    if (window->height == 0) {
+        window->height = 1;
+    }
+
     Visual* vs = ClassicUIFindARGBVisual(classicui);
 
     XSetWindowAttributes attrib;
@@ -68,12 +76,9 @@ void FcitxXlibWindowInit(FcitxXlibWindow* window,
                                 &attrib);
 
     window->xlibSurface = cairo_xlib_surface_create(dpy, window->wId, vs, window->width, window->height);
-
-    if (background && back) {
-        window->contentSurface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, window->width, window->height);
-        window->backgroundSurface = cairo_surface_create_similar(window->contentSurface, CAIRO_CONTENT_COLOR_ALPHA,
-                                                                     window->width, window->height);
-    }
+    window->contentSurface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, window->width, window->height);
+    window->backgroundSurface = cairo_surface_create_similar(window->contentSurface, CAIRO_CONTENT_COLOR_ALPHA,
+                                                                    window->width, window->height);
 
     XSelectInput(dpy, window->wId, inputMask);
 
@@ -297,6 +302,9 @@ void FcitxXlibWindowPaint(FcitxXlibWindow* window)
 
 void FcitxXlibWindowDestroy(FcitxXlibWindow* window)
 {
+    if (window->wId == None)
+        return;
+
     cairo_surface_destroy(window->contentSurface);
     cairo_surface_destroy(window->backgroundSurface);
     cairo_surface_destroy(window->xlibSurface);
