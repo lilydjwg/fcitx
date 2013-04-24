@@ -75,8 +75,10 @@ FcitxCairoTextContext* FcitxCairoTextContextCreate(cairo_t* cr)
 
 void FcitxCairoTextContextFree(FcitxCairoTextContext* ctc)
 {
+#ifdef _ENABLE_PANGO
     g_object_unref(ctc->pangoLayout);
     g_object_unref(ctc->pangoContext);
+#endif
 
     if (ctc->ownSurface) {
         cairo_destroy(ctc->cr);
@@ -193,14 +195,9 @@ FcitxCairoTextContextOutputString(FcitxCairoTextContext* ctc, const char* str, i
         cairo_set_source_rgb(ctc->cr, color->r, color->g, color->b);
     }
 #ifdef _ENABLE_PANGO
-    int height1, height2;
-    pango_layout_set_text(ctc->pangoLayout, "Ayg中", -1);
-    pango_layout_get_pixel_size(ctc->pangoLayout, NULL, &height1);
-
     pango_layout_set_text(ctc->pangoLayout, str, -1);
-    pango_layout_get_pixel_size(ctc->pangoLayout, NULL, &height2);
 
-    cairo_move_to(ctc->cr, x, y + (height1 - height2));
+    cairo_move_to(ctc->cr, x, y);
     pango_cairo_show_layout(ctc->cr, ctc->pangoLayout);
 #else
     int             height = FcitxCairoTextContextFontHeight(ctc);

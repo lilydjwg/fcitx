@@ -3,14 +3,16 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
-# いくや あわしろ <ikunya@gmail.com>, 2012.
-# mongrelP＠一応求職中 木村 <kimi.nicoco@gmail.com>, 2012.
+# しろう <>, 2013
+# いくや あわしろ <ikunya@gmail.com>, 2013
+# いくや あわしろ <ikunya@gmail.com>, 2012
+# mongrelP＠一応求職中 木村 <kimi.nicoco@gmail.com>, 2012
 msgid ""
 msgstr ""
 "Project-Id-Version: fcitx\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2013-04-13 11:41-0400\n"
-"PO-Revision-Date: 2013-02-28 14:22+0000\n"
+"POT-Creation-Date: 2013-04-24 00:01-0400\n"
+"PO-Revision-Date: 2013-04-23 04:03+0000\n"
 "Last-Translator: Xuetian Weng <wengxt@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/projects/p/fcitx/language/"
 "ja/)\n"
@@ -22,75 +24,75 @@ msgstr ""
 
 #: src/im/table/table.c:1410
 msgid " Ctrl+Delete To Delete"
-msgstr ""
+msgstr "Ctrl+Delete で削除"
 
 #: data/script/fcitx-diagnose.sh:305
 msgid "${1} not found."
-msgstr ""
+msgstr "${1} は見つかりません"
 
 #: data/script/fcitx-diagnose.sh:622
 msgid "${1} works properly."
-msgstr ""
+msgstr "${1} は正常に動作しています。"
 
 #: tools/gui/quickphrase-editor/editor.cpp:43
 msgid "&Add"
-msgstr ""
+msgstr "追加 (&A)"
 
 #: tools/gui/quickphrase-editor/editor.cpp:44
 msgid "&Batch Edit"
-msgstr ""
+msgstr "バッチ編集 (&B)"
 
 #: tools/gui/wrapper/mainwindow.cpp:42
 msgid "&Close"
-msgstr ""
+msgstr "閉じる (&C)"
 
 #: tools/gui/quickphrase-editor/editor.cpp:45
 msgid "&Delete"
-msgstr ""
+msgstr "削除 (&D)"
 
 #: tools/gui/quickphrase-editor/editor.cpp:47
 msgid "&Import"
-msgstr ""
+msgstr "インポート (&I)"
 
 #: tools/gui/wrapper/mainwindow.cpp:41
 msgid "&Reset"
-msgstr ""
+msgstr "リセット (&R)"
 
 #: tools/gui/wrapper/mainwindow.cpp:40
 msgid "&Save"
-msgstr ""
+msgstr "保存 (&S)"
 
 #: src/im/keyboard/keyboard.c:440 src/im/keyboard/keyboard.c:457
 msgid "(Unavailable)"
-msgstr ""
+msgstr "(使えません)"
 
 #: data/script/fcitx-diagnose.sh:443
 msgid "/Beginner%27s_Guide"
-msgstr ""
+msgstr "/Beginner%27s_Guide"
 
 #: data/script/fcitx-diagnose.sh:476
 msgid "/Hall_of_Shame_for_Linux_IME_Support"
-msgstr ""
+msgstr "/Hall_of_Shame_for_Linux_IME_Support"
 
 #: data/script/fcitx-diagnose.sh:454
 msgid "/Input_method_related_environment_variables"
-msgstr ""
+msgstr "/Input_method_related_environment_variables"
 
 #: data/script/fcitx-diagnose.sh:463
 msgid "/Note_for_GNOME_Later_than_3.6"
-msgstr ""
+msgstr "/Note_for_GNOME_Later_than_3.6"
 
 #: data/script/fcitx-diagnose.sh:480
 msgid "/XIM"
-msgstr ""
+msgstr "/XIM"
 
-#: src/lib/fcitx/ime.c:1607
+#: src/lib/fcitx/ime.c:1631
 msgid "/min  Time Used: "
 msgstr ""
 
 #: src/module/autoeng/fcitx-autoeng.desc:31
 msgid "0 for commit immediately, -1 for keep all words"
-msgstr ""
+msgstr "0 の場合すぐに確定し、 -1 の場合すべての単語を保持します"
 
 #: src/module/unicode/charselectdata.c:251
 msgid "<Low Surrogate>"
@@ -106,17 +108,19 @@ msgstr ""
 
 #: src/module/unicode/charselectdata.c:253
 msgid "<Private Use>"
-msgstr ""
+msgstr "<プライベート用>"
 
 #: src/module/unicode/charselectdata.c:281
 msgid "<not assigned>"
-msgstr ""
+msgstr "<未定義>"
 
 #: src/im/keyboard/fcitx-keyboard.desc:33
 msgid ""
 "A different value from the global one may be useful when using horizontal "
 "candidate list"
 msgstr ""
+"縦の候補リストを使うときは、グローバル設定とは異なる値を設定することをお勧め"
+"します"
 
 #: src/im/pinyin/fcitx-pinyin.desc:7
 msgid "ABC"
@@ -124,75 +128,75 @@ msgstr "ABC"
 
 #: data/config.desc:25
 msgid "ALT Both"
-msgstr ""
+msgstr "2つのAlt"
 
 #: data/config.desc:19
 msgid "ALT_L_SHIFT"
-msgstr ""
+msgstr "Altと左Shift"
 
 #: data/config.desc:20
 msgid "ALT_R_SHIFT"
-msgstr ""
+msgstr "Altと右シフト"
 
-#: data/config.desc:57
+#: data/config.desc:64
 msgid "ALT_SHIFT"
-msgstr ""
+msgstr "Alt+Shift"
 
-#: data/config.desc:59
+#: data/config.desc:66
 msgid "ALT_SUPER"
-msgstr ""
+msgstr "Alt+Super"
 
-#: data/config.desc:184
+#: data/config.desc:191
 msgid "Action after press enter"
-msgstr "Enterキーの動作"
+msgstr "Enterキー入力後の動作"
 
-#: data/config.desc:33
+#: data/config.desc:40
 msgid "Activate input method"
-msgstr ""
+msgstr "入力メソッドをオンに"
 
-#: data/config.desc:167
+#: data/config.desc:174
 msgid "Active"
-msgstr ""
+msgstr "有効"
 
 #: src/ui/classic/skin.desc:387
 msgid "Active Menu Color"
-msgstr ""
+msgstr "有効なメニューの色"
 
 #: src/ui/classic/skin.desc:61
 msgid "Active Menu Item Character Color"
-msgstr ""
+msgstr "選択中メニューアイテムの文字色"
 
 #: src/ui/classic/skin.desc:81
 msgid "Active Mode Icon"
-msgstr ""
+msgstr "有効なモードのアイコン"
 
 #: src/ui/classic/skin.desc:172
 msgid "Active Text Icon Color"
-msgstr ""
+msgstr "有効なテキストアイコンの色"
 
 #: src/ui/classic/skin.desc:309
 msgid "Active Tray Icon"
-msgstr ""
+msgstr "有効なトレイアイコン"
 
 #: src/module/autoeng/fcitx-autoeng.desc:37
 msgid "Add Extra space when selecting a candidate word"
-msgstr ""
+msgstr "候補を選択している時に空白を追加する"
 
 #: src/module/lua/fcitx-lua.conf.in:4
 msgid "Add Lua script support to Fcitx"
-msgstr ""
+msgstr "Luaスクリプト対応を Fcitx に追加します"
 
 #: src/im/table/fcitx-table.desc:4
 msgid "Add Phrase"
-msgstr ""
+msgstr "フレーズを追加"
 
 #: src/module/unicode/fcitx-unicode.conf.in:4
 msgid "Add Unicode Typing Support"
-msgstr ""
+msgstr "ユニコード入力対応を追加します"
 
 #: src/im/keyboard/fcitx-keyboard.desc:44
 msgid "Add current input buffer to user dictionary"
-msgstr ""
+msgstr "現在の入力バッファーをユーザー辞書に追加"
 
 #: data/addon.desc:1 data/addon.desc:5 data/addon.desc:10 data/addon.desc:15
 #: data/addon.desc:24 data/addon.desc:29 data/addon.desc:33 data/addon.desc:40
@@ -201,88 +205,90 @@ msgstr ""
 msgid "Addon"
 msgstr "アドオン"
 
-#: src/lib/fcitx/addon.c:126
+#: src/lib/fcitx/addon.c:138
 #, c-format
 msgid "Addon Config %s is %s"
-msgstr ""
+msgstr "アドオン設定 %s は %s です"
 
 #: data/script/fcitx-diagnose.sh:944
 msgid "Addon Config Dir:"
-msgstr ""
+msgstr "アドオン設定ディレクトリ:"
 
 #: data/script/fcitx-diagnose.sh:955
 msgid "Addon List:"
-msgstr ""
+msgstr "アドオンリスト:"
 
 #: src/im/table/fcitx-table.desc:14 src/im/table/table.desc:19
 msgid "Adjust Order"
-msgstr ""
+msgstr "順序の調整"
 
 #: src/im/pinyin/fcitx-pinyin.desc:59 src/im/pinyin/fcitx-pinyin.desc:68
 #: src/im/pinyin/fcitx-pinyin.desc:77 src/im/table/table.desc:24
 msgid "AdjustFast"
-msgstr ""
+msgstr "すぐに調整"
 
 #: src/im/pinyin/fcitx-pinyin.desc:60 src/im/pinyin/fcitx-pinyin.desc:69
 #: src/im/pinyin/fcitx-pinyin.desc:78 src/im/table/table.desc:25
 msgid "AdjustFreq"
-msgstr ""
+msgstr "頻度で調整"
 
 #: src/im/pinyin/fcitx-pinyin.desc:58 src/im/pinyin/fcitx-pinyin.desc:67
 #: src/im/pinyin/fcitx-pinyin.desc:76 src/im/table/table.desc:23
 msgid "AdjustNo"
-msgstr ""
+msgstr "調整しない"
 
-#: data/config.desc:158
+#: data/config.desc:165
 msgid "All"
 msgstr "すべて"
 
 #: data/script/fcitx-diagnose.sh:568
 msgid "All locale:"
-msgstr ""
+msgstr "すべてのロケール:"
 
 #: src/module/pinyin-enhance/fcitx-pinyin-enhance.desc:11
 msgid ""
 "Allow Pinyin Enhance to replace the first candidate word when the input "
 "string is very closed to English."
 msgstr ""
+"最初の入力文字が英語と近い場合に、拡張 Pinyin が最初の候補を置換することを許"
+"可する。"
 
 #: src/module/pinyin-enhance/fcitx-pinyin-enhance.desc:10
 msgid "Allow replacing the first candidate"
-msgstr ""
+msgstr "最初の候補を置き換え可能にする"
 
 #: src/module/xkb/fcitx-xkb.desc:4
 msgid "Allow to Override System XKB Settings"
-msgstr ""
+msgstr "システムの XKB 設定を上書き可能にする"
 
 #: src/im/keyboard/fcitx-keyboard.desc:12 src/im/table/table.desc:137
 #: src/module/autoeng/fcitx-autoeng.desc:7
 #: src/module/clipboard/fcitx-clipboard.desc:40
 #: src/module/quickphrase/fcitx-quickphrase.desc:21
 msgid "Alt"
-msgstr ""
+msgstr "Alt"
 
 #: src/im/table/table.desc:172
 msgid "Alternative Next Page Key"
-msgstr ""
+msgstr "別の次ページキー"
 
 #: src/im/table/table.desc:162 src/im/table/table.desc:167
 msgid "Alternative Prev Page Key"
-msgstr ""
+msgstr "別の前ページキー"
 
 #: src/module/quickphrase/fcitx-quickphrase.desc:13
 msgid "Alternative Trigger Key for QuickPhrase"
-msgstr ""
+msgstr "クイックフレーズのトリガーとなる別のキー"
 
-#: data/config.desc:218 data/config.desc:224 data/config.desc:230
-#: data/config.desc:236 data/config.desc:242 data/config.desc:248
-#: data/config.desc:254
+#: data/config.desc:225 data/config.desc:231 data/config.desc:237
+#: data/config.desc:243 data/config.desc:249 data/config.desc:255
+#: data/config.desc:261
 msgid "Appearance"
-msgstr "見た目"
+msgstr "外観"
 
 #: src/module/xkb/fcitx-xkb.desc:19
 msgid "Apply this custom xmodmap script after layout change"
-msgstr ""
+msgstr "レイアウト変更後にこの独自 xmodmap スクリプトを適用する"
 
 #: data/addon.desc:67
 msgid "Argument for InputMethod Register"
@@ -290,7 +296,7 @@ msgstr ""
 
 #: src/module/spell/fcitx-spell.desc:6
 msgid "Aspell"
-msgstr ""
+msgstr "Aspell"
 
 #: src/ui/classic/fcitx-classic-ui.desc:45
 msgid "Auto"
@@ -298,7 +304,7 @@ msgstr "自動"
 
 #: src/module/autoeng/fcitx-autoeng.conf.in:4
 msgid "Auto Change to English Mode while Input Specific String"
-msgstr ""
+msgstr "特定の文字列を入力するときに英語モードに自動的に切り替え"
 
 #: src/im/pinyin/fcitx-pinyin.desc:33
 msgid "Auto Create Phrase"
@@ -310,7 +316,7 @@ msgstr "フレーズを自動生成"
 #: src/module/autoeng/fcitx-autoeng.desc:26
 #: src/module/autoeng/fcitx-autoeng.desc:34
 msgid "Auto English"
-msgstr ""
+msgstr "自動英語"
 
 #: src/module/autoeng/fcitx-autoeng.conf.in:3
 msgid "Auto English Mode"
@@ -318,7 +324,7 @@ msgstr "自動英語モード"
 
 #: src/module/autoeng/fcitx-autoeng.conf.in:9
 msgid "Auto English Trigger Word"
-msgstr ""
+msgstr "自動英語モードにする単語"
 
 #: src/im/table/table.desc:88
 msgid "Auto Phrase"
@@ -326,20 +332,20 @@ msgstr "オートフレーズ"
 
 #: src/im/table/table.desc:98
 msgid "Auto Phrase Length"
-msgstr ""
+msgstr "オートフレーズの長さ"
 
 #: src/im/table/table.desc:103
 msgid "Auto Phrase Phrase"
-msgstr ""
+msgstr "オートフレーズのフレーズ"
 
 #: src/im/table/table.desc:49
 msgid "Auto Send Candidate Word"
-msgstr ""
+msgstr "候補を自動で送る"
 
 #: src/lib/fcitx-config/fcitx-config.c:1170
 #: src/lib/fcitx-config/fcitx-config.c:1179
 msgid "Available Value:"
-msgstr ""
+msgstr "可能な値:"
 
 #: src/ui/classic/skin.desc:69 src/ui/classic/skin.desc:187
 #: src/ui/classic/skin.desc:317
@@ -348,7 +354,7 @@ msgstr "背景"
 
 #: data/script/fcitx-diagnose.sh:442
 msgid "Beginner's Guide"
-msgstr ""
+msgstr "初心者ガイド"
 
 #: data/table/qxm.conf.in:3
 msgid "Bingchan"
@@ -357,64 +363,63 @@ msgstr "Bingchan"
 #: src/ui/classic/skin.desc:135 src/ui/classic/skin.desc:241
 #: src/ui/classic/skin.desc:371
 msgid "BottomCenter"
-msgstr ""
+msgstr "下"
 
 #: src/ui/classic/skin.desc:134 src/ui/classic/skin.desc:240
 #: src/ui/classic/skin.desc:370
 msgid "BottomLeft"
-msgstr ""
+msgstr "左下"
 
 #: src/ui/classic/skin.desc:136 src/ui/classic/skin.desc:242
 #: src/ui/classic/skin.desc:372
 msgid "BottomRight"
-msgstr ""
+msgstr "右下"
 
 #: data/config.desc:21
 msgid "CTRL Both"
-msgstr ""
+msgstr "2つのCtrl"
 
-#: data/config.desc:56
+#: data/config.desc:63
 msgid "CTRL_SHIFT"
-msgstr ""
+msgstr "Ctrl+Shift"
 
-#: data/config.desc:58
+#: data/config.desc:65
 msgid "CTRL_SUPER"
-msgstr ""
+msgstr "Ctrl+Super"
 
 #: src/im/pinyin/py.c:393
 msgid "Can not find System Database of Pinyin!"
-msgstr ""
+msgstr "Pinyinのシステムデータベースが見つかりません。"
 
 #: src/ui/classic/skin.c:121
 msgid "Can not load default skin, is installion correct?"
-msgstr ""
-"デフォールトスキンをロードできません、インストールが失敗した可能性があります"
+msgstr "既定のスキンをロードできません、インストールが失敗した可能性があります"
 
 #: src/ui/classic/skin.c:126
 #, c-format
 msgid "Can not load skin %s, return to default"
-msgstr "%sスキンをロードできません、デフォールトスキンに戻ります。"
+msgstr "%sスキンをロードできません、既定のスキンに戻ります。"
 
 #: src/frontend/xim/xim.c:146
 msgid "Can't Create imWindow"
-msgstr ""
+msgstr "imWindow を生成できません"
 
 #: src/module/punc/punc.c:397
 msgid "Can't open punc file."
-msgstr ""
+msgstr "句読点ファイルを開けません"
 
 #: src/module/remote/remote.c:70
 #, c-format
 msgid "Can't open socket %s: %s"
-msgstr ""
+msgstr "ソケット %s を開けません: %s"
 
 #: src/ui/classic/skin.desc:41
 msgid "Candidate Index Color"
-msgstr ""
+msgstr "候補インデックスの色"
 
-#: data/config.desc:202
+#: data/config.desc:209
 msgid "Candidate Word Number"
-msgstr "候補単語番号"
+msgstr "候補の単語数"
 
 #: data/table/cangjie.conf.in:3
 msgid "Cangjie"
@@ -423,108 +428,110 @@ msgstr "Cangjie"
 #: src/im/pinyin/py.c:1736
 #, c-format
 msgid "Cannot Save Frequent word: %s"
-msgstr ""
+msgstr "よく使う単語を保存できません: %s"
 
 #: src/im/pinyin/py.c:1799
 #, c-format
 msgid "Cannot Save Pinyin Index: %s"
-msgstr ""
+msgstr "Pinyin インデックスを保存できません: %s"
 
 #: src/im/pinyin/py.c:1673
 #, c-format
 msgid "Cannot Save User Pinyin Database: %s"
-msgstr ""
+msgstr "ユーザーのPinyinデータベースを保存できません: %s"
 
 #: data/script/fcitx-diagnose.sh:620
 msgid "Cannot connect to fcitx correctly."
-msgstr ""
+msgstr "正しくfcitxに接続できません。"
 
 #: data/script/fcitx-diagnose.sh:537
 msgid "Cannot determine desktop environment."
-msgstr ""
+msgstr "デスクトップ環境を決定できません。"
 
 #: data/script/fcitx-diagnose.sh:710
 msgid ""
 "Cannot find a GUI config tool, please install one of ${1}, ${2}, or ${3}."
 msgstr ""
+"GUI 設定ツールが見つかりません。 ${1}, ${2}, ${3} のうちどれか一つをインス"
+"トールしてください。"
 
 #: data/script/fcitx-diagnose.sh:946
 msgid "Cannot find fcitx addon config directory."
-msgstr ""
+msgstr "Fcitx アドオンの設定ディレクトリが見つかりません。"
 
 #: data/script/fcitx-diagnose.sh:581
 msgid "Cannot find fcitx executable!"
-msgstr ""
+msgstr "fcitxを実行できません！"
 
 #: data/script/fcitx-diagnose.sh:916
 msgid "Cannot find fcitx im module for gtk ${1} in cache."
-msgstr ""
+msgstr "キャッシュに gtk ${1} 用の fcitx im モジュールが見つかりません。"
 
 #: data/script/fcitx-diagnose.sh:884
 msgid "Cannot find fcitx im module for gtk ${1}."
-msgstr ""
+msgstr "gtk ${1} 用のFcitx im モジュールが見つかりません。"
 
 #: data/script/fcitx-diagnose.sh:849
 msgid "Cannot find fcitx input method module for qt."
-msgstr ""
+msgstr "qt用のFcitx入力メソッドモジュールが見つかりません。"
 
 #: data/script/fcitx-diagnose.sh:700
 msgid "Cannot find fcitx-configtool executable!"
-msgstr ""
+msgstr "fcitx-configtoolが実行可能な状態で見つかりませんでした！"
 
 #: data/script/fcitx-diagnose.sh:775
 msgid "Cannot find xim_server on root window."
-msgstr ""
+msgstr "ルートウィンドウで xim_server が見つかりません。"
 
 #: src/im/table/table.c:653
 msgid "Cannot found Pinyin"
-msgstr ""
+msgstr "Pinyin が見つかりません"
 
 #: data/script/fcitx-diagnose.sh:749
 msgid "Cannot interpret XMODIFIERS: ${1}."
-msgstr ""
+msgstr "XMODIFIERSを解釈できません: ${1}"
 
 #: data/script/fcitx-diagnose.sh:994
 msgid "Cannot read im list from fcitx profile."
-msgstr ""
+msgstr "fcitx プロファイルから IM リストを読み込めません。"
 
 #: data/addon.desc:22
 msgid "Category"
-msgstr "カテゴリー"
+msgstr "カテゴリ"
 
 #: src/ui/classic/skin.desc:132 src/ui/classic/skin.desc:238
 #: src/ui/classic/skin.desc:368
 msgid "Center"
-msgstr ""
+msgstr "真ん中"
 
 #: src/ui/classic/skin.desc:131 src/ui/classic/skin.desc:237
 #: src/ui/classic/skin.desc:367
 msgid "CenterLeft"
-msgstr ""
+msgstr "左"
 
 #: src/ui/classic/skin.desc:133 src/ui/classic/skin.desc:239
 #: src/ui/classic/skin.desc:369
 msgid "CenterRight"
-msgstr ""
+msgstr "右"
 
 #: data/fcitx-configtool.desktop.in:4
 msgid "Change Fcitx Configuration"
-msgstr ""
+msgstr "Fcitx 設定を変更"
 
 #: src/im/table/table.desc:127
 msgid "Choose"
 msgstr "選択"
 
-#: data/config.desc:118
+#: data/config.desc:125
 msgid "Choose Second and Third Candidate Word"
-msgstr ""
+msgstr "二番目と三番目の候補を選択"
 
 #: src/im/keyboard/fcitx-keyboard.desc:7 src/im/table/table.desc:132
 #: src/module/autoeng/fcitx-autoeng.desc:2
 #: src/module/clipboard/fcitx-clipboard.desc:35
 #: src/module/quickphrase/fcitx-quickphrase.desc:16
 msgid "Choose key modifier"
-msgstr ""
+msgstr "修飾キーを選択"
 
 #: src/im/table/table.c:721
 msgid "Choose the phrase to be deleted, Press Escape to Cancel"
@@ -536,7 +543,7 @@ msgstr ""
 
 #: src/im/table/table.c:729
 msgid "Choose the phrase to clear typing history, Press Escape to Cancel"
-msgstr ""
+msgstr "入力履歴を削除するフレーズを選択、Escapeでキャンセル"
 
 #: src/ui/classic/fcitx-classic-ui.conf.in:3
 msgid "Classic"
@@ -544,7 +551,7 @@ msgstr "クラシック"
 
 #: src/ui/classic/fcitx-classic-ui.conf.in:4
 msgid "Classic User Interface with Skin support"
-msgstr ""
+msgstr "スキンをサポートしたクラシックなユーザーインタフェース"
 
 #: src/ui/classic/fcitx-classic-ui.desc:1
 #: src/ui/classic/fcitx-classic-ui.desc:7
@@ -559,9 +566,9 @@ msgstr ""
 msgid "ClassicUI"
 msgstr "クラシックUI"
 
-#: data/config.desc:181
+#: data/config.desc:188
 msgid "Clean"
-msgstr ""
+msgstr "削除"
 
 #: src/im/table/fcitx-table.desc:19
 msgid "Clear Frequency"
@@ -569,11 +576,11 @@ msgstr ""
 
 #: src/module/imselector/fcitx-imselector.desc:14
 msgid "Clear local Input Method"
-msgstr ""
+msgstr "ローカルの入力メソッドをクリア"
 
 #: src/module/imselector/imselector.c:325
 msgid "Clear local input method"
-msgstr ""
+msgstr "ローカルIMをクリア"
 
 #: src/module/clipboard/fcitx-clipboard.conf.in:3
 #: src/module/clipboard/fcitx-clipboard.desc:1
@@ -584,23 +591,23 @@ msgstr ""
 #: src/module/clipboard/fcitx-clipboard.desc:34
 #: src/module/clipboard/fcitx-clipboard.desc:44
 msgid "Clipboard"
-msgstr ""
+msgstr "クリップボード"
 
 #: src/module/vk/vk.c:212
 msgid "Close virtual keyboard"
-msgstr ""
+msgstr "仮想キーボードを閉じる"
 
 #: src/im/table/table.desc:15
 msgid "Code Table File"
-msgstr ""
+msgstr "コードテーブルファイル"
 
 #: src/im/table/table.desc:7
 msgid "Code Table Name"
-msgstr ""
+msgstr "コードテーブル名"
 
 #: src/im/table/table.c:1406
 msgid "Code is "
-msgstr ""
+msgstr "コードは"
 
 #: src/im/table/table.desc:1 src/im/table/table.desc:6
 #: src/im/table/table.desc:10 src/im/table/table.desc:14
@@ -633,41 +640,41 @@ msgstr "カーソルの色"
 msgid "Comment"
 msgstr "コメント"
 
-#: data/config.desc:182
+#: data/config.desc:189
 msgid "Commit"
-msgstr "適用"
+msgstr "確定"
 
 #: src/im/table/table.desc:182
 msgid "Commit and pass when invalid key of this table pressed"
-msgstr ""
+msgstr "このテーブルの不正なキーが押された時に確定し、飛ばす"
 
 #: src/im/table/table.desc:187
 msgid "Commit key for select first candidate"
-msgstr ""
+msgstr "最初の候補を確定するキー"
 
 #: src/im/table/table.desc:192
 msgid "Commit string when there is no match"
-msgstr ""
+msgstr "一致しない場合文字列を確定する"
 
-#: data/config.desc:196
+#: data/config.desc:203
 msgid "Commit when toggle state"
-msgstr ""
+msgstr "状態を切り替えたら確定する"
 
 #: src/im/keyboard/fcitx-keyboard.desc:4
 msgid "Commit with extra space when choose candidate word"
-msgstr ""
+msgstr "候補を選択時に空白を追加して確定する"
 
 #: data/script/fcitx-diagnose.sh:662
 msgid "Config GUI for gtk${1}:"
-msgstr ""
+msgstr "gtk${1} 向け設定GUI:"
 
 #: data/script/fcitx-diagnose.sh:682
 msgid "Config GUI for kde:"
-msgstr ""
+msgstr "KDE向け設定GUI:"
 
 #: data/script/fcitx-diagnose.sh:698
 msgid "Config Tool Wrapper:"
-msgstr ""
+msgstr "設定ツールラッパー:"
 
 #: data/addon.desc:62
 msgid "ConfigFile"
@@ -675,7 +682,7 @@ msgstr "設定ファイル"
 
 #: data/script/fcitx-diagnose.sh:1103
 msgid "Configuration."
-msgstr ""
+msgstr "設定。"
 
 #: src/module/notificationitem/dbusmenu.c:358 src/ui/classic/classicui.c:504
 msgid "Configure"
@@ -684,20 +691,20 @@ msgstr "設定"
 #: src/module/notificationitem/dbusmenu.c:354 src/ui/classic/classicui.c:503
 #: src/ui/kimpanel/kimpanel.c:754
 msgid "Configure Current Input Method"
-msgstr ""
+msgstr "現在の入力メソッドの設定"
 
 #: src/lib/fcitx-config/fcitx-config.c:884
 #, c-format
 msgid "Configure group name error: line %d"
-msgstr ""
+msgstr "グループ名設定エラー: %d 行目"
 
 #: src/module/quickphrase/fcitx-quickphrase.conf.in:4
 msgid "Conveniently Input English or User-Defined Simple Table"
-msgstr ""
+msgstr "英語入力やユーザー設定の簡単なテーブルに便利です"
 
 #: src/module/chttrans/fcitx-chttrans.conf.in:4
 msgid "Convert Simplified Chinese To Traditional Chinese"
-msgstr ""
+msgstr "簡体字中国語から繁体字中国語への変換"
 
 #: src/ui/classic/skin.desc:153 src/ui/classic/skin.desc:161
 #: src/ui/classic/skin.desc:295 src/ui/classic/skin.desc:303
@@ -710,23 +717,31 @@ msgstr "コピー"
 #: src/module/clipboard/fcitx-clipboard.desc:41
 #: src/module/quickphrase/fcitx-quickphrase.desc:22
 msgid "Ctrl"
+msgstr "Ctrl"
+
+#: data/config.desc:29
+msgid "Ctrl+Left Super"
+msgstr ""
+
+#: data/config.desc:30
+msgid "Ctrl+Right Super"
 msgstr ""
 
 #: data/profile.desc:22
 msgid "Current Enabled Input Method List"
-msgstr "現在使えるIMのリスト"
+msgstr "現在使える入力メソッドのリスト"
 
 #: data/profile.desc:17
 msgid "Current Input Method Name"
-msgstr "現在のIM"
+msgstr "現在の入力メソッド名"
 
 #: src/module/imselector/imselector.c:311
 msgid "Current local input method is "
-msgstr ""
+msgstr "現在のローカル入力メソッドは "
 
 #: data/script/fcitx-diagnose.sh:566
 msgid "Current locale:"
-msgstr ""
+msgstr "現在のロケール:"
 
 #: data/addon.desc:37
 msgid "DBus"
@@ -739,17 +754,17 @@ msgstr "DBusサポート"
 #: src/module/notificationitem/fcitx-notificationitem.conf.in:3
 #: src/module/notificationitem/fcitx-notificationitem.conf.in:4
 msgid "DBus based new Freedesktop.org tray icon"
-msgstr ""
+msgstr "新しい Freedesktop.org の DBus のトレイアイコン"
 
 #: tools/gui/quickphrase-editor/editor.cpp:46
 msgid "De&lete All"
-msgstr ""
+msgstr "全削除 (&l)"
 
 #: src/module/spell/fcitx-spell.desc:5
 msgid "Default"
-msgstr ""
+msgstr "既定"
 
-#: data/config.desc:168
+#: data/config.desc:175
 msgid "Default Input Method State"
 msgstr "既定の入力メソッドの状態"
 
@@ -759,15 +774,15 @@ msgstr "既定のShuangpinのスキーマー"
 
 #: src/module/spell/fcitx-spell.desc:11
 msgid "Default Spell Hint Backends Order"
-msgstr ""
+msgstr "スペルヒントを使用する既定の順番"
 
 #: data/script/fcitx-diagnose.sh:1020
 msgid "Default input methods:"
-msgstr ""
+msgstr "既定の入力メソッド"
 
 #: src/im/table/fcitx-table.desc:9
 msgid "Delete Phrase"
-msgstr ""
+msgstr "フレーズを削除"
 
 #: data/addon.desc:43
 msgid "Dependency"
@@ -779,48 +794,50 @@ msgstr "スキンの詳細"
 
 #: data/script/fcitx-diagnose.sh:535
 msgid "Desktop Environment."
-msgstr ""
+msgstr "デスクトップ環境。"
 
 #: data/script/fcitx-diagnose.sh:539
 msgid "Desktop environment is ${1}."
-msgstr ""
+msgstr "デスクトップ環境は ${1} です。"
 
 #: data/table/db.conf.in:3
 msgid "Dianbaoma"
 msgstr "Dianbaoma"
 
-#: data/config.desc:190
+#: data/config.desc:197
 msgid "Disable Paging in Remind Mode"
-msgstr ""
+msgstr "リマインドモードでページを無効に"
 
 #: src/module/pinyin-enhance/fcitx-pinyin-enhance.desc:40
 msgid "Disable Pinyin Symbol"
-msgstr ""
+msgstr "Pinyin 記号を無効にする"
 
-#: src/lib/fcitx/addon.c:286
+#: src/lib/fcitx/addon.c:298
 #, c-format
 msgid "Disable addon %s, dependency %s can not be satisfied."
-msgstr ""
+msgstr "アドオン %s を無効にしました。依存性 %s が解決されていません。"
 
 #: src/module/notificationitem/notificationitem.c:453
 #: src/ui/kimpanel/kimpanel.c:254 src/ui/kimpanel/kimpanel.c:259
-#: data/config.desc:26
+#: data/config.desc:33
 msgid "Disabled"
 msgstr "無効"
 
-#: data/config.desc:215
+#: data/config.desc:222
 msgid "Do not commit preedit text when unfocus a window"
-msgstr ""
+msgstr "フォーカスを外しても未確定文字をコミットしない"
 
 #: data/addon.desc:82
 msgid "Do not show in GUI"
-msgstr ""
+msgstr "GUI で表示しない"
 
-#: data/config.desc:257
+#: data/config.desc:264
 msgid "Do not show input window if there is only one candidate and preedit"
 msgstr ""
+"候補とプレエディットに1つの候補しか表示されていない場合は入力ウィンドウを表示"
+"しない"
 
-#: data/config.desc:251
+#: data/config.desc:258
 msgid "Do not show input window if there is only preedit string"
 msgstr "プレエディットを表示している場合は入力ウィンドウを表示しない"
 
@@ -828,7 +845,7 @@ msgstr "プレエディットを表示している場合は入力ウィンドウ
 #: src/module/pinyin-enhance/fcitx-pinyin-enhance.desc:14
 #: src/module/quickphrase/fcitx-quickphrase.desc:26
 msgid "Do not show spell hint"
-msgstr ""
+msgstr "スペルヒントを表示しない"
 
 #: src/im/table/table.desc:29
 msgid "Do not sort word with code less than this level"
@@ -837,35 +854,37 @@ msgstr ""
 #: src/lib/fcitx-utils/desktop-parse.c:565
 #, c-format
 msgid "Duplicate entry %s in group %s,@ line %d, override previous one."
-msgstr ""
+msgstr " %s が %s グループ、 %d 行目で重複しており、前のを上書きします。"
 
 #: src/lib/fcitx-utils/desktop-parse.c:525
 #, c-format
 msgid ""
 "Duplicate group %s in a desktop file,@ line %d, merge with previous one."
 msgstr ""
+"デスクトップファイルで重複したグループ %s が %d 行目にあり、前のとマージしま"
+"す。"
 
 #: src/lib/fcitx-config/fcitx-config.c:891
 #, c-format
 msgid "Duplicate group name, merge with the previous: %s :line %d"
-msgstr ""
+msgstr "グループ名が重複しており、前のとマージします: %s : %d 行目"
 
 #: src/lib/fcitx-config/fcitx-config.c:958
 #, c-format
 msgid "Duplicate option, overwrite: line %d"
-msgstr ""
+msgstr "設定が重複しており、上書きします: %d 行目"
 
 #: tools/gui/quickphrase-editor/editor.cpp:48
 msgid "E&xport"
-msgstr ""
+msgstr "エクスポート (&x)"
 
 #: src/im/table/table.desc:147
 msgid "Enable"
 msgstr "有効"
 
-#: data/config.desc:45
+#: data/config.desc:52
 msgid "Enable Hotkey to scroll Between Input Method"
-msgstr ""
+msgstr "入力メソッドの切換をホットキーで"
 
 #: data/addon.desc:27
 msgid "Enabled"
@@ -877,15 +896,15 @@ msgstr ""
 
 #: src/module/pinyin-enhance/fcitx-pinyin-enhance.conf.in:3
 msgid "Enchance pinyin input in Fcitx"
-msgstr ""
+msgstr "Fcitx の拡張 pinyin 入力"
 
 #: src/im/table/table.desc:69
 msgid "End Key"
 msgstr "終了キー"
 
-#: src/module/xkbdbus/xkbdbus.c:195
+#: src/module/xkbdbus/xkbdbus.c:218
 msgid "English (US)"
-msgstr ""
+msgstr "English (US)"
 
 #: src/ui/classic/skin.desc:77
 msgid "English Mode Icon"
@@ -893,29 +912,31 @@ msgstr "英語モードのアイコン"
 
 #: src/lib/fcitx-config/fcitx-config.c:390
 msgid "Enum Option is invalid, take it as string"
-msgstr ""
+msgstr "Enum 設定が不正です。文字列として扱います。"
 
 #: src/lib/fcitx-config/fcitx-config.c:366
 msgid "Enum option duplicated."
-msgstr ""
+msgstr "Enum の設定が重複しています。"
 
 #: src/lib/fcitx-config/fcitx-config.c:376
 msgid "Enum option number must larger than 0"
-msgstr ""
+msgstr "Enum 設定の数は0以上の必要があります"
 
 #: data/script/fcitx-diagnose.sh:729
 msgid ""
 "Environment variable ${1} is \"${2}\" instead of \"${3}\". Please check if "
 "you have exported it incorrectly in any of your init files."
 msgstr ""
+"環境変数 ${1} は \"${3}\" ではなく \"${2}\" に設定されています。初期設定ファ"
+"イルのどこかで間違って設定されていないか確認してください。"
 
 #: data/script/fcitx-diagnose.sh:723
 msgid "Environment variable ${1} is set to \"${2}\" correctly."
-msgstr ""
+msgstr "環境変数 ${1} は \"{$2}\" に正しく設定されています。"
 
 #: data/script/fcitx-diagnose.sh:545
 msgid "Environment."
-msgstr ""
+msgstr "環境。"
 
 #: data/table/erbi.conf.in:3
 msgid "Erbi"
@@ -927,6 +948,8 @@ msgid ""
 "Error: $HOME or $XDG_CONFIG_HOME is not set, cannot determine the install "
 "path"
 msgstr ""
+"エラー: $HOME か $XDG_CONFIG_HOME が設定されておらず、インストールパスが決定"
+"できません。"
 
 #: src/ui/cairostuff/font.c:49
 msgid "Error: Load fontconfig failed"
@@ -934,31 +957,31 @@ msgstr "エラー:fontconfigが読み込めません"
 
 #: src/ui/classic/fcitx-skin-installer.sh:76
 msgid "Error: skin failed to install"
-msgstr ""
+msgstr "エラー: スキンのインストールに失敗しました"
 
 #: src/ui/classic/fcitx-skin-installer.sh:55
 msgid "Error: skin file doesn't contain skin config."
-msgstr ""
+msgstr "エラー: スキンファイルにスキン設定がありません。"
 
 #: src/ui/classic/fcitx-skin-installer.sh:50
 msgid "Error: skin file should only contain one directory."
-msgstr ""
+msgstr "エラー: スキンファイルはひとつの辞書しか持てません。"
 
 #: src/im/table/table.desc:84
 msgid "Exact Match"
-msgstr ""
+msgstr "完全一致"
 
 #: data/addon.desc:61
 msgid "Exec"
-msgstr ""
+msgstr "Exec"
 
 #: src/module/notificationitem/dbusmenu.c:373 src/ui/classic/classicui.c:506
 msgid "Exit"
 msgstr "閉じる"
 
-#: data/config.desc:28
+#: data/config.desc:35
 msgid "Extra key for trigger input method"
-msgstr ""
+msgstr "入力メソッド起動のその他のキー"
 
 #: data/addon.desc:72
 msgid "Fallback UI Addon"
@@ -971,27 +994,27 @@ msgstr "Fcitx"
 
 #: data/script/fcitx-diagnose.sh:943
 msgid "Fcitx Addons:"
-msgstr ""
+msgstr "Fcitx アドオン:"
 
 #: src/module/clipboard/fcitx-clipboard.conf.in:4
 msgid "Fcitx Clipboard access"
-msgstr ""
+msgstr "Fcitxクリップボード連携"
 
 #: data/fcitx-configtool.desktop.in:2
 msgid "Fcitx Configuration"
-msgstr ""
+msgstr "Fcitx 設定"
 
 #: data/script/fcitx-diagnose.sh:697
 msgid "Fcitx Configure UI."
-msgstr ""
+msgstr "Fcitx設定UI。"
 
 #: src/frontend/ipc/fcitx-ipc.conf.in:3
 msgid "Fcitx DBus Frontend"
-msgstr ""
+msgstr "Fcitx DBusフロントエンド"
 
 #: src/module/lua/fcitx-lua.conf.in:3
 msgid "Fcitx Lua Support"
-msgstr ""
+msgstr "FcitxのLua サポート"
 
 #: src/ui/classic/fcitx-skin-installer.desktop.in:3
 msgid "Fcitx Skin Installer"
@@ -999,15 +1022,15 @@ msgstr "Fcitxスキンインストーラー"
 
 #: src/module/spell/fcitx-spell.conf.in:4
 msgid "Fcitx Spelling Hint/Completion Support"
-msgstr ""
+msgstr "Fcitx スペルのヒント/補完サポート"
 
 #: data/script/fcitx-diagnose.sh:578
 msgid "Fcitx State."
-msgstr ""
+msgstr "Fcitxの状態。"
 
 #: src/module/unicode/fcitx-unicode.conf.in:3
 msgid "Fcitx Unicode Typing Support"
-msgstr ""
+msgstr "Fcitx ユニコード入力対応"
 
 #: src/frontend/xim/fcitx-xim.conf.in:3
 msgid "Fcitx XIM Frontend"
@@ -1015,12 +1038,12 @@ msgstr "Fcitx XIMフロントエンド"
 
 #: data/script/fcitx-diagnose.sh:605
 msgid "Fcitx is not running."
-msgstr ""
+msgstr "Fcitxは実行されていません。"
 
 #: data/script/fcitx-diagnose.sh:592
 #, sh-format
 msgid "Fcitx version: ${version}"
-msgstr ""
+msgstr "Fcitx バージョン ${version}"
 
 #: src/ui/classic/skin.desc:159 src/ui/classic/skin.desc:301
 #: src/ui/classic/skin.desc:403
@@ -1034,23 +1057,23 @@ msgstr ""
 
 #: src/ui/classic/skin.desc:45
 msgid "First Candidate Color"
-msgstr ""
+msgstr "最初の候補の色"
 
 #: src/im/table/table.desc:177
 msgid "First Candidate Display as Preedit"
-msgstr ""
+msgstr "最初の候補をプレエディットとして表示"
 
 #: src/im/pinyin/fcitx-pinyin.desc:140
 msgid "Fix misstype gn/ng"
-msgstr ""
+msgstr "gnとngのミスタイプを修正"
 
 #: src/im/pinyin/fcitx-pinyin.desc:145
 msgid "Fix misstype v/u like jv, qv, xv, yv"
-msgstr ""
+msgstr "v/u のミスタイプを jv, qv, xv, yv のように修正"
 
 #: src/im/pinyin/fcitx-pinyin.desc:18
 msgid "Fix preedit cursor at head"
-msgstr ""
+msgstr "プレエディットの先頭にあるカーソルを修正"
 
 #: src/ui/classic/fcitx-classic-ui.desc:23
 msgid "Font"
@@ -1058,11 +1081,11 @@ msgstr "フォント"
 
 #: src/ui/classic/fcitx-classic-ui.desc:33
 msgid "Font Locale to display"
-msgstr ""
+msgstr "表示するフォントロケール"
 
 #: src/ui/classic/fcitx-classic-ui.desc:16
 msgid "Font Size"
-msgstr ""
+msgstr "フォントサイズ"
 
 #: src/ui/classic/skin.desc:28
 msgid "Font size repect dpi setting"
@@ -1070,67 +1093,67 @@ msgstr ""
 
 #: data/script/fcitx-diagnose.sh:675
 msgid "Found ${1} at ${2}."
-msgstr ""
+msgstr "${1} を ${2} で見つけました。"
 
 #: data/script/fcitx-diagnose.sh:981
 msgid "Found ${1} disabled addons:"
-msgstr ""
+msgstr "${1} の無効なアドオンを見つけました:"
 
 #: data/script/fcitx-diagnose.sh:976
 msgid "Found ${1} enabled addons:"
-msgstr ""
+msgstr "${1} の有効なアドオンを見つけました:"
 
 #: data/script/fcitx-diagnose.sh:1015
 msgid "Found ${1} enabled input methods:"
-msgstr ""
+msgstr "${1} の有効な入力メソッドを見つけました:"
 
 #: data/script/fcitx-diagnose.sh:614
 msgid "Found ${1} fcitx process:"
-msgstr ""
+msgstr "Fcitxのプロセス ${1} を見つけました:"
 
 #: data/script/fcitx-diagnose.sh:612
 msgid "Found ${1} fcitx processes:"
-msgstr ""
+msgstr "Fcitxのプロセス ${1} を見つけました:"
 
 #: data/script/fcitx-diagnose.sh:953
 msgid "Found fcitx addon config directory: ${1}."
-msgstr ""
+msgstr "Fcitx アドオンの設定ディレクトリを見つけました: ${1}"
 
 #: data/script/fcitx-diagnose.sh:587
 msgid "Found fcitx at ${1}."
-msgstr ""
+msgstr "${1} にfcitxを見つけました。"
 
 #: data/script/fcitx-diagnose.sh:876
 msgid "Found fcitx im modules for gtk ${1}."
-msgstr ""
+msgstr "gtk ${1} 用のFcitx im モジュールを見つけました。"
 
 #: data/script/fcitx-diagnose.sh:908
 msgid "Found fcitx in cache file ${1}:"
-msgstr ""
+msgstr "キャッシュファイル ${1} で Fcitx を見つけました。"
 
 #: data/script/fcitx-diagnose.sh:688
 msgid "Found fcitx kcm module."
-msgstr ""
+msgstr "fcitx kcmモジュールを見つけました。"
 
 #: data/script/fcitx-diagnose.sh:833
 msgid "Found fcitx qt im module: ${1}."
-msgstr ""
+msgstr "fcitx qt IMモジュールを見つけました: ${1}"
 
 #: data/script/fcitx-diagnose.sh:702
 msgid "Found fcitx-configtool at ${1}."
-msgstr ""
+msgstr "fcitx-configtoolが ${1} を見つけました。"
 
 #: data/script/fcitx-diagnose.sh:871
 msgid "Found gtk-query-immodules for gtk ${1} at ${2}."
-msgstr ""
+msgstr "gtk ${1} 用の gtk-query-immodules を ${2} で見つけました。"
 
 #: data/script/fcitx-diagnose.sh:903
 msgid "Found immodules cache for gtk ${1} ${2}."
-msgstr ""
+msgstr "gtk ${1} ${2} 用の immodules キャッシュを見つけました。"
 
 #: data/script/fcitx-diagnose.sh:841
 msgid "Found unknown fcitx qt module: ${1}."
-msgstr ""
+msgstr "不明な Fcitx qt モジュールを見つけました: ${1}。"
 
 #: data/addon.desc:19
 msgid "Frontend"
@@ -1138,33 +1161,33 @@ msgstr "フロントエンド"
 
 #: src/frontend/ipc/fcitx-ipc.conf.in:4
 msgid "Frontend Used by IM Modules"
-msgstr ""
+msgstr "IMモジュールで使われるフロントエンド"
 
 #: src/lib/fcitx/frontend.c:523
 msgid "Frontend: bad frontend"
-msgstr ""
+msgstr "フロントエンド: 不良なフロントエンド"
 
 #: src/lib/fcitx/frontend.c:511
 #, c-format
 msgid "Frontend: open %s fail %s"
-msgstr ""
+msgstr "フロントエンド: %s を開くのに失敗しました %s"
 
 #: data/script/fcitx-diagnose.sh:1096
 msgid "Frontends setup."
-msgstr ""
+msgstr "フロントエンド設定。"
 
 #: src/module/fullwidthchar/fullwidthchar.c:114
 #: src/module/fullwidthchar/fullwidthchar.c:191
 msgid "Full width Character"
-msgstr ""
+msgstr "全角文字"
 
 #: src/module/punc/punc.c:147 src/module/punc/punc.c:554
 msgid "Full width punct"
-msgstr ""
+msgstr "全角句読点"
 
 #: src/module/vk/vk.c:52
 msgid "Fullwidth"
-msgstr ""
+msgstr "全角"
 
 #: src/module/fullwidthchar/fcitx-fullwidth-char.conf.in:3
 msgid "Fullwidth Character"
@@ -1172,55 +1195,55 @@ msgstr "全角文字"
 
 #: src/im/pinyin/fcitx-pinyin.desc:85
 msgid "Fuzzy an and ang"
-msgstr ""
+msgstr "an と ang を曖昧に"
 
 #: src/im/pinyin/fcitx-pinyin.desc:115
 msgid "Fuzzy c and ch"
-msgstr ""
+msgstr "c と ch を曖昧に"
 
 #: src/im/pinyin/fcitx-pinyin.desc:90
 msgid "Fuzzy en and eng"
-msgstr ""
+msgstr "en と eng を曖昧に"
 
 #: src/im/pinyin/fcitx-pinyin.desc:120
 msgid "Fuzzy f and h"
-msgstr ""
+msgstr "f と h を曖昧に"
 
 #: src/im/pinyin/fcitx-pinyin.desc:95
 msgid "Fuzzy ian and iang"
-msgstr ""
+msgstr "ian と iang を曖昧に"
 
 #: src/im/pinyin/fcitx-pinyin.desc:100
 msgid "Fuzzy in and ing"
-msgstr ""
+msgstr "in と ing を曖昧に"
 
 #: src/im/pinyin/fcitx-pinyin.desc:125
 msgid "Fuzzy l and n"
-msgstr ""
+msgstr "l と n を曖昧に"
 
 #: src/im/pinyin/fcitx-pinyin.desc:105
 msgid "Fuzzy ou and u"
-msgstr ""
+msgstr "ou と u を曖昧に"
 
 #: src/im/pinyin/fcitx-pinyin.desc:130
 msgid "Fuzzy s and sh"
-msgstr ""
+msgstr "s と sh を曖昧に"
 
 #: src/im/pinyin/fcitx-pinyin.desc:110
 msgid "Fuzzy uan and uang"
-msgstr ""
+msgstr "uan と uang を曖昧に"
 
 #: src/im/pinyin/fcitx-pinyin.desc:135
 msgid "Fuzzy z and zh"
-msgstr ""
+msgstr "z と zh を曖昧に"
 
-#: data/config.desc:209
+#: data/config.desc:216
 msgid "Give the tips of Phrase"
-msgstr "フレーズにヒントを与える"
+msgstr "Tipsのフレーズにヒントを与える"
 
 #: src/module/imselector/fcitx-imselector.desc:9
 msgid "Global Input Method SelectKey"
-msgstr ""
+msgstr "グローバルIMを選択するキー"
 
 #: src/module/imselector/fcitx-imselector.desc:16
 #: src/module/imselector/fcitx-imselector.desc:21
@@ -1232,7 +1255,7 @@ msgstr ""
 #: src/module/imselector/fcitx-imselector.desc:51
 #: src/module/imselector/fcitx-imselector.desc:56
 msgid "GlobalSelector"
-msgstr ""
+msgstr "グローバルセレクター"
 
 #: src/module/quickphrase/fcitx-quickphrase.desc:7
 msgid "Grave"
@@ -1240,24 +1263,24 @@ msgstr "Grave"
 
 #: src/module/vk/vk.c:53
 msgid "Greek"
-msgstr ""
+msgstr "ギリシャ語"
 
 #: data/script/fcitx-diagnose.sh:929
 msgid "Gtk IM module cache:"
-msgstr ""
+msgstr "Gtk IM モジュールキャッシュ:"
 
 #: data/script/fcitx-diagnose.sh:924
 msgid "Gtk IM module files:"
-msgstr ""
+msgstr "Gtk IM モジュールファイル:"
 
 #: src/module/fullwidthchar/fullwidthchar.c:114
 #: src/module/fullwidthchar/fullwidthchar.c:191
 msgid "Half width Character"
-msgstr ""
+msgstr "半角文字"
 
 #: data/script/fcitx-diagnose.sh:475
 msgid "Hall of Shame for Linux IME Support"
-msgstr ""
+msgstr "Linux IMEサポートの「恥辱の殿堂」"
 
 #: src/ui/classic/fcitx-classic-ui.desc:47
 msgid "Hide"
@@ -1265,30 +1288,30 @@ msgstr "隠す"
 
 #: src/ui/classic/fcitx-classic-ui.desc:46
 msgid "Hide when tray icon is available"
-msgstr ""
+msgstr "トレイアイコンが有効なときに隠す"
 
 #: src/module/vk/vk.c:59
 msgid "Hiragana"
-msgstr ""
+msgstr "ひらがな"
 
 #: data/config.desc:1 data/config.desc:6 data/config.desc:12
-#: data/config.desc:30 data/config.desc:36 data/config.desc:42
-#: data/config.desc:47 data/config.desc:53 data/config.desc:63
-#: data/config.desc:69 data/config.desc:75 data/config.desc:81
-#: data/config.desc:87 data/config.desc:93 data/config.desc:99
-#: data/config.desc:105 data/config.desc:110 data/config.desc:115
-#: data/config.desc:121 data/config.desc:127 data/config.desc:133
-#: data/config.desc:140
+#: data/config.desc:37 data/config.desc:43 data/config.desc:49
+#: data/config.desc:54 data/config.desc:60 data/config.desc:70
+#: data/config.desc:76 data/config.desc:82 data/config.desc:88
+#: data/config.desc:94 data/config.desc:100 data/config.desc:106
+#: data/config.desc:112 data/config.desc:117 data/config.desc:122
+#: data/config.desc:128 data/config.desc:134 data/config.desc:140
+#: data/config.desc:147
 msgid "Hotkey"
 msgstr "ホットキー"
 
 #: src/module/pinyin-enhance/fcitx-pinyin-enhance.desc:30
 msgid "Hotkey for Inputing Character From Phrase"
-msgstr ""
+msgstr "フレーズから文字を入力するホットキー"
 
 #: src/module/pinyin-enhance/fcitx-pinyin-enhance.desc:35
 msgid "Hotkey for switching to Inputing Character From Phrase mode"
-msgstr ""
+msgstr "フレーズモードから入力文字を切り替えるホットキー"
 
 #: src/im/pinyin/fcitx-pinyin.desc:43
 msgid "Hotkey of Adding Frequent Word"
@@ -1302,15 +1325,15 @@ msgstr "ユーザーフレーズを削除するホットキー"
 msgid "Hotkey of Deleting Frequent Word"
 msgstr "よく使う単語を削除するホットキー"
 
-#: src/lib/fcitx/ime.c:300
+#: src/lib/fcitx/ime.c:322
 #, c-format
 msgid "IM: bad im %s"
-msgstr ""
+msgstr "IM: 不良なIM %s"
 
-#: src/lib/fcitx/ime.c:281
+#: src/lib/fcitx/ime.c:303
 #, c-format
 msgid "IM: open %s fail %s"
-msgstr ""
+msgstr "IM: %s を開くのに失敗しました %s"
 
 #: src/module/imselector/fcitx-imselector.desc:1
 #: src/module/imselector/fcitx-imselector.desc:6
@@ -1332,50 +1355,53 @@ msgid ""
 "able to use any input method other than ${2}. See ${link} for more detail as "
 "well as alternative solutions."
 msgstr ""
+"${1} を使っている場合、 ${2} 以外の入力メソッドを使うためには ${2} をアンイン"
+"ストールするか ${3} を削除します。 他の解決方法の詳細は ${link} を参照してく"
+"ださい。"
 
 #: src/module/xkb/fcitx-xkb.desc:9
 msgid "Ignore Input Method Layout Request"
-msgstr ""
+msgstr "入力メソッドのリクエストを無視する"
 
 #: src/im/table/table.desc:197
 msgid "Ignore Punctuation"
-msgstr ""
+msgstr "句読点を無視"
 
 #: src/module/clipboard/fcitx-clipboard.desc:45
 msgid "Ignore blank selections"
-msgstr ""
+msgstr "空白の選択を無視"
 
-#: data/config.desc:39
+#: data/config.desc:46
 msgid "Inactivate Input Method"
-msgstr ""
+msgstr "入力メソッドをオフに"
 
-#: data/config.desc:166
+#: data/config.desc:173
 msgid "Inactive"
-msgstr ""
+msgstr "無効"
 
 #: src/ui/classic/skin.desc:65
 msgid "Inactive Menu Item Character Color"
-msgstr ""
+msgstr "選択されていないメニューアイテムの文字色"
 
 #: src/ui/classic/skin.desc:177
 msgid "Inactive Text Icon Color"
-msgstr ""
+msgstr "無効なテキストアイコンの色"
 
-#: data/config.desc:50
+#: data/config.desc:57
 msgid "Include Inactivate when scrolling between Input Method"
-msgstr ""
+msgstr "入力メソッドの切換にオフも含む"
 
 #: src/module/clipboard/fcitx-clipboard.desc:31
 msgid "Include the text currently selected in clipboard history."
-msgstr ""
+msgstr "クリップボード履歴で現在選択されているテキストを含む。"
 
 #: src/ui/classic/skin.desc:313
 msgid "Inctive Tray Icon"
-msgstr ""
+msgstr "無効なトレイアイコン"
 
 #: src/module/vk/vk.c:55
 msgid "Index"
-msgstr ""
+msgstr "先頭数字"
 
 #: src/ui/classic/skin.desc:19
 msgid "Input Font Size"
@@ -1385,33 +1411,33 @@ msgstr "入力時のフォントの大きさ"
 msgid "Input Message Color"
 msgstr "入力メッセージの色"
 
-#: src/lib/fcitx/ime.c:1513 data/fcitx-autostart.desktop.in:3
+#: src/lib/fcitx/ime.c:1537 data/fcitx-autostart.desktop.in:3
 #: data/fcitx.desktop.in:3
 msgid "Input Method"
 msgstr "入力メソッド"
 
 #: data/fcitx-configtool.desktop.in:3
 msgid "Input Method Configuration"
-msgstr ""
+msgstr "入力メソッドの設定"
 
 #: src/module/notificationitem/notificationitem.c:454
 #: src/ui/kimpanel/kimpanel.c:255 src/ui/kimpanel/kimpanel.c:260
 msgid "Input Method Disabled"
-msgstr ""
+msgstr "入力メソッドが無効"
 
-#: data/config.desc:233
+#: data/config.desc:240
 msgid "Input Method Hint will be only shown when state is active"
-msgstr ""
+msgstr "オンの時だけ入力メソッドのヒントを表示"
 
 #: data/script/fcitx-diagnose.sh:453
 msgid "Input Method Related Environment Variables: "
-msgstr ""
+msgstr "入力メソッド関連の環境変数:"
 
 #: data/script/fcitx-diagnose.sh:990
 msgid "Input Methods:"
-msgstr ""
+msgstr "入力メソッド:"
 
-#: src/lib/fcitx/ime.c:1604
+#: src/lib/fcitx/ime.c:1628
 msgid "Input Speed: "
 msgstr "入力スピード"
 
@@ -1429,36 +1455,36 @@ msgstr "入力メソッド"
 msgid "Installer Script for Fcitx Skin"
 msgstr "Fcitxスキンのインストールスクリプト"
 
-#: data/config.desc:78
+#: data/config.desc:85
 msgid "Interval of Two Key Input"
 msgstr "2つのキー入力の間隔"
 
 #: src/lib/fcitx-config/fcitx-config.c:912
 #, c-format
 msgid "Invalid Entry: line %d missing '='"
-msgstr ""
+msgstr "不正な入力: %d 行目で '=' がありません"
 
 #: data/script/fcitx-diagnose.sh:959
 msgid "Invalid addon config file ${1}."
-msgstr ""
+msgstr "不正なアドオン設定ファイル ${1} です。"
 
 #: src/lib/fcitx-utils/desktop-parse.c:555
 #, c-format
 msgid "Invalid entry line @ line %d %s"
-msgstr ""
+msgstr "不正な入力です %d 行目 %s "
 
 #: src/lib/fcitx-utils/desktop-parse.c:513
 #, c-format
 msgid "Invalid group name line @ line %d %s"
-msgstr ""
+msgstr "不正なグループ名です。 %d 行目 %s"
 
 #: data/script/fcitx-diagnose.sh:1004
 msgid "Invalid item ${1} in im list."
-msgstr ""
+msgstr "IM リストに不正なアイテム ${1} があります。"
 
 #: src/module/vk/vk.c:60
 msgid "Katakana"
-msgstr ""
+msgstr "カタカナ"
 
 #: src/im/table/table.desc:93
 msgid ""
@@ -1470,11 +1496,11 @@ msgstr ""
 #: src/im/table/fcitx-table.desc:11 src/im/table/fcitx-table.desc:16
 #: src/im/table/fcitx-table.desc:21 src/module/unicode/fcitx-unicode.desc:3
 msgid "Key"
-msgstr ""
+msgstr "キー"
 
 #: src/ui/classic/skin.desc:416
 msgid "Key Color On Virutal Keyboard"
-msgstr ""
+msgstr "仮想キーボードのキーの色"
 
 #: src/im/keyboard/keyboard.c:364 src/im/keyboard/keyboard.c:390
 #: src/im/keyboard/keyboard.c:438 src/im/keyboard/keyboard.c:451
@@ -1486,27 +1512,27 @@ msgstr ""
 #: src/im/keyboard/fcitx-keyboard.desc:36
 #: src/im/keyboard/fcitx-keyboard.desc:41
 msgid "Keyboard"
-msgstr ""
+msgstr "キーボード"
 
 #: src/im/keyboard/fcitx-keyboard.conf.in:3
 msgid "Keyboard Layout"
-msgstr ""
+msgstr "キーボードレイアウト"
 
 #: src/im/table/table.desc:157
 msgid "Keyboard Layout to be used"
-msgstr ""
+msgstr "使用するキーボードレイアウト"
 
 #: data/script/fcitx-diagnose.sh:548
 msgid "Keyboard Layout:"
-msgstr ""
+msgstr "キーボードレイアウト:"
 
 #: tools/gui/quickphrase-editor/model.cpp:52
 msgid "Keyword"
-msgstr ""
+msgstr "キーワード"
 
 #: tools/gui/quickphrase-editor/editordialog.cpp:29
 msgid "Keyword:"
-msgstr ""
+msgstr "キーワード:"
 
 #: src/ui/kimpanel/fcitx-kimpanel-ui.conf.in:3
 msgid "Kimpanel"
@@ -1518,7 +1544,7 @@ msgstr "FcitxのKimpanelサポート"
 
 #: data/config.desc:23
 msgid "L_ALT"
-msgstr ""
+msgstr "左Alt"
 
 #: data/config.desc:18
 msgid "L_CTRL"
@@ -1534,25 +1560,29 @@ msgstr "言語コード"
 
 #: src/im/table/table.desc:142
 msgid "Language Code for this table"
-msgstr ""
+msgstr "このテーブルへの言語コード"
 
 #: src/module/vk/vk.c:51
 msgid "Latin"
-msgstr ""
+msgstr "ラテン"
 
 #: src/module/punc/punc.c:148 src/module/punc/punc.c:555
 msgid "Latin punct"
+msgstr "英数句読点"
+
+#: data/config.desc:26
+msgid "Left Super"
 msgstr ""
 
 #: src/im/table/table.c:604
 msgid ""
 "Left/Right to choose selected character, Press Enter to confirm, Press "
 "Escape to Cancel"
-msgstr ""
+msgstr "文字を選択するには右/左矢印、Enterで確認、Escapeでキャンセル"
 
 #: src/module/clipboard/fcitx-clipboard.desc:11
 msgid "Length of Clipboard History to Save"
-msgstr ""
+msgstr "保存するクリップボード履歴の長さ"
 
 #: src/im/table/table.desc:28
 msgid "Level of simple code"
@@ -1560,37 +1590,42 @@ msgstr ""
 
 #: data/addon.desc:31
 msgid "Library"
-msgstr "ライブラリー"
+msgstr "ライブラリ"
 
-#: src/lib/fcitx/addon.c:139
+#: src/module/glib-linker/fcitx-glib-linker.conf.in:3
+#: src/module/glib-linker/fcitx-glib-linker.conf.in:4
+msgid "Link Glib"
+msgstr ""
+
+#: src/lib/fcitx/addon.c:151
 #, c-format
 msgid "Load Addon Config File:%s"
-msgstr ""
+msgstr "アドオンの設定ファイルを読み込み: %s"
 
 #: src/im/table/tabledict.c:342
 msgid "Load Autophrase OK"
-msgstr ""
+msgstr "オートフレーズの読み込み完了"
 
 #: src/im/table/tabledict.c:249
 msgid "Load Table Dict OK"
-msgstr ""
+msgstr "テーブル辞書の読み込み完了"
 
 #: src/im/pinyin/py.c:409
 #, c-format
 msgid "Load extra dict: %s"
-msgstr ""
+msgstr "拡張辞書を読み込み: %s"
 
 #: src/im/table/tabledict.c:286
 msgid "Loading Autophrase."
-msgstr ""
+msgstr "オートフレーズを読込中"
 
 #: src/im/table/tabledict.c:41
 msgid "Loading Table Dict"
-msgstr ""
+msgstr "テーブル辞書を読込中"
 
 #: src/module/imselector/fcitx-imselector.desc:4
 msgid "Local Input Method SelectKey"
-msgstr ""
+msgstr "ローカルIMを選択するキー"
 
 #: src/module/imselector/fcitx-imselector.desc:61
 #: src/module/imselector/fcitx-imselector.desc:66
@@ -1602,15 +1637,15 @@ msgstr ""
 #: src/module/imselector/fcitx-imselector.desc:96
 #: src/module/imselector/fcitx-imselector.desc:101
 msgid "LocalSelector"
-msgstr ""
+msgstr "ローカルセレクター"
 
 #: data/script/fcitx-diagnose.sh:563
 msgid "Locale:"
-msgstr ""
+msgstr "ロケール:"
 
 #: data/script/fcitx-diagnose.sh:1109
 msgid "Log."
-msgstr ""
+msgstr "ログ。"
 
 #: src/ui/classic/skin.desc:73
 msgid "Logo Icon"
@@ -1618,7 +1653,7 @@ msgstr "ロゴ"
 
 #: src/im/table/fcitx-table.desc:24
 msgid "Lookup Pinyin"
-msgstr ""
+msgstr "Pinyin を検索"
 
 #: src/im/pinyin/fcitx-pinyin.desc:5
 msgid "MS"
@@ -1627,56 +1662,56 @@ msgstr "MS"
 #: src/ui/classic/skin.desc:117 src/ui/classic/skin.desc:223
 #: src/ui/classic/skin.desc:353
 msgid "Margin Bottom for clickable region"
-msgstr ""
+msgstr "クリック可能領域の下マージン"
 
 #: src/ui/classic/skin.desc:102 src/ui/classic/skin.desc:208
 #: src/ui/classic/skin.desc:338
 msgid "Margin Left for clickable region"
-msgstr ""
+msgstr "クリック可能領域の左マージン"
 
 #: src/ui/classic/skin.desc:107 src/ui/classic/skin.desc:213
 #: src/ui/classic/skin.desc:343
 msgid "Margin Right for clickable region"
-msgstr ""
+msgstr "クリック可能領域の右マージン"
 
 #: src/ui/classic/skin.desc:112 src/ui/classic/skin.desc:218
 #: src/ui/classic/skin.desc:348
 msgid "Margin Top for clickable region"
-msgstr ""
+msgstr "クリック可能領域の上マージン"
 
 #: src/im/table/table.desc:79
 msgid "Matching Key"
-msgstr ""
+msgstr "マッチングキー"
 
 #: src/module/vk/vk.c:56
 msgid "Math"
-msgstr ""
+msgstr "数学"
 
 #: src/module/autoeng/fcitx-autoeng.desc:22
 #: src/module/pinyin-enhance/fcitx-pinyin-enhance.desc:23
 #: src/module/quickphrase/fcitx-quickphrase.desc:36
 msgid "Maximum hint length"
-msgstr ""
+msgstr "最大ヒント数"
 
 #: src/module/clipboard/fcitx-clipboard.desc:19
 msgid "Maximum length of each candidate word"
-msgstr ""
+msgstr "各候補の最大文字数"
 
 #: src/im/keyboard/fcitx-keyboard.desc:32
 msgid "Maximum length of spell hint list"
-msgstr ""
+msgstr "最大スペルヒントリスト数"
 
 #: src/module/autoeng/fcitx-autoeng.desc:23
 msgid "Maximum length of spell hint list for Auto English"
-msgstr ""
+msgstr "自動英語での最大スペルヒントリスト数"
 
 #: src/module/pinyin-enhance/fcitx-pinyin-enhance.desc:24
 msgid "Maximum length of spell hint list for Pinyin Enhance"
-msgstr ""
+msgstr "Pinyin Enhanceでの最大スペルヒントリスト数"
 
 #: src/module/quickphrase/fcitx-quickphrase.desc:37
 msgid "Maximum length of spell hint list for Quick Phrase"
-msgstr ""
+msgstr "Quick Phraseでの最大スペルヒントリスト数"
 
 #: src/module/pinyin-enhance/fcitx-pinyin-enhance.desc:55
 msgid "Maximum results from stroke input."
@@ -1684,7 +1719,7 @@ msgstr ""
 
 #: src/module/autoeng/fcitx-autoeng.desc:30
 msgid "Maximum words number kept in preedit"
-msgstr ""
+msgstr "プレエディット中に保持する最大単語数"
 
 #: src/ui/classic/fcitx-classic-ui.desc:28
 msgid "Menu Font"
@@ -1696,7 +1731,7 @@ msgstr "メニューのフォントの大きさ"
 
 #: src/im/pinyin/py.c:2140
 msgid "Migrate the old file path to the new one"
-msgstr ""
+msgstr "古いファイルパスから新しいファイルパスへ移動"
 
 #: src/module/pinyin-enhance/fcitx-pinyin-enhance.desc:46
 msgid "Minimum input length to trigger stroke input (set to -1 to disable)"
@@ -1704,20 +1739,20 @@ msgstr ""
 
 #: src/im/keyboard/fcitx-keyboard.desc:25
 msgid "Minimum length to trigger word hint"
-msgstr ""
+msgstr "サジェスト機能を開始する最低文字数"
 
 #: src/im/table/table.desc:59
 msgid ""
 "Minimum length trigger auto send candidate when there will be no candidate"
-msgstr ""
+msgstr "候補がない場合に自動で候補を送る最小文字数"
 
 #: src/im/table/table.desc:54
 msgid "Minimum length trigger auto send candidate word when only one candidate"
-msgstr ""
+msgstr "一つの候補しかないときに自動で候補を送る最小文字数"
 
 #: src/lib/fcitx-config/fcitx-config.c:400
 msgid "Missing type, take it as string"
-msgstr ""
+msgstr "型がありません。文字列として扱います"
 
 #: data/addon.desc:20
 msgid "Module"
@@ -1725,16 +1760,16 @@ msgstr "モジュール"
 
 #: src/lib/fcitx/module.c:73
 msgid "Module: bad module"
-msgstr ""
+msgstr "モジュール: 不良なモジュール"
 
 #: src/lib/fcitx/module.c:61
 #, c-format
 msgid "Module: open %s fail %s"
-msgstr ""
+msgstr "モジュール: %s を開くのに失敗しました %s"
 
 #: src/module/spell/fcitx-spell.desc:7
 msgid "Myspell"
-msgstr ""
+msgstr "Myspell"
 
 #: data/addon.desc:3 data/inputmethod.desc:7
 msgid "Name"
@@ -1742,32 +1777,32 @@ msgstr "名前"
 
 #: data/addon.desc:7
 msgid "Name that can be display in UI"
-msgstr "表示名"
+msgstr "UIに表示する名前"
 
 #: src/module/chttrans/fcitx-chttrans.desc:4
 msgid "Native"
 msgstr "ネイティブ"
 
-#: data/config.desc:143
+#: data/config.desc:150
 msgid "Next Candidate Word"
-msgstr ""
+msgstr "次の候補"
 
-#: data/config.desc:113
+#: data/config.desc:120
 msgid "Next Page"
 msgstr "次のページ"
 
 #: src/ui/classic/skin.desc:273 src/ui/classic/skin.desc:281
 #: src/ui/classic/skin.desc:289
 msgid "Next Page Icon"
-msgstr ""
+msgstr "次ページのアイコン"
 
-#: data/config.desc:157
+#: data/config.desc:164
 msgid "No"
 msgstr "No"
 
-#: src/lib/fcitx/ime.c:513
+#: src/lib/fcitx/ime.c:535
 msgid "No available Input Method"
-msgstr ""
+msgstr "有効な入力メソッドがありません"
 
 #: src/lib/fcitx/frontend.c:546
 msgid "No available frontend"
@@ -1780,16 +1815,16 @@ msgstr "入力ウィンドウなし"
 
 #: src/module/imselector/imselector.c:315
 msgid "No local input method"
-msgstr ""
+msgstr "ローカル入力メソッドがありません"
 
-#: src/lib/fcitx/instance.c:283 src/lib/fcitx/instance.c:531
+#: src/lib/fcitx/instance.c:283 src/lib/fcitx/instance.c:536
 msgid "No remind"
-msgstr ""
+msgstr "リマインドなし"
 
 #: src/lib/fcitx-utils/desktop-parse.c:549
 #, c-format
 msgid "Non-comment doesn't belongs to any group @ %d %s"
-msgstr ""
+msgstr "コメントでない入力がグループに属していません %d 行目 %s"
 
 #: src/im/keyboard/fcitx-keyboard.desc:11 src/im/table/table.desc:136
 #: src/module/autoeng/fcitx-autoeng.desc:6
@@ -1797,19 +1832,19 @@ msgstr ""
 #: src/module/quickphrase/fcitx-quickphrase.desc:5
 #: src/module/quickphrase/fcitx-quickphrase.desc:20
 msgid "None"
-msgstr ""
+msgstr "なし"
 
 #: data/script/fcitx-diagnose.sh:462
 msgid "Note for GNOME Later than 3.6"
-msgstr ""
+msgstr "GNOME 3.6 以降の注意"
 
-#: data/config.desc:180
+#: data/config.desc:187
 msgid "Nothing"
 msgstr "なし"
 
 #: src/module/vk/vk.c:57
 msgid "Number"
-msgstr ""
+msgstr "番号"
 
 #: src/module/notificationitem/dbusmenu.c:342 src/ui/classic/classicui.c:442
 msgid "Online Help"
@@ -1822,24 +1857,24 @@ msgstr "OpenCC"
 #: src/lib/fcitx-config/fcitx-config.c:1126
 #, c-format
 msgid "Option %s is Invalid, Use Default Value %s"
-msgstr ""
+msgstr "設定 %s が不正のため、既定値 %s を使います"
 
 #: src/lib/fcitx-config/fcitx-config.c:1134
 #, c-format
 msgid "Option %s is Invalid."
-msgstr ""
+msgstr "オプション %s は正しくありません。"
 
 #: src/im/table/table.desc:34
 msgid "Order of Code Table"
-msgstr ""
+msgstr "コードテーブルの順序"
 
 #: src/ui/classic/skin.desc:57
 msgid "Other Color"
-msgstr ""
+msgstr "他の色"
 
-#: data/config.desc:171 data/config.desc:177 data/config.desc:187
-#: data/config.desc:193 data/config.desc:199 data/config.desc:206
-#: data/config.desc:212
+#: data/config.desc:178 data/config.desc:184 data/config.desc:194
+#: data/config.desc:200 data/config.desc:206 data/config.desc:213
+#: data/config.desc:219
 msgid "Output"
 msgstr "出力"
 
@@ -1857,31 +1892,31 @@ msgstr ""
 #: src/ui/classic/skin.desc:122 src/ui/classic/skin.desc:228
 #: src/ui/classic/skin.desc:358
 msgid "Overlay image"
-msgstr ""
+msgstr "オーバーレイ画像"
 
 #: src/ui/classic/fcitx-classic-ui.desc:18
 msgid "Override the skin font size"
-msgstr ""
+msgstr "スキンのフォントサイズを上書きする"
 
 #: data/inputmethod.desc:23
 msgid "Parent"
 msgstr ""
 
-#: data/config.desc:159
+#: data/config.desc:166
 msgid "PerProgram"
 msgstr "プログラムごと"
 
 #: tools/gui/quickphrase-editor/model.cpp:54
 msgid "Phrase"
-msgstr ""
+msgstr "フレーズ"
 
 #: src/im/table/table.c:1402
 msgid "Phrase is already in Dict "
-msgstr ""
+msgstr "フレーズは既に辞書にあります"
 
 #: tools/gui/quickphrase-editor/editordialog.cpp:30
 msgid "Phrase:"
-msgstr ""
+msgstr "フレーズ:"
 
 #: src/im/pinyin/py.c:106 src/im/pinyin/fcitx-pinyin.conf.in:3
 #: src/im/pinyin/pinyin.conf.in:3 src/im/pinyin/fcitx-pinyin.desc:1
@@ -1910,7 +1945,7 @@ msgstr "Pinyin"
 #: src/module/pinyin-enhance/fcitx-pinyin-enhance.desc:42
 #: src/module/pinyin-enhance/fcitx-pinyin-enhance.desc:50
 msgid "Pinyin Enhance"
-msgstr ""
+msgstr "Pinyin 拡張"
 
 #: src/im/pinyin/py.c:459
 msgid "Pinyin Index Magic Number Doesn't match"
@@ -1922,7 +1957,7 @@ msgstr "Pinyinキー"
 
 #: src/im/table/table.c:629
 msgid "Pinyin: "
-msgstr ""
+msgstr "Pinyin: "
 
 #: src/im/pinyin/fcitx-pinyin.desc:9
 msgid "PinyinJiaJia"
@@ -1930,35 +1965,40 @@ msgstr "PinyinJiaJia"
 
 #: data/script/fcitx-diagnose.sh:583
 msgid "Please check ${1} for how to install fcitx."
-msgstr ""
+msgstr "fcitxのインストール方法 ${1} を確認してください。"
 
 #: data/script/fcitx-diagnose.sh:607
 msgid ""
 "Please check the Configure link of your distribution in ${1} for how to "
 "setup fcitx autostart."
 msgstr ""
+"Fcitx 自動スタートの設定方法については、 ${1}  のあなたのディストリビューショ"
+"ンの設定リンクを参照してください。"
 
 #: src/frontend/xim/xim.c:161
 msgid "Please set XMODIFIERS."
-msgstr ""
+msgstr "XMODIFIERSを設定してください。"
 
 #: data/script/fcitx-diagnose.sh:450
 msgid ""
 "Please set environment variable ${env_name} to \"${value}\" using the tool "
 "your distribution provides or add ${1} to your ${2}. See ${link}."
 msgstr ""
+"環境変数 ${env_name} をディストリビューションが提供するツールを使うか ${1} "
+"を ${2} に加えるかして \"${value}\" に設定してください。詳細は ${link} を参考"
+"にしてください。"
 
 #: src/ui/classic/skin.desc:265
 msgid "Position or offset of LookupTable"
-msgstr ""
+msgstr "検索テーブルの場所かオフセット"
 
 #: src/ui/classic/skin.desc:261
 msgid "Position or offset of Preedit"
-msgstr ""
+msgstr "プレエディットの場所かオフセット"
 
 #: src/module/spell/fcitx-spell.desc:14
 msgid "Possible Providers: presage, custom, enchant (separate with comma)"
-msgstr ""
+msgstr "可能なプロバイダー: eresage, eustom, enchant (カンマ区切り)"
 
 #: src/module/spell/fcitx-spell.desc:8
 msgid "Preferred Enchant provider"
@@ -1974,13 +2014,13 @@ msgstr ""
 msgid "Press 1-%d to delete %s in frequent list (ESC for cancel)"
 msgstr ""
 
-#: src/module/autoeng/AutoEng.c:686 src/module/quickphrase/quickphrase.c:413
+#: src/module/autoeng/AutoEng.c:686 src/module/quickphrase/quickphrase.c:456
 msgid "Press Enter to input text"
-msgstr ""
+msgstr "文字を入力するには Enter を押してください"
 
-#: data/config.desc:72
+#: data/config.desc:79
 msgid "Press Switch Key twice to Change Mode"
-msgstr ""
+msgstr "モードの切り替えにキーを2回押す"
 
 #: src/im/pinyin/py.c:739
 msgid "Press index to delete user phrase (ESC for cancel)"
@@ -1990,18 +2030,18 @@ msgstr ""
 msgid "Press number to make word in frequent list"
 msgstr ""
 
-#: data/config.desc:108
+#: data/config.desc:115
 msgid "Prev Page"
 msgstr "前のページ"
 
 #: src/ui/classic/skin.desc:269 src/ui/classic/skin.desc:277
 #: src/ui/classic/skin.desc:285
 msgid "Prev Page Icon"
-msgstr ""
+msgstr "前ページのアイコン"
 
-#: data/config.desc:136
+#: data/config.desc:143
 msgid "Previous Candidate Word"
-msgstr ""
+msgstr "前の候補"
 
 #: data/inputmethod.desc:15
 msgid "Priority"
@@ -2016,7 +2056,7 @@ msgstr "アドオンの優先度"
 msgid "Profile"
 msgstr "プロファイル"
 
-#: data/config.desc:147 data/config.desc:153 data/config.desc:162
+#: data/config.desc:154 data/config.desc:160 data/config.desc:169
 msgid "Program"
 msgstr "プログラム"
 
@@ -2030,11 +2070,11 @@ msgstr "入力後にフレーズを表示"
 
 #: src/module/pinyin-enhance/fcitx-pinyin-enhance.conf.in:4
 msgid "Provide extra feature for pinyin in Fcitx"
-msgstr ""
+msgstr "Fcitx の Pinyin 拡張機能を提供します"
 
 #: src/module/dbus/fcitx-dbus.conf.in:4
 msgid "Provides DBus Support (Used by other Addon)"
-msgstr ""
+msgstr "DBusサポートを提供 (他のアドオンで使用される)"
 
 #: src/module/fullwidthchar/fcitx-fullwidth-char.conf.in:4
 msgid "Provides Fullwidth Character Input Support"
@@ -2050,23 +2090,23 @@ msgstr "句読点変換のサポート"
 
 #: src/module/punc/fcitx-punc.conf.in:3
 msgid "Punctuation Support"
-msgstr ""
+msgstr "句読点サポート"
 
 #: data/script/fcitx-diagnose.sh:824
 msgid "Qt IM module files:"
-msgstr ""
+msgstr "Qt IM モジュールファイル:"
 
 #: tools/gui/quickphrase-editor/editor.cpp:103
 msgid "Quick Phrase Editor"
-msgstr ""
+msgstr "クイックフレーズ エディター"
 
 #: src/module/quickphrase/fcitx-quickphrase.conf.in:9
 msgid "Quick Phrase List"
-msgstr ""
+msgstr "クイックフレーズリスト"
 
-#: src/module/quickphrase/quickphrase.c:335
+#: src/module/quickphrase/quickphrase.c:378
 msgid "Quick Phrase: "
-msgstr ""
+msgstr "クイックフレーズ:"
 
 #: src/module/quickphrase/fcitx-quickphrase.desc:1
 #: src/module/quickphrase/fcitx-quickphrase.desc:10
@@ -2074,11 +2114,11 @@ msgstr ""
 #: src/module/quickphrase/fcitx-quickphrase.desc:25
 #: src/module/quickphrase/fcitx-quickphrase.desc:31
 msgid "QuickPhrase"
-msgstr ""
+msgstr "クイックフレーズ"
 
 #: src/module/quickphrase/fcitx-quickphrase.conf.in:3
 msgid "Quickphrase"
-msgstr ""
+msgstr "クイックフレーズ"
 
 #: src/im/qw/qw.c:64 src/im/qw/fcitx-qw.conf.in:3 src/im/qw/qw.conf.in:3
 msgid "Quwei"
@@ -2086,11 +2126,11 @@ msgstr "Quwei"
 
 #: src/im/qw/fcitx-qw.conf.in:4
 msgid "Quwei Input Method for Fcitx"
-msgstr ""
+msgstr "Fcitx用のQuwei入力メソッド"
 
 #: data/config.desc:24
 msgid "R_ALT"
-msgstr ""
+msgstr "右Alt"
 
 #: data/config.desc:15
 msgid "R_CTRL"
@@ -2102,19 +2142,19 @@ msgstr "右Shift"
 
 #: data/addon.desc:58
 msgid "Register IM"
-msgstr ""
+msgstr "IM登録"
 
-#: data/config.desc:66
+#: data/config.desc:73
 msgid "Reload configuration"
-msgstr ""
+msgstr "設定の再読み込み"
 
 #: src/im/table/table.c:1294
 msgid "Remind:"
-msgstr ""
+msgstr "リマインド:"
 
 #: src/im/pinyin/py.c:2055
 msgid "Remind: "
-msgstr ""
+msgstr "リマインド:"
 
 #: src/module/remote/fcitx-remote-module.conf.in:3
 msgid "Remote"
@@ -2122,7 +2162,7 @@ msgstr "リモート"
 
 #: src/im/table/tabledict.c:428
 msgid "Rename OK"
-msgstr ""
+msgstr "名前変更を完了"
 
 #: src/ui/classic/skin.desc:154 src/ui/classic/skin.desc:162
 #: src/ui/classic/skin.desc:296 src/ui/classic/skin.desc:304
@@ -2133,26 +2173,30 @@ msgstr "リサイズ"
 #: src/ui/classic/skin.desc:97 src/ui/classic/skin.desc:203
 #: src/ui/classic/skin.desc:325
 msgid "Resize Margin Bottom"
-msgstr ""
+msgstr "下マージンを調整"
 
 #: src/ui/classic/skin.desc:85 src/ui/classic/skin.desc:191
 #: src/ui/classic/skin.desc:329
 msgid "Resize Margin Left"
-msgstr ""
+msgstr "左マージンを調整"
 
 #: src/ui/classic/skin.desc:89 src/ui/classic/skin.desc:195
 #: src/ui/classic/skin.desc:333
 msgid "Resize Margin Right"
-msgstr ""
+msgstr "右マージンを調整"
 
 #: src/ui/classic/skin.desc:93 src/ui/classic/skin.desc:199
 #: src/ui/classic/skin.desc:321
 msgid "Resize Margin Top"
-msgstr ""
+msgstr "上マージンを調整"
 
 #: src/module/notificationitem/dbusmenu.c:367 src/ui/classic/classicui.c:505
 #: src/ui/kimpanel/kimpanel.c:759
 msgid "Restart"
+msgstr "再起動"
+
+#: data/config.desc:27
+msgid "Right Super"
 msgstr ""
 
 #: src/module/clipboard/fcitx-clipboard.desc:20
@@ -2163,23 +2207,23 @@ msgstr ""
 
 #: src/im/pinyin/fcitx-pinyin.desc:71
 msgid "Rule of Candidate Phrase Order"
-msgstr ""
+msgstr "フレーズ候補の表示順序ルール"
 
 #: src/im/pinyin/fcitx-pinyin.desc:62
 msgid "Rule of Candidate Word Order"
-msgstr ""
+msgstr "候補の表示順序ルール"
 
 #: src/im/pinyin/fcitx-pinyin.desc:80
 msgid "Rule of Frequent Word Order"
-msgstr ""
+msgstr "よく使う単語の表示順序ルール"
 
 #: src/module/vk/vk.c:54
 msgid "Russian"
-msgstr ""
+msgstr "ロシア語"
 
 #: data/config.desc:22
 msgid "SHIFT Both"
-msgstr ""
+msgstr "2つのShift"
 
 #: src/im/pinyin/fcitx-pinyin.desc:38
 msgid "Save Auto Created Phrase"
@@ -2187,43 +2231,43 @@ msgstr "自動生成されたフレーズを保存"
 
 #: src/im/table/table.desc:108
 msgid "Save Auto Phrase"
-msgstr ""
+msgstr "オートフレーズを保存"
 
 #: src/module/clipboard/fcitx-clipboard.desc:4
 msgid "Save Clipboard History To File"
-msgstr ""
+msgstr "クリップボードの履歴をファイルに保存"
 
 #: src/im/table/tabledict.c:373
 msgid "Save dict error"
-msgstr ""
+msgstr "辞書の保存エラー"
 
-#: data/config.desc:124
+#: data/config.desc:131
 msgid "Saving All Config and Input History"
-msgstr ""
+msgstr "すべての設定と入力履歴を保存"
 
-#: data/config.desc:61
+#: data/config.desc:68
 msgid "Scroll between Input Method"
-msgstr ""
+msgstr "入力メソッドの切換"
 
 #: src/module/unicode/unicode.c:230
 msgid "Search unicode"
-msgstr ""
+msgstr "Unicodeの検索"
 
-#: data/config.desc:150
+#: data/config.desc:157
 msgid "Seconds sleep before fcitx really start"
 msgstr "fcitxが本当に起動するまでのスリープ時間(秒)"
 
 #: src/module/imselector/imselector.c:304
 msgid "Select global input method: "
-msgstr ""
+msgstr "グローバル入力メソッドを選択:"
 
 #: src/module/imselector/imselector.c:305
 msgid "Select local input method: "
-msgstr ""
+msgstr "ローカル入力メソッドを選択:"
 
 #: src/module/imselector/fcitx-imselector.conf.in:4
 msgid "Select specific input method via keyboard"
-msgstr ""
+msgstr "キーボードで指定の入力メソッドを選択"
 
 #: src/module/clipboard/clipboard.c:372
 msgid "Select to paste"
@@ -2235,54 +2279,54 @@ msgstr ""
 
 #: src/module/quickphrase/fcitx-quickphrase.desc:6
 msgid "Semicolon"
-msgstr ""
+msgstr "セミコロン"
 
 #: src/im/table/table.desc:64
 msgid "Send Raw Preedit"
-msgstr ""
+msgstr "プレエディットをそのまま送る"
 
-#: data/config.desc:197
+#: data/config.desc:204
 msgid "Send typed raw text if Switch to inactive Mode"
-msgstr "非活動モードの時入力したテキストをそのままに送信する"
+msgstr "オフの際に入力したテキストをそのまま送信"
 
-#: data/config.desc:160
+#: data/config.desc:167
 msgid "Share State Among Window"
 msgstr "ウィンドウ間で状態を共有"
 
 #: data/addon.desc:36
 msgid "SharedLibrary"
-msgstr "共有ライブラリー"
+msgstr "共有ライブラリ"
 
 #: src/im/keyboard/fcitx-keyboard.desc:14 src/im/table/table.desc:139
 #: src/module/autoeng/fcitx-autoeng.desc:9
 #: src/module/clipboard/fcitx-clipboard.desc:42
 #: src/module/quickphrase/fcitx-quickphrase.desc:23
 msgid "Shift"
-msgstr ""
+msgstr "Shift"
 
 #: src/ui/classic/fcitx-classic-ui.desc:44
 msgid "Show"
 msgstr "表示"
 
-#: data/config.desc:221
+#: data/config.desc:228
 msgid "Show Input Method Hint After Input method changed"
-msgstr ""
+msgstr "入力メソッドを切換後にヒントを表示"
 
-#: data/config.desc:227
+#: data/config.desc:234
 msgid "Show Input Method Hint After Input method changed and Focus in"
-msgstr ""
+msgstr "入力メソッドを切換え、フォーカスした時にヒントを表示"
 
-#: data/config.desc:239
+#: data/config.desc:246
 msgid "Show Input Speed"
-msgstr "入力スピードを表示する"
+msgstr "入力速度の表示"
 
 #: data/profile.desc:29
 msgid "Show Preedit String in Client Window"
 msgstr "クライアントのウィンドウにプレエディットを表示"
 
-#: data/config.desc:245
+#: data/config.desc:252
 msgid "Show Version"
-msgstr "バージョンを表示する"
+msgstr "バージョンの表示"
 
 #: src/im/pinyin/fcitx-pinyin.conf.in:9
 msgid "Shuang Pin Schema"
@@ -2294,17 +2338,17 @@ msgstr "Shuangpin"
 
 #: src/im/pinyin/fcitx-pinyin.conf.in:4
 msgid "Simple Pinyin support for Fcitx"
-msgstr ""
+msgstr "Fcitx の簡単な Pinyin サポート"
 
 #: src/module/chttrans/chttrans.c:150 src/module/chttrans/chttrans.c:185
 msgid "Simplified Chinese"
-msgstr ""
+msgstr "簡体字中国語"
 
 #: src/module/chttrans/fcitx-chttrans.conf.in:3
 msgid "Simplified Chinese To Traditional Chinese"
-msgstr ""
+msgstr "簡体字中国語から繁体字中国語へ"
 
-#: src/ui/classic/skin.c:670 src/ui/classic/fcitx-classic-ui.conf.in:10
+#: src/ui/classic/skin.c:680 src/ui/classic/fcitx-classic-ui.conf.in:10
 msgid "Skin"
 msgstr "スキン"
 
@@ -2385,49 +2429,49 @@ msgstr "スキントレイアイコン"
 
 #: src/ui/classic/skin.desc:391
 msgid "Space Line Color"
-msgstr ""
+msgstr "区切り線の色"
 
-#: src/module/quickphrase/quickphrase.c:244
+#: src/module/quickphrase/quickphrase.c:247
 #, c-format
 msgid "Space for %s Enter for %s"
 msgstr ""
 
 #: src/module/vk/vk.c:58
 msgid "Special"
-msgstr ""
+msgstr "特殊"
 
 #: src/ui/classic/skin.desc:182
 msgid "Special Icon position"
-msgstr ""
+msgstr "特殊アイコンの位置"
 
 #: src/module/spell/fcitx-spell.conf.in:3
 msgid "Spell"
-msgstr ""
+msgstr "スペル"
 
 #: src/module/spell/fcitx-spell.desc:1 src/module/spell/fcitx-spell.desc:10
 msgid "Spell Hint"
-msgstr ""
+msgstr "スペルヒント"
 
 #: data/fcitx-autostart.desktop.in:4 data/fcitx.desktop.in:4
 msgid "Start Input Method"
-msgstr ""
+msgstr "入力メソッドを開始"
 
 #: src/frontend/xim/xim.c:245
 #, c-format
 msgid "Start XIM error. Another XIM daemon named %s is running?"
-msgstr ""
+msgstr "XIM 開始エラー: %s という他の XIM が動いていませんか?"
 
 #: src/ui/classic/fcitx-classic-ui.desc:49
 msgid "Status Panel Hide Mode"
-msgstr ""
+msgstr "状態パネルを隠すモード"
 
 #: src/ui/classic/fcitx-classic-ui.desc:2
 msgid "Status Panel Position X"
-msgstr ""
+msgstr "ステータスパネルの X 座標"
 
 #: src/ui/classic/fcitx-classic-ui.desc:8
 msgid "Status Panel Position Y"
-msgstr ""
+msgstr "ステータスパネルの Y 座標"
 
 #: src/module/pinyin-enhance/fcitx-pinyin-enhance.desc:47
 msgid "Stroke input trigger length"
@@ -2439,72 +2483,84 @@ msgstr "モジュールの設定"
 
 #: src/ui/classic/fcitx-skin-installer.sh:74
 msgid "Successfully Installed skin"
+msgstr "スキンをインストールしました"
+
+#: data/config.desc:28
+msgid "Super Both"
 msgstr ""
 
-#: data/config.desc:130
+#: data/config.desc:31
+msgid "Super+Left Ctrl"
+msgstr ""
+
+#: data/config.desc:32
+msgid "Super+Right Ctrl"
+msgstr ""
+
+#: data/config.desc:137
 msgid "Switch Embeded Preedit"
 msgstr ""
 
-#: data/config.desc:102
+#: data/config.desc:109
 msgid "Switch Full Width Punc Mode"
-msgstr ""
+msgstr "全角句読点モードに切り替え"
 
 #: src/module/imselector/fcitx-imselector.desc:54
 #: src/module/imselector/fcitx-imselector.desc:99
 msgid "Switch to the Eighth Input Method"
-msgstr ""
+msgstr "8番目のIMに切り替え"
 
 #: src/module/imselector/fcitx-imselector.desc:39
 #: src/module/imselector/fcitx-imselector.desc:84
 msgid "Switch to the Fifth Input Method"
-msgstr ""
+msgstr "5番目のIMに切り替え"
 
 #: src/module/imselector/fcitx-imselector.desc:19
 #: src/module/imselector/fcitx-imselector.desc:64
 msgid "Switch to the First Input Method"
-msgstr ""
+msgstr "最初のIMに切り替え"
 
 #: src/module/imselector/fcitx-imselector.desc:34
 #: src/module/imselector/fcitx-imselector.desc:79
 msgid "Switch to the Fourth Input Method"
-msgstr ""
+msgstr "4番目のIMに切り替え"
 
 #: src/module/imselector/fcitx-imselector.desc:59
 #: src/module/imselector/fcitx-imselector.desc:104
 msgid "Switch to the Ninth Input Method"
-msgstr ""
+msgstr "9番目のIMに切り替え"
 
 #: src/module/imselector/fcitx-imselector.desc:24
 #: src/module/imselector/fcitx-imselector.desc:69
 msgid "Switch to the Second Input Method"
-msgstr ""
+msgstr "二番目のIMに切り替え"
 
 #: src/module/imselector/fcitx-imselector.desc:49
 #: src/module/imselector/fcitx-imselector.desc:94
 msgid "Switch to the Seventh Input Method"
-msgstr ""
+msgstr "7番目のIMに切り替え"
 
 #: src/module/imselector/fcitx-imselector.desc:44
 #: src/module/imselector/fcitx-imselector.desc:89
 msgid "Switch to the Sixth Input Method"
-msgstr ""
+msgstr "6番目のIMに切り替え"
 
 #: src/module/imselector/fcitx-imselector.desc:29
 #: src/module/imselector/fcitx-imselector.desc:74
 msgid "Switch to the Third Input Method"
-msgstr ""
+msgstr "3番目のIMに切り替え"
 
-#: data/config.desc:96
+#: data/config.desc:103
 msgid "Switching Full Width Character Mode"
-msgstr ""
+msgstr "全角文字モードに切り替え"
 
-#: data/config.desc:90
+#: data/config.desc:97
 msgid "Switching Remind Mode"
-msgstr ""
+msgstr "リマインドモードの切り替え"
 
-#: data/config.desc:84
+#: data/config.desc:91
 msgid "Switching Virtual Keyboard"
-msgstr ""
+msgstr "仮想キーボードに切り替え"
 
 #: src/module/pinyin-enhance/fcitx-pinyin-enhance.conf.in:9
 #: src/im/table/table.desc:117
@@ -2517,7 +2573,7 @@ msgstr "記号ファイル"
 
 #: data/script/fcitx-diagnose.sh:507
 msgid "System Info."
-msgstr ""
+msgstr "システム情報。"
 
 #: src/im/table/fcitx-table.conf.in:3 src/im/table/fcitx-table.conf.in:10
 msgid "Table"
@@ -2525,15 +2581,15 @@ msgstr "Table"
 
 #: src/ui/classic/skin.desc:53
 msgid "Table Code Color"
-msgstr ""
+msgstr "テーブルコードの色"
 
 #: src/im/table/fcitx-table.conf.in:4
 msgid "Table Input Method for Fcitx"
-msgstr ""
+msgstr "Fcitx用のテーブル入力メソッド"
 
 #: src/module/vk/vk.c:61
 msgid "Table Symbol"
-msgstr ""
+msgstr "表の記号"
 
 #: src/module/pinyin-enhance/fcitx-pinyin-enhance.desc:56
 msgid ""
@@ -2541,17 +2597,17 @@ msgid ""
 "larger than this when multiple characters have the same order of strokes."
 msgstr ""
 
-#: data/config.desc:144
+#: data/config.desc:151
 msgid ""
 "This is used in some modules and input methods to navigate to the next "
 "candidate word"
-msgstr ""
+msgstr "いくつかのモジュールや入力メソッドで次の候補に移動するために便利です"
 
-#: data/config.desc:137
+#: data/config.desc:144
 msgid ""
 "This is used in some modules and input methods to navigate to the previous "
 "candidate word"
-msgstr ""
+msgstr "いくつかのモジュールや入力メソッドで前の候補に移動するために便利です"
 
 #: src/ui/classic/skin.desc:33
 msgid "Tip Message Color"
@@ -2564,31 +2620,34 @@ msgid ""
 "${link1}. For other more general problems of using XIM including application "
 "freezing, see ${link2}."
 msgstr ""
+"ximを使っている場合、いくつかのアプリケーションが固有の問題を引き起こす場合が"
+"あります。 ${link1} を参照してください。 アプリケーションのフリーズを含むXIM"
+"による一般的な問題については ${link2} を参照してください。"
 
 #: src/module/punc/punc.c:149 src/module/punc/punc.c:556
 msgid "Toggle Full Width Punctuation"
-msgstr ""
+msgstr "全角/半角句読点を切り替え"
 
 #: src/module/fullwidthchar/fullwidthchar.c:115
 #: src/module/fullwidthchar/fullwidthchar.c:192
 msgid "Toggle Half/Full width Character"
-msgstr ""
+msgstr "全角/半角文字の切り替え"
 
 #: src/ui/kimpanel/kimpanel.c:751
 msgid "Toggle Input Method"
-msgstr ""
+msgstr "入力メソッドの切り替え"
 
-#: src/lib/fcitx/instance.c:284 src/lib/fcitx/instance.c:532
+#: src/lib/fcitx/instance.c:284 src/lib/fcitx/instance.c:537
 msgid "Toggle Remind"
-msgstr ""
+msgstr "リマインドの切り替え"
 
 #: src/module/chttrans/chttrans.c:151 src/module/chttrans/chttrans.c:186
 msgid "Toggle Simp/Trad Chinese Conversion"
-msgstr ""
+msgstr "中国語の簡体字/繁体字の変換の切り替え"
 
 #: src/module/vk/vk.c:154
 msgid "Toggle Virtual Keyboard"
-msgstr ""
+msgstr "仮想キーボードの切り替え"
 
 #: src/module/chttrans/fcitx-chttrans.desc:12
 msgid "Toggle for enable or disable"
@@ -2596,30 +2655,30 @@ msgstr "有効無効を切り替え"
 
 #: src/im/keyboard/fcitx-keyboard.desc:19
 msgid "Toggle the word hint"
-msgstr ""
+msgstr "サジェストの表示"
 
 #: src/module/autoeng/AutoEng.c:557
 msgid "Too long item for AutoEng"
-msgstr ""
+msgstr "自動英語にするには長過ぎます"
 
 #: src/ui/classic/skin.desc:129 src/ui/classic/skin.desc:235
 #: src/ui/classic/skin.desc:365
 msgid "TopCenter"
-msgstr ""
+msgstr "上"
 
 #: src/ui/classic/skin.desc:128 src/ui/classic/skin.desc:234
 #: src/ui/classic/skin.desc:364
 msgid "TopLeft"
-msgstr ""
+msgstr "左上"
 
 #: src/ui/classic/skin.desc:130 src/ui/classic/skin.desc:236
 #: src/ui/classic/skin.desc:366
 msgid "TopRight"
-msgstr ""
+msgstr "右上"
 
 #: src/module/chttrans/chttrans.c:150 src/module/chttrans/chttrans.c:185
 msgid "Traditional Chinese"
-msgstr ""
+msgstr "中国語繁体字"
 
 #: src/module/chttrans/fcitx-chttrans.desc:6
 msgid "Traditional Chinese Translate Engine"
@@ -2633,27 +2692,27 @@ msgstr "中国語繁体字"
 
 #: src/module/pinyin-enhance/fcitx-pinyin-enhance.desc:4
 msgid "Treating abbreviated Pinyin as English"
-msgstr ""
+msgstr "省略された Pinyin を英語として扱う"
 
 #: data/config.desc:4
 msgid "Trigger Input Method"
-msgstr ""
+msgstr "入力メソッドのオンオフ"
 
 #: src/module/clipboard/fcitx-clipboard.desc:25
 msgid "Trigger Key for Clipboard History List"
-msgstr ""
+msgstr "クリップボード履歴リストのトリガー"
 
 #: src/module/quickphrase/fcitx-quickphrase.desc:8
 msgid "Trigger Key for QuickPhrase"
-msgstr ""
+msgstr "クイックフレーズのトリガーとなるキー"
 
 #: data/addon.desc:38
 msgid "Type"
 msgstr "タイプ"
 
-#: data/config.desc:174
+#: data/config.desc:181
 msgid "Type half width Punc After a Number"
-msgstr ""
+msgstr "数字の後に半角句読点を入力"
 
 #: data/addon.desc:21
 msgid "UI"
@@ -2661,16 +2720,16 @@ msgstr "UI"
 
 #: src/lib/fcitx/ui.c:205
 msgid "UI: bad ui"
-msgstr ""
+msgstr "UI: 不良なUI"
 
 #: src/lib/fcitx/ui.c:192
 #, c-format
 msgid "UI: open %s fail %s"
-msgstr ""
+msgstr "UI: %s を開くのに失敗しました %s"
 
 #: src/module/unicode/fcitx-unicode.desc:1
 msgid "Unicode"
-msgstr ""
+msgstr "Unicode"
 
 #: src/im/table/table.desc:2
 msgid "Unique Name for Table"
@@ -2683,11 +2742,11 @@ msgstr "一意な名称"
 #: src/lib/fcitx-config/fcitx-config.c:396
 #, c-format
 msgid "Unknown type, take it as string: %s"
-msgstr ""
+msgstr "不明な型です。文字列として扱います: %s"
 
 #: tools/gui/quickphrase-editor/batchdialog.cpp:30
 msgid "Use <Keyword> <Phrase> format on every line."
-msgstr ""
+msgstr "各行では <Keyword> <Phrase> の形式を使用してください。"
 
 #: src/im/pinyin/fcitx-pinyin.desc:28
 msgid "Use Complete Pinyin"
@@ -2699,7 +2758,7 @@ msgstr ""
 
 #: src/ui/classic/skin.desc:167
 msgid "Use Custom text icon color"
-msgstr ""
+msgstr "カスタムテキストアイコンの色を使う"
 
 #: data/profile.desc:2
 msgid "Use Full Width Character"
@@ -2707,27 +2766,27 @@ msgstr "全角文字を使用"
 
 #: src/im/keyboard/fcitx-keyboard.conf.in:4
 msgid "Use Keyboard Layout as Input Method"
-msgstr ""
+msgstr "キーボードレイアウトを入力メソッドとして使用"
 
 #: src/im/table/table.desc:74
 msgid "Use Matching Key"
-msgstr ""
+msgstr "マッチングキーを使う"
 
 #: src/frontend/xim/fcitx-xim.desc:4
 msgid "Use On The Spot Style for XIM (Can not change during running)"
-msgstr ""
+msgstr "XIMで On The Spot スタイルを使う(起動中は変更できません)"
 
 #: src/im/table/table.desc:39
 msgid "Use Pinyin"
 msgstr "Pinyinを使用"
 
 #: data/addon.desc:77
-msgid "Use RTLD_GLOBAL to load library"
+msgid "Use RTLD_LOCAL to load library"
 msgstr ""
 
 #: src/module/clipboard/fcitx-clipboard.desc:30
 msgid "Use Selection Text"
-msgstr ""
+msgstr "選択したテキストを使用する"
 
 #: src/ui/classic/fcitx-classic-ui.desc:39
 msgid "Use System Tray Icon"
@@ -2735,7 +2794,7 @@ msgstr "システムトレイアイコンを使う"
 
 #: src/im/pinyin/fcitx-pinyin.desc:23
 msgid "Use V to trigger quickphrase"
-msgstr ""
+msgstr "クイックフレーズを開始するトリガーに V を使う"
 
 #: data/profile.desc:7
 msgid "Use Wide Punctuation"
@@ -2743,23 +2802,23 @@ msgstr "全角の句読点を使用"
 
 #: src/im/keyboard/fcitx-keyboard.desc:39
 msgid "Use enter to commit the existing string"
-msgstr ""
+msgstr "既存の文字列を確定するときに Enter を使う"
 
 #: data/config.desc:9
 msgid "Use extra trigger key only after using it to inactivate"
-msgstr ""
+msgstr "アクティブでない時だけその他のトリガーキーを使用する"
 
-#: src/lib/fcitx/instance.c:283 src/lib/fcitx/instance.c:531
+#: src/lib/fcitx/instance.c:283 src/lib/fcitx/instance.c:536
 msgid "Use remind"
-msgstr ""
+msgstr "リマインドを使用"
 
 #: src/module/remote/fcitx-remote-module.conf.in:4
 msgid "Used by fcitx-remote to change Fcitx state from console"
-msgstr ""
+msgstr "Fcitxの状態をコンソールから変えるために、fcitx-remoteで使われる"
 
 #: src/module/pinyin-enhance/fcitx-pinyin-enhance.desc:5
 msgid "Useful when you hardly ever use abbreviated pinyin."
-msgstr ""
+msgstr "普段省略された Pinyin を使わない人に便利です。"
 
 #: src/im/pinyin/fcitx-pinyin.desc:11
 msgid "User Defined"
@@ -2767,11 +2826,11 @@ msgstr "ユーザー定義"
 
 #: src/ui/classic/skin.desc:49
 msgid "User Phrase Color"
-msgstr ""
+msgstr "ユーザーフレーズの色"
 
 #: src/ui/classic/fcitx-classic-ui.desc:54
 msgid "Vertical Candidate Word List"
-msgstr "縦の候補ウィンドウ"
+msgstr "候補ウィンドウを縦にする"
 
 #: src/module/vk/fcitx-vk.conf.in:3 src/module/vk/fcitx-vk.conf.in:10
 msgid "Virtual Key Board"
@@ -2779,7 +2838,7 @@ msgstr "仮想キーボード"
 
 #: src/module/vk/fcitx-vk.conf.in:4
 msgid "Virtual Key Board in order to input special character"
-msgstr ""
+msgstr "特殊文字を入力するための仮想キーボード"
 
 #: src/module/vk/vk.c:179
 msgid "Virtual Keyboard"
@@ -2787,11 +2846,11 @@ msgstr "仮想キーボード"
 
 #: src/ui/classic/skin.desc:411
 msgid "Virtual Keyboard Image"
-msgstr "仮想キーボードのイメージ"
+msgstr "仮想キーボードの画像"
 
 #: src/module/vk/vk.c:154
 msgid "Virtual Keyboard State"
-msgstr ""
+msgstr "仮想キーボードの状態"
 
 #: data/table/wanfeng.conf.in:3
 msgid "Wanfeng"
@@ -2808,16 +2867,16 @@ msgstr "WubiPinyin"
 #: src/module/xkb/fcitx-xkb.desc:1 src/module/xkb/fcitx-xkb.desc:6
 #: src/module/xkb/fcitx-xkb.desc:11 src/module/xkb/fcitx-xkb.desc:16
 msgid "X Keyboard"
-msgstr ""
+msgstr "X Keyboard"
 
 #: src/module/xkb/fcitx-xkb.conf.in:3 src/module/xkb/fcitx-xkb.conf.in:4
 msgid "X Keyboard Integration"
-msgstr ""
+msgstr "X Keyboard連携"
 
 #: src/module/xkbdbus/fcitx-xkbdbus.conf.in:3
 #: src/module/xkbdbus/fcitx-xkbdbus.conf.in:4
 msgid "X Keyboard Integration export with DBus"
-msgstr ""
+msgstr "DBus と X Keyboard との連携"
 
 #: src/ui/classic/tray.c:159
 #, c-format
@@ -2830,7 +2889,7 @@ msgstr "X11サポート"
 
 #: src/module/x11/fcitx-x11.conf.in:4
 msgid "X11 Utilitiy used by other Addon"
-msgstr ""
+msgstr "他のアドオンで使われる X11 ツール"
 
 #: src/frontend/xim/xim.c:134
 msgid "X11 not initialized"
@@ -2838,23 +2897,23 @@ msgstr "X11が初期化されていません"
 
 #: data/script/fcitx-diagnose.sh:786
 msgid "XIM encoding:"
-msgstr ""
+msgstr "XIM エンコーディング:"
 
 #: data/script/fcitx-diagnose.sh:781
 msgid "XIM for Emacs:"
-msgstr ""
+msgstr "Emacs 用 XIM:"
 
 #: data/script/fcitx-diagnose.sh:759
 msgid "XIM_SERVERS on root window:"
-msgstr ""
+msgstr "ルートウィンドウでの XIM_SERVERS :"
 
 #: src/frontend/xim/xim.c:157
 msgid "XMODIFIERS Error."
-msgstr ""
+msgstr "XMODIFIERSのエラーです。"
 
 #: src/im/pinyin/fcitx-pinyin.desc:10
 msgid "XiaoHe"
-msgstr ""
+msgstr "XiaoHe"
 
 #: src/frontend/xim/fcitx-xim.desc:1
 msgid "Xim"
@@ -2862,41 +2921,44 @@ msgstr "Xim"
 
 #: data/script/fcitx-diagnose.sh:757
 msgid "Xim Server Name from Environment variable is ${1}."
-msgstr ""
+msgstr "環境変数から取得した Xim サーバー名は ${1} です。"
 
 #: data/script/fcitx-diagnose.sh:769
 msgid "Xim server name is the same with that set in the environment variable."
-msgstr ""
+msgstr "Xim サーバー名は環境変数で設定されたものと同じです。"
 
 #: data/script/fcitx-diagnose.sh:771
 msgid ""
 "Xim server name: \"${1}\" is different from that set in the environment "
 "variable: \"${2}\"."
-msgstr ""
+msgstr "Xim サーバー名: \"{1}\" は環境変数で設定された \"{2} と異なります。"
 
 #: data/script/fcitx-diagnose.sh:804
 msgid "You are using xim in ${1} programs."
-msgstr ""
+msgstr "xim を ${1} プログラムで使用しています。"
 
 #: data/script/fcitx-diagnose.sh:1023
 msgid "You don't have any input methods enabled."
-msgstr ""
+msgstr "有効な入力メソッドがありません。"
 
 #: data/script/fcitx-diagnose.sh:1031
 msgid ""
 "You have a keyboard input method \"${1}\" correctly added as your default "
 "input method."
 msgstr ""
+"キーボード 入力メソッド \"${1}\"  を既定の入力メソッドとして追加しました。"
 
 #: data/script/fcitx-diagnose.sh:809
 msgid "You may have trouble using fcitx in ${1} programs."
-msgstr ""
+msgstr "Fcitx を使っている プログラム ${1} で問題が発生しています。"
 
 #: data/script/fcitx-diagnose.sh:1026
 msgid ""
 "You only have one input method enabled, please add a keyboard input method "
 "as the first one and your main input method as the second one."
 msgstr ""
+"有効な入力メソッドがひとつしかありません。最初にキーボード入力メソッドを追加"
+"し、主に使用する入力メソッドを二番目に追加してください。"
 
 #: data/script/fcitx-diagnose.sh:783
 msgid ""
@@ -2904,12 +2966,17 @@ msgid ""
 "able to use input method in emacs because of an really old emacs bug that "
 "upstream refuse to fix for years."
 msgstr ""
+"LC_CTYPEがzh、ja、koのどれかではなく ${1} に設定されています。修正が何年も無"
+"視されているとても古いemacsのバグにより、emacs中で入力メソッドを使用できない"
+"かもしれません。 "
 
 #: data/script/fcitx-diagnose.sh:788
 msgid ""
 "Your LC_CTYPE is set to ${1} whose encoding is not UTF-8. You may have "
 "trouble committing strings using XIM."
 msgstr ""
+"LC_CTYPE がエンコーディングがUTF-8ではない \"${1}\" に設定されています。 XIM "
+"を使って文字入力を確定するときに問題が起きる可能性があります。"
 
 #: data/script/fcitx-diagnose.sh:1035
 msgid ""
@@ -2931,20 +2998,20 @@ msgstr "Ziranma"
 
 #: data/script/fcitx-diagnose.sh:579
 msgid "executable:"
-msgstr ""
+msgstr "実行可能:"
 
 #: data/script/fcitx-diagnose.sh:479
 msgid "here"
-msgstr ""
+msgstr "ここ"
 
-#: src/lib/fcitx/ime.c:1610
+#: src/lib/fcitx/ime.c:1634
 msgid "min Num of Characters: "
 msgstr ""
 
 #: src/lib/fcitx-config/fcitx-config.c:1192
 #, c-format
 msgid "no default option for %s/%s"
-msgstr ""
+msgstr "%s/%s に既定のオプションはありません"
 
 #: src/ui/cairostuff/font.c:106
 msgid "no valid font."
@@ -2952,19 +3019,19 @@ msgstr "正しいフォントではありません"
 
 #: data/script/fcitx-diagnose.sh:593
 msgid "process:"
-msgstr ""
+msgstr "プロセス:"
 
-#: src/lib/fcitx/instance.c:507
+#: src/lib/fcitx/instance.c:512
 msgid "pthread mutex init failed"
-msgstr ""
+msgstr "pthread の mutex 初期化に失敗しました"
 
 #: data/script/fcitx-diagnose.sh:589
 msgid "version:"
-msgstr ""
+msgstr "バージョン:"
 
 #: src/module/xkb/fcitx-xkb.desc:14
 msgid "xmodmap command"
-msgstr ""
+msgstr "xmodmap コマンド"
 
 #: src/ui/cairostuff/font.c:90
 #, c-format

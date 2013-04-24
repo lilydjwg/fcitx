@@ -50,9 +50,9 @@ struct _FcitxInputState {
     boolean bIsDoInputOnly;
     KEY_RELEASED keyReleased;
     int iCodeInputCount;
-    char strCodeInput[MAX_USER_INPUT + 1];
-    char strStringGet[MAX_USER_INPUT + 1];
-    char strLastCommit[MAX_USER_INPUT + 1];
+    char strCodeInput[MAX_USER_INPUT * UTF8_MAX_LENGTH + 1];
+    char strStringGet[MAX_USER_INPUT * UTF8_MAX_LENGTH + 1];
+    char strLastCommit[MAX_USER_INPUT * UTF8_MAX_LENGTH + 1];
     boolean bIsInRemind;
 
     time_t dummy;
@@ -129,6 +129,8 @@ boolean FcitxInstanceUpdateCurrentIM(struct _FcitxInstance* instance, boolean fo
 void HideInputSpeed(void* arg);
 
 boolean FcitxInstanceCheckICFromSameApplication (struct  _FcitxInstance* instance, FcitxInputContext* rec, FcitxInputContext* ic);
+
+void FcitxInstanceReloadAddon(struct _FcitxInstance* instance);
 
 #endif
 
