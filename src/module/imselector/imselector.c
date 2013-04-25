@@ -291,7 +291,7 @@ void IMSelectorGetCands(IMSelector* imselector)
     FcitxCandidateWordSetChoose(candList, DIGIT_STR_CHOOSE);
     FcitxInputStateSetShowCursor(input, false);
     FcitxCandidateWordSetOverrideDefaultHighlight(candList, false);
-    FcitxCandidateWordSetLayoutHint(candList, CLH_Vertical);
+    /* FcitxCandidateWordSetLayoutHint(candList, CLH_Vertical); */
 
     FcitxIM* im = FcitxInstanceGetCurrentIM(instance);
     FcitxInputContext* ic = FcitxInstanceGetCurrentIC(instance);

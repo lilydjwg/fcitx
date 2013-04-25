@@ -629,7 +629,8 @@ INPUT_RETURN_VALUE QuickPhraseGetCandWords(QuickPhraseState* qpstate)
     FcitxCandidateWordSetChooseAndModifier(
         candList, DIGIT_STR_CHOOSE, cmodtable[qpstate->config.chooseModifier]);
     FcitxCandidateWordSetOverrideDefaultHighlight(candList, false);
-    FcitxCandidateWordSetLayoutHint(candList, CLH_Vertical);
+    /* No, don't make it vertical at a time, horizontal another */
+    /* FcitxCandidateWordSetLayoutHint(candList, CLH_Vertical); */
 
     pKey = &searchKey;
 
