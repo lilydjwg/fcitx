@@ -21,21 +21,28 @@
 #define FCITX_TOOLS_GUI_EDITOR_H
 
 #include <QMainWindow>
+#include <QDir>
+#include <QMutex>
 #include "fcitx-qt/fcitxqtconfiguiwidget.h"
 #include "model.h"
 
 class QAbstractItemModel;
 class CMacroTable;
-namespace Ui {
+namespace Ui
+{
 class Editor;
 }
 
-namespace fcitx {
+namespace fcitx
+{
 
-class ListEditor : public FcitxQtConfigUIWidget {
+class FileListModel;
+
+class ListEditor : public FcitxQtConfigUIWidget
+{
     Q_OBJECT
 public:
-    explicit ListEditor(QuickPhraseModel* model, QWidget* parent = 0);
+    explicit ListEditor(QWidget* parent = 0);
     virtual ~ListEditor();
 
     virtual void load();
@@ -43,6 +50,15 @@ public:
     virtual QString title();
     virtual QString addon();
     virtual bool asyncSave();
+
+    void loadFileList();
+
+public slots:
+    void batchEditAccepted();
+    void removeFileTriggered();
+    void addFileTriggered();
+    void refreshListTriggered();
+    void changeFile(int);
 
 private slots:
     void addWord();
@@ -58,10 +74,13 @@ private slots:
 private:
     void load(const QString& file);
     void save(const QString& file);
+    QString currentFile();
+    QString currentName();
     Ui::Editor* m_ui;
     QuickPhraseModel* m_model;
-public slots:
-    void batchEditAccepted();
+    FileListModel* m_fileListModel;
+    QMenu* m_operationMenu;
+    QString m_lastFile;
 };
 }
 

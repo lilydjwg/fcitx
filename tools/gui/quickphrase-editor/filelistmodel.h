@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2012~2012 by CSSlayer                                   *
+ *   Copyright (C) 2013~2013 by CSSlayer                                   *
  *   wengxt@gmail.com                                                      *
  *                                                                         *
  *  This program is free software: you can redistribute it and/or modify   *
@@ -17,21 +17,36 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef FCITX_TOOLS_GUI_MAIN_H_
-#define FCITX_TOOLS_GUI_MAIN_H_
+#ifndef FCITX_TOOLS_GUI_FILE_LIST_MODEL_H_
+#define FCITX_TOOLS_GUI_FILE_LIST_MODEL_H_
 
-#include "fcitx-qt/fcitxqtconfiguiplugin.h"
+#include <QAbstractListModel>
+#include <QStringList>
 
-class QuickPhraseEditorPlugin : public FcitxQtConfigUIPlugin
+
+#define QUICK_PHRASE_CONFIG_DIR "data/quickphrase.d"
+#define QUICK_PHRASE_CONFIG_FILE "data/QuickPhrase.mb"
+
+namespace fcitx
+{
+
+class FileListModel : public QAbstractListModel
 {
     Q_OBJECT
-    Q_INTERFACES(FcitxQtConfigUIFactoryInterface)
 public:
-    explicit QuickPhraseEditorPlugin(QObject* parent = 0);
-    virtual QString name();
-    virtual QStringList files();
-    virtual QString domain();
-    virtual FcitxQtConfigUIWidget* create(const QString& key);
+    explicit FileListModel(QObject* parent = 0);
+    virtual ~FileListModel();
+
+    virtual QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const;
+    virtual int rowCount(const QModelIndex& parent = QModelIndex()) const;
+
+    void loadFileList();
+    int findFile(const QString& lastFileName);
+
+private:
+    QStringList m_fileList;
 };
 
-#endif // FCITX_TOOLS_GUI_MAIN_H_
+}
+
+#endif // FCITX_TOOLS_GUI_FILE_LIST_MODEL_H_

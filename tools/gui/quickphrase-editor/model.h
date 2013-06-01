@@ -26,9 +26,13 @@
 #include <QFutureWatcher>
 
 class QFile;
-namespace fcitx {
+namespace fcitx
+{
 
-class QuickPhraseModel : public QAbstractTableModel {
+typedef QList< QPair< QString , QString> > QStringPairList;
+
+class QuickPhraseModel : public QAbstractTableModel
+{
     Q_OBJECT
 public:
     explicit QuickPhraseModel(QObject* parent = 0);
@@ -46,7 +50,7 @@ public:
     void deleteItem(int row);
     void deleteAllItem();
     QFutureWatcher< bool >* save(const QString& file);
-    void saveData(QTextStream& stream);
+    void saveData(QTextStream& dev);
     bool needSave();
 
 signals:
@@ -57,11 +61,12 @@ private slots:
     void saveFinished();
 
 private:
-    void parse(const QString& file);
-    bool saveData(const QString& file);
+    QStringPairList parse(const QString& file);
+    bool saveData(const QString& file, const fcitx::QStringPairList& list);
     void setNeedSave(bool needSave);
     bool m_needSave;
-    QList<QPair< QString, QString > >m_list;
+    QStringPairList m_list;
+    QFutureWatcher< QStringPairList >* m_futureWatcher;
 };
 
 }

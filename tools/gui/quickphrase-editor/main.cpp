@@ -33,7 +33,7 @@ QuickPhraseEditorPlugin::QuickPhraseEditorPlugin(QObject* parent): FcitxQtConfig
 FcitxQtConfigUIWidget* QuickPhraseEditorPlugin::create(const QString& key)
 {
     Q_UNUSED(key);
-    return new fcitx::ListEditor(new fcitx::QuickPhraseModel);
+    return new fcitx::ListEditor;
 }
 
 QStringList QuickPhraseEditorPlugin::files()
@@ -52,4 +52,4 @@ QString QuickPhraseEditorPlugin::domain()
 }
 
 
-Q_EXPORT_PLUGIN2 (fcitx_quickphrase_editor, QuickPhraseEditorPlugin)
+Q_EXPORT_PLUGIN2(fcitx_quickphrase_editor, QuickPhraseEditorPlugin)

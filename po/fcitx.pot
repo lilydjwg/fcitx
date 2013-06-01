@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2013-04-25 00:01-0400\n"
+"POT-Creation-Date: 2013-05-30 08:09-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,20 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: data/script/fcitx-configtool.sh:133
+msgid ""
+"You're currently running KDE, but KCModule for fcitx couldn't be found, the "
+"package name of this KCModule is usually kcm-fcitx or kde-config-fcitx. Now "
+"it will open config file with default text editor."
+msgstr ""
+
+#: data/script/fcitx-configtool.sh:136
+msgid ""
+"You're currently Fcitx with GUI, but fcitx-configtool couldn't be found, the "
+"package name is usually fcitx-config-gtk, fcitx-config-gtk3 or fcitx-"
+"configtool. Now it will open config file with default text editor."
+msgstr ""
 
 #: data/script/fcitx-diagnose.sh:305
 msgid "${1} not found."
@@ -529,45 +543,45 @@ msgstr ""
 msgid "Quwei"
 msgstr ""
 
-#: src/im/table/table.c:604
+#: src/im/table/table.c:610
 msgid ""
 "Left/Right to choose selected character, Press Enter to confirm, Press "
 "Escape to Cancel"
 msgstr ""
 
-#: src/im/table/table.c:629
+#: src/im/table/table.c:635
 msgid "Pinyin: "
 msgstr ""
 
-#: src/im/table/table.c:653
+#: src/im/table/table.c:659
 msgid "Cannot found Pinyin"
 msgstr ""
 
-#: src/im/table/table.c:713
+#: src/im/table/table.c:719
 msgid "Choose the phrase to be put in the front, Press Escape to Cancel"
 msgstr ""
 
-#: src/im/table/table.c:721
+#: src/im/table/table.c:727
 msgid "Choose the phrase to be deleted, Press Escape to Cancel"
 msgstr ""
 
-#: src/im/table/table.c:729
+#: src/im/table/table.c:735
 msgid "Choose the phrase to clear typing history, Press Escape to Cancel"
 msgstr ""
 
-#: src/im/table/table.c:1294
+#: src/im/table/table.c:1300
 msgid "Remind:"
 msgstr ""
 
-#: src/im/table/table.c:1402
+#: src/im/table/table.c:1408
 msgid "Phrase is already in Dict "
 msgstr ""
 
-#: src/im/table/table.c:1406
+#: src/im/table/table.c:1412
 msgid "Code is "
 msgstr ""
 
-#: src/im/table/table.c:1410
+#: src/im/table/table.c:1416
 msgid " Ctrl+Delete To Delete"
 msgstr ""
 
@@ -593,6 +607,21 @@ msgstr ""
 
 #: src/im/table/tabledict.c:428
 msgid "Rename OK"
+msgstr ""
+
+#: src/lib/fcitx/addon.c:138
+#, c-format
+msgid "Addon Config %s is %s"
+msgstr ""
+
+#: src/lib/fcitx/addon.c:151
+#, c-format
+msgid "Load Addon Config File:%s"
+msgstr ""
+
+#: src/lib/fcitx/addon.c:298
+#, c-format
+msgid "Disable addon %s, dependency %s can not be satisfied."
 msgstr ""
 
 #: src/lib/fcitx-config/fcitx-config.c:366
@@ -656,47 +685,6 @@ msgstr ""
 msgid "no default option for %s/%s"
 msgstr ""
 
-#: src/lib/fcitx-utils/desktop-parse.c:513
-#, c-format
-msgid "Invalid group name line @ line %d %s"
-msgstr ""
-
-#: src/lib/fcitx-utils/desktop-parse.c:525
-#, c-format
-msgid ""
-"Duplicate group %s in a desktop file,@ line %d, merge with previous one."
-msgstr ""
-
-#: src/lib/fcitx-utils/desktop-parse.c:549
-#, c-format
-msgid "Non-comment doesn't belongs to any group @ %d %s"
-msgstr ""
-
-#: src/lib/fcitx-utils/desktop-parse.c:555
-#, c-format
-msgid "Invalid entry line @ line %d %s"
-msgstr ""
-
-#: src/lib/fcitx-utils/desktop-parse.c:565
-#, c-format
-msgid "Duplicate entry %s in group %s,@ line %d, override previous one."
-msgstr ""
-
-#: src/lib/fcitx/addon.c:138
-#, c-format
-msgid "Addon Config %s is %s"
-msgstr ""
-
-#: src/lib/fcitx/addon.c:151
-#, c-format
-msgid "Load Addon Config File:%s"
-msgstr ""
-
-#: src/lib/fcitx/addon.c:298
-#, c-format
-msgid "Disable addon %s, dependency %s can not be satisfied."
-msgstr ""
-
 #: src/lib/fcitx/frontend.c:511
 #, c-format
 msgid "Frontend: open %s fail %s"
@@ -724,8 +712,8 @@ msgstr ""
 msgid "No available Input Method"
 msgstr ""
 
-#: src/lib/fcitx/ime.c:1537 data/fcitx-autostart.desktop.in:3
-#: data/fcitx.desktop.in:3
+#: src/lib/fcitx/ime.c:1537 src/module/notificationitem/notificationitem.c:416
+#: data/fcitx-autostart.desktop.in:3 data/fcitx.desktop.in:3
 msgid "Input Method"
 msgstr ""
 
@@ -773,6 +761,32 @@ msgstr ""
 
 #: src/lib/fcitx/ui.c:205
 msgid "UI: bad ui"
+msgstr ""
+
+#: src/lib/fcitx-utils/desktop-parse.c:513
+#, c-format
+msgid "Invalid group name line @ line %d %s"
+msgstr ""
+
+#: src/lib/fcitx-utils/desktop-parse.c:525
+#, c-format
+msgid ""
+"Duplicate group %s in a desktop file,@ line %d, merge with previous one."
+msgstr ""
+
+#: src/lib/fcitx-utils/desktop-parse.c:549
+#, c-format
+msgid "Non-comment doesn't belongs to any group @ %d %s"
+msgstr ""
+
+#: src/lib/fcitx-utils/desktop-parse.c:555
+#, c-format
+msgid "Invalid entry line @ line %d %s"
+msgstr ""
+
+#: src/lib/fcitx-utils/desktop-parse.c:565
+#, c-format
+msgid "Duplicate entry %s in group %s,@ line %d, override previous one."
 msgstr ""
 
 #: src/module/autoeng/AutoEng.c:557
@@ -856,18 +870,18 @@ msgstr ""
 msgid "Exit"
 msgstr ""
 
-#: src/module/notificationitem/notificationitem.c:447
+#: src/module/notificationitem/notificationitem.c:461
 #: src/ui/kimpanel/kimpanel.c:227 src/ui/kimpanel/kimpanel.c:228
 msgid "No input window"
 msgstr ""
 
-#: src/module/notificationitem/notificationitem.c:453
+#: src/module/notificationitem/notificationitem.c:467
 #: src/ui/kimpanel/kimpanel.c:254 src/ui/kimpanel/kimpanel.c:259
 #: data/config.desc:33
 msgid "Disabled"
 msgstr ""
 
-#: src/module/notificationitem/notificationitem.c:454
+#: src/module/notificationitem/notificationitem.c:468
 #: src/ui/kimpanel/kimpanel.c:255 src/ui/kimpanel/kimpanel.c:260
 msgid "Input Method Disabled"
 msgstr ""
@@ -902,23 +916,23 @@ msgstr ""
 msgid "Can't open socket %s: %s"
 msgstr ""
 
-#: src/module/unicode/charselectdata.c:247
+#: src/module/unicode/charselectdata.c:248
 msgid "<Non Private Use High Surrogate>"
 msgstr ""
 
-#: src/module/unicode/charselectdata.c:249
+#: src/module/unicode/charselectdata.c:250
 msgid "<Private Use High Surrogate>"
 msgstr ""
 
-#: src/module/unicode/charselectdata.c:251
+#: src/module/unicode/charselectdata.c:252
 msgid "<Low Surrogate>"
 msgstr ""
 
-#: src/module/unicode/charselectdata.c:253
+#: src/module/unicode/charselectdata.c:254
 msgid "<Private Use>"
 msgstr ""
 
-#: src/module/unicode/charselectdata.c:281
+#: src/module/unicode/charselectdata.c:282
 msgid "<not assigned>"
 msgstr ""
 
@@ -1053,51 +1067,131 @@ msgstr ""
 msgid "Toggle Input Method"
 msgstr ""
 
-#: tools/gui/quickphrase-editor/batchdialog.cpp:30
+#: tools/gui/quickphrase-editor/batchdialog.cpp:31
 msgid "Use <Keyword> <Phrase> format on every line."
 msgstr ""
 
-#: tools/gui/quickphrase-editor/editor.cpp:43
+#: tools/gui/quickphrase-editor/editor.cpp:51
 msgid "&Add"
 msgstr ""
 
-#: tools/gui/quickphrase-editor/editor.cpp:44
+#: tools/gui/quickphrase-editor/editor.cpp:52
 msgid "&Batch Edit"
 msgstr ""
 
-#: tools/gui/quickphrase-editor/editor.cpp:45
+#: tools/gui/quickphrase-editor/editor.cpp:53
 msgid "&Delete"
 msgstr ""
 
-#: tools/gui/quickphrase-editor/editor.cpp:46
+#: tools/gui/quickphrase-editor/editor.cpp:54
 msgid "De&lete All"
 msgstr ""
 
-#: tools/gui/quickphrase-editor/editor.cpp:47
+#: tools/gui/quickphrase-editor/editor.cpp:55
 msgid "&Import"
 msgstr ""
 
-#: tools/gui/quickphrase-editor/editor.cpp:48
+#: tools/gui/quickphrase-editor/editor.cpp:56
 msgid "E&xport"
 msgstr ""
 
-#: tools/gui/quickphrase-editor/editor.cpp:103
+#: tools/gui/quickphrase-editor/editor.cpp:57
+msgid "&Operation"
+msgstr ""
+
+#: tools/gui/quickphrase-editor/editor.cpp:68
+msgid "Add File"
+msgstr ""
+
+#: tools/gui/quickphrase-editor/editor.cpp:69
+msgid "Remove File"
+msgstr ""
+
+#: tools/gui/quickphrase-editor/editor.cpp:70
+msgid "Refresh List"
+msgstr ""
+
+#: tools/gui/quickphrase-editor/editor.cpp:131
+msgid "Save Changes"
+msgstr ""
+
+#: tools/gui/quickphrase-editor/editor.cpp:132
+msgid ""
+"The content has changed.\n"
+"Do you want to save the changes or discard them?"
+msgstr ""
+
+#: tools/gui/quickphrase-editor/editor.cpp:150
 msgid "Quick Phrase Editor"
 msgstr ""
 
-#: tools/gui/quickphrase-editor/editordialog.cpp:29
-msgid "Keyword:"
+#: tools/gui/quickphrase-editor/editor.cpp:281
+msgid "Create new file"
+msgstr ""
+
+#: tools/gui/quickphrase-editor/editor.cpp:282
+msgid "Please input a filename for newfile"
+msgstr ""
+
+#: tools/gui/quickphrase-editor/editor.cpp:287
+msgid "Invalid filename"
+msgstr ""
+
+#: tools/gui/quickphrase-editor/editor.cpp:287
+msgid "File name should not contain '/'."
+msgstr ""
+
+#: tools/gui/quickphrase-editor/editor.cpp:297
+#: tools/gui/quickphrase-editor/editor.cpp:344
+msgid "File Operation Failed"
+msgstr ""
+
+#: tools/gui/quickphrase-editor/editor.cpp:298
+#, kde-format
+msgid "Cannot create file %1."
+msgstr ""
+
+#: tools/gui/quickphrase-editor/editor.cpp:324
+msgid "Cannot remove system file"
+msgstr ""
+
+#: tools/gui/quickphrase-editor/editor.cpp:325
+#, kde-format
+msgid "%1 is a system file, do you want to delete all phrases instead?"
+msgstr ""
+
+#: tools/gui/quickphrase-editor/editor.cpp:336
+msgid "Confirm deleting"
+msgstr ""
+
+#: tools/gui/quickphrase-editor/editor.cpp:337
+#, kde-format
+msgid "Are you sure to delete %1?"
+msgstr ""
+
+#: tools/gui/quickphrase-editor/editor.cpp:345
+#, kde-format
+msgid "Error while deleting %1."
 msgstr ""
 
 #: tools/gui/quickphrase-editor/editordialog.cpp:30
+msgid "Keyword:"
+msgstr ""
+
+#: tools/gui/quickphrase-editor/editordialog.cpp:31
 msgid "Phrase:"
 msgstr ""
 
-#: tools/gui/quickphrase-editor/model.cpp:52
+#: tools/gui/quickphrase-editor/filelistmodel.cpp:47
+#: src/module/spell/fcitx-spell.desc:5
+msgid "Default"
+msgstr ""
+
+#: tools/gui/quickphrase-editor/model.cpp:55
 msgid "Keyword"
 msgstr ""
 
-#: tools/gui/quickphrase-editor/model.cpp:54
+#: tools/gui/quickphrase-editor/model.cpp:57
 msgid "Phrase"
 msgstr ""
 
@@ -1127,38 +1221,6 @@ msgstr ""
 
 #: data/fcitx-configtool.desktop.in:4
 msgid "Change Fcitx Configuration"
-msgstr ""
-
-#: data/table/cangjie.conf.in:3
-msgid "Cangjie"
-msgstr ""
-
-#: data/table/db.conf.in:3
-msgid "Dianbaoma"
-msgstr ""
-
-#: data/table/erbi.conf.in:3
-msgid "Erbi"
-msgstr ""
-
-#: data/table/qxm.conf.in:3
-msgid "Bingchan"
-msgstr ""
-
-#: data/table/wanfeng.conf.in:3
-msgid "Wanfeng"
-msgstr ""
-
-#: data/table/wbpy.conf.in:3
-msgid "WubiPinyin"
-msgstr ""
-
-#: data/table/wbx.conf.in:3
-msgid "Wubi"
-msgstr ""
-
-#: data/table/zrm.conf.in:3 src/im/pinyin/fcitx-pinyin.desc:4
-msgid "Ziranma"
 msgstr ""
 
 #: src/frontend/ipc/fcitx-ipc.conf.in:3
@@ -1195,6 +1257,38 @@ msgstr ""
 
 #: src/im/qw/fcitx-qw.conf.in:4
 msgid "Quwei Input Method for Fcitx"
+msgstr ""
+
+#: src/im/table/data/cangjie.conf.in:3
+msgid "Cangjie"
+msgstr ""
+
+#: src/im/table/data/db.conf.in:3
+msgid "Dianbaoma"
+msgstr ""
+
+#: src/im/table/data/erbi.conf.in:3
+msgid "Erbi"
+msgstr ""
+
+#: src/im/table/data/qxm.conf.in:3
+msgid "Bingchan"
+msgstr ""
+
+#: src/im/table/data/wanfeng.conf.in:3
+msgid "Wanfeng"
+msgstr ""
+
+#: src/im/table/data/wbpy.conf.in:3
+msgid "WubiPinyin"
+msgstr ""
+
+#: src/im/table/data/wbx.conf.in:3
+msgid "Wubi"
+msgstr ""
+
+#: src/im/table/data/zrm.conf.in:3 src/im/pinyin/fcitx-pinyin.desc:4
+msgid "Ziranma"
 msgstr ""
 
 #: src/im/table/fcitx-table.conf.in:3 src/im/table/fcitx-table.conf.in:10
@@ -1350,13 +1444,13 @@ msgstr ""
 msgid "X11 Utilitiy used by other Addon"
 msgstr ""
 
-#: src/module/xkb/fcitx-xkb.conf.in:3 src/module/xkb/fcitx-xkb.conf.in:4
-msgid "X Keyboard Integration"
-msgstr ""
-
 #: src/module/xkbdbus/fcitx-xkbdbus.conf.in:3
 #: src/module/xkbdbus/fcitx-xkbdbus.conf.in:4
 msgid "X Keyboard Integration export with DBus"
+msgstr ""
+
+#: src/module/xkb/fcitx-xkb.conf.in:3 src/module/xkb/fcitx-xkb.conf.in:4
+msgid "X Keyboard Integration"
 msgstr ""
 
 #: src/ui/classic/fcitx-classic-ui.conf.in:3
@@ -2118,7 +2212,7 @@ msgstr ""
 #: src/im/table/table.desc:166 src/im/table/table.desc:171
 #: src/im/table/table.desc:176 src/im/table/table.desc:181
 #: src/im/table/table.desc:186 src/im/table/table.desc:191
-#: src/im/table/table.desc:196
+#: src/im/table/table.desc:196 src/im/table/table.desc:201
 msgid "CodeTable"
 msgstr ""
 
@@ -2267,6 +2361,10 @@ msgstr ""
 
 #: src/im/table/table.desc:197
 msgid "Ignore Punctuation"
+msgstr ""
+
+#: src/im/table/table.desc:202
+msgid "Ignore some Punctuation, if it is empty, then ignore all punctuation"
 msgstr ""
 
 #: src/module/autoeng/fcitx-autoeng.desc:1
@@ -2546,10 +2644,6 @@ msgstr ""
 
 #: src/module/spell/fcitx-spell.desc:1 src/module/spell/fcitx-spell.desc:10
 msgid "Spell Hint"
-msgstr ""
-
-#: src/module/spell/fcitx-spell.desc:5
-msgid "Default"
 msgstr ""
 
 #: src/module/spell/fcitx-spell.desc:6
