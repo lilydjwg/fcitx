@@ -355,11 +355,6 @@ void ActivateWindow(Display *dpy, int iScreen, Window window)
     XSync(dpy, False);
 }
 
-void GetScreenSize(FcitxClassicUI* classicui, int* width, int* height)
-{
-    FcitxX11GetScreenSize(classicui->owner, width, height);
-}
-
 FcitxRect GetScreenGeometry(FcitxClassicUI* classicui, int x, int y)
 {
     FcitxRect result = { 0, 0 , 0 , 0 };
@@ -375,10 +370,7 @@ boolean LoadClassicUIConfig(FcitxClassicUI* classicui)
     if (configDesc == NULL)
         return false;
     FILE *fp;
-    char *file;
-    fp = FcitxXDGGetFileUserWithPrefix("conf", "fcitx-classic-ui.config", "r", &file);
-    FcitxLog(DEBUG, "Load Config File %s", file);
-    free(file);
+    fp = FcitxXDGGetFileUserWithPrefix("conf", "fcitx-classic-ui.config", "r", NULL);
     if (!fp) {
         if (errno == ENOENT)
             SaveClassicUIConfig(classicui);
@@ -397,11 +389,8 @@ boolean LoadClassicUIConfig(FcitxClassicUI* classicui)
 void SaveClassicUIConfig(FcitxClassicUI *classicui)
 {
     FcitxConfigFileDesc* configDesc = GetClassicUIDesc();
-    char *file;
-    FILE *fp = FcitxXDGGetFileUserWithPrefix("conf", "fcitx-classic-ui.config", "w", &file);
-    FcitxLog(DEBUG, "Save Config to %s", file);
+    FILE *fp = FcitxXDGGetFileUserWithPrefix("conf", "fcitx-classic-ui.config", "w", NULL);
     FcitxConfigSaveConfigFileFp(fp, &classicui->gconfig, configDesc);
-    free(file);
     if (fp)
         fclose(fp);
 }

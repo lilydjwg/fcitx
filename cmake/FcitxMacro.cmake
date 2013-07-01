@@ -184,10 +184,10 @@ function(__fcitx_cmake_init)
       CACHE INTERNAL "include dir" FORCE)
   else()
     set(FCITX_SCANNER_EXECUTABLE
-      "${FCITX_MACRO_CMAKE_DIR}/fcitx-scanner"
+      "${FCITX4_ADDON_INSTALL_DIR}/libexec/fcitx-scanner"
       CACHE INTERNAL "fcitx-scanner" FORCE)
     set(FCITX_PO_PARSER_EXECUTABLE
-      "${FCITX_MACRO_CMAKE_DIR}/fcitx-po-parser"
+      "${FCITX4_ADDON_INSTALL_DIR}/libexec/fcitx-po-parser"
       CACHE INTERNAL "fcitx-po-parser" FORCE)
     execute_process(COMMAND env ${FCITX_PO_PARSER_EXECUTABLE}
       --gettext-support RESULT_VARIABLE result)
@@ -823,7 +823,7 @@ function(fcitx_download tgt_name url output)
   # This behavior is designed to be friendly for a build from cache with all
   # necessary files already downloaded so that a change in the
   # build options/url/checksum will not cause cmake to remove the target file
-  # if it has already be updated correctly.
+  # if it has already been updated correctly.
   add_custom_command(OUTPUT "${output}" DEPENDS "${tgt_name}")
 endfunction()
 

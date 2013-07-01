@@ -543,6 +543,24 @@ boolean FcitxInstanceLoadAllIM(FcitxInstance* instance)
     return true;
 }
 
+static void
+_NormalizeHotkeyForModifier(const FcitxHotkey* origin, FcitxHotkey* group1, FcitxHotkey* group2)
+{
+    int i;
+    memcpy(group1, origin, sizeof(FcitxHotkey[2]));
+    for (i = 0; i < 2; i ++) {
+        if (FcitxHotkeyIsHotKeyModifierCombine(group1[i].sym, group1[i].state)) {
+            group1[i].state &= ~FcitxHotkeyModifierToState(group1[i].sym);
+        }
+    }
+    memcpy(group2, origin, sizeof(FcitxHotkey[2]));
+    for (i = 0; i < 2; i ++) {
+        if (FcitxHotkeyIsHotKeyModifierCombine(group2[i].sym, group2[i].state)) {
+            group2[i].state |= FcitxHotkeyModifierToState(group2[i].sym);
+        }
+    }
+}
+
 FCITX_EXPORT_API
 INPUT_RETURN_VALUE FcitxInstanceProcessKey(
     FcitxInstance* instance,
@@ -561,6 +579,31 @@ INPUT_RETURN_VALUE FcitxInstanceProcessKey(
 
     FcitxGlobalConfig *fc = instance->config;
 
+    const FcitxHotkey* hkSwitchKey1;
+    const FcitxHotkey* hkSwitchKey2;
+
+    FcitxHotkey hkCustomSwitchKey1[2];
+    FcitxHotkey hkCustomSwitchKey2[2];
+    FcitxHotkey hkTrigger1[2];
+    FcitxHotkey hkTrigger2[2];
+    FcitxHotkey hkActivate1[2];
+    FcitxHotkey hkActivate2[2];
+    FcitxHotkey hkInactivate1[2];
+    FcitxHotkey hkInactivate2[2];
+    // check config.desc
+#define CUSTOM_SWITCH_KEY 19
+    if ((int) fc->iSwitchKey < CUSTOM_SWITCH_KEY) {
+        hkSwitchKey1 = switchKey1[fc->iSwitchKey];
+        hkSwitchKey2 = switchKey2[fc->iSwitchKey];
+    } else {
+        _NormalizeHotkeyForModifier(fc->hkCustomSwitchKey, hkCustomSwitchKey1, hkCustomSwitchKey2);
+        hkSwitchKey1 = hkCustomSwitchKey1;
+        hkSwitchKey2 = hkCustomSwitchKey2;
+    }
+    _NormalizeHotkeyForModifier(fc->hkTrigger, hkTrigger1, hkTrigger2);
+    _NormalizeHotkeyForModifier(fc->hkActivate, hkActivate1, hkActivate2);
+    _NormalizeHotkeyForModifier(fc->hkInactivate, hkInactivate1, hkInactivate2);
+
     if (instance->CurrentIC == NULL)
         return IRV_TO_PROCESS;
 
@@ -578,6 +621,7 @@ INPUT_RETURN_VALUE FcitxInstanceProcessKey(
         return IRV_TO_PROCESS;
 
 #define HAVE_IM (utarray_len(&instance->imes) > 1)
+#define CHECK_HOTKEY(name) (FcitxHotkeyIsHotKey(sym, state, name##1) || FcitxHotkeyIsHotKey(sym, state, name##2))
 
     /*
      * for following reason, we cannot just process switch key, 2nd, 3rd key as other simple hotkey
@@ -614,7 +658,27 @@ INPUT_RETURN_VALUE FcitxInstanceProcessKey(
             input->keyReleased = KR_OTHER;
         } else {
             if (HAVE_IM) {
-                if (fc->bIMSwitchKey
+                if (input->keyReleased == KR_TRIGGER && CHECK_HOTKEY(hkTrigger)) {
+                    /* trigger key has the highest priority, so we check it first */
+                    if (FcitxInstanceGetCurrentState(instance) == IS_INACTIVE) {
+                        FcitxInstanceChangeIMState(instance, instance->CurrentIC);
+                        FcitxInstanceShowInputSpeed(instance);
+                    } else {
+                        FcitxInstanceCloseIM(instance, instance->CurrentIC);
+                    }
+
+                    retVal = IRV_DO_NOTHING;
+                } else if (input->keyReleased == KR_ACTIVATE && CHECK_HOTKEY(hkActivate)) {
+                    if (FcitxInstanceGetCurrentState(instance) != IS_ACTIVE) {
+                        FcitxInstanceEnableIM(instance, instance->CurrentIC, false);
+                        retVal = IRV_DO_NOTHING;
+                    }
+                } else if (input->keyReleased == KR_DEACTIVATE && CHECK_HOTKEY(hkInactivate)) {
+                    if (FcitxInstanceGetCurrentState(instance) == IS_ACTIVE) {
+                        FcitxInstanceCloseIM(instance, instance->CurrentIC);
+                        retVal = IRV_DO_NOTHING;
+                    }
+                } else if (fc->bIMSwitchKey
                     && (fc->bIMSwitchIncludeInactive || FcitxInstanceGetCurrentState(instance) == IS_ACTIVE)
                     && (FcitxHotkeyIsHotKey(sym, state, imSWNextKey1[fc->iIMSwitchKey]) || FcitxHotkeyIsHotKey(sym, state, imSWNextKey2[fc->iIMSwitchKey]))
                        ) {
@@ -628,7 +692,7 @@ INPUT_RETURN_VALUE FcitxInstanceProcessKey(
                     if (input->keyReleased == KR_SWITCH_IM_REVERSE) {
                         FcitxInstanceSwitchIMByIndex(instance, fc->bIMSwitchIncludeInactive ? -2 : -4);
                     }
-                } else if ((FcitxHotkeyIsHotKey(sym, state, switchKey1[fc->iSwitchKey]) || FcitxHotkeyIsHotKey(sym, state, switchKey2[fc->iSwitchKey])) && input->keyReleased == KR_SWITCH && !fc->bDoubleSwitchKey) {
+                } else if ((FcitxHotkeyIsHotKey(sym, state, hkSwitchKey1) || FcitxHotkeyIsHotKey(sym, state, hkSwitchKey2)) && input->keyReleased == KR_SWITCH && !fc->bDoubleSwitchKey) {
                     retVal = IRV_DONOT_PROCESS;
                     if (currentIM && currentIM->OnClose) {
                         currentIM->OnClose(currentIM->klass, CET_ChangeByInactivate);
@@ -671,8 +735,8 @@ INPUT_RETURN_VALUE FcitxInstanceProcessKey(
                     return IRV_DO_NOTHING;
                 }
             }
-            if (!(FcitxHotkeyIsHotKey(sym, state, switchKey1[fc->iSwitchKey]) ||
-                  FcitxHotkeyIsHotKey(sym, state, switchKey2[fc->iSwitchKey])))
+            if (!(FcitxHotkeyIsHotKey(sym, state, hkSwitchKey1) ||
+                  FcitxHotkeyIsHotKey(sym, state, hkSwitchKey2)))
                 input->keyReleased = KR_OTHER;
             else {
                 if (input->keyReleased == KR_SWITCH &&
@@ -686,34 +750,27 @@ INPUT_RETURN_VALUE FcitxInstanceProcessKey(
 
             FcitxInputContext2* currentIC2 = (FcitxInputContext2*) instance->CurrentIC;
 
-            if ((instance->CurrentIC->state == IS_ACTIVE || !fc->bUseExtraTriggerKeyOnlyWhenUseItToInactivate || currentIC2->switchBySwitchKey) &&
-                (FcitxHotkeyIsHotKey(sym, state, switchKey1[fc->iSwitchKey]) || FcitxHotkeyIsHotKey(sym, state, switchKey2[fc->iSwitchKey]))) {
-                input->keyReleased = KR_SWITCH;
-                retVal = IRV_DONOT_PROCESS;
-            } else if (fc->bIMSwitchKey && (FcitxHotkeyIsHotKey(sym, state, imSWNextKey1[fc->iIMSwitchKey]) || FcitxHotkeyIsHotKey(sym, state, imSWNextKey2[fc->iIMSwitchKey]))) {
-                input->keyReleased = KR_SWITCH_IM;
-                retVal = IRV_DONOT_PROCESS;
-            } else if (fc->bIMSwitchKey && (FcitxHotkeyIsHotKey(sym, state, imSWPrevKey1[fc->iIMSwitchKey]) || FcitxHotkeyIsHotKey(sym, state, imSWPrevKey2[fc->iIMSwitchKey]))) {
-                input->keyReleased = KR_SWITCH_IM_REVERSE;
-                retVal = IRV_DONOT_PROCESS;
-            } else if (HAVE_IM) {
-                if (FcitxHotkeyIsHotKey(sym, state, fc->hkTrigger)) {
-                    /* trigger key has the highest priority, so we check it first */
-                    if (FcitxInstanceGetCurrentState(instance) == IS_INACTIVE) {
-                        FcitxInstanceChangeIMState(instance, instance->CurrentIC);
-                        FcitxInstanceShowInputSpeed(instance);
-                    } else
-                        FcitxInstanceCloseIM(instance, instance->CurrentIC);
-
-                    retVal = IRV_DO_NOTHING;
-                } else if (FcitxHotkeyIsHotKey(sym, state, fc->hkActivate)) {
-                    if (FcitxInstanceGetCurrentState(instance) != IS_ACTIVE) {
-                        FcitxInstanceEnableIM(instance, instance->CurrentIC, false);
-                        retVal = IRV_DO_NOTHING;
-                    }
-                } else if (FcitxHotkeyIsHotKey(sym, state, fc->hkInactivate)) {
-                    if (FcitxInstanceGetCurrentState(instance) == IS_ACTIVE) {
-                        FcitxInstanceCloseIM(instance, instance->CurrentIC);
+            if (HAVE_IM) {
+                if (CHECK_HOTKEY(hkTrigger)) {
+                    input->keyReleased = KR_TRIGGER;
+                } else if (FcitxInstanceGetCurrentState(instance) != IS_ACTIVE && CHECK_HOTKEY(hkActivate)) {
+                    input->keyReleased = KR_ACTIVATE;
+                } else if (FcitxInstanceGetCurrentState(instance) == IS_ACTIVE && CHECK_HOTKEY(hkInactivate)) {
+                    input->keyReleased = KR_DEACTIVATE;
+                } else if ((instance->CurrentIC->state == IS_ACTIVE || !fc->bUseExtraTriggerKeyOnlyWhenUseItToInactivate || currentIC2->switchBySwitchKey) &&
+                          CHECK_HOTKEY(hkSwitchKey)) {
+                    input->keyReleased = KR_SWITCH;
+                } else if (fc->bIMSwitchKey && (FcitxHotkeyIsHotKey(sym, state, imSWNextKey1[fc->iIMSwitchKey]) || FcitxHotkeyIsHotKey(sym, state, imSWNextKey2[fc->iIMSwitchKey]))) {
+                    input->keyReleased = KR_SWITCH_IM;
+                    retVal = IRV_DONOT_PROCESS;
+                } else if (fc->bIMSwitchKey && (FcitxHotkeyIsHotKey(sym, state, imSWPrevKey1[fc->iIMSwitchKey]) || FcitxHotkeyIsHotKey(sym, state, imSWPrevKey2[fc->iIMSwitchKey]))) {
+                    input->keyReleased = KR_SWITCH_IM_REVERSE;
+                    retVal = IRV_DONOT_PROCESS;
+                }
+                if (input->keyReleased != KR_OTHER) {
+                    if (FcitxHotkeyIsHotKeyModifierCombine(sym, state)) {
+                        retVal = IRV_DONOT_PROCESS;
+                    } else {
                         retVal = IRV_DO_NOTHING;
                     }
                 }
@@ -1767,6 +1824,25 @@ void UnusedIMItemFreeAll(UnusedIMItem* item)
     }
 }
 
+static inline boolean MatchLanguage(const char* lang, const char* cur) {
+    /* here we hard code some for chinese */
+    if (strcmp(cur, "zh_HK") == 0) {
+        cur = "zh_TW";
+    }
+    if (strcmp(cur, "en_HK") == 0) {
+        cur = "zh_TW";
+    }
+    if (strcmp(lang, "zh_HK") == 0) {
+        lang = "zh_TW";
+    }
+
+    if (strncmp(cur, "zh", 2) == 0 && strlen(cur) == 5) {
+        return strcmp(lang, cur) == 0;
+    }
+
+    return strncmp(lang, cur, 2) == 0;
+}
+
 FCITX_EXPORT_API
 void FcitxInstanceUpdateIMList(FcitxInstance* instance)
 {
@@ -1778,6 +1854,9 @@ void FcitxInstanceUpdateIMList(FcitxInstance* instance)
     utarray_clear(&instance->imes);
     UnusedIMItemFreeAll(instance->unusedItem);
     instance->unusedItem = NULL;
+
+    boolean imListIsEmpty = utarray_len(imList) == 0;
+
 
     char** pstr;
     FcitxIM* ime;
@@ -1808,6 +1887,7 @@ void FcitxInstanceUpdateIMList(FcitxInstance* instance)
         }
     }
 
+    char* lang = fcitx_utils_get_current_langcode();
     for (ime = (FcitxIM*) utarray_front(&instance->availimes);
             ime != NULL;
             ime = (FcitxIM*) utarray_next(&instance->availimes, ime)) {
@@ -1815,10 +1895,19 @@ void FcitxInstanceUpdateIMList(FcitxInstance* instance)
             /* ok, make all im priority larger than 100 disable by default */
             if (ime->iPriority == 0)
                 utarray_push_front(&instance->imes, ime);
-            else if (ime->iPriority < PRIORITY_DISABLE)
-                utarray_push_back(&instance->imes, ime);
+            else if (ime->iPriority < PRIORITY_DISABLE) {
+                /*
+                 * here, we use such logic, if user start fcitx for first time (or doing reset)
+                 * then match everything by language, otherwise user might just install something,
+                 * then add something else.
+                 */
+                if (!imListIsEmpty || MatchLanguage(ime->langCode, lang)) {
+                    utarray_push_back(&instance->imes, ime);
+                }
+            }
         }
     }
+    free(lang);
 
     utarray_free(imList);
 
@@ -1875,7 +1964,10 @@ void FreeIMEntry(FcitxIMEntry* entry)
 FCITX_EXPORT_API
 INPUT_RETURN_VALUE FcitxStandardKeyBlocker(FcitxInputState* input, FcitxKeySym key, unsigned int state)
 {
-    if (FcitxInputStateGetRawInputBufferSize(input) != 0
+    if ((FcitxInputStateGetRawInputBufferSize(input) != 0
+         || FcitxMessagesGetMessageCount(input->msgPreedit)
+         || FcitxMessagesGetMessageCount(input->msgClientPreedit)
+         || FcitxCandidateWordGetListSize(input->candList))
         && (FcitxHotkeyIsHotKeySimple(key, state)
         || FcitxHotkeyIsHotkeyCursorMove(key, state)
         || FcitxHotkeyIsHotKey(key, state, FCITX_SHIFT_SPACE)

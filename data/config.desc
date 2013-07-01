@@ -1,6 +1,7 @@
 [Hotkey/TriggerKey]
 Type=Hotkey
 DefaultValue=CTRL_SPACE
+AllowModifierOnly=True
 Description=Trigger Input Method
 
 [Hotkey/UseExtraTriggerKeyOnlyWhenUseItToInactivate]
@@ -11,7 +12,7 @@ Advance=True
 
 [Hotkey/SwitchKey]
 Type=Enum
-EnumCount=19
+EnumCount=20
 Enum0=R_CTRL
 Enum1=R_SHIFT
 Enum2=L_SHIFT
@@ -31,19 +32,29 @@ Enum15=Ctrl+Right Super
 Enum16=Super+Left Ctrl
 Enum17=Super+Right Ctrl
 Enum18=Disabled
+Enum19=Custom
 DefaultValue=L_SHIFT
 Description=Extra key for trigger input method
+
+[Hotkey/CustomSwitchKey]
+Type=Hotkey
+DefaultValue=
+Description=Custom switch key
+AllowModifierOnly=True
+Advance=True
 
 [Hotkey/ActivateKey]
 Type=Hotkey
 DefaultValue=
 Description=Activate input method
+AllowModifierOnly=True
 Advance=True
 
 [Hotkey/InactivateKey]
 Type=Hotkey
 DefaultValue=
 Description=Inactivate Input Method
+AllowModifierOnly=True
 Advance=True
 
 [Hotkey/IMSwitchKey]
@@ -199,7 +210,7 @@ Advance=True
 
 [Output/SendTextWhenSwitchEng]
 Type=Boolean
-DefaultValue=False
+DefaultValue=True
 Description=Commit when toggle state
 LongDescription=Send typed raw text if Switch to inactive Mode
 

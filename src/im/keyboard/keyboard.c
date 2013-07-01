@@ -41,6 +41,7 @@
 #include "fcitx-config/xdg.h"
 #include "fcitx-utils/log.h"
 #include "module/spell/fcitx-spell.h"
+#include "module/freedesktop-notify/fcitx-freedesktop-notify.h"
 
 #include "keyboard.h"
 #if defined(ENABLE_LIBXML2)
@@ -289,6 +290,70 @@ void* SimpleCopy(void* arg, void* dest, void* src)
     return src;
 }
 
+#if defined(ENABLE_LIBXML2)
+static const char* FindBestLanguage(FcitxIsoCodes* isocodes, const char* hint, UT_array* languages)
+{
+    const char* bestLang = NULL;
+
+    /* score:
+     * 1 -> first one
+     * 2 -> match 2
+     * 3 -> match three
+     */
+    FcitxIsoCodes639Entry* bestEntry = NULL;
+    int bestScore = 0;
+    utarray_foreach(plang, languages, char*) {
+        FcitxIsoCodes639Entry* entry = FcitxIsoCodesGetEntry(isocodes, *plang);
+        if (!entry) {
+            continue;
+        }
+
+        const char* lang = entry->iso_639_1_code;
+        if (!lang) {
+            lang = entry->iso_639_2T_code;
+        }
+
+        if (!lang) {
+            lang = entry->iso_639_2B_code;
+        }
+
+        if (!lang) {
+            continue;
+        }
+
+        size_t len = strlen(lang);
+        if (len != 2 && len != 3) {
+            continue;
+        }
+
+        int score = 1;
+        while (len >= 2) {
+            if (strncasecmp(hint, lang, len) == 0) {
+                score = len;
+                break;
+            }
+
+            len --;
+        }
+
+        if (bestScore < score) {
+            bestEntry = entry;
+            bestScore = score;
+        }
+    }
+    if (bestEntry) {
+        bestLang = bestEntry->iso_639_1_code;
+        if (!bestLang) {
+            bestLang = bestEntry->iso_639_2T_code;
+        }
+        if (!bestLang) {
+            bestLang = bestEntry->iso_639_2B_code;
+        }
+    }
+    return bestLang;
+}
+#endif
+
 void* FcitxKeyboardCreate(FcitxInstance* instance)
 {
     FcitxKeyboard* keyboard = fcitx_utils_malloc0(sizeof(FcitxKeyboard));
@@ -345,21 +410,9 @@ void* FcitxKeyboardCreate(FcitxInstance* instance)
         }
 
         FcitxIsoCodes* isocodes = FcitxXkbReadIsoCodes(ISOCODES_ISO639_XML, ISOCODES_ISO3166_XML);
-        FcitxXkbLayoutInfo* layoutInfo;
-        for (layoutInfo = (FcitxXkbLayoutInfo*) utarray_front(rules->layoutInfos);
-            layoutInfo != NULL;
-            layoutInfo = (FcitxXkbLayoutInfo*) utarray_next(rules->layoutInfos, layoutInfo))
-        {
+        utarray_foreach(layoutInfo, rules->layoutInfos, FcitxXkbLayoutInfo) {
             {
-                char** plang = NULL;
-                plang = (char**) utarray_front(layoutInfo->languages);
-                char* lang = NULL;
-                if (plang) {
-                    FcitxIsoCodes639Entry* entry = FcitxIsoCodesGetEntry(isocodes, *plang);
-                    if (entry) {
-                        lang = entry->iso_639_1_code;
-                    }
-                }
+                const char* lang = FindBestLanguage(isocodes, layoutInfo->description, layoutInfo->languages);
                 char *description;
                 fcitx_utils_alloc_cat_str(description, _("Keyboard"), " - ",
                                           dgettext("xkeyboard-config",
@@ -375,17 +428,8 @@ void* FcitxKeyboardCreate(FcitxInstance* instance)
                 variantInfo != NULL;
                 variantInfo = (FcitxXkbVariantInfo*) utarray_next(layoutInfo->variantInfos, variantInfo))
             {
-                char** plang = NULL;
-                plang = (char**) utarray_front(variantInfo->languages);
-                if (!plang)
-                    plang = (char**) utarray_front(layoutInfo->languages);
-                char* lang = NULL;
-                if (plang) {
-                    FcitxIsoCodes639Entry* entry = FcitxIsoCodesGetEntry(isocodes, *plang);
-                    if (entry) {
-                        lang = entry->iso_639_1_code;
-                    }
-                }
+                const char* lang = FindBestLanguage(isocodes, layoutInfo->description,
+                                                    utarray_len(variantInfo->languages) > 0 ? variantInfo->languages : layoutInfo->languages);
                 char *description;
                 fcitx_utils_alloc_cat_str(description, _("Keyboard"), " - ",
                                           dgettext("xkeyboard-config",
@@ -549,7 +593,8 @@ void FcitxKeyboardOnClose(void* arg, FcitxIMCloseEventType event)
     }
 }
 
-static boolean IsDictAvailable(FcitxKeyboard* keyboard)
+static boolean
+IsDictAvailable(FcitxKeyboard* keyboard)
 {
     return FcitxSpellDictAvailable(keyboard->owner, keyboard->dictLang, NULL);
 }
@@ -885,23 +930,35 @@ void SaveKeyboardConfig(FcitxKeyboardConfig* fs)
 
 INPUT_RETURN_VALUE FcitxKeyboardHotkeyToggleWordHint(void* arg)
 {
-    FcitxKeyboard* keyboard = (FcitxKeyboard*) arg;
-    FcitxIM* im = FcitxInstanceGetCurrentIM(keyboard->owner);
-    FcitxInputContext* currentIC = FcitxInstanceGetCurrentIC(keyboard->owner);
+    FcitxKeyboard *keyboard = (FcitxKeyboard*)arg;
+    FcitxInstance *instance = keyboard->owner;
+    FcitxIM *im = FcitxInstanceGetCurrentIM(instance);
+    FcitxInputContext *currentIC = FcitxInstanceGetCurrentIC(instance);
     if (!currentIC)
         return IRV_TO_PROCESS;
     if (im && strncmp(im->uniqueName, "fcitx-keyboard",
                       strlen("fcitx-keyboard")) == 0) {
-        void* enableWordHint = FcitxInstanceGetICData(keyboard->owner,
-                                                      currentIC,
-                                                      keyboard->dataSlot);
+        void *enableWordHint =
+            FcitxInstanceGetICData(instance, currentIC, keyboard->dataSlot);
+        boolean need_notify = true;
         if (!enableWordHint) {
             enableWordHint = PTR_TRUE;
-            IsDictAvailable(keyboard);
+            // also for preload dictionaries
+            need_notify = IsDictAvailable(keyboard);
         } else {
             enableWordHint = PTR_FALSE;
         }
-        FcitxInstanceSetICData(keyboard->owner, currentIC,
+
+        if (need_notify) {
+            FcitxFreeDesktopNotifyShowAddonTip(
+                instance, "fcitx-keyboard-hint",
+                "tools-check-spelling",
+                _("Spell hint"),
+                enableWordHint != PTR_FALSE ? _("Spell hint is enabled.") :
+                                              _("Spell hint is disabled."));
+        }
+
+        FcitxInstanceSetICData(instance, currentIC,
                                keyboard->dataSlot, enableWordHint);
         return IRV_DO_NOTHING;
     } else {

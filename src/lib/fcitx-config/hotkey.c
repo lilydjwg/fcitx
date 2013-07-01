@@ -24,6 +24,7 @@
 #include "fcitx/fcitx.h"
 #include "fcitx-utils/log.h"
 #include "fcitx-utils/utils.h"
+#include <ctype.h>
 #include "hotkey.h"
 #include "keydata.h"
 
@@ -566,8 +567,11 @@ FCITX_EXPORT_API
 boolean FcitxHotkeyIsHotKeyModifierCombine(FcitxKeySym sym, unsigned int state)
 {
     FCITX_UNUSED(state);
-    if (sym == FcitxKey_Control_L || sym == FcitxKey_Control_R ||
-        sym == FcitxKey_Shift_L || sym == FcitxKey_Shift_R)
+    if (sym == FcitxKey_Control_L || sym == FcitxKey_Control_R
+     || sym == FcitxKey_Alt_L || sym == FcitxKey_Alt_R
+     || sym == FcitxKey_Super_L || sym == FcitxKey_Super_R
+     || sym == FcitxKey_Hyper_L || sym == FcitxKey_Hyper_R
+     || sym == FcitxKey_Shift_L || sym == FcitxKey_Shift_R)
         return true;
     return false;
 }
@@ -608,6 +612,61 @@ void FcitxHotkeyGetKey(FcitxKeySym keysym, unsigned int iKeyState, FcitxKeySym* 
     *outs = iKeyState;
 }
 
+FCITX_EXPORT_API
+char* FcitxHotkeyGetReadableKeyString(FcitxKeySym sym, unsigned int state)
+{
+    char *str;
+    size_t len = 0;
+
+    if (state & FcitxKeyState_Ctrl)
+        len += strlen("Ctrl+");
+
+    if (state & FcitxKeyState_Alt)
+        len += strlen("Alt+");
+
+    if (state & FcitxKeyState_Shift)
+        len += strlen("Shift+");
+
+    if (state & FcitxKeyState_Super)
+        len += strlen("Super+");
+
+    if (sym == FcitxKey_ISO_Left_Tab)
+        sym = FcitxKey_Tab;
+
+    char *key = FcitxHotkeyGetKeyListString(sym);
+
+    if (!key)
+        return NULL;
+
+    size_t keylen = strlen(key);
+
+    str = fcitx_utils_malloc0(sizeof(char) * (len + keylen + 1));
+
+    if (state & FcitxKeyState_Ctrl)
+        strcat(str, "Ctrl+");
+
+    if (state & FcitxKeyState_Alt)
+        strcat(str, "Alt+");
+
+    if (state & FcitxKeyState_Shift)
+        strcat(str, "Shift+");
+
+    if (state & FcitxKeyState_Super)
+        strcat(str, "Super+");
+
+    int i = 0;
+    for (i = 0; i < keylen; i ++) {
+        if (i == 0) {
+            continue;
+        }
+        key[i] = tolower(key[i]);
+    }
+    strcpy(str + len, key);
+
+    free(key);
+
+    return str;
+}
 
 FCITX_EXPORT_API
 char* FcitxHotkeyGetKeyString(FcitxKeySym sym, unsigned int state)
@@ -844,6 +903,31 @@ FcitxKeySym FcitxHotkeyPadToMain(FcitxKeySym sym)
     }
 #undef PAD_TO_MAIN
     return sym;
+}
+
+FCITX_EXPORT_API
+unsigned int FcitxHotkeyModifierToState(FcitxKeySym sym)
+{
+    switch (sym) {
+        case FcitxKey_Control_L:
+        case FcitxKey_Control_R:
+            return FcitxKeyState_Ctrl;
+        case FcitxKey_Alt_L:
+        case FcitxKey_Alt_R:
+            return FcitxKeyState_Alt;
+        case FcitxKey_Shift_L:
+        case FcitxKey_Shift_R:
+            return FcitxKeyState_Shift;
+        case FcitxKey_Super_L:
+        case FcitxKey_Super_R:
+            return FcitxKeyState_Super;
+        case FcitxKey_Hyper_L:
+        case FcitxKey_Hyper_R:
+            return FcitxKeyState_Hyper;
+        default:
+            return 0;
+    }
+    return 0;
 }
 
 FCITX_EXPORT_API

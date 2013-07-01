@@ -24,6 +24,7 @@
 #include <stdlib.h>
 #include "config.h"
 
+#include "fcitx-utils/utils.h"
 #include "fcitx-utils/utarray.h"
 
 #define HEADER_SIZE 12
@@ -55,6 +56,7 @@ void usage()
         "\n"
         "  usage: scel2org [OPTION] [scel file]\n"
         "\n"
+        "  -a            use alternative order, output hanzi first, then pinyin\n"
         "  -o <file.org> specify the output file, if not specified, the output will\n"
         "                be stdout.\n"
         "  -h            display this help.\n"
@@ -70,14 +72,20 @@ int main(int argc, char **argv)
     FILE *fout = stdout;
     char c;
 
-    while ((c = getopt(argc, argv, "o:h")) != -1) {
-        switch (c) {
+    boolean alternativeOrder = false;
 
+    while ((c = getopt(argc, argv, "ao:h")) != -1) {
+        switch (c) {
+        case 'a':
+            alternativeOrder = true;
+            break;
         case 'o':
             fout = fopen(optarg, "w");
 
-            if (!fout)
-                fprintf(stderr, "can not open %s\n", optarg);
+            if (!fout) {
+                fprintf(stderr, "Cannot open file: %s\n", optarg);
+                return 1;
+            }
 
             break;
 
@@ -90,10 +98,16 @@ int main(int argc, char **argv)
         }
     }
 
-    if (optind >= argc)
+    if (optind >= argc) {
         usage();
+        return 1;
+    }
 
     FILE *fp = fopen(argv[optind], "r");
+    if (!fp) {
+        fprintf(stderr, "Cannot open file: %s\n", argv[optind]);
+        return 1;
+    }
 
     char buf[BUFLEN], bufout[BUFLEN];
 
@@ -106,6 +120,10 @@ int main(int argc, char **argv)
     }
 
     conv = iconv_open("utf-8", "unicode");
+    if (conv == (iconv_t) -1) {
+        fprintf(stderr, "iconv error.\n");
+        return 1;
+    }
 
     fseek(fp, DESC_START, SEEK_SET);
     fread(buf, 1, DESC_LENGTH, fp);
@@ -143,10 +161,10 @@ int main(int argc, char **argv)
     utarray_init(&pys, &py_icd);
 
     for (; ;) {
-        short index;
-        short count;
-        fread(&index, 1, sizeof(short), fp);
-        fread(&count, 1, sizeof(short), fp);
+        int16_t index;
+        int16_t count;
+        fread(&index, 1, sizeof(int16_t), fp);
+        fread(&count, 1, sizeof(int16_t), fp);
         ScelPinyin py;
         memset(buf, 0, sizeof(buf));
         memset(&py, 0, sizeof(ScelPinyin));
@@ -165,25 +183,40 @@ int main(int argc, char **argv)
     }
 
     while (!feof(fp)) {
-        short symcount;
-        short count;
-        short wordcount;
-        fread(&symcount, 1, sizeof(short), fp);
+        int16_t symcount;
+        int16_t count;
+        int16_t wordcount;
+        fread(&symcount, 1, sizeof(int16_t), fp);
 
         if (feof(fp))
             break;
 
-        fread(&count, 1, sizeof(short), fp);
-
-        short pyindex[10];
+        fread(&count, 1, sizeof(int16_t), fp);
 
         wordcount = count / 2;
+        int16_t* pyindex = malloc(sizeof(int16_t) * wordcount);
 
-        fread(pyindex, wordcount, sizeof(short), fp);
+        fread(pyindex, wordcount, sizeof(int16_t), fp);
 
         int s;
 
         for (s = 0; s < symcount ; s++) {
+
+            memset(buf, 0, sizeof(buf));
+
+            memset(bufout, 0, sizeof(bufout));
+            fread(&count, 1, sizeof(int16_t), fp);
+            fread(buf, count, sizeof(char), fp);
+            in = buf;
+            out = bufout;
+            inlen = count * sizeof(char);
+            outlen = BUFLEN;
+            iconv(conv, &in, &inlen, &out, &outlen);
+
+            if (alternativeOrder) {
+                fprintf(fout, "%s ", bufout);
+            }
+
             ScelPinyin *py = (ScelPinyin*)utarray_eltptr(
                 &pys, (unsigned int)pyindex[0]);
             fprintf(fout, "%s",  py->pinyin);
@@ -195,22 +228,19 @@ int main(int argc, char **argv)
                 fprintf(fout, "\'%s", py->pinyin);
             }
 
-            memset(buf, 0, sizeof(buf));
+            if (!alternativeOrder) {
+                fprintf(fout, " %s", bufout);
+            }
+            fprintf(fout, "\n");
 
-            memset(bufout, 0, sizeof(bufout));
-            fread(&count, 1, sizeof(short), fp);
-            fread(buf, count, sizeof(char), fp);
-            in = buf;
-            out = bufout;
-            inlen = count * sizeof(char);
-            outlen = BUFLEN;
-            iconv(conv, &in, &inlen, &out, &outlen);
-            fprintf(fout, " %s\n", bufout);
-
-            fread(&count, 1, sizeof(short), fp);
+            fread(&count, 1, sizeof(int16_t), fp);
             fread(buf, count, sizeof(char), fp);
         }
+
+        free(pyindex);
     }
+
+    iconv_close(conv);
 
     utarray_done(&pys);
     fclose(fout);

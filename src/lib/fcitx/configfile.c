@@ -59,6 +59,7 @@ CONFIG_BINDING_REGISTER("Hotkey", "IMSwitchKey", bIMSwitchKey)
 CONFIG_BINDING_REGISTER("Hotkey", "IMSwitchIncludeInactive", bIMSwitchIncludeInactive)
 CONFIG_BINDING_REGISTER("Hotkey", "IMSwitchHotkey", iIMSwitchKey)
 CONFIG_BINDING_REGISTER("Hotkey", "SwitchKey", iSwitchKey)
+CONFIG_BINDING_REGISTER("Hotkey", "CustomSwitchKey", hkCustomSwitchKey)
 CONFIG_BINDING_REGISTER("Hotkey", "DoubleSwitchKey", bDoubleSwitchKey)
 CONFIG_BINDING_REGISTER("Hotkey", "TimeInterval", iTimeInterval)
 CONFIG_BINDING_REGISTER("Hotkey", "VKSwitchKey", hkVK)
@@ -129,11 +130,8 @@ boolean FcitxGlobalConfigLoad(FcitxGlobalConfig* fc)
     fc->bPointAfterNumber = true;
 
     FILE *fp;
-    char *file;
     boolean newconfig = false;
-    fp = FcitxXDGGetFileUserWithPrefix("", "config", "r", &file);
-    FcitxLog(DEBUG, "Load Config File %s", file);
-    free(file);
+    fp = FcitxXDGGetFileUserWithPrefix("", "config", "r", NULL);
     if (!fp) {
         if (errno == ENOENT)
             FcitxGlobalConfigSave(fc);
@@ -177,11 +175,8 @@ FCITX_EXPORT_API
 void FcitxGlobalConfigSave(FcitxGlobalConfig* fc)
 {
     FcitxConfigFileDesc* configDesc = GetConfigDesc();
-    char *file;
-    FILE *fp = FcitxXDGGetFileUserWithPrefix("", "config", "w", &file);
-    FcitxLog(DEBUG, "Save Config to %s", file);
+    FILE *fp = FcitxXDGGetFileUserWithPrefix("", "config", "w", NULL);
     FcitxConfigSaveConfigFileFp(fp, &fc->gconfig, configDesc);
-    free(file);
     if (fp)
         fclose(fp);
 }

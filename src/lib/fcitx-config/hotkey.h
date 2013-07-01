@@ -95,12 +95,22 @@ extern "C"
 
     /**
      * Get the Fcitx Key String for given keyval and state
+     * this is used for save configuration.
      *
      * @param sym keyval
      * @param state state
      * @return char* string like CTRL_SPACE
      **/
     char* FcitxHotkeyGetKeyString(FcitxKeySym sym, unsigned int state);
+
+    /**
+     * Get the more readable Fcitx Key String for given keyval and state
+     *
+     * @param sym keyval
+     * @param state state
+     * @return char* string like Ctrl+Space
+     **/
+    char* FcitxHotkeyGetReadableKeyString(FcitxKeySym sym, unsigned int state);
 
     /**
      * is hotkey 0-9
@@ -185,6 +195,16 @@ extern "C"
      * @since 4.1.1
      */
     FcitxKeySym FcitxHotkeyPadToMain(FcitxKeySym sym);
+
+
+    /**
+     * convert modifier key to mask
+     *
+     * @param sym keyval
+     * @return unsigned int
+     * @since 4.2.8
+     */
+    unsigned int FcitxHotkeyModifierToState(FcitxKeySym sym);
 
     /**
      * @brief free hotkey description

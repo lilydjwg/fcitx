@@ -141,26 +141,36 @@ FILE *FcitxXDGGetFile(const char *fileName, char **path, const char *mode,
     size_t i;
     FILE *fp = NULL;
 
-    /* check absolute path */
-
-    if (fileName[0] == '/') {
-        if (mode)
-            fp = fopen(fileName, mode);
-
-        if (retFile)
+    if (len <= 0) {
+        if (retFile && (strchr(mode, 'w') || strchr(mode, 'a'))) {
             *retFile = strdup(fileName);
+        }
+        return NULL;
+    }
+
+    if (!mode) {
+        if (retFile) {
+            if (fileName[0] == '/') {
+                *retFile = strdup(fileName);
+            } else {
+                fcitx_utils_alloc_cat_str(*retFile, path[0], "/", fileName);
+            }
+        }
+        return NULL;
+    }
+
+    /* check absolute path */
+    if (fileName[0] == '/') {
+        fp = fopen(fileName, mode);
+
+        if (retFile) {
+            *retFile = strdup(fileName);
+        }
 
         return fp;
     }
 
-    if (len <= 0)
-        return NULL;
-
-    if (!mode && retFile) {
-        fcitx_utils_alloc_cat_str(*retFile, path[0], "/", fileName);
-        return NULL;
-    }
-
+    /* check empty file name */
     if (!fileName[0]) {
         if (retFile) {
             *retFile = strdup(path[0]);
@@ -171,6 +181,7 @@ FILE *FcitxXDGGetFile(const char *fileName, char **path, const char *mode,
         return NULL;
     }
 
+    // when we reach here, path is valid, fileName is valid, mode is valid.
     char *buf = NULL;
     for (i = 0; i < len; i++) {
         fcitx_utils_alloc_cat_str(buf, path[i], "/", fileName);
@@ -206,8 +217,10 @@ FILE *FcitxXDGGetFile(const char *fileName, char **path, const char *mode,
 FCITX_EXPORT_API
 void FcitxXDGFreePath(char **path)
 {
-    free(path[0]);
-    free(path);
+    if (path) {
+        free(path[0]);
+        free(path);
+    }
 }
 
 FCITX_EXPORT_API char**
@@ -215,6 +228,8 @@ FcitxXDGGetPath(size_t *len, const char* homeEnv, const char* homeDefault,
                 const char* suffixHome, const char* dirsDefault,
                 const char* suffixGlobal)
 {
+    char cwd[1024];
+    cwd[1023] = '\0';
     const char *xdgDirHome = getenv(homeEnv);
     const char *dirHome;
     char *home_buff;
@@ -226,8 +241,10 @@ FcitxXDGGetPath(size_t *len, const char* homeEnv, const char* homeDefault,
         dh_len = strlen(dirHome);
     } else {
         const char *env_home = getenv("HOME");
-        if (!(env_home && env_home[0]))
-            return NULL;
+        if (!(env_home && env_home[0])) {
+            getcwd(cwd, sizeof(cwd) - 1);
+            env_home = cwd;
+        }
         size_t he_len = strlen(env_home);
         size_t hd_len = strlen(homeDefault);
         dh_len = he_len + hd_len + 1;

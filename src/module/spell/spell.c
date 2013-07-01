@@ -123,6 +123,7 @@ static void
 SpellDestroy(void *arg)
 {
     FcitxSpell *spell = (FcitxSpell*)arg;
+
     if (spell->dictLang)
         free(spell->dictLang);
 #ifdef ENABLE_ENCHANT
@@ -132,6 +133,8 @@ SpellDestroy(void *arg)
     SpellPresageDestroy(spell);
 #endif
     SpellCustomDestroy(spell);
+
+    FcitxConfigFree(&spell->config.gconfig);
     free(arg);
 }
 
@@ -161,10 +164,11 @@ SpellSetLang(FcitxSpell *spell, const char *lang)
 {
     if (!lang || !lang[0])
         return;
-    if (spell->dictLang) {
-        if (!strcmp(spell->dictLang, lang))
-            return;
-    }
+    if (spell->dictLang && !strcmp(spell->dictLang, lang))
+        return;
+    // FIXME: use configure file instead of hard code
+    if (!strcmp(lang, "zh") || !strncmp(lang, "zh_", strlen("zh_")))
+        lang = "en";
     /* struct timespec start, end; */
     /* int t; */
     /* clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &start); */

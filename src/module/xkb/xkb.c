@@ -68,6 +68,28 @@ static Bool FcitxXkbUpdateProperties(FcitxXkb* xkb, const char *rules_file,
                                      const char *all_options);
 static void FcitxXkbApplyCustomScript(FcitxXkb* xkb);
 
+
+static inline boolean IMIsKeyboardIM(const char* imname) {
+    return strncmp(imname, "fcitx-keyboard-",
+                   strlen("fcitx-keyboard-")) == 0;
+}
+
+static void ExtractKeyboardIMLayout(const char* imname, char** layout, char** variant) {
+    if (!IMIsKeyboardIM(imname)) {
+        return;
+    }
+
+    imname += strlen("fcitx-keyboard-");
+    char* v = strchr(imname, '-');
+    if (v) {
+        *layout = strndup(imname, v - imname);
+        v++;
+        *variant = strdup(v);
+    } else {
+        *layout = strdup(imname);
+    }
+}
+
 #if 0
 static char* FcitxXkbGetCurrentLayout(FcitxXkb* xkb);
 static char* FcitxXkbGetCurrentModel(FcitxXkb* xkb);
@@ -312,6 +334,14 @@ FcitxXkbSetRules(FcitxXkb* xkb, const char *rules_file, const char *model,
                                    XkbGBN_AllComponentsMask &
                                    (~XkbGBN_GeometryMask), True);
 
+    XkbRF_Free(rules, True);
+    free(rnames.keymap);
+    free(rnames.keycodes);
+    free(rnames.types);
+    free(rnames.compat);
+    free(rnames.symbols);
+    free(rnames.geometry);
+
     Bool result = True;
     if (!xkbDesc) {
         FcitxLog (WARNING, "Cannot load new keyboard description.");
@@ -321,6 +351,7 @@ FcitxXkbSetRules(FcitxXkb* xkb, const char *rules_file, const char *model,
         char* tempstr = strdup(rules_file);
         XkbRF_SetNamesProp(dpy, tempstr, &rdefs);
         free (tempstr);
+        XkbFreeKeyboard(xkbDesc, XkbGBN_AllComponentsMask, True);
     }
     free(rdefs.model);
     free(rdefs.layout);
@@ -386,16 +417,14 @@ FcitxXkbUpdateProperties(FcitxXkb* xkb, const char *rules_file,
         next += strlen (all_options);
     }
     *next++ = '\0';
-    if ((next - pval) != len) {
-        free (pval);
-        return True;
+    if ((next - pval) == len) {
+        XChangeProperty (dpy, root_window,
+                        rules_atom, XA_STRING, 8, PropModeReplace,
+                        (unsigned char *) pval, len);
+        XSync(dpy, False);
     }
 
-    XChangeProperty (dpy, root_window,
-                     rules_atom, XA_STRING, 8, PropModeReplace,
-                     (unsigned char *) pval, len);
-    XSync(dpy, False);
-
+    free(pval);
     return True;
 }
 
@@ -520,6 +549,11 @@ static void FcitxXkbAddNewLayout(FcitxXkb* xkb, const char* layoutString,
         utarray_push_back(xkb->defaultVariants, &dummy);
     }
 
+    while (utarray_len(xkb->defaultVariants) >
+           utarray_len(xkb->defaultLayouts)) {
+        utarray_pop_back(xkb->defaultVariants);
+    }
+
     if (toDefault) {
         if (index == 0) {
             return;
@@ -584,10 +618,32 @@ FcitxXkbRetrieveCloseGroup(FcitxXkb *xkb)
 {
     LayoutOverride* item = NULL;
     HASH_FIND_STR(xkb->layoutOverride, "default", item);
-    if (item)
+    if (item) {
         FcitxXkbSetLayoutByName(xkb, item->layout, item->variant, true);
-    else
+    } else {
+        do {
+            if (!xkb->config.useFirstKeyboardIMAsDefaultLayout) {
+                break;
+            }
+            char *layout = NULL, *variant = NULL;
+
+            UT_array* imes = FcitxInstanceGetIMEs(xkb->owner);
+            if (utarray_len(imes) == 0) {
+                break;
+            }
+
+            FcitxIM* im = (FcitxIM*) utarray_front(imes);
+            ExtractKeyboardIMLayout(im->uniqueName, &layout, &variant);
+            if (!layout) {
+                break;
+            }
+            FcitxXkbSetLayoutByName(xkb, layout, variant, true);
+            free(layout);
+            free(variant);
+            return;
+        } while(0);
         FcitxXkbSetLayoutByName(xkb, xkb->closeLayout, xkb->closeVariant, true);
+    }
 }
 
 static void FcitxXkbIMKeyboardLayoutChanged(void* arg, const void* value)
@@ -596,15 +652,10 @@ static void FcitxXkbIMKeyboardLayoutChanged(void* arg, const void* value)
      * if fcitx-xkb doesn't change the layout for it. */
     FcitxXkb *xkb = (FcitxXkb*) arg;
     FcitxIM *currentIM = FcitxInstanceGetCurrentIM(xkb->owner);
-    if (xkb->config.bIgnoreInputMethodLayoutRequest
-        && (!currentIM || strncmp(currentIM->uniqueName, "fcitx-keyboard",
-                                  strlen("fcitx-keyboard")) != 0)) {
-        FcitxXkbRetrieveCloseGroup(xkb);
-        return;
-    }
 
     /* active means im will be take care */
     if (FcitxInstanceGetCurrentStatev2(xkb->owner) == IS_ACTIVE) {
+        char *layoutToFree = NULL, *variantToFree = NULL;
         char* layoutString = NULL;
         char* variantString = NULL;
         LayoutOverride* item = NULL;
@@ -616,24 +667,55 @@ static void FcitxXkbIMKeyboardLayoutChanged(void* arg, const void* value)
             variantString = item->variant;
         }
         else {
-            const char* layout = (const char*) value;
-            if (layout) {
-                s = fcitx_utils_split_string(layout, ',');
-                char  **pLayoutString = (char**)utarray_eltptr(s, 0);
-                char **pVariantString = (char**)utarray_eltptr(s, 1);
-                layoutString = (pLayoutString)? *pLayoutString: NULL;
-                variantString = (pVariantString)? *pVariantString: NULL;
-            }
-            else {
-                layoutString = NULL;
-                variantString = NULL;
+
+            do {
+                if (!xkb->config.useFirstKeyboardIMAsDefaultLayout) {
+                    break;
+                }
+                if (currentIM && IMIsKeyboardIM(currentIM->uniqueName)) {
+                    break;
+                }
+
+                UT_array* imes = FcitxInstanceGetIMEs(xkb->owner);
+                if (utarray_len(imes) == 0) {
+                    break;
+                }
+
+                FcitxIM* im = (FcitxIM*) utarray_front(imes);
+                ExtractKeyboardIMLayout(im->uniqueName, &layoutToFree, &variantToFree);
+                if (!layoutToFree) {
+                    break;
+                }
+
+                layoutString = layoutToFree;
+                variantString = variantToFree;
+
+            } while(0);
+
+            if (!layoutString) {
+                const char* layoutVariantString = (const char*) value;
+                if (layoutVariantString) {
+                    s = fcitx_utils_split_string(layoutVariantString, ',');
+                    char  **pLayoutString = (char**)utarray_eltptr(s, 0);
+                    char **pVariantString = (char**)utarray_eltptr(s, 1);
+                    layoutString = (pLayoutString)? *pLayoutString: NULL;
+                    variantString = (pVariantString)? *pVariantString: NULL;
+                }
+                else {
+                    layoutString = NULL;
+                    variantString = NULL;
+                }
             }
         }
-        if (!FcitxXkbSetLayoutByName(xkb, layoutString, variantString, false))
+        if (!FcitxXkbSetLayoutByName(xkb, layoutString, variantString, false)) {
             FcitxXkbRetrieveCloseGroup(xkb);
+        }
         if (s) {
             fcitx_utils_free_string_list(s);
         }
+
+        fcitx_utils_free(layoutToFree);
+        fcitx_utils_free(variantToFree);
     } else {
         FcitxXkbRetrieveCloseGroup(xkb);
     }
@@ -764,13 +846,10 @@ static boolean FcitxXkbEventHandler(void* arg, XEvent* event)
 
         if (xkbEvent->any.xkb_type == XkbStateNotify &&
             xkbEvent->state.changed & GROUP_CHANGE_MASK) {
-            FcitxIM* currentIM = FcitxInstanceGetCurrentIM(xkb->owner);
-            if (FcitxInstanceGetCurrentStatev2(xkb->owner) != IS_ACTIVE
-                || (xkb->config.bIgnoreInputMethodLayoutRequest
-                    && (!currentIM ||
-                        strncmp(currentIM->uniqueName, "fcitx-keyboard",
-                                strlen("fcitx-keyboard")) != 0)))
+            if (xkb->config.useFirstKeyboardIMAsDefaultLayout
+                && FcitxInstanceGetCurrentStatev2(xkb->owner) != IS_ACTIVE) {
                 FcitxXkbSaveCloseGroup(xkb);
+            }
         }
 
         if (xkbEvent->any.xkb_type == XkbNewKeyboardNotify
@@ -815,6 +894,8 @@ static void FcitxXkbDestroy(void* arg)
     fcitx_utils_free(xkb->closeLayout);
     fcitx_utils_free(xkb->closeVariant);
     fcitx_utils_free(xkb->defaultXmodmapPath);
+
+    FcitxConfigFree(&xkb->config.gconfig);
     free(xkb);
 }
 
@@ -902,8 +983,7 @@ void LoadLayoutOverride(FcitxXkb* xkb)
         LayoutOverride* override = NULL;
         HASH_FIND_STR(xkb->layoutOverride, imString, override);
         /* if rule exists or the rule is for fcitx-keyboard, skip it */
-        if (override || strncmp(imString, "fcitx-keyboard",
-                                strlen("fcitx-keyboard")) == 0) {
+        if (override || IMIsKeyboardIM(imString)) {
             continue;
         }
 
@@ -1006,7 +1086,7 @@ FcitxXkbSetLayoutOverride(FcitxXkb *xkb, const char *imname, const char *layout,
     }
 
     if (layout && layout[0] != '\0' &&
-        strncmp(imname, "fcitx-keyboard", strlen("fcitx-keyboard")) != 0) {
+        !IMIsKeyboardIM(imname)) {
         item = fcitx_utils_new(LayoutOverride);
         item->im = strdup(imname);
         item->layout = strdup(layout);

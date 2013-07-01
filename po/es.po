@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2013-05-31 00:02-0400\n"
-"PO-Revision-Date: 2013-05-30 12:14+0000\n"
+"POT-Creation-Date: 2013-06-28 18:02-0400\n"
+"PO-Revision-Date: 2013-06-27 22:08+0000\n"
 "Last-Translator: Xuetian Weng <wengxt@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/fcitx/language/"
 "es/)\n"
@@ -19,19 +19,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/im/table/table.c:1416
+#: src/im/table/table.c:1413
 msgid " Ctrl+Delete To Delete"
 msgstr "Ctrl+Supr para eliminar"
 
-#: data/script/fcitx-diagnose.sh:305
+#: data/script/fcitx-diagnose.sh:385
 msgid "${1} not found."
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:622
+#: data/script/fcitx-diagnose.sh:715
 msgid "${1} works properly."
 msgstr ""
 
-#: tools/gui/quickphrase-editor/editor.cpp:325
+#: tools/gui/quickphrase-editor/editor.cpp:323
 #, kde-format
 msgid "%1 is a system file, do you want to delete all phrases instead?"
 msgstr ""
@@ -68,31 +68,31 @@ msgstr ""
 msgid "&Save"
 msgstr ""
 
-#: src/im/keyboard/keyboard.c:440 src/im/keyboard/keyboard.c:457
+#: src/im/keyboard/keyboard.c:484 src/im/keyboard/keyboard.c:501
 msgid "(Unavailable)"
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:443
+#: data/script/fcitx-diagnose.sh:525
 msgid "/Beginner%27s_Guide"
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:476
+#: data/script/fcitx-diagnose.sh:572
 msgid "/Hall_of_Shame_for_Linux_IME_Support"
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:454
+#: data/script/fcitx-diagnose.sh:536
 msgid "/Input_method_related_environment_variables"
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:463
+#: data/script/fcitx-diagnose.sh:552
 msgid "/Note_for_GNOME_Later_than_3.6"
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:480
+#: data/script/fcitx-diagnose.sh:576
 msgid "/XIM"
 msgstr ""
 
-#: src/lib/fcitx/ime.c:1631
+#: src/lib/fcitx/ime.c:1688
 msgid "/min  Time Used: "
 msgstr ""
 
@@ -100,23 +100,23 @@ msgstr ""
 msgid "0 for commit immediately, -1 for keep all words"
 msgstr ""
 
-#: src/module/unicode/charselectdata.c:252
+#: src/module/unicode/charselectdata.c:249
 msgid "<Low Surrogate>"
 msgstr ""
 
-#: src/module/unicode/charselectdata.c:248
+#: src/module/unicode/charselectdata.c:245
 msgid "<Non Private Use High Surrogate>"
 msgstr ""
 
-#: src/module/unicode/charselectdata.c:250
+#: src/module/unicode/charselectdata.c:247
 msgid "<Private Use High Surrogate>"
 msgstr ""
 
-#: src/module/unicode/charselectdata.c:254
+#: src/module/unicode/charselectdata.c:251
 msgid "<Private Use>"
 msgstr ""
 
-#: src/module/unicode/charselectdata.c:282
+#: src/module/unicode/charselectdata.c:279
 msgid "<not assigned>"
 msgstr ""
 
@@ -130,35 +130,35 @@ msgstr ""
 msgid "ABC"
 msgstr ""
 
-#: data/config.desc:25
+#: data/config.desc:26
 msgid "ALT Both"
 msgstr ""
 
-#: data/config.desc:19
+#: data/config.desc:20
 msgid "ALT_L_SHIFT"
 msgstr ""
 
-#: data/config.desc:20
+#: data/config.desc:21
 msgid "ALT_R_SHIFT"
 msgstr ""
 
-#: data/config.desc:64
+#: data/config.desc:75
 msgid "ALT_SHIFT"
 msgstr ""
 
-#: data/config.desc:66
+#: data/config.desc:77
 msgid "ALT_SUPER"
 msgstr ""
 
-#: data/config.desc:191
+#: data/config.desc:202
 msgid "Action after press enter"
 msgstr "Acción después de oprimir Intro"
 
-#: data/config.desc:40
+#: data/config.desc:49
 msgid "Activate input method"
 msgstr ""
 
-#: data/config.desc:174
+#: data/config.desc:185
 msgid "Active"
 msgstr ""
 
@@ -218,11 +218,11 @@ msgstr ""
 msgid "Addon Config %s is %s"
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:944
+#: data/script/fcitx-diagnose.sh:1191
 msgid "Addon Config Dir:"
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:955
+#: data/script/fcitx-diagnose.sh:1203
 msgid "Addon List:"
 msgstr ""
 
@@ -245,11 +245,15 @@ msgstr ""
 msgid "AdjustNo"
 msgstr ""
 
-#: data/config.desc:165
+#: data/config.desc:176
 msgid "All"
 msgstr "Todo"
 
-#: data/script/fcitx-diagnose.sh:568
+#: data/script/fcitx-diagnose.sh:1009
+msgid "All found Gtk ${1} immodule files exist."
+msgstr ""
+
+#: data/script/fcitx-diagnose.sh:655
 msgid "All locale:"
 msgstr ""
 
@@ -286,17 +290,17 @@ msgstr ""
 msgid "Alternative Trigger Key for QuickPhrase"
 msgstr ""
 
-#: data/config.desc:225 data/config.desc:231 data/config.desc:237
-#: data/config.desc:243 data/config.desc:249 data/config.desc:255
-#: data/config.desc:261
+#: data/config.desc:236 data/config.desc:242 data/config.desc:248
+#: data/config.desc:254 data/config.desc:260 data/config.desc:266
+#: data/config.desc:272
 msgid "Appearance"
 msgstr "Apariencia"
 
-#: src/module/xkb/fcitx-xkb.desc:19
+#: src/module/xkb/fcitx-xkb.desc:20
 msgid "Apply this custom xmodmap script after layout change"
 msgstr ""
 
-#: tools/gui/quickphrase-editor/editor.cpp:337
+#: tools/gui/quickphrase-editor/editor.cpp:335
 #, kde-format
 msgid "Are you sure to delete %1?"
 msgstr ""
@@ -353,8 +357,8 @@ msgstr ""
 msgid "Auto Send Candidate Word"
 msgstr ""
 
-#: src/lib/fcitx-config/fcitx-config.c:1170
-#: src/lib/fcitx-config/fcitx-config.c:1179
+#: src/lib/fcitx-config/fcitx-config.c:1180
+#: src/lib/fcitx-config/fcitx-config.c:1187
 msgid "Available Value:"
 msgstr ""
 
@@ -363,7 +367,7 @@ msgstr ""
 msgid "Background Image"
 msgstr "Imagen de fondo"
 
-#: data/script/fcitx-diagnose.sh:442
+#: data/script/fcitx-diagnose.sh:524
 msgid "Beginner's Guide"
 msgstr ""
 
@@ -386,15 +390,15 @@ msgstr ""
 msgid "BottomRight"
 msgstr ""
 
-#: data/config.desc:21
+#: data/config.desc:22
 msgid "CTRL Both"
 msgstr ""
 
-#: data/config.desc:63
+#: data/config.desc:74
 msgid "CTRL_SHIFT"
 msgstr ""
 
-#: data/config.desc:65
+#: data/config.desc:76
 msgid "CTRL_SUPER"
 msgstr ""
 
@@ -415,7 +419,7 @@ msgstr ""
 msgid "Can't Create imWindow"
 msgstr ""
 
-#: src/module/punc/punc.c:397
+#: src/module/punc/punc.c:398
 msgid "Can't open punc file."
 msgstr ""
 
@@ -428,7 +432,7 @@ msgstr ""
 msgid "Candidate Index Color"
 msgstr ""
 
-#: data/config.desc:209
+#: data/config.desc:220
 msgid "Candidate Word Number"
 msgstr "Número de palabra candidata"
 
@@ -436,80 +440,97 @@ msgstr "Número de palabra candidata"
 msgid "Cangjie"
 msgstr ""
 
-#: src/im/pinyin/py.c:1736
+#: src/im/pinyin/py.c:1734
 #, c-format
 msgid "Cannot Save Frequent word: %s"
 msgstr ""
 
-#: src/im/pinyin/py.c:1799
+#: src/im/pinyin/py.c:1797
 #, c-format
 msgid "Cannot Save Pinyin Index: %s"
 msgstr ""
 
-#: src/im/pinyin/py.c:1673
+#: src/im/pinyin/py.c:1671
 #, c-format
 msgid "Cannot Save User Pinyin Database: %s"
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:620
+#: data/script/fcitx-diagnose.sh:713
 msgid "Cannot connect to fcitx correctly."
 msgstr ""
 
-#: tools/gui/quickphrase-editor/editor.cpp:298
+#: tools/gui/quickphrase-editor/editor.cpp:296
 #, kde-format
 msgid "Cannot create file %1."
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:537
+#: data/script/fcitx-diagnose.sh:626
 msgid "Cannot determine desktop environment."
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:710
+#: data/script/fcitx-diagnose.sh:1070
+msgid "Cannot find ${2} for gtk ${1}"
+msgstr ""
+
+#: data/script/fcitx-diagnose.sh:803
 msgid ""
 "Cannot find a GUI config tool, please install one of ${1}, ${2}, or ${3}."
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:946
+#: data/script/fcitx-diagnose.sh:1239
+msgid "Cannot find enabled fcitx user interface!"
+msgstr ""
+
+#: data/script/fcitx-diagnose.sh:1193
 msgid "Cannot find fcitx addon config directory."
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:581
+#: data/script/fcitx-diagnose.sh:676
 msgid "Cannot find fcitx executable!"
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:916
+#: data/script/fcitx-diagnose.sh:1158
 msgid "Cannot find fcitx im module for gtk ${1} in cache."
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:884
+#: data/script/fcitx-diagnose.sh:1076
 msgid "Cannot find fcitx im module for gtk ${1}."
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:849
-msgid "Cannot find fcitx input method module for qt."
+#: data/script/fcitx-diagnose.sh:951 data/script/fcitx-diagnose.sh:955
+msgid "Cannot find fcitx input method module for ${1}."
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:700
+#: data/script/fcitx-diagnose.sh:793
 msgid "Cannot find fcitx-configtool executable!"
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:775
+#: data/script/fcitx-diagnose.sh:1153
+msgid "Cannot find immodules cache for gtk ${1}"
+msgstr ""
+
+#: data/script/fcitx-diagnose.sh:1258
+msgid ""
+"Cannot find kimpanel dbus interface or enabled non-kimpanel user interface."
+msgstr ""
+
+#: data/script/fcitx-diagnose.sh:868
 msgid "Cannot find xim_server on root window."
 msgstr ""
 
-#: src/im/table/table.c:659
+#: src/im/table/table.c:656
 msgid "Cannot found Pinyin"
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:749
+#: data/script/fcitx-diagnose.sh:842
 msgid "Cannot interpret XMODIFIERS: ${1}."
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:994
+#: data/script/fcitx-diagnose.sh:1268
 msgid "Cannot read im list from fcitx profile."
 msgstr ""
 
-#: tools/gui/quickphrase-editor/editor.cpp:324
+#: tools/gui/quickphrase-editor/editor.cpp:322
 msgid "Cannot remove system file"
 msgstr ""
 
@@ -540,7 +561,7 @@ msgstr ""
 msgid "Choose"
 msgstr ""
 
-#: data/config.desc:125
+#: data/config.desc:136
 msgid "Choose Second and Third Candidate Word"
 msgstr ""
 
@@ -551,15 +572,15 @@ msgstr ""
 msgid "Choose key modifier"
 msgstr ""
 
-#: src/im/table/table.c:727
+#: src/im/table/table.c:724
 msgid "Choose the phrase to be deleted, Press Escape to Cancel"
 msgstr ""
 
-#: src/im/table/table.c:719
+#: src/im/table/table.c:716
 msgid "Choose the phrase to be put in the front, Press Escape to Cancel"
 msgstr ""
 
-#: src/im/table/table.c:735
+#: src/im/table/table.c:732
 msgid "Choose the phrase to clear typing history, Press Escape to Cancel"
 msgstr ""
 
@@ -584,8 +605,12 @@ msgstr ""
 msgid "ClassicUI"
 msgstr ""
 
-#: data/config.desc:188
+#: data/config.desc:199
 msgid "Clean"
+msgstr ""
+
+#: src/lib/fcitx-qt/fcitxqtkeysequencewidget.cpp:161
+msgid "Clear"
 msgstr ""
 
 #: src/im/table/fcitx-table.desc:19
@@ -623,7 +648,7 @@ msgstr ""
 msgid "Code Table Name"
 msgstr ""
 
-#: src/im/table/table.c:1412
+#: src/im/table/table.c:1409
 msgid "Code is "
 msgstr "El código es"
 
@@ -658,7 +683,7 @@ msgstr "Color del cursor"
 msgid "Comment"
 msgstr "Comentario"
 
-#: data/config.desc:189
+#: data/config.desc:200
 msgid "Commit"
 msgstr ""
 
@@ -674,7 +699,7 @@ msgstr ""
 msgid "Commit string when there is no match"
 msgstr ""
 
-#: data/config.desc:203
+#: data/config.desc:214
 msgid "Commit when toggle state"
 msgstr ""
 
@@ -682,15 +707,19 @@ msgstr ""
 msgid "Commit with extra space when choose candidate word"
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:662
+#: data/script/fcitx-diagnose.sh:759
+msgid "Config GUI for gtk${1} not found."
+msgstr ""
+
+#: data/script/fcitx-diagnose.sh:755
 msgid "Config GUI for gtk${1}:"
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:682
+#: data/script/fcitx-diagnose.sh:775
 msgid "Config GUI for kde:"
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:698
+#: data/script/fcitx-diagnose.sh:791
 msgid "Config Tool Wrapper:"
 msgstr ""
 
@@ -698,26 +727,26 @@ msgstr ""
 msgid "ConfigFile"
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:1103
-msgid "Configuration."
+#: data/script/fcitx-diagnose.sh:1377
+msgid "Configuration:"
 msgstr ""
 
-#: src/module/notificationitem/dbusmenu.c:358 src/ui/classic/classicui.c:504
+#: src/module/notificationitem/dbusmenu.c:358 src/ui/classic/classicui.c:493
 msgid "Configure"
 msgstr "Configurar"
 
-#: src/module/notificationitem/dbusmenu.c:354 src/ui/classic/classicui.c:503
-#: src/ui/kimpanel/kimpanel.c:754
+#: src/module/notificationitem/dbusmenu.c:354 src/ui/classic/classicui.c:492
+#: src/ui/kimpanel/kimpanel.c:751
 msgid "Configure Current Input Method"
 msgstr ""
 
-#: src/lib/fcitx-config/fcitx-config.c:884
+#: src/lib/fcitx-config/fcitx-config.c:894
 #, c-format
 msgid "Configure group name error: line %d"
 msgstr ""
 
-#: tools/gui/quickphrase-editor/editor.cpp:336
-msgid "Confirm deleting"
+#: tools/gui/quickphrase-editor/editor.cpp:334
+msgid "Confirm deletion"
 msgstr ""
 
 #: src/module/quickphrase/fcitx-quickphrase.conf.in:4
@@ -734,7 +763,7 @@ msgstr "Convertir chino simplificado a chino tradicional"
 msgid "Copy"
 msgstr "Copiar"
 
-#: tools/gui/quickphrase-editor/editor.cpp:281
+#: tools/gui/quickphrase-editor/editor.cpp:279
 msgid "Create new file"
 msgstr ""
 
@@ -745,11 +774,11 @@ msgstr ""
 msgid "Ctrl"
 msgstr ""
 
-#: data/config.desc:29
+#: data/config.desc:30
 msgid "Ctrl+Left Super"
 msgstr ""
 
-#: data/config.desc:30
+#: data/config.desc:31
 msgid "Ctrl+Right Super"
 msgstr ""
 
@@ -765,8 +794,16 @@ msgstr "Nombre del método de entrada actual"
 msgid "Current local input method is "
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:566
+#: data/script/fcitx-diagnose.sh:657
 msgid "Current locale:"
+msgstr ""
+
+#: data/config.desc:35
+msgid "Custom"
+msgstr ""
+
+#: data/config.desc:42
+msgid "Custom switch key"
 msgstr ""
 
 #: data/addon.desc:37
@@ -791,7 +828,7 @@ msgstr ""
 msgid "Default"
 msgstr ""
 
-#: data/config.desc:175
+#: data/config.desc:186
 msgid "Default Input Method State"
 msgstr "Estado predeterminado del método de entrada"
 
@@ -803,7 +840,7 @@ msgstr ""
 msgid "Default Spell Hint Backends Order"
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:1020
+#: data/script/fcitx-diagnose.sh:1294
 msgid "Default input methods:"
 msgstr ""
 
@@ -819,11 +856,11 @@ msgstr "Dependencia"
 msgid "Description of Skin"
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:535
-msgid "Desktop Environment."
+#: data/script/fcitx-diagnose.sh:624
+msgid "Desktop Environment:"
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:539
+#: data/script/fcitx-diagnose.sh:628
 msgid "Desktop environment is ${1}."
 msgstr ""
 
@@ -831,7 +868,7 @@ msgstr ""
 msgid "Dianbaoma"
 msgstr ""
 
-#: data/config.desc:197
+#: data/config.desc:208
 msgid "Disable Paging in Remind Mode"
 msgstr ""
 
@@ -844,25 +881,29 @@ msgstr ""
 msgid "Disable addon %s, dependency %s can not be satisfied."
 msgstr ""
 
-#: src/module/notificationitem/notificationitem.c:467
-#: src/ui/kimpanel/kimpanel.c:254 src/ui/kimpanel/kimpanel.c:259
-#: data/config.desc:33
+#: src/module/notificationitem/notificationitem.c:460
+#: src/ui/kimpanel/kimpanel.c:258 src/ui/kimpanel/kimpanel.c:263
+#: data/config.desc:34
 msgid "Disabled"
 msgstr "Desactivado"
 
-#: data/config.desc:222
+#: data/config.desc:233
 msgid "Do not commit preedit text when unfocus a window"
+msgstr ""
+
+#: src/module/freedesktop-notify/freedesktop-notify.c:616
+msgid "Do not show again"
 msgstr ""
 
 #: data/addon.desc:82
 msgid "Do not show in GUI"
 msgstr ""
 
-#: data/config.desc:264
+#: data/config.desc:275
 msgid "Do not show input window if there is only one candidate and preedit"
 msgstr ""
 
-#: data/config.desc:258
+#: data/config.desc:269
 msgid "Do not show input window if there is only preedit string"
 msgstr "No mostrar ventanas de entrada si solo hay una cadena preeditada"
 
@@ -876,23 +917,23 @@ msgstr ""
 msgid "Do not sort word with code less than this level"
 msgstr ""
 
-#: src/lib/fcitx-utils/desktop-parse.c:565
+#: src/lib/fcitx-utils/desktop-parse.c:602
 #, c-format
 msgid "Duplicate entry %s in group %s,@ line %d, override previous one."
 msgstr ""
 
-#: src/lib/fcitx-utils/desktop-parse.c:525
+#: src/lib/fcitx-utils/desktop-parse.c:562
 #, c-format
 msgid ""
 "Duplicate group %s in a desktop file,@ line %d, merge with previous one."
 msgstr ""
 
-#: src/lib/fcitx-config/fcitx-config.c:891
+#: src/lib/fcitx-config/fcitx-config.c:901
 #, c-format
 msgid "Duplicate group name, merge with the previous: %s :line %d"
 msgstr ""
 
-#: src/lib/fcitx-config/fcitx-config.c:958
+#: src/lib/fcitx-config/fcitx-config.c:968
 #, c-format
 msgid "Duplicate option, overwrite: line %d"
 msgstr ""
@@ -901,11 +942,15 @@ msgstr ""
 msgid "E&xport"
 msgstr ""
 
+#: src/lib/fcitx-qt/fcitxqtkeysequencewidget.cpp:358
+msgid "Empty"
+msgstr ""
+
 #: src/im/table/table.desc:147
 msgid "Enable"
 msgstr "Activar"
 
-#: data/config.desc:52
+#: data/config.desc:63
 msgid "Enable Hotkey to scroll Between Input Method"
 msgstr ""
 
@@ -933,37 +978,41 @@ msgstr ""
 msgid "English Mode Icon"
 msgstr ""
 
-#: src/lib/fcitx-config/fcitx-config.c:390
+#: src/lib/fcitx-config/fcitx-config.c:400
 msgid "Enum Option is invalid, take it as string"
 msgstr ""
 
-#: src/lib/fcitx-config/fcitx-config.c:366
+#: src/lib/fcitx-config/fcitx-config.c:376
 msgid "Enum option duplicated."
 msgstr ""
 
-#: src/lib/fcitx-config/fcitx-config.c:376
+#: src/lib/fcitx-config/fcitx-config.c:386
 msgid "Enum option number must larger than 0"
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:729
+#: data/script/fcitx-diagnose.sh:822
 msgid ""
 "Environment variable ${1} is \"${2}\" instead of \"${3}\". Please check if "
 "you have exported it incorrectly in any of your init files."
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:723
+#: data/script/fcitx-diagnose.sh:816
 msgid "Environment variable ${1} is set to \"${2}\" correctly."
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:545
-msgid "Environment."
+#: data/script/fcitx-diagnose.sh:634
+msgid "Environment:"
 msgstr ""
 
 #: src/im/table/data/erbi.conf.in:3
 msgid "Erbi"
 msgstr ""
 
-#: tools/gui/quickphrase-editor/editor.cpp:345
+#: data/script/fcitx-diagnose.sh:661
+msgid "Error occurs when running ${1}. Please check your locale settings."
+msgstr ""
+
+#: tools/gui/quickphrase-editor/editor.cpp:343
 #, kde-format
 msgid "Error while deleting %1."
 msgstr ""
@@ -999,24 +1048,32 @@ msgstr ""
 msgid "Exec"
 msgstr ""
 
-#: src/module/notificationitem/dbusmenu.c:373 src/ui/classic/classicui.c:506
+#: src/module/notificationitem/dbusmenu.c:373 src/ui/classic/classicui.c:495
 msgid "Exit"
 msgstr "Salir"
 
-#: data/config.desc:35
+#: data/config.desc:37
 msgid "Extra key for trigger input method"
+msgstr ""
+
+#: data/script/fcitx-diagnose.sh:1147
+msgid "Failed to find fcitx in immodule cache at ${1}"
+msgstr ""
+
+#: data/script/fcitx-diagnose.sh:1064
+msgid "Failed to find fcitx in the output of ${1}"
 msgstr ""
 
 #: data/addon.desc:72
 msgid "Fallback UI Addon"
 msgstr ""
 
-#: src/ui/kimpanel/kimpanel.c:376 data/fcitx-autostart.desktop.in:2
+#: src/ui/kimpanel/kimpanel.c:373 data/fcitx-autostart.desktop.in:2
 #: data/fcitx.desktop.in:2
 msgid "Fcitx"
 msgstr "Fcitx"
 
-#: data/script/fcitx-diagnose.sh:943
+#: data/script/fcitx-diagnose.sh:1190
 msgid "Fcitx Addons:"
 msgstr ""
 
@@ -1028,8 +1085,8 @@ msgstr ""
 msgid "Fcitx Configuration"
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:697
-msgid "Fcitx Configure UI."
+#: data/script/fcitx-diagnose.sh:790
+msgid "Fcitx Configure UI:"
 msgstr ""
 
 #: src/frontend/ipc/fcitx-ipc.conf.in:3
@@ -1048,8 +1105,8 @@ msgstr ""
 msgid "Fcitx Spelling Hint/Completion Support"
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:578
-msgid "Fcitx State."
+#: data/script/fcitx-diagnose.sh:673
+msgid "Fcitx State:"
 msgstr ""
 
 #: src/module/unicode/fcitx-unicode.conf.in:3
@@ -1060,21 +1117,20 @@ msgstr ""
 msgid "Fcitx XIM Frontend"
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:605
+#: data/script/fcitx-diagnose.sh:698
 msgid "Fcitx is not running."
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:592
-#, sh-format
-msgid "Fcitx version: ${version}"
+#: data/script/fcitx-diagnose.sh:687
+msgid "Fcitx version: ${1}"
 msgstr ""
 
-#: tools/gui/quickphrase-editor/editor.cpp:297
-#: tools/gui/quickphrase-editor/editor.cpp:344
+#: tools/gui/quickphrase-editor/editor.cpp:295
+#: tools/gui/quickphrase-editor/editor.cpp:342
 msgid "File Operation Failed"
 msgstr ""
 
-#: tools/gui/quickphrase-editor/editor.cpp:287
+#: tools/gui/quickphrase-editor/editor.cpp:285
 msgid "File name should not contain '/'."
 msgstr ""
 
@@ -1124,68 +1180,91 @@ msgstr ""
 msgid "Font size repect dpi setting"
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:675
+#: src/module/xkb/fcitx-xkb.desc:10
+msgid ""
+"For example, if Keyboard - English (US) is the first input method in the "
+"list, then English (US) will be applied to all other non keyboard input "
+"method layout"
+msgstr ""
+
+#: data/script/fcitx-diagnose.sh:768
 msgid "Found ${1} at ${2}."
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:981
+#: data/script/fcitx-diagnose.sh:1232
 msgid "Found ${1} disabled addons:"
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:976
+#: data/script/fcitx-diagnose.sh:1227
 msgid "Found ${1} enabled addons:"
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:1015
+#: data/script/fcitx-diagnose.sh:1289
 msgid "Found ${1} enabled input methods:"
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:614
+#: data/script/fcitx-diagnose.sh:1241
+msgid "Found ${1} enabled user interface addons:"
+msgstr ""
+
+#: data/script/fcitx-diagnose.sh:707
 msgid "Found ${1} fcitx process:"
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:612
+#: data/script/fcitx-diagnose.sh:705
 msgid "Found ${1} fcitx processes:"
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:953
+#: data/script/fcitx-diagnose.sh:1050
+msgid "Found ${2} for unknown gtk version at ${1}."
+msgstr ""
+
+#: data/script/fcitx-diagnose.sh:1042
+msgid "Found ${3} for gtk ${1} at ${2}."
+msgstr ""
+
+#: data/script/fcitx-diagnose.sh:1201
 msgid "Found fcitx addon config directory: ${1}."
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:587
+#: data/script/fcitx-diagnose.sh:682
 msgid "Found fcitx at ${1}."
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:876
+#: data/script/fcitx-diagnose.sh:933 data/script/fcitx-diagnose.sh:938
+msgid "Found fcitx im module for ${2}: ${1}."
+msgstr ""
+
+#: data/script/fcitx-diagnose.sh:1058 data/script/fcitx-diagnose.sh:1141
 msgid "Found fcitx im modules for gtk ${1}."
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:908
-msgid "Found fcitx in cache file ${1}:"
-msgstr ""
-
-#: data/script/fcitx-diagnose.sh:688
+#: data/script/fcitx-diagnose.sh:781
 msgid "Found fcitx kcm module."
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:833
-msgid "Found fcitx qt im module: ${1}."
+#: data/script/fcitx-diagnose.sh:942
+msgid "Found fcitx qt module: ${1}."
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:702
+#: data/script/fcitx-diagnose.sh:795
 msgid "Found fcitx-configtool at ${1}."
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:871
-msgid "Found gtk-query-immodules for gtk ${1} at ${2}."
+#: data/script/fcitx-diagnose.sh:1134
+msgid "Found immodule cache for unknown gtk version at ${1}."
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:903
-msgid "Found immodules cache for gtk ${1} ${2}."
+#: data/script/fcitx-diagnose.sh:1126
+msgid "Found immodules cache for gtk ${1} at ${2}."
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:841
+#: data/script/fcitx-diagnose.sh:945
 msgid "Found unknown fcitx qt module: ${1}."
+msgstr ""
+
+#: src/module/freedesktop-notify/fcitx-freedesktop-notify.conf.in:3
+msgid "Freedesktop.org Notification Support"
 msgstr ""
 
 #: data/addon.desc:19
@@ -1205,8 +1284,8 @@ msgstr ""
 msgid "Frontend: open %s fail %s"
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:1096
-msgid "Frontends setup."
+#: data/script/fcitx-diagnose.sh:1370
+msgid "Frontends setup:"
 msgstr ""
 
 #: src/module/fullwidthchar/fullwidthchar.c:114
@@ -1214,8 +1293,12 @@ msgstr ""
 msgid "Full width Character"
 msgstr ""
 
-#: src/module/punc/punc.c:147 src/module/punc/punc.c:554
+#: src/module/punc/punc.c:148 src/module/punc/punc.c:555
 msgid "Full width punct"
+msgstr ""
+
+#: src/module/punc/punc.c:574
+msgid "Full width punctuations are used."
 msgstr ""
 
 #: src/module/vk/vk.c:52
@@ -1270,7 +1353,7 @@ msgstr ""
 msgid "Fuzzy z and zh"
 msgstr ""
 
-#: data/config.desc:216
+#: data/config.desc:227
 msgid "Give the tips of Phrase"
 msgstr ""
 
@@ -1298,11 +1381,15 @@ msgstr ""
 msgid "Greek"
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:929
+#: data/script/fcitx-diagnose.sh:1003
+msgid "Gtk ${1} immodule file ${2} does not exist."
+msgstr ""
+
+#: data/script/fcitx-diagnose.sh:1171
 msgid "Gtk IM module cache:"
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:924
+#: data/script/fcitx-diagnose.sh:1176
 msgid "Gtk IM module files:"
 msgstr ""
 
@@ -1311,7 +1398,7 @@ msgstr ""
 msgid "Half width Character"
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:475
+#: data/script/fcitx-diagnose.sh:571
 msgid "Hall of Shame for Linux IME Support"
 msgstr ""
 
@@ -1327,14 +1414,14 @@ msgstr ""
 msgid "Hiragana"
 msgstr ""
 
-#: data/config.desc:1 data/config.desc:6 data/config.desc:12
-#: data/config.desc:37 data/config.desc:43 data/config.desc:49
-#: data/config.desc:54 data/config.desc:60 data/config.desc:70
-#: data/config.desc:76 data/config.desc:82 data/config.desc:88
-#: data/config.desc:94 data/config.desc:100 data/config.desc:106
-#: data/config.desc:112 data/config.desc:117 data/config.desc:122
-#: data/config.desc:128 data/config.desc:134 data/config.desc:140
-#: data/config.desc:147
+#: data/config.desc:1 data/config.desc:7 data/config.desc:13
+#: data/config.desc:39 data/config.desc:46 data/config.desc:53
+#: data/config.desc:60 data/config.desc:65 data/config.desc:71
+#: data/config.desc:81 data/config.desc:87 data/config.desc:93
+#: data/config.desc:99 data/config.desc:105 data/config.desc:111
+#: data/config.desc:117 data/config.desc:123 data/config.desc:128
+#: data/config.desc:133 data/config.desc:139 data/config.desc:145
+#: data/config.desc:151 data/config.desc:158
 msgid "Hotkey"
 msgstr ""
 
@@ -1382,15 +1469,18 @@ msgstr ""
 msgid "IconName"
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:465
+#: data/script/fcitx-diagnose.sh:560
 msgid ""
-"If you are using ${1}, you may want to uninstall ${2} or remove ${3} to be "
-"able to use any input method other than ${2}. See ${link} for more detail as "
-"well as alternative solutions."
+"If you are using ${1}, you may want to uninstall ${2} or remove ${3} in "
+"order to use any input method other than ${2}. See ${link} for more detail "
+"as well as alternative solutions."
 msgstr ""
 
-#: src/module/xkb/fcitx-xkb.desc:9
-msgid "Ignore Input Method Layout Request"
+#: data/script/fcitx-diagnose.sh:558
+msgid ""
+"If you are using ${1}, you may want to uninstall ${2}, remove ${3} or use "
+"the command ${g36_disable_ibus} to disable IBus integration in order to use "
+"any input method other than ${2}. See ${link} for more detail."
 msgstr ""
 
 #: src/im/table/table.desc:197
@@ -1405,11 +1495,11 @@ msgstr ""
 msgid "Ignore some Punctuation, if it is empty, then ignore all punctuation"
 msgstr ""
 
-#: data/config.desc:46
+#: data/config.desc:56
 msgid "Inactivate Input Method"
 msgstr ""
 
-#: data/config.desc:173
+#: data/config.desc:184
 msgid "Inactive"
 msgstr "Inactivo"
 
@@ -1421,7 +1511,7 @@ msgstr ""
 msgid "Inactive Text Icon Color"
 msgstr ""
 
-#: data/config.desc:57
+#: data/config.desc:68
 msgid "Include Inactivate when scrolling between Input Method"
 msgstr ""
 
@@ -1445,7 +1535,7 @@ msgstr "Tamaño de letra de entrada"
 msgid "Input Message Color"
 msgstr ""
 
-#: src/lib/fcitx/ime.c:1537 src/module/notificationitem/notificationitem.c:416
+#: src/lib/fcitx/ime.c:1594 src/module/notificationitem/notificationitem.c:409
 #: data/fcitx-autostart.desktop.in:3 data/fcitx.desktop.in:3
 msgid "Input Method"
 msgstr "Método de entrada"
@@ -1454,24 +1544,24 @@ msgstr "Método de entrada"
 msgid "Input Method Configuration"
 msgstr ""
 
-#: src/module/notificationitem/notificationitem.c:468
-#: src/ui/kimpanel/kimpanel.c:255 src/ui/kimpanel/kimpanel.c:260
+#: src/module/notificationitem/notificationitem.c:461
+#: src/ui/kimpanel/kimpanel.c:259 src/ui/kimpanel/kimpanel.c:264
 msgid "Input Method Disabled"
 msgstr "Método de entrada desactivado"
 
-#: data/config.desc:240
+#: data/config.desc:251
 msgid "Input Method Hint will be only shown when state is active"
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:453
+#: data/script/fcitx-diagnose.sh:535
 msgid "Input Method Related Environment Variables: "
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:990
+#: data/script/fcitx-diagnose.sh:1264
 msgid "Input Methods:"
 msgstr ""
 
-#: src/lib/fcitx/ime.c:1628
+#: src/lib/fcitx/ime.c:1685
 msgid "Input Speed: "
 msgstr "Velocidad de entrada"
 
@@ -1489,34 +1579,34 @@ msgstr ""
 msgid "Installer Script for Fcitx Skin"
 msgstr ""
 
-#: data/config.desc:85
+#: data/config.desc:96
 msgid "Interval of Two Key Input"
 msgstr ""
 
-#: src/lib/fcitx-config/fcitx-config.c:912
+#: src/lib/fcitx-config/fcitx-config.c:922
 #, c-format
 msgid "Invalid Entry: line %d missing '='"
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:959
+#: data/script/fcitx-diagnose.sh:1207
 msgid "Invalid addon config file ${1}."
 msgstr ""
 
-#: src/lib/fcitx-utils/desktop-parse.c:555
+#: src/lib/fcitx-utils/desktop-parse.c:592
 #, c-format
 msgid "Invalid entry line @ line %d %s"
 msgstr ""
 
-#: tools/gui/quickphrase-editor/editor.cpp:287
+#: tools/gui/quickphrase-editor/editor.cpp:285
 msgid "Invalid filename"
 msgstr ""
 
-#: src/lib/fcitx-utils/desktop-parse.c:513
+#: src/lib/fcitx-utils/desktop-parse.c:550
 #, c-format
 msgid "Invalid group name line @ line %d %s"
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:1004
+#: data/script/fcitx-diagnose.sh:1278
 msgid "Invalid item ${1} in im list."
 msgstr ""
 
@@ -1540,9 +1630,9 @@ msgstr ""
 msgid "Key Color On Virutal Keyboard"
 msgstr ""
 
-#: src/im/keyboard/keyboard.c:364 src/im/keyboard/keyboard.c:390
-#: src/im/keyboard/keyboard.c:438 src/im/keyboard/keyboard.c:451
-#: src/im/keyboard/keyboard.c:476 src/im/keyboard/keyboard.c:482
+#: src/im/keyboard/keyboard.c:417 src/im/keyboard/keyboard.c:434
+#: src/im/keyboard/keyboard.c:482 src/im/keyboard/keyboard.c:495
+#: src/im/keyboard/keyboard.c:520 src/im/keyboard/keyboard.c:526
 #: src/im/keyboard/fcitx-keyboard.desc:1 src/im/keyboard/fcitx-keyboard.desc:6
 #: src/im/keyboard/fcitx-keyboard.desc:16
 #: src/im/keyboard/fcitx-keyboard.desc:21
@@ -1560,7 +1650,7 @@ msgstr ""
 msgid "Keyboard Layout to be used"
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:548
+#: data/script/fcitx-diagnose.sh:637
 msgid "Keyboard Layout:"
 msgstr ""
 
@@ -1580,15 +1670,19 @@ msgstr ""
 msgid "Kimpanel Support for Fcitx"
 msgstr ""
 
-#: data/config.desc:23
+#: data/script/fcitx-diagnose.sh:1250
+msgid "Kimpanel process:"
+msgstr ""
+
+#: data/config.desc:24
 msgid "L_ALT"
 msgstr ""
 
-#: data/config.desc:18
+#: data/config.desc:19
 msgid "L_CTRL"
 msgstr ""
 
-#: data/config.desc:17
+#: data/config.desc:18
 msgid "L_SHIFT"
 msgstr ""
 
@@ -1604,15 +1698,23 @@ msgstr ""
 msgid "Latin"
 msgstr ""
 
-#: src/module/punc/punc.c:148 src/module/punc/punc.c:555
+#: src/module/punc/punc.c:149 src/module/punc/punc.c:556
 msgid "Latin punct"
 msgstr ""
 
-#: data/config.desc:26
+#: src/module/punc/punc.c:575
+msgid "Latin punctuations are used."
+msgstr ""
+
+#: src/lib/fcitx-qt/fcitxqtkeysequencewidget.cpp:314
+msgid "Left"
+msgstr ""
+
+#: data/config.desc:27
 msgid "Left Super"
 msgstr ""
 
-#: src/im/table/table.c:610
+#: src/im/table/table.c:607
 msgid ""
 "Left/Right to choose selected character, Press Enter to confirm, Press "
 "Escape to Cancel"
@@ -1637,20 +1739,15 @@ msgstr "Biblioteca"
 msgid "Load Addon Config File:%s"
 msgstr ""
 
-#: src/im/table/tabledict.c:342
+#: src/im/table/tabledict.c:341
 msgid "Load Autophrase OK"
 msgstr ""
 
-#: src/im/table/tabledict.c:249
+#: src/im/table/tabledict.c:248
 msgid "Load Table Dict OK"
 msgstr ""
 
-#: src/im/pinyin/py.c:409
-#, c-format
-msgid "Load extra dict: %s"
-msgstr ""
-
-#: src/im/table/tabledict.c:286
+#: src/im/table/tabledict.c:285
 msgid "Loading Autophrase."
 msgstr ""
 
@@ -1674,12 +1771,12 @@ msgstr ""
 msgid "LocalSelector"
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:563
+#: data/script/fcitx-diagnose.sh:652
 msgid "Locale:"
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:1109
-msgid "Log."
+#: data/script/fcitx-diagnose.sh:1383
+msgid "Log:"
 msgstr ""
 
 #: src/ui/classic/skin.desc:73
@@ -1764,7 +1861,7 @@ msgstr "Tipo de letra del menú"
 msgid "Menu Font Size"
 msgstr "Tamaño de letra de los menús"
 
-#: src/im/pinyin/py.c:2140
+#: src/im/pinyin/py.c:2138
 msgid "Migrate the old file path to the new one"
 msgstr "Migrar la ruta de archivo anterior a la nueva"
 
@@ -1785,7 +1882,7 @@ msgstr ""
 msgid "Minimum length trigger auto send candidate word when only one candidate"
 msgstr ""
 
-#: src/lib/fcitx-config/fcitx-config.c:400
+#: src/lib/fcitx-config/fcitx-config.c:410
 msgid "Missing type, take it as string"
 msgstr ""
 
@@ -1818,11 +1915,11 @@ msgstr "Nombre que puede mostrarse en la IU"
 msgid "Native"
 msgstr "Nativo"
 
-#: data/config.desc:150
+#: data/config.desc:161
 msgid "Next Candidate Word"
 msgstr ""
 
-#: data/config.desc:120
+#: data/config.desc:131
 msgid "Next Page"
 msgstr ""
 
@@ -1831,7 +1928,7 @@ msgstr ""
 msgid "Next Page Icon"
 msgstr ""
 
-#: data/config.desc:164
+#: data/config.desc:175
 msgid "No"
 msgstr "No"
 
@@ -1843,8 +1940,8 @@ msgstr ""
 msgid "No available frontend"
 msgstr ""
 
-#: src/module/notificationitem/notificationitem.c:461
-#: src/ui/kimpanel/kimpanel.c:227 src/ui/kimpanel/kimpanel.c:228
+#: src/module/notificationitem/notificationitem.c:454
+#: src/ui/kimpanel/kimpanel.c:231 src/ui/kimpanel/kimpanel.c:232
 msgid "No input window"
 msgstr ""
 
@@ -1856,7 +1953,7 @@ msgstr ""
 msgid "No remind"
 msgstr ""
 
-#: src/lib/fcitx-utils/desktop-parse.c:549
+#: src/lib/fcitx-utils/desktop-parse.c:586
 #, c-format
 msgid "Non-comment doesn't belongs to any group @ %d %s"
 msgstr ""
@@ -1869,11 +1966,11 @@ msgstr ""
 msgid "None"
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:462
+#: data/script/fcitx-diagnose.sh:551
 msgid "Note for GNOME Later than 3.6"
 msgstr ""
 
-#: data/config.desc:187
+#: data/config.desc:198
 msgid "Nothing"
 msgstr "Ninguno"
 
@@ -1881,7 +1978,7 @@ msgstr "Ninguno"
 msgid "Number"
 msgstr ""
 
-#: src/module/notificationitem/dbusmenu.c:342 src/ui/classic/classicui.c:442
+#: src/module/notificationitem/dbusmenu.c:342 src/ui/classic/classicui.c:431
 msgid "Online Help"
 msgstr "Ayuda en línea"
 
@@ -1889,12 +1986,12 @@ msgstr "Ayuda en línea"
 msgid "OpenCC"
 msgstr "OpenCC"
 
-#: src/lib/fcitx-config/fcitx-config.c:1126
+#: src/lib/fcitx-config/fcitx-config.c:1136
 #, c-format
 msgid "Option %s is Invalid, Use Default Value %s"
 msgstr ""
 
-#: src/lib/fcitx-config/fcitx-config.c:1134
+#: src/lib/fcitx-config/fcitx-config.c:1144
 #, c-format
 msgid "Option %s is Invalid."
 msgstr ""
@@ -1907,9 +2004,9 @@ msgstr ""
 msgid "Other Color"
 msgstr "Otro color"
 
-#: data/config.desc:178 data/config.desc:184 data/config.desc:194
-#: data/config.desc:200 data/config.desc:206 data/config.desc:213
-#: data/config.desc:219
+#: data/config.desc:189 data/config.desc:195 data/config.desc:205
+#: data/config.desc:211 data/config.desc:217 data/config.desc:224
+#: data/config.desc:230
 msgid "Output"
 msgstr "Salida"
 
@@ -1937,7 +2034,7 @@ msgstr ""
 msgid "Parent"
 msgstr "Padre"
 
-#: data/config.desc:166
+#: data/config.desc:177
 msgid "PerProgram"
 msgstr ""
 
@@ -1945,7 +2042,7 @@ msgstr ""
 msgid "Phrase"
 msgstr ""
 
-#: src/im/table/table.c:1408
+#: src/im/table/table.c:1405
 msgid "Phrase is already in Dict "
 msgstr ""
 
@@ -1982,7 +2079,7 @@ msgstr "Pinyin"
 msgid "Pinyin Enhance"
 msgstr ""
 
-#: src/im/pinyin/py.c:459
+#: src/im/pinyin/py.c:457
 msgid "Pinyin Index Magic Number Doesn't match"
 msgstr ""
 
@@ -1990,7 +2087,7 @@ msgstr ""
 msgid "Pinyin Key"
 msgstr ""
 
-#: src/im/table/table.c:635
+#: src/im/table/table.c:632
 msgid "Pinyin: "
 msgstr "Pinyin:"
 
@@ -1998,17 +2095,17 @@ msgstr "Pinyin:"
 msgid "PinyinJiaJia"
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:583
+#: data/script/fcitx-diagnose.sh:678
 msgid "Please check ${1} for how to install fcitx."
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:607
+#: data/script/fcitx-diagnose.sh:700
 msgid ""
 "Please check the Configure link of your distribution in ${1} for how to "
 "setup fcitx autostart."
 msgstr ""
 
-#: tools/gui/quickphrase-editor/editor.cpp:282
+#: tools/gui/quickphrase-editor/editor.cpp:280
 msgid "Please input a filename for newfile"
 msgstr ""
 
@@ -2016,7 +2113,7 @@ msgstr ""
 msgid "Please set XMODIFIERS."
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:450
+#: data/script/fcitx-diagnose.sh:532
 msgid ""
 "Please set environment variable ${env_name} to \"${value}\" using the tool "
 "your distribution provides or add ${1} to your ${2}. See ${link}."
@@ -2038,12 +2135,12 @@ msgstr ""
 msgid "Preferred Enchant provider"
 msgstr ""
 
-#: src/im/pinyin/py.c:780
+#: src/im/pinyin/py.c:778
 #, c-format
 msgid "Press 1 to delete %s in frequent list (ESC for cancel)"
 msgstr ""
 
-#: src/im/pinyin/py.c:782
+#: src/im/pinyin/py.c:780
 #, c-format
 msgid "Press 1-%d to delete %s in frequent list (ESC for cancel)"
 msgstr ""
@@ -2052,19 +2149,19 @@ msgstr ""
 msgid "Press Enter to input text"
 msgstr "Oprima Intro para introducir texto"
 
-#: data/config.desc:79
+#: data/config.desc:90
 msgid "Press Switch Key twice to Change Mode"
 msgstr ""
 
-#: src/im/pinyin/py.c:739
+#: src/im/pinyin/py.c:737
 msgid "Press index to delete user phrase (ESC for cancel)"
 msgstr ""
 
-#: src/im/pinyin/py.c:752
+#: src/im/pinyin/py.c:750
 msgid "Press number to make word in frequent list"
 msgstr ""
 
-#: data/config.desc:115
+#: data/config.desc:126
 msgid "Prev Page"
 msgstr ""
 
@@ -2073,7 +2170,7 @@ msgstr ""
 msgid "Prev Page Icon"
 msgstr ""
 
-#: data/config.desc:143
+#: data/config.desc:154
 msgid "Previous Candidate Word"
 msgstr ""
 
@@ -2090,7 +2187,7 @@ msgstr ""
 msgid "Profile"
 msgstr ""
 
-#: data/config.desc:154 data/config.desc:160 data/config.desc:169
+#: data/config.desc:165 data/config.desc:171 data/config.desc:180
 msgid "Program"
 msgstr ""
 
@@ -2110,6 +2207,10 @@ msgstr ""
 msgid "Provides DBus Support (Used by other Addon)"
 msgstr ""
 
+#: src/module/freedesktop-notify/fcitx-freedesktop-notify.conf.in:4
+msgid "Provides Freedesktop.org Notification Support (Used by other Addon)"
+msgstr ""
+
 #: src/module/fullwidthchar/fcitx-fullwidth-char.conf.in:4
 msgid "Provides Fullwidth Character Input Support"
 msgstr ""
@@ -2122,15 +2223,15 @@ msgstr ""
 msgid "Punctuation Conversion Support"
 msgstr ""
 
-#: src/module/punc/fcitx-punc.conf.in:3
+#: src/module/punc/punc.c:573 src/module/punc/fcitx-punc.conf.in:3
 msgid "Punctuation Support"
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:824
+#: data/script/fcitx-diagnose.sh:927
 msgid "Qt IM module files:"
 msgstr ""
 
-#: tools/gui/quickphrase-editor/editor.cpp:150
+#: tools/gui/quickphrase-editor/editor.cpp:148
 msgid "Quick Phrase Editor"
 msgstr ""
 
@@ -2162,15 +2263,15 @@ msgstr ""
 msgid "Quwei Input Method for Fcitx"
 msgstr ""
 
-#: data/config.desc:24
+#: data/config.desc:25
 msgid "R_ALT"
 msgstr ""
 
-#: data/config.desc:15
+#: data/config.desc:16
 msgid "R_CTRL"
 msgstr ""
 
-#: data/config.desc:16
+#: data/config.desc:17
 msgid "R_SHIFT"
 msgstr ""
 
@@ -2182,15 +2283,15 @@ msgstr ""
 msgid "Register IM"
 msgstr ""
 
-#: data/config.desc:73
+#: data/config.desc:84
 msgid "Reload configuration"
 msgstr ""
 
-#: src/im/table/table.c:1300
+#: src/im/table/table.c:1297
 msgid "Remind:"
 msgstr ""
 
-#: src/im/pinyin/py.c:2055
+#: src/im/pinyin/py.c:2053
 msgid "Remind: "
 msgstr ""
 
@@ -2202,7 +2303,7 @@ msgstr ""
 msgid "Remove File"
 msgstr ""
 
-#: src/im/table/tabledict.c:428
+#: src/im/table/tabledict.c:466
 msgid "Rename OK"
 msgstr ""
 
@@ -2232,12 +2333,16 @@ msgstr ""
 msgid "Resize Margin Top"
 msgstr ""
 
-#: src/module/notificationitem/dbusmenu.c:367 src/ui/classic/classicui.c:505
-#: src/ui/kimpanel/kimpanel.c:759
+#: src/module/notificationitem/dbusmenu.c:367 src/ui/classic/classicui.c:494
+#: src/ui/kimpanel/kimpanel.c:756
 msgid "Restart"
 msgstr ""
 
-#: data/config.desc:27
+#: src/lib/fcitx-qt/fcitxqtkeysequencewidget.cpp:316
+msgid "Right"
+msgstr ""
+
+#: data/config.desc:28
 msgid "Right Super"
 msgstr ""
 
@@ -2263,7 +2368,7 @@ msgstr ""
 msgid "Russian"
 msgstr ""
 
-#: data/config.desc:22
+#: data/config.desc:23
 msgid "SHIFT Both"
 msgstr ""
 
@@ -2283,15 +2388,15 @@ msgstr ""
 msgid "Save Clipboard History To File"
 msgstr ""
 
-#: src/im/table/tabledict.c:373
+#: src/im/table/tabledict.c:372
 msgid "Save dict error"
 msgstr ""
 
-#: data/config.desc:131
+#: data/config.desc:142
 msgid "Saving All Config and Input History"
 msgstr ""
 
-#: data/config.desc:68
+#: data/config.desc:79
 msgid "Scroll between Input Method"
 msgstr ""
 
@@ -2299,7 +2404,7 @@ msgstr ""
 msgid "Search unicode"
 msgstr ""
 
-#: data/config.desc:157
+#: data/config.desc:168
 msgid "Seconds sleep before fcitx really start"
 msgstr ""
 
@@ -2331,11 +2436,11 @@ msgstr ""
 msgid "Send Raw Preedit"
 msgstr ""
 
-#: data/config.desc:204
+#: data/config.desc:215
 msgid "Send typed raw text if Switch to inactive Mode"
 msgstr ""
 
-#: data/config.desc:167
+#: data/config.desc:178
 msgid "Share State Among Window"
 msgstr ""
 
@@ -2354,15 +2459,15 @@ msgstr ""
 msgid "Show"
 msgstr "Mostrar"
 
-#: data/config.desc:228
+#: data/config.desc:239
 msgid "Show Input Method Hint After Input method changed"
 msgstr ""
 
-#: data/config.desc:234
+#: data/config.desc:245
 msgid "Show Input Method Hint After Input method changed and Focus in"
 msgstr ""
 
-#: data/config.desc:246
+#: data/config.desc:257
 msgid "Show Input Speed"
 msgstr "Mostrar velocidad de entrada"
 
@@ -2370,7 +2475,7 @@ msgstr "Mostrar velocidad de entrada"
 msgid "Show Preedit String in Client Window"
 msgstr ""
 
-#: data/config.desc:252
+#: data/config.desc:263
 msgid "Show Version"
 msgstr "Mostrar versión"
 
@@ -2386,12 +2491,17 @@ msgstr "Shuangpin"
 msgid "Simple Pinyin support for Fcitx"
 msgstr ""
 
-#: src/module/chttrans/chttrans.c:150 src/module/chttrans/chttrans.c:185
+#: src/module/chttrans/chttrans.c:151 src/module/chttrans/chttrans.c:197
 msgid "Simplified Chinese"
 msgstr ""
 
+#: src/module/chttrans/chttrans.c:176
 #: src/module/chttrans/fcitx-chttrans.conf.in:3
 msgid "Simplified Chinese To Traditional Chinese"
+msgstr ""
+
+#: src/module/chttrans/chttrans.c:178
+msgid "Simplified Chinese is enabled."
 msgstr ""
 
 #: src/ui/classic/skin.c:680 src/ui/classic/fcitx-classic-ui.conf.in:10
@@ -2498,11 +2608,23 @@ msgstr ""
 msgid "Spell Hint"
 msgstr ""
 
+#: src/im/keyboard/keyboard.c:956
+msgid "Spell hint"
+msgstr ""
+
+#: src/im/keyboard/keyboard.c:958
+msgid "Spell hint is disabled."
+msgstr ""
+
+#: src/im/keyboard/keyboard.c:957
+msgid "Spell hint is enabled."
+msgstr ""
+
 #: data/fcitx-autostart.desktop.in:4 data/fcitx.desktop.in:4
 msgid "Start Input Method"
 msgstr ""
 
-#: src/frontend/xim/xim.c:245
+#: src/frontend/xim/xim.c:239
 #, c-format
 msgid "Start XIM error. Another XIM daemon named %s is running?"
 msgstr ""
@@ -2531,23 +2653,23 @@ msgstr ""
 msgid "Successfully Installed skin"
 msgstr ""
 
-#: data/config.desc:28
+#: data/config.desc:29
 msgid "Super Both"
 msgstr ""
 
-#: data/config.desc:31
+#: data/config.desc:32
 msgid "Super+Left Ctrl"
 msgstr ""
 
-#: data/config.desc:32
+#: data/config.desc:33
 msgid "Super+Right Ctrl"
 msgstr ""
 
-#: data/config.desc:137
+#: data/config.desc:148
 msgid "Switch Embeded Preedit"
 msgstr ""
 
-#: data/config.desc:109
+#: data/config.desc:120
 msgid "Switch Full Width Punc Mode"
 msgstr ""
 
@@ -2596,15 +2718,15 @@ msgstr ""
 msgid "Switch to the Third Input Method"
 msgstr ""
 
-#: data/config.desc:103
+#: data/config.desc:114
 msgid "Switching Full Width Character Mode"
 msgstr ""
 
-#: data/config.desc:97
+#: data/config.desc:108
 msgid "Switching Remind Mode"
 msgstr ""
 
-#: data/config.desc:91
+#: data/config.desc:102
 msgid "Switching Virtual Keyboard"
 msgstr ""
 
@@ -2617,8 +2739,8 @@ msgstr ""
 msgid "Symbol File"
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:507
-msgid "System Info."
+#: data/script/fcitx-diagnose.sh:596
+msgid "System Info:"
 msgstr ""
 
 #: src/im/table/fcitx-table.conf.in:3 src/im/table/fcitx-table.conf.in:10
@@ -2643,19 +2765,23 @@ msgid ""
 "Do you want to save the changes or discard them?"
 msgstr ""
 
+#: src/lib/fcitx-qt/fcitxqtkeysequencewidget.cpp:401
+msgid "The key you just pressed is not supported by Qt."
+msgstr ""
+
 #: src/module/pinyin-enhance/fcitx-pinyin-enhance.desc:56
 msgid ""
 "This is only a soft limit, the actually number of candidate words may be "
 "larger than this when multiple characters have the same order of strokes."
 msgstr ""
 
-#: data/config.desc:151
+#: data/config.desc:162
 msgid ""
 "This is used in some modules and input methods to navigate to the next "
 "candidate word"
 msgstr ""
 
-#: data/config.desc:144
+#: data/config.desc:155
 msgid ""
 "This is used in some modules and input methods to navigate to the previous "
 "candidate word"
@@ -2665,7 +2791,7 @@ msgstr ""
 msgid "Tip Message Color"
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:472
+#: data/script/fcitx-diagnose.sh:568
 #, sh-format
 msgid ""
 "To see some application specific problems you may have when using xim, check "
@@ -2673,7 +2799,7 @@ msgid ""
 "freezing, see ${link2}."
 msgstr ""
 
-#: src/module/punc/punc.c:149 src/module/punc/punc.c:556
+#: src/module/punc/punc.c:150 src/module/punc/punc.c:557
 msgid "Toggle Full Width Punctuation"
 msgstr ""
 
@@ -2682,7 +2808,7 @@ msgstr ""
 msgid "Toggle Half/Full width Character"
 msgstr ""
 
-#: src/ui/kimpanel/kimpanel.c:751
+#: src/ui/kimpanel/kimpanel.c:748
 msgid "Toggle Input Method"
 msgstr ""
 
@@ -2690,7 +2816,7 @@ msgstr ""
 msgid "Toggle Remind"
 msgstr ""
 
-#: src/module/chttrans/chttrans.c:151 src/module/chttrans/chttrans.c:186
+#: src/module/chttrans/chttrans.c:152 src/module/chttrans/chttrans.c:198
 msgid "Toggle Simp/Trad Chinese Conversion"
 msgstr ""
 
@@ -2725,12 +2851,16 @@ msgstr ""
 msgid "TopRight"
 msgstr ""
 
-#: src/module/chttrans/chttrans.c:150 src/module/chttrans/chttrans.c:185
+#: src/module/chttrans/chttrans.c:151 src/module/chttrans/chttrans.c:196
 msgid "Traditional Chinese"
 msgstr ""
 
 #: src/module/chttrans/fcitx-chttrans.desc:6
 msgid "Traditional Chinese Translate Engine"
+msgstr ""
+
+#: src/module/chttrans/chttrans.c:177
+msgid "Traditional Chinese is enabled."
 msgstr ""
 
 #: src/module/chttrans/fcitx-chttrans.desc:1
@@ -2743,7 +2873,7 @@ msgstr ""
 msgid "Treating abbreviated Pinyin as English"
 msgstr ""
 
-#: data/config.desc:4
+#: data/config.desc:5
 msgid "Trigger Input Method"
 msgstr ""
 
@@ -2759,7 +2889,7 @@ msgstr ""
 msgid "Type"
 msgstr "Tipo"
 
-#: data/config.desc:181
+#: data/config.desc:192
 msgid "Type half width Punc After a Number"
 msgstr ""
 
@@ -2788,9 +2918,13 @@ msgstr "Nombre único para la tabla"
 msgid "UniqueName"
 msgstr ""
 
-#: src/lib/fcitx-config/fcitx-config.c:396
+#: src/lib/fcitx-config/fcitx-config.c:406
 #, c-format
 msgid "Unknown type, take it as string: %s"
+msgstr ""
+
+#: src/lib/fcitx-qt/fcitxqtkeysequencewidget.cpp:402
+msgid "Unsupported Key"
 msgstr ""
 
 #: tools/gui/quickphrase-editor/batchdialog.cpp:31
@@ -2853,12 +2987,16 @@ msgstr "Usar puntuación ancha"
 msgid "Use enter to commit the existing string"
 msgstr ""
 
-#: data/config.desc:9
+#: data/config.desc:10
 msgid "Use extra trigger key only after using it to inactivate"
 msgstr ""
 
 #: src/lib/fcitx/instance.c:283 src/lib/fcitx/instance.c:536
 msgid "Use remind"
+msgstr ""
+
+#: src/module/xkb/fcitx-xkb.desc:9
+msgid "Use the layout of first keyboard input method in list as default layout"
 msgstr ""
 
 #: src/module/remote/fcitx-remote-module.conf.in:4
@@ -2873,8 +3011,16 @@ msgstr ""
 msgid "User Defined"
 msgstr "Definido por el usuario"
 
+#: data/script/fcitx-diagnose.sh:1237
+msgid "User Interface:"
+msgstr ""
+
 #: src/ui/classic/skin.desc:49
 msgid "User Phrase Color"
+msgstr ""
+
+#: data/script/fcitx-diagnose.sh:1047 data/script/fcitx-diagnose.sh:1130
+msgid "Version Line:"
 msgstr ""
 
 #: src/ui/classic/fcitx-classic-ui.desc:54
@@ -2914,7 +3060,7 @@ msgid "WubiPinyin"
 msgstr ""
 
 #: src/module/xkb/fcitx-xkb.desc:1 src/module/xkb/fcitx-xkb.desc:6
-#: src/module/xkb/fcitx-xkb.desc:11 src/module/xkb/fcitx-xkb.desc:16
+#: src/module/xkb/fcitx-xkb.desc:12 src/module/xkb/fcitx-xkb.desc:17
 msgid "X Keyboard"
 msgstr ""
 
@@ -2944,15 +3090,15 @@ msgstr ""
 msgid "X11 not initialized"
 msgstr "X11 no inicializado"
 
-#: data/script/fcitx-diagnose.sh:786
+#: data/script/fcitx-diagnose.sh:879
 msgid "XIM encoding:"
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:781
+#: data/script/fcitx-diagnose.sh:874
 msgid "XIM for Emacs:"
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:759
+#: data/script/fcitx-diagnose.sh:852
 msgid "XIM_SERVERS on root window:"
 msgstr ""
 
@@ -2968,39 +3114,39 @@ msgstr ""
 msgid "Xim"
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:757
+#: data/script/fcitx-diagnose.sh:850
 msgid "Xim Server Name from Environment variable is ${1}."
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:769
+#: data/script/fcitx-diagnose.sh:862
 msgid "Xim server name is the same with that set in the environment variable."
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:771
+#: data/script/fcitx-diagnose.sh:864
 msgid ""
 "Xim server name: \"${1}\" is different from that set in the environment "
 "variable: \"${2}\"."
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:804
+#: data/script/fcitx-diagnose.sh:897
 msgid "You are using xim in ${1} programs."
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:1023
+#: data/script/fcitx-diagnose.sh:1297
 msgid "You don't have any input methods enabled."
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:1031
+#: data/script/fcitx-diagnose.sh:1305
 msgid ""
 "You have a keyboard input method \"${1}\" correctly added as your default "
 "input method."
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:809
+#: data/script/fcitx-diagnose.sh:902
 msgid "You may have trouble using fcitx in ${1} programs."
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:1026
+#: data/script/fcitx-diagnose.sh:1300
 msgid ""
 "You only have one input method enabled, please add a keyboard input method "
 "as the first one and your main input method as the second one."
@@ -3020,20 +3166,20 @@ msgid ""
 "it will open config file with default text editor."
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:783
+#: data/script/fcitx-diagnose.sh:876
 msgid ""
 "Your LC_CTYPE is set to ${1} instead of one of zh, ja, ko. You may not be "
 "able to use input method in emacs because of an really old emacs bug that "
 "upstream refuse to fix for years."
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:788
+#: data/script/fcitx-diagnose.sh:881
 msgid ""
 "Your LC_CTYPE is set to ${1} whose encoding is not UTF-8. You may have "
 "trouble committing strings using XIM."
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:1035
+#: data/script/fcitx-diagnose.sh:1309
 msgid ""
 "Your first (default) input method is ${1} instead of a keyboard input "
 "method. You may have trouble deactivate fcitx."
@@ -3051,19 +3197,19 @@ msgstr "Ziguang"
 msgid "Ziranma"
 msgstr "Ziranma"
 
-#: data/script/fcitx-diagnose.sh:579
+#: data/script/fcitx-diagnose.sh:674
 msgid "executable:"
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:479
+#: data/script/fcitx-diagnose.sh:575
 msgid "here"
 msgstr ""
 
-#: src/lib/fcitx/ime.c:1634
+#: src/lib/fcitx/ime.c:1691
 msgid "min Num of Characters: "
 msgstr ""
 
-#: src/lib/fcitx-config/fcitx-config.c:1192
+#: src/lib/fcitx-config/fcitx-config.c:1200
 #, c-format
 msgid "no default option for %s/%s"
 msgstr ""
@@ -3072,7 +3218,7 @@ msgstr ""
 msgid "no valid font."
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:593
+#: data/script/fcitx-diagnose.sh:688
 msgid "process:"
 msgstr ""
 
@@ -3080,11 +3226,11 @@ msgstr ""
 msgid "pthread mutex init failed"
 msgstr ""
 
-#: data/script/fcitx-diagnose.sh:589
+#: data/script/fcitx-diagnose.sh:684
 msgid "version:"
 msgstr ""
 
-#: src/module/xkb/fcitx-xkb.desc:14
+#: src/module/xkb/fcitx-xkb.desc:15
 msgid "xmodmap command"
 msgstr ""
 

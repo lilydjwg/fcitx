@@ -135,11 +135,9 @@ void ListEditor::changeFile(int newIndex)
         if (ret == QMessageBox::Save) {
             //save(m_ui->fileListComboBox->itemText(lastFileIndex));
             save(m_lastFile);
-        } else if (ret == QMessageBox::Discard) {
+        } else if (ret == QMessageBox::Cancel) {
             m_ui->fileListComboBox->setCurrentIndex(m_fileListModel->findFile(m_lastFile));
             return;
-        } else {
-            return ;
         }
     }
     load();
@@ -333,7 +331,7 @@ void ListEditor::removeFileTriggered()
     }
 
     int ret = QMessageBox::question(this,
-                                    _("Confirm deleting"),
+                                    _("Confirm deletion"),
                                     _("Are you sure to delete %1?").arg(curName),
                                     QMessageBox::Ok | QMessageBox::Cancel);
 

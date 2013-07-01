@@ -170,19 +170,13 @@ XimCreate(FcitxInstance* instance, int frontendid)
         FcitxConfigFileDesc* configDesc = GetXimConfigDesc();
 
         FILE *fp;
-        char *file;
-        fp = FcitxXDGGetFileUserWithPrefix("conf", "fcitx-xim.config", "r", &file);
-        FcitxLog(DEBUG, "Load Config File %s", file);
-        free(file);
+        fp = FcitxXDGGetFileUserWithPrefix("conf", "fcitx-xim.config", "r", NULL);
         if (!fp) {
             if (errno == ENOENT) {
-                char *file;
                 FILE *fp2 = FcitxXDGGetFileUserWithPrefix("conf",
                                                           "fcitx-xim.config",
-                                                          "w", &file);
-                FcitxLog(DEBUG, "Save Config to %s", file);
+                                                          "w", NULL);
                 FcitxConfigSaveConfigFileFp(fp2, &xim->gconfig, configDesc);
-                free(file);
                 if (fp2) {
                     fclose(fp2);
                 }
@@ -342,6 +336,9 @@ Bool XimProtocolHandler(XIMS _ims, IMProtocol * call_data)
 boolean XimDestroy(void* arg)
 {
     FcitxXimFrontend* xim = (FcitxXimFrontend*) arg;
+
+    FcitxConfigFree(&xim->gconfig);
+
     /**
      * Destroy the window BEFORE(!!!!!) CloseIM!!!
      * Work arround for a bug in libX11. See wengxt's commit log:
