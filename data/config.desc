@@ -84,12 +84,6 @@ DefaultValue=CTRL_5
 Description=Reload configuration
 Advance=True
 
-[Hotkey/DoubleSwitchKey]
-Type=Boolean
-DefaultValue=False
-Description=Press Switch Key twice to Change Mode
-Advance=True
-
 [Hotkey/TimeInterval]
 Type=Integer
 DefaultValue=250
@@ -190,16 +184,6 @@ Advance=True
 Type=Boolean
 DefaultValue=True
 Description=Type half width Punc After a Number
-Advance=True
-
-[Output/EnterAction]
-Type=Enum
-EnumCount=3
-Enum0=Nothing
-Enum1=Clean
-Enum2=Commit
-DefaultValue=Commit
-Description=Action after press enter
 Advance=True
 
 [Output/RemindModeDisablePaging]
