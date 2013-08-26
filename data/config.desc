@@ -156,6 +156,11 @@ Description=Next Candidate Word
 LongDescription=This is used in some modules and input methods to navigate to the next candidate word
 Advance=True
 
+[Hotkey/HideAlwaysKey]
+Type=Hotkey
+DefaultValue=
+Description=Toggle Always-Hide Input Window
+
 [Program/DelayStart]
 Type=Integer
 DefaultValue=0

@@ -117,6 +117,8 @@ INPUT_RETURN_VALUE ImProcessSaveAll(void *arg);
 
 INPUT_RETURN_VALUE ImSwitchEmbeddedPreedit(void *arg);
 
+INPUT_RETURN_VALUE ImToggleHideAlways(void *arg);
+
 boolean IMIsInIMNameList(UT_array* imList, FcitxIM* ime);
 
 void FcitxInstanceLoadIM(struct _FcitxInstance* instance, FcitxAddon* addon);

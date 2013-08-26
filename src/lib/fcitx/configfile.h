@@ -148,6 +148,10 @@ extern "C" {
             FcitxHotkey hkCustomSwitchKey[2];
             int _dummy7[8];
         };
+        union {
+            FcitxHotkey hkHideAlways[2];
+            int _dummy8[8];
+        };
         int padding[7]; /**< padding */
     } FcitxGlobalConfig;
 

@@ -986,6 +986,11 @@ void FcitxUIUpdateInputWindowReal(FcitxInstance *instance)
         || FcitxMessagesGetMessageCount(input->msgAuxDown) != 0)
         toshow = true;
 
+    if (!toshow && instance->bHideAlways){
+        toshow = false;
+        goto toshow_determined;
+    }
+
     if (FcitxCandidateWordGetListSize(input->candList) > 1)
         toshow = true;
 
@@ -998,6 +1003,7 @@ void FcitxUIUpdateInputWindowReal(FcitxInstance *instance)
             && !((flags & CAPACITY_PREEDIT) && instance->config->bHideInputWindowWhenOnlyPreeditString && instance->profile->bUsePreedit))
         toshow = true;
 
+toshow_determined:
     if (!toshow) {
         if (UI_FUNC_IS_VALID(CloseInputWindow))
             instance->ui->ui->CloseInputWindow(instance->ui->addonInstance);

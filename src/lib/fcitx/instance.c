@@ -234,6 +234,7 @@ void* RunInstance(void* arg)
     instance->config = fcitx_utils_malloc0(sizeof(FcitxGlobalConfig));
     instance->profile = fcitx_utils_malloc0(sizeof(FcitxProfile));
     instance->globalIMName = strdup("");
+    instance->bHideAlways = false;
     if (instance->fd >= 0) {
         fcntl(instance->fd, F_SETFL, O_NONBLOCK);
     } else {

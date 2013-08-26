@@ -238,6 +238,11 @@ void FcitxInstanceInitBuiltInHotkey(FcitxInstance *instance)
     hk.hotkeyhandle = ImSwitchEmbeddedPreedit;
     hk.arg = instance;
     FcitxInstanceRegisterHotkeyFilter(instance, hk);
+
+    hk.hotkey = instance->config->hkHideAlways;
+    hk.hotkeyhandle = ImToggleHideAlways;
+    hk.arg = instance;
+    FcitxInstanceRegisterHotkeyFilter(instance, hk);
 }
 
 void FcitxInstanceInitIM(FcitxInstance* instance)
@@ -1780,6 +1785,14 @@ INPUT_RETURN_VALUE ImSwitchEmbeddedPreedit(void *arg)
     FcitxInstance *instance = (FcitxInstance*) arg;
     instance->profile->bUsePreedit = !instance->profile->bUsePreedit;
     FcitxProfileSave(instance->profile);
+    FcitxUIUpdateInputWindow(instance);
+    return IRV_DO_NOTHING;
+}
+
+INPUT_RETURN_VALUE ImToggleHideAlways(void *arg)
+{
+    FcitxInstance *instance = (FcitxInstance*) arg;
+    instance->bHideAlways = !instance->bHideAlways;
     FcitxUIUpdateInputWindow(instance);
     return IRV_DO_NOTHING;
 }
