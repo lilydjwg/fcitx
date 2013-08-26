@@ -1127,7 +1127,7 @@ INPUT_RETURN_VALUE TableGetCandWords(void* arg)
         if (table->bFirstCandidateAsPreedit && (candWord = FcitxCandidateWordGetFirst(candList))) {
             FcitxMessagesSetMessageCount(FcitxInputStateGetClientPreedit(input), 0);
             FcitxMessagesAddMessageStringsAtLast(FcitxInputStateGetClientPreedit(input), MSG_INPUT, candWord->strWord);
-            FcitxInputStateSetClientCursorPos(input, 0);
+            FcitxInputStateSetClientCursorPos(input, strlen(candWord->strWord));
         }
         else {
             FcitxMessagesSetMessageCount(FcitxInputStateGetClientPreedit(input), 0);
@@ -1135,7 +1135,7 @@ INPUT_RETURN_VALUE TableGetCandWords(void* arg)
             if (!table->bSendRawPreedit)
                 type |= MSG_DONOT_COMMIT_WHEN_UNFOCUS;
             FcitxMessagesAddMessageStringsAtLast(FcitxInputStateGetClientPreedit(input), type, FcitxInputStateGetRawInputBuffer(input));
-            FcitxInputStateSetClientCursorPos(input, 0);
+            FcitxInputStateSetClientCursorPos(input, FcitxInputStateGetRawInputBufferSize(input));
         }
     }
 
