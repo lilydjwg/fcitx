@@ -649,6 +649,12 @@ FcitxInputContext* FcitxInstanceGetCurrentIC(FcitxInstance* instance)
 }
 
 FCITX_EXPORT_API
+boolean FcitxInstanceGetHideAlways(FcitxInstance* instance)
+{
+    return instance->bHideAlways;
+}
+
+FCITX_EXPORT_API
 boolean FcitxInstanceSetCurrentIC(FcitxInstance* instance, FcitxInputContext* ic)
 {
     FcitxContextState prevstate = FcitxInstanceGetCurrentState(instance);

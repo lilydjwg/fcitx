@@ -986,7 +986,7 @@ void FcitxUIUpdateInputWindowReal(FcitxInstance *instance)
         || FcitxMessagesGetMessageCount(input->msgAuxDown) != 0)
         toshow = true;
 
-    if (!toshow && instance->bHideAlways){
+    if (!toshow && instance->bHideAlways && FcitxInputStateGetReallyHide(input)){
         toshow = false;
         goto toshow_determined;
     }

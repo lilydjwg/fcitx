@@ -65,7 +65,7 @@ struct _FcitxInputState {
     int dummy2;
     int lastIsSingleHZ;
     boolean bLastIsNumber;
-    boolean dummy3;
+    boolean bReallyHide;
 
     /* the ui message part, if there is something in it, then it will be shown */
     struct _FcitxCandidateWordList* candList;

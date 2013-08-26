@@ -171,6 +171,8 @@ FCITX_GETTER_VALUE(FcitxInputState, KeyCode, keycode, uint32_t)
 FCITX_GETTER_VALUE(FcitxInputState, KeySym, keysym, uint32_t)
 FCITX_GETTER_VALUE(FcitxInputState, KeyState, keystate, uint32_t)
 FCITX_SETTER(FcitxInputState, LastIsSingleChar, lastIsSingleHZ, boolean)
+FCITX_GETTER_VALUE(FcitxInputState, ReallyHide, bReallyHide, boolean)
+FCITX_SETTER(FcitxInputState, ReallyHide, bReallyHide, boolean)
 
 CONFIG_BINDING_BEGIN(FcitxIMEntry)
 CONFIG_BINDING_REGISTER("InputMethod", "UniqueName", uniqueName)
@@ -190,6 +192,7 @@ FcitxInputState* FcitxInputStateCreate()
     input->msgPreedit = FcitxMessagesNew();
     input->msgClientPreedit = FcitxMessagesNew();
     input->candList = FcitxCandidateWordNewList();
+    input->bReallyHide = false;
 
     return input;
 }

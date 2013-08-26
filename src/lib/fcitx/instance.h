@@ -158,6 +158,14 @@ extern "C" {
     boolean FcitxInstanceGetIsDestroying(FcitxInstance* instance);
 
     /**
+     * Get if hide always
+     *
+     * @param instance
+     * @return boolean
+     **/
+    boolean FcitxInstanceGetHideAlways(FcitxInstance* instance);
+
+    /**
      * Get Current Input Context
      *
      * @param instance

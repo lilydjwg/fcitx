@@ -827,6 +827,23 @@ extern "C" {
     void FcitxInputStateSetLastIsSingleChar(FcitxInputState* input, int lastIsSingleChar);
 
     /**
+     * get really hide value
+     *
+     * @param input input state
+     * @return boolean
+     **/
+    boolean FcitxInputStateGetReallyHide(FcitxInputState* input);
+
+    /**
+     * set really hide value
+     *
+     * @param input input state
+     * @param new value (boolean)
+     * @return void
+     **/
+    void FcitxInputStateSetReallyHide(FcitxInputState* input, boolean reallyHide);
+
+    /**
      * set keycode for current key event
      *
      * @param input input state
