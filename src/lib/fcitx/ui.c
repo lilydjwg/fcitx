@@ -990,8 +990,7 @@ void FcitxUIUpdateInputWindowReal(FcitxInstance *instance)
      * preedit, enable preedit (preedit string is changing).
      */
     if (instance->bHideAlways && FcitxInputStateGetReallyHide(input)
-        && (!instance->profile->bUsePreedit || instance->profile->bUsePreedit
-          && FcitxInstanceICSupportPreedit(instance, ic)))
+        && (!instance->profile->bUsePreedit || FcitxInstanceICSupportPreedit(instance, ic)))
         goto toshow_determined;
 
     if (FcitxMessagesGetMessageCount(input->msgAuxUp) != 0
