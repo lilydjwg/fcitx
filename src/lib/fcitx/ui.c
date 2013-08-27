@@ -982,14 +982,21 @@ void FcitxUIUpdateInputWindowReal(FcitxInstance *instance)
 
     boolean toshow = false;
 
+    /*
+     * preedit on but it's disabled by some means, do show the input window
+     *
+     * So, when the user wants blind typing, disable preedit (nothing changes
+     * until commiting); when the user wants no input window together with
+     * preedit, enable preedit (preedit string is changing).
+     */
+    if (instance->bHideAlways && FcitxInputStateGetReallyHide(input)
+        && (!instance->profile->bUsePreedit || instance->profile->bUsePreedit
+          && FcitxInstanceICSupportPreedit(instance, ic)))
+        goto toshow_determined;
+
     if (FcitxMessagesGetMessageCount(input->msgAuxUp) != 0
         || FcitxMessagesGetMessageCount(input->msgAuxDown) != 0)
         toshow = true;
-
-    if (!toshow && instance->bHideAlways && FcitxInputStateGetReallyHide(input)){
-        toshow = false;
-        goto toshow_determined;
-    }
 
     if (FcitxCandidateWordGetListSize(input->candList) > 1)
         toshow = true;
