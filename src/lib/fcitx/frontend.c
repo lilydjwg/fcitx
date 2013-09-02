@@ -41,7 +41,8 @@ static void FcitxInstanceCleanUpIC(FcitxInstance* instance);
 static void NewICData(FcitxInstance* instance, FcitxInputContext* ic);
 static void FreeICData(FcitxInstance* instance, FcitxInputContext* ic);
 static void FillICData(FcitxInstance* instance, FcitxInputContext* ic);
-static boolean AppPreeditBlacklisted(FcitxInputContext* ic);
+static boolean AppPreeditBlacklisted(
+    FcitxInstance* instance, FcitxInputContext* ic);
 
 void FillICData(FcitxInstance* instance, FcitxInputContext* ic)
 {
@@ -78,6 +79,7 @@ void FreeICData(FcitxInstance* instance, FcitxInputContext* ic)
         }
     }
     utarray_free(ic2->data);
+    fcitx_utils_free(ic2->prgname);
 }
 
 FCITX_EXPORT_API void*
@@ -169,6 +171,7 @@ FcitxInstanceCreateIC(FcitxInstance* instance, int frontendid, void * priv)
     rec->offset_x = -1;
     rec->offset_y = -1;
     ((FcitxInputContext2*)rec)->prgname = NULL;
+    ((FcitxInputContext2*)rec)->mayUsePreedit = TriUnknown;
 
     NewICData(instance, rec);
     switch (instance->config->shareState) {
@@ -309,8 +312,8 @@ void FcitxInstanceDestroyIC(FcitxInstance* instance, int frontendid, void* filte
                 FcitxInstanceSetCurrentIC(instance, NULL);
             }
 
-            FreeICData(instance, rec);
             frontend->DestroyIC((*pfrontend)->addonInstance, rec);
+            FreeICData(instance, rec);
             return;
         }
     }
@@ -419,7 +422,7 @@ void FcitxInstanceUpdatePreedit(FcitxInstance* instance, FcitxInputContext* ic)
     if (ic == NULL)
         return;
 
-    if (AppPreeditBlacklisted(ic))
+    if (AppPreeditBlacklisted(instance, ic))
         return;
 
     if (!(ic->contextCaps & CAPACITY_PREEDIT))
@@ -561,47 +564,30 @@ boolean FcitxInstanceICSupportPreedit(FcitxInstance* instance, FcitxInputContext
 {
     if (!ic || ((ic->contextCaps & CAPACITY_PREEDIT) == 0
                 || !instance->profile->bUsePreedit
-                || AppPreeditBlacklisted(ic)))
+                || AppPreeditBlacklisted(instance, ic)))
         return false;
     return true;
 }
 
-static boolean AppPreeditBlacklisted(FcitxInputContext* ic)
+static boolean AppPreeditBlacklisted(
+    FcitxInstance* instance, FcitxInputContext* ic)
 {
-    static UT_array* no_preedit_app_list = NULL;
-    const char* no_preedit_apps;
-    int ret;
+    FcitxInputContext2* ic2 = (FcitxInputContext2*) ic;
+    if (ic2->mayUsePreedit != TriUnknown)
+        return ic2->mayUsePreedit;
 
-    if (no_preedit_app_list == NULL) {
-        const char* _no_preedit_apps = NO_PREEDIT_APPS;
-        UT_array* app_pat_list;
-        regex_t* re = NULL;
+    ic2->mayUsePreedit = false;
 
-        no_preedit_apps = getenv("FCITX_NO_PREEDIT_APPS");
-        if (no_preedit_apps == NULL)
-            no_preedit_apps = _no_preedit_apps;
-        app_pat_list = fcitx_utils_split_string(no_preedit_apps, ',');
-
-        utarray_new(no_preedit_app_list, fcitx_ptr_icd);
-        utarray_foreach(pat, app_pat_list, char*) {
-            if (re == NULL)
-                re = malloc(sizeof(regex_t));
-            ret = regcomp(re, *pat, REG_EXTENDED | REG_ICASE | REG_NOSUB);
-            if (ret)
-                continue;
-            utarray_push_back(no_preedit_app_list, &re);
-            re = NULL;
-        }
-    }
-
-    const char* prgname = ((FcitxInputContext2*)ic)->prgname;
+    const char* prgname = ic2->prgname;
     if (!prgname)
         return false;
 
-    utarray_foreach(re, no_preedit_app_list, regex_t*) {
-        ret = regexec(*re, prgname, 0, NULL, 0);
-        if (ret == 0) /* matched */
+    utarray_foreach(re, instance->no_preedit_app_list, regex_t*) {
+        if (regexec(*re, prgname, 0, NULL, 0) == 0) {
+            /* matched */
+            ic2->mayUsePreedit = true;
             return true;
+        }
     }
 
     return false;
