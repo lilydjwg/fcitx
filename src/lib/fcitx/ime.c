@@ -974,6 +974,10 @@ INPUT_RETURN_VALUE FcitxInstanceDoInputCallback(
         }
     }
 
+    if (retVal == IRV_TO_PROCESS) {
+        retVal = FcitxInstanceProcessHotkey(instance, sym, state);
+    }
+
     if (FcitxInstanceGetCurrentStatev2(instance) == IS_ACTIVE &&
         !input->bIsDoInputOnly && retVal == IRV_TO_PROCESS) {
         FcitxInstanceProcessPostInputFilter(instance, sym, state, &retVal);
@@ -984,10 +988,6 @@ INPUT_RETURN_VALUE FcitxInstanceDoInputCallback(
             else
                 retVal = FcitxStandardKeyBlocker(input, sym, state);
         }
-    }
-
-    if (retVal == IRV_TO_PROCESS) {
-        retVal = FcitxInstanceProcessHotkey(instance, sym, state);
     }
 
     FcitxInstanceProcessInputReturnValue(instance, retVal);
@@ -1800,7 +1800,6 @@ INPUT_RETURN_VALUE ImToggleHideMore(void *arg)
         return IRV_TO_PROCESS;
 
     instance->profile->bHideMore = !instance->profile->bHideMore;
-    printf("Toggled!.\n");
     FcitxProfileSave(instance->profile);
     return IRV_FLAG_UPDATE_INPUT_WINDOW;
 }
