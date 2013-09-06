@@ -77,6 +77,11 @@ extern "C" {
          **/
         char* imList;
 
+        /**
+         * hide input window more often
+         **/
+        boolean bHideMore;
+
     } FcitxProfile;
 
     /**

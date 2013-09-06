@@ -117,7 +117,7 @@ INPUT_RETURN_VALUE ImProcessSaveAll(void *arg);
 
 INPUT_RETURN_VALUE ImSwitchEmbeddedPreedit(void *arg);
 
-INPUT_RETURN_VALUE ImToggleHideAlways(void *arg);
+INPUT_RETURN_VALUE ImToggleHideMore(void *arg);
 
 boolean IMIsInIMNameList(UT_array* imList, FcitxIM* ime);
 

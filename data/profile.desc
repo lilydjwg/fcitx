@@ -28,5 +28,10 @@ Type=Boolean
 DefaultValue=True
 Description=Show Preedit String in Client Window
 
+[Profile/HideMore]
+Type=Boolean
+DefaultValue=False
+Description=Hide Input Window More Often
+
 [DescriptionFile]
 LocaleDomain=fcitx

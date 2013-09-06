@@ -242,8 +242,8 @@ void FcitxInstanceInitBuiltInHotkey(FcitxInstance *instance)
     hk.arg = instance;
     FcitxInstanceRegisterHotkeyFilter(instance, hk);
 
-    hk.hotkey = instance->config->hkHideAlways;
-    hk.hotkeyhandle = ImToggleHideAlways;
+    hk.hotkey = instance->config->hkHideMore;
+    hk.hotkeyhandle = ImToggleHideMore;
     hk.arg = instance;
     FcitxInstanceRegisterHotkeyFilter(instance, hk);
 }
@@ -1792,12 +1792,16 @@ INPUT_RETURN_VALUE ImSwitchEmbeddedPreedit(void *arg)
     return IRV_DO_NOTHING;
 }
 
-INPUT_RETURN_VALUE ImToggleHideAlways(void *arg)
+INPUT_RETURN_VALUE ImToggleHideMore(void *arg)
 {
     FcitxInstance *instance = (FcitxInstance*) arg;
-    instance->bHideAlways = !instance->bHideAlways;
-    FcitxUIUpdateInputWindow(instance);
-    return IRV_DO_NOTHING;
+    FcitxInputContext* ic = FcitxInstanceGetCurrentIC(instance);
+    if (ic->state == IS_INACTIVE)
+        return IRV_TO_PROCESS;
+
+    instance->profile->bHideMore = !instance->profile->bHideMore;
+    FcitxProfileSave(instance->profile);
+    return IRV_FLAG_UPDATE_INPUT_WINDOW;
 }
 
 FCITX_EXPORT_API

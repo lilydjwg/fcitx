@@ -79,7 +79,6 @@ struct _FcitxInstance {
 
     /* Fcitx is not good at multi process, so put a readonlyMode in it */
     boolean readonlyMode;
-    boolean bHideAlways;
 
     /* config file */
     FcitxGlobalConfig* config;
