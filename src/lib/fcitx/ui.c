@@ -989,7 +989,7 @@ void FcitxUIUpdateInputWindowReal(FcitxInstance *instance)
      * until commiting); when the user wants no input window together with
      * preedit, enable preedit (preedit string is changing).
      */
-    if (instance->profile->bHideMore && FcitxInputStateGetReallyHide(input)
+    if (instance->profile->bHideMore && FcitxInputStateGetHideHint(input)
         && (!instance->profile->bUsePreedit || FcitxInstanceICSupportPreedit(instance, ic)))
         goto toshow_determined;
 

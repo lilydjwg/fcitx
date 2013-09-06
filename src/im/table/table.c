@@ -376,7 +376,7 @@ INPUT_RETURN_VALUE DoTableInput(void* arg, FcitxKeySym sym, unsigned int state)
         tbl->curLoadedTable = table;
     }
 
-    FcitxInputStateSetReallyHide(input, false);
+    FcitxInputStateSetHideHint(input, false);
 
     if (FcitxHotkeyIsHotKeyModifierCombine(sym, state))
         return IRV_TO_PROCESS;
@@ -471,7 +471,7 @@ INPUT_RETURN_VALUE DoTableInput(void* arg, FcitxKeySym sym, unsigned int state)
                             }
                         }
 
-                        FcitxInputStateSetReallyHide(input, true);
+                        FcitxInputStateSetHideHint(input, true);
                         retVal = TableGetCandWords(table);
                         int key = FcitxInputStateGetRawInputBuffer(input)[0];
                         if (!table->bIgnorePunc
@@ -506,7 +506,7 @@ INPUT_RETURN_VALUE DoTableInput(void* arg, FcitxKeySym sym, unsigned int state)
                                 strCodeInput[raw_size - 1] = '\0';
                                 FcitxInstanceCommitString(instance, FcitxInstanceGetCurrentIC(instance), strCodeInput);
                             }
-                            FcitxInputStateSetReallyHide(input, true);
+                            FcitxInputStateSetHideHint(input, true);
                             retVal = IRV_DISPLAY_CANDWORDS;
                             FcitxInputStateSetRawInputBufferSize(input, 1);
                             strCodeInput[0] = sym;
@@ -526,7 +526,7 @@ INPUT_RETURN_VALUE DoTableInput(void* arg, FcitxKeySym sym, unsigned int state)
                     }
                 } else {
                     if (table->bUseAutoSend && table->iTableAutoSendToClient) {
-                        FcitxInputStateSetReallyHide(input, true);
+                        FcitxInputStateSetHideHint(input, true);
                         retVal = IRV_DISPLAY_CANDWORDS;
                         if (FcitxCandidateWordPageCount(candList)) {
                             FcitxCandidateWord* candWord = FcitxCandidateWordGetCurrentWindow(candList);
@@ -663,7 +663,7 @@ INPUT_RETURN_VALUE DoTableInput(void* arg, FcitxKeySym sym, unsigned int state)
                     FcitxInputStateGetClientPreedit(input),
                     MSG_INPUT | MSG_DONOT_COMMIT_WHEN_UNFOCUS,
                     FcitxInputStateGetRawInputBuffer(input));
-                FcitxInputStateSetReallyHide(input, true);
+                FcitxInputStateSetHideHint(input, true);
                 retVal = IRV_DISPLAY_CANDWORDS;
             } else
                 return IRV_CLEAN;
@@ -682,19 +682,19 @@ INPUT_RETURN_VALUE DoTableInput(void* arg, FcitxKeySym sym, unsigned int state)
                     TableDelPhraseByIndex(table, candWord->priv);
                     tbl->bIsTableDelPhrase = false;
                     FcitxInputStateSetIsDoInputOnly(input, false);
-                    FcitxInputStateSetReallyHide(input, true);
+                    FcitxInputStateSetHideHint(input, true);
                     retVal = IRV_DISPLAY_CANDWORDS;
                 } else if (candWord->owner == table && tbl->bIsTableAdjustOrder) {
                     TableAdjustOrderByIndex(table, candWord->priv);
                     tbl->bIsTableAdjustOrder = false;
                     FcitxInputStateSetIsDoInputOnly(input, false);
-                    FcitxInputStateSetReallyHide(input, true);
+                    FcitxInputStateSetHideHint(input, true);
                     retVal = IRV_DISPLAY_CANDWORDS;
                 } else if (candWord->owner == table && tbl->bIsTableClearFreq) {
                     TableClearFreqByIndex(table, candWord->priv);
                     tbl->bIsTableClearFreq = false;
                     FcitxInputStateSetIsDoInputOnly(input, false);
-                    FcitxInputStateSetReallyHide(input, true);
+                    FcitxInputStateSetHideHint(input, true);
                     retVal = IRV_DISPLAY_CANDWORDS;
                 }
                 else
@@ -738,7 +738,7 @@ INPUT_RETURN_VALUE DoTableInput(void* arg, FcitxKeySym sym, unsigned int state)
                     FcitxCandidateWordReset(candList);
                     retVal = IRV_DISPLAY_LAST;
                 } else if (FcitxInputStateGetRawInputBufferSize(input)) {
-                    FcitxInputStateSetReallyHide(input, true);
+                    FcitxInputStateSetHideHint(input, true);
                     retVal = IRV_DISPLAY_CANDWORDS;
                 } else
                     retVal = IRV_CLEAN;
@@ -1375,7 +1375,7 @@ boolean TablePhraseTips(void *arg)
     FcitxInputState *input = FcitxInstanceGetInputState(instance);
 
     if (FcitxInstanceGetHideAlways(instance)) {
-      FcitxInputStateSetReallyHide(input, true);
+      FcitxInputStateSetHideHint(input, true);
       return false;
     }
 

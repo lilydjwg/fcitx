@@ -171,8 +171,8 @@ FCITX_GETTER_VALUE(FcitxInputState, KeyCode, keycode, uint32_t)
 FCITX_GETTER_VALUE(FcitxInputState, KeySym, keysym, uint32_t)
 FCITX_GETTER_VALUE(FcitxInputState, KeyState, keystate, uint32_t)
 FCITX_SETTER(FcitxInputState, LastIsSingleChar, lastIsSingleHZ, boolean)
-FCITX_GETTER_VALUE(FcitxInputState, ReallyHide, bReallyHide, boolean)
-FCITX_SETTER(FcitxInputState, ReallyHide, bReallyHide, boolean)
+FCITX_GETTER_VALUE(FcitxInputState, HideHint, bHideHint, boolean)
+FCITX_SETTER(FcitxInputState, HideHint, bHideHint, boolean)
 
 CONFIG_BINDING_BEGIN(FcitxIMEntry)
 CONFIG_BINDING_REGISTER("InputMethod", "UniqueName", uniqueName)
@@ -192,7 +192,7 @@ FcitxInputState* FcitxInputStateCreate()
     input->msgPreedit = FcitxMessagesNew();
     input->msgClientPreedit = FcitxMessagesNew();
     input->candList = FcitxCandidateWordNewList();
-    input->bReallyHide = false;
+    input->bHideHint = false;
 
     return input;
 }
@@ -1800,6 +1800,7 @@ INPUT_RETURN_VALUE ImToggleHideMore(void *arg)
         return IRV_TO_PROCESS;
 
     instance->profile->bHideMore = !instance->profile->bHideMore;
+    printf("Toggled!.\n");
     FcitxProfileSave(instance->profile);
     return IRV_FLAG_UPDATE_INPUT_WINDOW;
 }

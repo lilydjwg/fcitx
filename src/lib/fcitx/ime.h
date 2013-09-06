@@ -832,7 +832,7 @@ extern "C" {
      * @param input input state
      * @return boolean
      **/
-    boolean FcitxInputStateGetReallyHide(FcitxInputState* input);
+    boolean FcitxInputStateGetHideHint(FcitxInputState* input);
 
     /**
      * set really hide value
@@ -841,7 +841,7 @@ extern "C" {
      * @param new value (boolean)
      * @return void
      **/
-    void FcitxInputStateSetReallyHide(FcitxInputState* input, boolean reallyHide);
+    void FcitxInputStateSetHideHint(FcitxInputState* input, boolean reallyHide);
 
     /**
      * set keycode for current key event
