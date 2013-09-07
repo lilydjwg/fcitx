@@ -569,20 +569,19 @@ _NormalizeHotkeyForModifier(const FcitxHotkey* origin, FcitxHotkey* group1, Fcit
     }
 }
 
+/**
+ * consider different situation
+ * ctrl+space -> on press (reason space is not modifier
+ * space -> on press
+ * a -> on press
+ * tab -> on press
+ * ctrl -> on release
+ *
+ * once here's a wrong implementation that using all key without unicode as trigger on release
+ * which passes press to im. (to mozc)
+ */
 static inline boolean IsTriggerOnRelease(FcitxKeySym sym, unsigned int state) {
-    if (FcitxHotkeyIsHotKeyModifierCombine(sym, state)) {
-        return true;
-    }
-
-    if (state != 0) {
-        return false;
-    }
-
-    if (FcitxKeySymToUnicode(sym)) {
-        return false;
-    }
-
-    return true;
+    return (FcitxHotkeyIsHotKeyModifierCombine(sym, state));
 }
 
 INPUT_RETURN_VALUE _DoTrigger(FcitxInstance* instance)
@@ -743,7 +742,7 @@ INPUT_RETURN_VALUE FcitxInstanceProcessKey(
     FcitxHotkey hkTrigger1[2];
     FcitxHotkey hkTrigger2[2];
     FcitxHotkey hkActivate1[2];
-    FcitxHotkey     hkActivate2[2];
+    FcitxHotkey hkActivate2[2];
     FcitxHotkey hkInactivate1[2];
     FcitxHotkey hkInactivate2[2];
     // check config.desc
@@ -774,7 +773,7 @@ INPUT_RETURN_VALUE FcitxInstanceProcessKey(
         {KR_SWITCH_IM_REVERSE, hkSwitchPrev1, hkSwitchPrev2, _DoSwitchIMReverse, _CheckSwitchIM}, // KR_SWITCH_IM_REVERSE,
         {KR_TRIGGER, hkTrigger1, hkTrigger2, _DoTrigger, NULL},
         {KR_ACTIVATE, hkActivate1, hkActivate2, _DoActivate, _CheckActivate},
-        {KR_DEACTIVATE, hkActivate2, hkActivate2, _DoDeactivate, _CheckDeactivate}, //  KR_DEACTIVATE
+        {KR_DEACTIVATE, hkInactivate1, hkInactivate2, _DoDeactivate, _CheckDeactivate}, //  KR_DEACTIVATE
     };
 
     if (instance->CurrentIC == NULL)
@@ -981,13 +980,18 @@ INPUT_RETURN_VALUE FcitxInstanceDoInputCallback(
     if (FcitxInstanceGetCurrentStatev2(instance) == IS_ACTIVE &&
         !input->bIsDoInputOnly && retVal == IRV_TO_PROCESS) {
         FcitxInstanceProcessPostInputFilter(instance, sym, state, &retVal);
+    }
 
-        if (retVal == IRV_TO_PROCESS) {
-            if (currentIM && currentIM->KeyBlocker)
-                retVal = currentIM->KeyBlocker(currentIM->klass, sym, state);
-            else
-                retVal = FcitxStandardKeyBlocker(input, sym, state);
-        }
+    if (retVal == IRV_TO_PROCESS) {
+        retVal = FcitxInstanceProcessHotkey(instance, sym, state);
+    }
+
+    if (FcitxInstanceGetCurrentStatev2(instance) == IS_ACTIVE &&
+        !input->bIsDoInputOnly && retVal == IRV_TO_PROCESS) {
+        if (currentIM && currentIM->KeyBlocker)
+            retVal = currentIM->KeyBlocker(currentIM->klass, sym, state);
+        else
+            retVal = FcitxStandardKeyBlocker(input, sym, state);
     }
 
     FcitxInstanceProcessInputReturnValue(instance, retVal);
