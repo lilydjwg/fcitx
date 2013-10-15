@@ -644,6 +644,20 @@ void fcitx_utils_launch_restart()
 }
 
 FCITX_EXPORT_API
+void fcitx_utils_restart_in_place(void)
+{
+    char* command = fcitx_utils_get_fcitx_path_with_filename("bindir", "fcitx");
+    char* const argv[] = {
+        command,
+        "-D", /* Don't start as daemon */
+        NULL
+    };
+    execv(argv[0], argv);
+    perror("Restart failed: execvp:");
+    _exit(1);
+}
+
+FCITX_EXPORT_API
 void fcitx_utils_start_process(char** args)
 {
     /* exec command */
@@ -653,6 +667,7 @@ void fcitx_utils_start_process(char** args)
     if (child_pid < 0) {
         perror("fork");
     } else if (child_pid == 0) {         /* child process  */
+        setsid();
         pid_t grandchild_pid;
 
         grandchild_pid = fork();

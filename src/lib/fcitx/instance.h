@@ -285,6 +285,8 @@ extern "C" {
      **/
     boolean FcitxInstanceRun(int argc, char* argv[], int fd);
 
+    void FcitxInstanceRestart(FcitxInstance *instance);
+
 #ifdef __cplusplus
 }
 #endif
