@@ -113,6 +113,15 @@ DefaultValue=0
 Description=Prompt Table Code
 Type=Boolean
 
+[CodeTable/CandidateLayout]
+Description=Candidate Table Layout
+Type=Enum
+DefaultValue=Not Set
+EnumCount=3
+Enum0=Not Set
+Enum1=Vertical
+Enum2=Horizontal
+
 [CodeTable/Symbol]
 Description=Symbol
 Type=String
@@ -158,8 +167,20 @@ Description=Keyboard Layout to be used
 Type=String
 DefaultValue=us
 
+[CodeTable/UseAlternativeCandidateWordNumber]
+Description=Use Alternative Candidate Word Number
+Type=Boolean
+DefaultValue=False
+
+[CodeTable/CandidateWordNumber]
+Description=Candidate Word Number
+Type=Integer
+DefaultValue=5
+Min=1
+Max=10
+
 [CodeTable/UseAlternativePageKey]
-Description=Alternative Prev Page Key
+Description=Use Alternative Key for paging
 Type=Boolean
 DefaultValue=False
 

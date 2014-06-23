@@ -5,21 +5,22 @@
 # Translators:
 # しろう, 2013
 # しろう <>, 2013
-# いくや あわしろ <ikunya@gmail.com>, 2013
-# いくや あわしろ <ikunya@gmail.com>, 2012-2013
-# HANZUBON <ishikawa@hanzubon.jp>, 2014
+# AWASHIRO Ikuya <ikunya@gmail.com>, 2014
+# AWASHIRO Ikuya <ikunya@gmail.com>, 2013
+# AWASHIRO Ikuya <ikunya@gmail.com>, 2012-2013
+# ISHIKAWA Mutsumi <ishikawa@hanzubon.jp>, 2014
 # mongrelP＠一応求職中 木村 <kimi.nicoco@gmail.com>, 2012
-# shirou - しろう, 2013
-# Xuetian Weng <wengxt@gmail.com>, 2013
-# Xuetian Weng <wengxt@gmail.com>, 2013
+# WAKAYAMA Shirou <shirou.faw@gmail.com>, 2013
+# csslayer <wengxt@gmail.com>, 2013
+# csslayer <wengxt@gmail.com>, 2013
 # usingsystem8 <yuta.ooka@gmail.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: fcitx\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2014-01-06 06:02-0500\n"
-"PO-Revision-Date: 2014-01-06 13:15+0000\n"
-"Last-Translator: HANZUBON <ishikawa@hanzubon.jp>\n"
+"POT-Creation-Date: 2014-06-14 16:02+0200\n"
+"PO-Revision-Date: 2014-06-14 13:02+0000\n"
+"Last-Translator: csslayer <wengxt@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/projects/p/fcitx/language/"
 "ja/)\n"
 "Language: ja\n"
@@ -28,7 +29,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: src/im/table/table.c:1398
+#: src/im/table/table.c:1403
 msgid " Ctrl+Delete To Delete"
 msgstr "Ctrl+Delete で削除"
 
@@ -101,7 +102,7 @@ msgstr "/Note_for_GNOME_Later_than_3.6"
 msgid "/XIM"
 msgstr "/XIM"
 
-#: src/lib/fcitx/ime.c:1756
+#: src/lib/fcitx/ime.c:1772
 msgid "/min  Time Used: "
 msgstr ""
 
@@ -288,18 +289,18 @@ msgstr "最初の候補を置き換え可能にする"
 msgid "Allow to Override System XKB Settings"
 msgstr "システムの XKB 設定を上書き可能にする"
 
-#: src/im/keyboard/fcitx-keyboard.desc:12 src/im/table/table.desc:137
+#: src/im/keyboard/fcitx-keyboard.desc:12 src/im/table/table.desc:146
 #: src/module/autoeng/fcitx-autoeng.desc:7
 #: src/module/clipboard/fcitx-clipboard.desc:40
 #: src/module/quickphrase/fcitx-quickphrase.desc:21
 msgid "Alt"
 msgstr "Alt"
 
-#: src/im/table/table.desc:172
+#: src/im/table/table.desc:193
 msgid "Alternative Next Page Key"
 msgstr "別の次ページキー"
 
-#: src/im/table/table.desc:162 src/im/table/table.desc:167
+#: src/im/table/table.desc:188
 msgid "Alternative Prev Page Key"
 msgstr "別の前ページキー"
 
@@ -419,24 +420,11 @@ msgstr "Ctrl+Shift"
 msgid "CTRL_SUPER"
 msgstr "Ctrl+Super"
 
-#: src/im/pinyin/py.c:393
-msgid "Can not find System Database of Pinyin!"
-msgstr "Pinyinのシステムデータベースが見つかりません。"
-
-#: src/ui/classic/skin.c:121
-msgid "Can not load default skin, is installion correct?"
-msgstr "既定のスキンをロードできません、インストールが失敗した可能性があります"
-
-#: src/ui/classic/skin.c:126
-#, c-format
-msgid "Can not load skin %s, return to default"
-msgstr "%sスキンをロードできません、既定のスキンに戻ります。"
-
 #: src/frontend/xim/xim.c:146
 msgid "Can't Create imWindow"
 msgstr "imWindow を生成できません"
 
-#: src/module/punc/punc.c:398
+#: src/module/punc/punc.c:410
 msgid "Can't open punc file."
 msgstr "句読点ファイルを開けません"
 
@@ -449,7 +437,11 @@ msgstr "ソケット %s を開けません: %s"
 msgid "Candidate Index Color"
 msgstr "候補インデックスの色"
 
-#: data/config.desc:204
+#: src/im/table/table.desc:117
+msgid "Candidate Table Layout"
+msgstr ""
+
+#: data/config.desc:204 src/im/table/table.desc:176
 msgid "Candidate Word Number"
 msgstr "候補の単語数"
 
@@ -488,6 +480,10 @@ msgstr "デスクトップ環境を決定できません。"
 #: data/script/fcitx-diagnose.sh:1187
 msgid "Cannot find ${2} for gtk ${1}"
 msgstr "gtk ${1} 用の ${2} が見つかりません"
+
+#: src/im/pinyin/py.c:393
+msgid "Cannot find System Database of Pinyin!"
+msgstr ""
 
 #: data/script/fcitx-diagnose.sh:918
 msgid ""
@@ -545,13 +541,22 @@ msgstr ""
 msgid "Cannot find xim_server on root window."
 msgstr "ルートウィンドウで xim_server が見つかりません。"
 
-#: src/im/table/table.c:641
+#: src/im/table/table.c:645
 msgid "Cannot found Pinyin"
 msgstr "Pinyin が見つかりません"
 
 #: data/script/fcitx-diagnose.sh:959
 msgid "Cannot interpret XMODIFIERS: ${1}."
 msgstr "XMODIFIERSを解釈できません: ${1}"
+
+#: src/ui/classic/skin.c:121
+msgid "Cannot load default skin, is installion correct?"
+msgstr ""
+
+#: src/ui/classic/skin.c:126
+#, c-format
+msgid "Cannot load skin %s, return to default"
+msgstr ""
 
 #: data/script/fcitx-diagnose.sh:1419
 msgid "Cannot read im list from fcitx profile."
@@ -584,7 +589,7 @@ msgstr "右"
 msgid "Change Fcitx Configuration"
 msgstr "Fcitx 設定を変更"
 
-#: src/im/table/table.desc:127
+#: src/im/table/table.desc:136
 msgid "Choose"
 msgstr "選択"
 
@@ -592,22 +597,22 @@ msgstr "選択"
 msgid "Choose Second and Third Candidate Word"
 msgstr "二番目と三番目の候補を選択"
 
-#: src/im/keyboard/fcitx-keyboard.desc:7 src/im/table/table.desc:132
+#: src/im/keyboard/fcitx-keyboard.desc:7 src/im/table/table.desc:141
 #: src/module/autoeng/fcitx-autoeng.desc:2
 #: src/module/clipboard/fcitx-clipboard.desc:35
 #: src/module/quickphrase/fcitx-quickphrase.desc:16
 msgid "Choose key modifier"
 msgstr "修飾キーを選択"
 
-#: src/im/table/table.c:709
+#: src/im/table/table.c:713
 msgid "Choose the phrase to be deleted, Press Escape to Cancel"
 msgstr ""
 
-#: src/im/table/table.c:701
+#: src/im/table/table.c:705
 msgid "Choose the phrase to be put in the front, Press Escape to Cancel"
 msgstr ""
 
-#: src/im/table/table.c:717
+#: src/im/table/table.c:721
 msgid "Choose the phrase to clear typing history, Press Escape to Cancel"
 msgstr "入力履歴を削除するフレーズを選択、Escapeでキャンセル"
 
@@ -644,7 +649,7 @@ msgstr "頻度をクリア"
 msgid "Clear local Input Method"
 msgstr "ローカルの入力メソッドをクリア"
 
-#: src/module/imselector/imselector.c:325
+#: src/module/imselector/imselector.c:326
 msgid "Clear local input method"
 msgstr "ローカルIMをクリア"
 
@@ -671,7 +676,7 @@ msgstr "コードテーブルファイル"
 msgid "Code Table Name"
 msgstr "コードテーブル名"
 
-#: src/im/table/table.c:1394
+#: src/im/table/table.c:1399
 msgid "Code is "
 msgstr "コードは"
 
@@ -687,14 +692,16 @@ msgstr "コードは"
 #: src/im/table/table.desc:92 src/im/table/table.desc:97
 #: src/im/table/table.desc:102 src/im/table/table.desc:107
 #: src/im/table/table.desc:112 src/im/table/table.desc:116
-#: src/im/table/table.desc:121 src/im/table/table.desc:126
-#: src/im/table/table.desc:131 src/im/table/table.desc:141
-#: src/im/table/table.desc:146 src/im/table/table.desc:151
-#: src/im/table/table.desc:156 src/im/table/table.desc:161
-#: src/im/table/table.desc:166 src/im/table/table.desc:171
-#: src/im/table/table.desc:176 src/im/table/table.desc:181
-#: src/im/table/table.desc:186 src/im/table/table.desc:191
-#: src/im/table/table.desc:196 src/im/table/table.desc:201
+#: src/im/table/table.desc:125 src/im/table/table.desc:130
+#: src/im/table/table.desc:135 src/im/table/table.desc:140
+#: src/im/table/table.desc:150 src/im/table/table.desc:155
+#: src/im/table/table.desc:160 src/im/table/table.desc:165
+#: src/im/table/table.desc:170 src/im/table/table.desc:175
+#: src/im/table/table.desc:182 src/im/table/table.desc:187
+#: src/im/table/table.desc:192 src/im/table/table.desc:197
+#: src/im/table/table.desc:202 src/im/table/table.desc:207
+#: src/im/table/table.desc:212 src/im/table/table.desc:217
+#: src/im/table/table.desc:222
 msgid "CodeTable"
 msgstr "コードテーブル"
 
@@ -706,15 +713,15 @@ msgstr "カーソルの色"
 msgid "Comment"
 msgstr "コメント"
 
-#: src/im/table/table.desc:182
+#: src/im/table/table.desc:203
 msgid "Commit and pass when invalid key of this table pressed"
 msgstr "このテーブルの不正なキーが押された時に確定し、飛ばす"
 
-#: src/im/table/table.desc:187
+#: src/im/table/table.desc:208
 msgid "Commit key for select first candidate"
 msgstr "最初の候補を確定するキー"
 
-#: src/im/table/table.desc:192
+#: src/im/table/table.desc:213
 msgid "Commit string when there is no match"
 msgstr "一致しない場合文字列を確定する"
 
@@ -786,7 +793,7 @@ msgstr "コピー"
 msgid "Create new file"
 msgstr "ファイルの新規作成"
 
-#: src/im/keyboard/fcitx-keyboard.desc:13 src/im/table/table.desc:138
+#: src/im/keyboard/fcitx-keyboard.desc:13 src/im/table/table.desc:147
 #: src/module/autoeng/fcitx-autoeng.desc:8
 #: src/module/clipboard/fcitx-clipboard.desc:41
 #: src/module/quickphrase/fcitx-quickphrase.desc:22
@@ -809,7 +816,7 @@ msgstr "現在使える入力メソッドのリスト"
 msgid "Current Input Method Name"
 msgstr "現在の入力メソッド名"
 
-#: src/module/imselector/imselector.c:311
+#: src/module/imselector/imselector.c:312
 msgid "Current local input method is "
 msgstr "現在のローカル入力メソッドは "
 
@@ -901,8 +908,8 @@ msgstr "Pinyin 記号を無効にする"
 
 #: src/lib/fcitx/addon.c:298
 #, c-format
-msgid "Disable addon %s, dependency %s can not be satisfied."
-msgstr "アドオン %s を無効にしました。依存性 %s が解決されていません。"
+msgid "Disable addon %s, dependency %s cannot be satisfied."
+msgstr ""
 
 #: src/module/notificationitem/notificationitem.c:460
 #: src/ui/kimpanel/kimpanel.c:268 src/ui/kimpanel/kimpanel.c:273
@@ -973,7 +980,7 @@ msgstr "エクスポート (&x)"
 msgid "Empty"
 msgstr "空"
 
-#: src/im/table/table.desc:147
+#: src/im/table/table.desc:156
 msgid "Enable"
 msgstr "有効"
 
@@ -1069,7 +1076,7 @@ msgstr "エラー: スキンファイルにスキン設定がありません。"
 
 #: src/ui/classic/fcitx-skin-installer.sh:50
 msgid "Error: skin file should only contain one directory."
-msgstr "エラー: スキンファイルはひとつの辞書しか持てません。"
+msgstr "エラー: スキンファイルはひとつのディレクトリしか持てません。"
 
 #: src/im/table/table.desc:84
 msgid "Exact Match"
@@ -1179,7 +1186,7 @@ msgstr ""
 msgid "First Candidate Color"
 msgstr "最初の候補の色"
 
-#: src/im/table/table.desc:177
+#: src/im/table/table.desc:198
 msgid "First Candidate Display as Preedit"
 msgstr "最初の候補をプレエディットとして表示"
 
@@ -1208,7 +1215,7 @@ msgid "Font Size"
 msgstr "フォントサイズ"
 
 #: src/ui/classic/skin.desc:28
-msgid "Font size repect dpi setting"
+msgid "Font sizes respect dpi setting"
 msgstr ""
 
 #: src/module/xkb/fcitx-xkb.desc:10
@@ -1324,11 +1331,11 @@ msgstr "フロントエンド設定:"
 msgid "Full width Character"
 msgstr "全角文字"
 
-#: src/module/punc/punc.c:148 src/module/punc/punc.c:555
+#: src/module/punc/punc.c:148 src/module/punc/punc.c:567
 msgid "Full width punct"
 msgstr "全角句読点"
 
-#: src/module/punc/punc.c:574
+#: src/module/punc/punc.c:586
 msgid "Full width punctuations are used."
 msgstr ""
 
@@ -1445,6 +1452,10 @@ msgstr "トレイアイコンが有効なときに隠す"
 msgid "Hiragana"
 msgstr "ひらがな"
 
+#: src/im/table/table.desc:123
+msgid "Horizontal"
+msgstr ""
+
 #: data/config.desc:1 data/config.desc:7 data/config.desc:13
 #: data/config.desc:39 data/config.desc:46 data/config.desc:53
 #: data/config.desc:60 data/config.desc:65 data/config.desc:71
@@ -1514,7 +1525,7 @@ msgid ""
 "any input method other than ${2}. See ${link} for more detail."
 msgstr ""
 
-#: src/im/table/table.desc:197
+#: src/im/table/table.desc:218
 msgid "Ignore Punctuation"
 msgstr "句読点を無視"
 
@@ -1522,7 +1533,7 @@ msgstr "句読点を無視"
 msgid "Ignore blank selections"
 msgstr "空白の選択を無視"
 
-#: src/im/table/table.desc:202
+#: src/im/table/table.desc:223
 msgid "Ignore some Punctuation, if it is empty, then ignore all punctuation"
 msgstr ""
 
@@ -1566,7 +1577,7 @@ msgstr "入力時のフォントの大きさ"
 msgid "Input Message Color"
 msgstr "入力メッセージの色"
 
-#: src/lib/fcitx/ime.c:1662 src/module/notificationitem/notificationitem.c:409
+#: src/lib/fcitx/ime.c:1678 src/module/notificationitem/notificationitem.c:409
 #: data/fcitx-autostart.desktop.in:3 data/fcitx.desktop.in:3
 msgid "Input Method"
 msgstr "入力メソッド"
@@ -1592,7 +1603,7 @@ msgstr "入力メソッド関連の環境変数:"
 msgid "Input Methods:"
 msgstr "入力メソッド:"
 
-#: src/lib/fcitx/ime.c:1753
+#: src/lib/fcitx/ime.c:1769
 msgid "Input Speed: "
 msgstr "入力スピード"
 
@@ -1677,7 +1688,7 @@ msgstr "キーボード"
 msgid "Keyboard Layout"
 msgstr "キーボードレイアウト"
 
-#: src/im/table/table.desc:157
+#: src/im/table/table.desc:166
 msgid "Keyboard Layout to be used"
 msgstr "使用するキーボードレイアウト"
 
@@ -1721,7 +1732,7 @@ msgstr "左Shift"
 msgid "LangCode"
 msgstr "言語コード"
 
-#: src/im/table/table.desc:142
+#: src/im/table/table.desc:151
 msgid "Language Code for this table"
 msgstr "このテーブルへの言語コード"
 
@@ -1729,11 +1740,11 @@ msgstr "このテーブルへの言語コード"
 msgid "Latin"
 msgstr "半角英数字"
 
-#: src/module/punc/punc.c:149 src/module/punc/punc.c:556
+#: src/module/punc/punc.c:149 src/module/punc/punc.c:568
 msgid "Latin punct"
 msgstr "英数句読点"
 
-#: src/module/punc/punc.c:575
+#: src/module/punc/punc.c:587
 msgid "Latin punctuations are used."
 msgstr "ラテン語の字句が使われています。"
 
@@ -1745,7 +1756,7 @@ msgstr "左"
 msgid "Left Super"
 msgstr "左Super"
 
-#: src/im/table/table.c:592
+#: src/im/table/table.c:596
 msgid ""
 "Left/Right to choose selected character, Press Enter to confirm, Press "
 "Escape to Cancel"
@@ -1974,7 +1985,7 @@ msgstr "フロントエンドが見つかりません"
 msgid "No input window"
 msgstr "入力ウィンドウなし"
 
-#: src/module/imselector/imselector.c:315
+#: src/module/imselector/imselector.c:316
 msgid "No local input method"
 msgstr "ローカル入力メソッドがありません"
 
@@ -1987,13 +1998,17 @@ msgstr "リマインドなし"
 msgid "Non-comment doesn't belongs to any group @ %d %s"
 msgstr "コメントでない入力がグループに属していません %d 行目 %s"
 
-#: src/im/keyboard/fcitx-keyboard.desc:11 src/im/table/table.desc:136
+#: src/im/keyboard/fcitx-keyboard.desc:11 src/im/table/table.desc:145
 #: src/module/autoeng/fcitx-autoeng.desc:6
 #: src/module/clipboard/fcitx-clipboard.desc:39
 #: src/module/quickphrase/fcitx-quickphrase.desc:5
 #: src/module/quickphrase/fcitx-quickphrase.desc:20
 msgid "None"
 msgstr "なし"
+
+#: src/im/table/table.desc:121
+msgid "Not Set"
+msgstr ""
 
 #: data/script/fcitx-diagnose.sh:639
 msgid "Note for GNOME Later than 3.6"
@@ -2070,7 +2085,7 @@ msgstr "プログラムごと"
 msgid "Phrase"
 msgstr "フレーズ"
 
-#: src/im/table/table.c:1390
+#: src/im/table/table.c:1395
 msgid "Phrase is already in Dict "
 msgstr "フレーズは既に辞書にあります"
 
@@ -2115,7 +2130,7 @@ msgstr ""
 msgid "Pinyin Key"
 msgstr "Pinyinキー"
 
-#: src/im/table/table.c:617
+#: src/im/table/table.c:621
 msgid "Pinyin: "
 msgstr "Pinyin: "
 
@@ -2252,7 +2267,7 @@ msgstr "XIMサポートを提供"
 msgid "Punctuation Conversion Support"
 msgstr "句読点変換のサポート"
 
-#: src/module/punc/punc.c:573 src/module/punc/fcitx-punc.conf.in:3
+#: src/module/punc/punc.c:585 src/module/punc/fcitx-punc.conf.in:3
 msgid "Punctuation Support"
 msgstr "句読点サポート"
 
@@ -2316,7 +2331,7 @@ msgstr "IM登録"
 msgid "Reload configuration"
 msgstr "設定の再読み込み"
 
-#: src/im/table/table.c:1282
+#: src/im/table/table.c:1287
 msgid "Remind:"
 msgstr "リマインド:"
 
@@ -2437,11 +2452,11 @@ msgstr "Unicodeの検索"
 msgid "Seconds sleep before fcitx really start"
 msgstr "fcitxが本当に起動するまでのスリープ時間(秒)"
 
-#: src/module/imselector/imselector.c:304
+#: src/module/imselector/imselector.c:305
 msgid "Select global input method: "
 msgstr "グローバル入力メソッドを選択:"
 
-#: src/module/imselector/imselector.c:305
+#: src/module/imselector/imselector.c:306
 msgid "Select local input method: "
 msgstr "ローカル入力メソッドを選択:"
 
@@ -2477,7 +2492,7 @@ msgstr "ウィンドウ間で状態を共有"
 msgid "SharedLibrary"
 msgstr "共有ライブラリ"
 
-#: src/im/keyboard/fcitx-keyboard.desc:14 src/im/table/table.desc:139
+#: src/im/keyboard/fcitx-keyboard.desc:14 src/im/table/table.desc:148
 #: src/module/autoeng/fcitx-autoeng.desc:9
 #: src/module/clipboard/fcitx-clipboard.desc:42
 #: src/module/quickphrase/fcitx-quickphrase.desc:23
@@ -2664,11 +2679,11 @@ msgstr "状態パネルを隠すモード"
 
 #: src/ui/classic/fcitx-classic-ui.desc:2
 msgid "Status Panel Position X"
-msgstr "ステータスパネルの X 座標"
+msgstr "状態パネルの X 座標"
 
 #: src/ui/classic/fcitx-classic-ui.desc:8
 msgid "Status Panel Position Y"
-msgstr "ステータスパネルの Y 座標"
+msgstr "状態パネルの Y 座標"
 
 #: src/module/pinyin-enhance/fcitx-pinyin-enhance.desc:47
 msgid "Stroke input trigger length"
@@ -2760,11 +2775,11 @@ msgid "Switching Virtual Keyboard"
 msgstr "仮想キーボードに切り替え"
 
 #: src/module/pinyin-enhance/fcitx-pinyin-enhance.conf.in:9
-#: src/im/table/table.desc:117
+#: src/im/table/table.desc:126
 msgid "Symbol"
 msgstr "記号"
 
-#: src/im/table/table.desc:122
+#: src/im/table/table.desc:131
 msgid "Symbol File"
 msgstr "記号ファイル"
 
@@ -2837,7 +2852,7 @@ msgstr ""
 "あります。 ${link1} を参照してください。 アプリケーションのフリーズを含むXIM"
 "による一般的な問題については ${link2} を参照してください。"
 
-#: src/module/punc/punc.c:150 src/module/punc/punc.c:557
+#: src/module/punc/punc.c:150 src/module/punc/punc.c:569
 msgid "Toggle Full Width Punctuation"
 msgstr "全角/半角句読点を切り替え"
 
@@ -2969,11 +2984,19 @@ msgstr "サポートされていないキー"
 msgid "Use <Keyword> <Phrase> format on every line."
 msgstr "各行では <Keyword> <Phrase> の形式を使用してください。"
 
+#: src/im/table/table.desc:171
+msgid "Use Alternative Candidate Word Number"
+msgstr ""
+
+#: src/im/table/table.desc:183
+msgid "Use Alternative Key for paging"
+msgstr ""
+
 #: src/im/pinyin/fcitx-pinyin.desc:28
 msgid "Use Complete Pinyin"
 msgstr "完全なPinyinを使用"
 
-#: src/im/table/table.desc:152
+#: src/im/table/table.desc:161
 msgid "Use Custom Prompt String defined in table"
 msgstr ""
 
@@ -2994,8 +3017,8 @@ msgid "Use Matching Key"
 msgstr "マッチングキーを使う"
 
 #: src/frontend/xim/fcitx-xim.desc:4
-msgid "Use On The Spot Style for XIM (Can not change during running)"
-msgstr "XIMで On The Spot スタイルを使う(起動中は変更できません)"
+msgid "Use On The Spot Style for XIM (Cannot change during running)"
+msgstr ""
 
 #: src/im/table/table.desc:39
 msgid "Use Pinyin"
@@ -3062,6 +3085,10 @@ msgstr "ユーザーフレーズの色"
 #: data/script/fcitx-diagnose.sh:1164 data/script/fcitx-diagnose.sh:1247
 msgid "Version Line:"
 msgstr "バージョンライン:"
+
+#: src/im/table/table.desc:122
+msgid "Vertical"
+msgstr ""
 
 #: src/ui/classic/fcitx-classic-ui.desc:54
 msgid "Vertical Candidate Word List"
@@ -3282,7 +3309,7 @@ msgstr "実行可能:"
 msgid "here"
 msgstr "ここ"
 
-#: src/lib/fcitx/ime.c:1759
+#: src/lib/fcitx/ime.c:1775
 msgid "min Num of Characters: "
 msgstr "最低文字数:"
 

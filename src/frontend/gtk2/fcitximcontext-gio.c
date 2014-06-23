@@ -47,6 +47,25 @@
 # define NEW_GDK_WINDOW_GET_DISPLAY
 #endif
 
+static const FcitxCapacityFlags purpose_related_capacity =
+    CAPACITY_ALPHA |
+    CAPACITY_DIGIT |
+    CAPACITY_NUMBER |
+    CAPACITY_DIALABLE |
+    CAPACITY_URL |
+    CAPACITY_EMAIL |
+    CAPACITY_PASSWORD;
+
+static const FcitxCapacityFlags hints_related_capacity =
+    CAPACITY_SPELLCHECK |
+    CAPACITY_NO_SPELLCHECK |
+    CAPACITY_WORD_COMPLETION |
+    CAPACITY_LOWERCASE |
+    CAPACITY_UPPERCASE |
+    CAPACITY_UPPERCASE_WORDS |
+    CAPACITY_UPPERCASE_SENTENCES |
+    CAPACITY_NO_ON_SCREEN_KEYBOARD;
+
 struct _FcitxIMContext {
     GtkIMContext parent;
 
@@ -57,11 +76,13 @@ struct _FcitxIMContext {
     int has_focus;
     guint32 time;
     gboolean use_preedit;
+    gboolean support_surrounding_text;
     gboolean is_inpreedit;
     gchar* preedit_string;
     gchar* surrounding_text;
     int cursor_pos;
-    FcitxCapacityFlags capacity;
+    FcitxCapacityFlags capacity_from_toolkit;
+    FcitxCapacityFlags last_updated_capacity;
     PangoAttrList* attrlist;
     gint last_cursor_pos;
     gint last_anchor_pos;
@@ -364,7 +385,7 @@ fcitx_im_context_init(FcitxIMContext *context)
     context->last_cursor_pos = -1;
     context->preedit_string = NULL;
     context->attrlist = NULL;
-    context->capacity = CAPACITY_SURROUNDING_TEXT;
+    context->last_updated_capacity = CAPACITY_SURROUNDING_TEXT;
 
     context->slave = gtk_im_context_simple_new();
     gtk_im_context_simple_add_table(GTK_IM_CONTEXT_SIMPLE(context->slave),
@@ -622,9 +643,31 @@ _fcitx_im_context_update_formatted_preedit_cb(FcitxClient* im, GPtrArray* array,
                                           (gpointer *)&widget);
                 if (GTK_IS_WIDGET(widget)) {
                     hasColor = true;
+#if GTK_CHECK_VERSION (3, 0, 0)
+                    GtkStyleContext* styleContext = gtk_widget_get_style_context(widget);
+                    GdkRGBA* fg_rgba = NULL;
+                    GdkRGBA* bg_rgba = NULL;
+                    gtk_style_context_get(styleContext, GTK_STATE_FLAG_SELECTED,
+                                          "background-color", &bg_rgba,
+                                          "color", &fg_rgba,
+                                          NULL
+                                         );
+
+                    fg.pixel = 0;
+                    fg.red = CLAMP ((guint) (fg_rgba->red * 65535), 0, 65535);
+                    fg.green = CLAMP ((guint) (fg_rgba->green * 65535), 0, 65535);
+                    fg.blue = CLAMP ((guint) (fg_rgba->blue * 65535), 0, 65535);
+                    bg.pixel = 0;
+                    bg.red = CLAMP ((guint) (bg_rgba->red * 65535), 0, 65535);
+                    bg.green = CLAMP ((guint) (bg_rgba->green * 65535), 0, 65535);
+                    bg.blue = CLAMP ((guint) (bg_rgba->blue * 65535), 0, 65535);
+                    gdk_rgba_free (fg_rgba);
+                    gdk_rgba_free (bg_rgba);
+#else
                     GtkStyle* style = gtk_widget_get_style(widget);
                     fg = style->text[GTK_STATE_SELECTED];
                     bg = style->bg[GTK_STATE_SELECTED];
+#endif
                 }
             }
 
@@ -924,7 +967,7 @@ fcitx_im_context_set_surrounding (GtkIMContext *context,
     FcitxIMContext *fcitxcontext = FCITX_IM_CONTEXT (context);
 
     if (fcitx_client_is_valid(fcitxcontext->client) &&
-        !(fcitxcontext->capacity & CAPACITY_PASSWORD)) {
+        !(fcitxcontext->last_updated_capacity & CAPACITY_PASSWORD)) {
         gint cursor_pos;
         guint utf8_len;
         gchar *p;
@@ -960,10 +1003,18 @@ void
 _fcitx_im_context_set_capacity(FcitxIMContext* fcitxcontext, gboolean force)
 {
     if (fcitx_client_is_valid(fcitxcontext->client)) {
-        FcitxCapacityFlags flags = fcitxcontext->capacity & ~(CAPACITY_PREEDIT | CAPACITY_FORMATTED_PREEDIT | CAPACITY_PASSWORD);
-        if (fcitxcontext->use_preedit)
+        FcitxCapacityFlags flags = fcitxcontext->capacity_from_toolkit;
+        // toolkit hint always not have preedit / surrounding hint
+        // no need to check them
+        if (fcitxcontext->use_preedit) {
             flags |= CAPACITY_PREEDIT | CAPACITY_FORMATTED_PREEDIT;
+        }
+        if (fcitxcontext->support_surrounding_text) {
+            flags |= CAPACITY_SURROUNDING_TEXT;
+        }
 
+        // always run this code against all gtk version
+        // seems visibility != PASSWORD hint
         if (fcitxcontext->client_window != NULL) {
             GtkWidget *widget;
             gdk_window_get_user_data (fcitxcontext->client_window,
@@ -975,12 +1026,12 @@ _fcitx_im_context_set_capacity(FcitxIMContext* fcitxcontext, gboolean force)
         }
 
         gboolean update = FALSE;
-        if (G_UNLIKELY(fcitxcontext->capacity != flags)) {
-            fcitxcontext->capacity = flags;
+        if (G_UNLIKELY(fcitxcontext->last_updated_capacity != flags)) {
+            fcitxcontext->last_updated_capacity = flags;
             update = TRUE;
         }
         if (G_UNLIKELY(update || force))
-            fcitx_client_set_capacity(fcitxcontext->client, fcitxcontext->capacity);
+            fcitx_client_set_capacity(fcitxcontext->client, fcitxcontext->last_updated_capacity);
     }
 }
 
@@ -1387,12 +1438,12 @@ _request_surrounding_text (FcitxIMContext **context)
         else
             return;
         if (return_value) {
-            (*context)->capacity |= CAPACITY_SURROUNDING_TEXT;
+            (*context)->support_surrounding_text = TRUE;
             _fcitx_im_context_set_capacity (*context,
                                             FALSE);
         }
         else {
-            (*context)->capacity &= ~CAPACITY_SURROUNDING_TEXT;
+            (*context)->support_surrounding_text = FALSE;
             _fcitx_im_context_set_capacity (*context,
                                             FALSE);
         }
@@ -1483,20 +1534,12 @@ _fcitx_im_context_input_purpose_changed_cb(GObject* gobject, GParamSpec* pspec,
     GtkInputPurpose purpose;
     g_object_get(gobject, "input-purpose", &purpose, NULL);
 
-    const FcitxCapacityFlags related_capacity =
-        CAPACITY_ALPHA |
-        CAPACITY_DIGIT |
-        CAPACITY_NUMBER |
-        CAPACITY_DIALABLE |
-        CAPACITY_URL |
-        CAPACITY_EMAIL |
-        CAPACITY_PASSWORD;
 
-    fcitxcontext->capacity &= ~related_capacity;
+    fcitxcontext->capacity_from_toolkit &= ~purpose_related_capacity;
 
 #define CASE_PURPOSE(_PURPOSE, _CAPACITY) \
     case _PURPOSE: \
-        fcitxcontext->capacity |= _CAPACITY; \
+        fcitxcontext->capacity_from_toolkit |= _CAPACITY; \
         break;
 
     switch(purpose) {
@@ -1528,21 +1571,11 @@ _fcitx_im_context_input_hints_changed_cb(GObject* gobject, GParamSpec *pspec,
     GtkInputHints hints;
     g_object_get(gobject, "input-hints", &hints, NULL);
 
-    const FcitxCapacityFlags related_capacity =
-        CAPACITY_SPELLCHECK |
-        CAPACITY_NO_SPELLCHECK |
-        CAPACITY_WORD_COMPLETION |
-        CAPACITY_LOWERCASE |
-        CAPACITY_UPPERCASE |
-        CAPACITY_UPPERCASE_WORDS |
-        CAPACITY_UPPERCASE_SENTENCES |
-        CAPACITY_NO_ON_SCREEN_KEYBOARD;
-
-    fcitxcontext->capacity &= ~related_capacity;
+    fcitxcontext->capacity_from_toolkit &= ~hints_related_capacity;
 
 #define CHECK_HINTS(_HINTS, _CAPACITY) \
     if (hints & _HINTS) \
-        fcitxcontext->capacity |= _CAPACITY;
+        fcitxcontext->capacity_from_toolkit |= _CAPACITY;
 
     CHECK_HINTS(GTK_INPUT_HINT_SPELLCHECK, CAPACITY_SPELLCHECK)
     CHECK_HINTS(GTK_INPUT_HINT_NO_SPELLCHECK, CAPACITY_NO_SPELLCHECK);

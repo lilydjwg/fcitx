@@ -1105,7 +1105,7 @@ void FcitxInstanceSwitchIMByIndex(FcitxInstance* instance, int index)
     else {
         if (ic)
             FcitxInstanceSetLocalIMName(instance, ic, NULL);
-        FcitxInstanceSwitchIMInternal(instance, index, true, true);
+        FcitxInstanceSwitchIMInternal(instance, index, true, true, true);
         FcitxInstanceShowInputSpeed(instance);
 
         if (FcitxInstanceGetCurrentState(instance) != IS_ACTIVE) {
@@ -1127,19 +1127,31 @@ void FcitxInstanceUnregisterIM(FcitxInstance* instance, const char* name)
 
 void
 FcitxInstanceSwitchIMInternal(FcitxInstance* instance, int index,
-                              boolean skipZero, boolean updateGlobal)
+                              boolean skipZero, boolean updateGlobal, boolean userSwitchIM)
 {
     UT_array* imes = &instance->imes;
     const int iIMCount = utarray_len(imes);
-
-    FcitxInstanceCleanInputWindow(instance);
-    FcitxInstanceResetInput(instance);
-    FcitxUIUpdateInputWindow(instance);
 
     FcitxIM* lastIM, *newIM;
 
     /* set lastIM */
     lastIM = fcitx_array_eltptr(imes, instance->iIMIndex);
+
+    if (lastIM) {
+
+        if (userSwitchIM) {
+            if (lastIM->OnClose) {
+                lastIM->OnClose(lastIM->klass, CET_SwitchIM);
+            }
+        }
+        if (lastIM->Save) {
+            lastIM->Save(lastIM->klass);
+        }
+    }
+
+    FcitxInstanceCleanInputWindow(instance);
+    FcitxInstanceResetInput(instance);
+    FcitxUIUpdateInputWindow(instance);
 
     /* update instance->iIMIndex start */
     if (index >= iIMCount)
@@ -1159,9 +1171,6 @@ FcitxInstanceSwitchIMInternal(FcitxInstance* instance, int index,
 
     /* set newIM */
     newIM = fcitx_array_eltptr(imes, instance->iIMIndex);
-
-    if (lastIM && lastIM->Save)
-        lastIM->Save(lastIM->klass);
 
     /* lazy load */
     if (newIM && !newIM->initialized) {
@@ -1223,6 +1232,15 @@ void FcitxInstanceResetInput(FcitxInstance* instance)
         currentIM->ResetIM(currentIM->klass);
 
     FcitxInstanceProcessResetInputHook(instance);
+}
+
+FCITX_EXPORT_API
+void FcitxInstanceSendCloseEvent(struct _FcitxInstance* instance, FcitxIMCloseEventType closeEvent)
+{
+    FcitxIM* currentIM = FcitxInstanceGetCurrentIM(instance);
+    if (currentIM && currentIM->OnClose) {
+        currentIM->OnClose(currentIM->klass, closeEvent);
+    }
 }
 
 void FcitxInstanceDoPhraseTips(FcitxInstance* instance)
@@ -1436,12 +1454,13 @@ void FcitxInstanceSetLocalIMName(FcitxInstance* instance, FcitxInputContext* ic,
     if (imname)
         ic2->imname = strdup(imname);
 
-    if (ic == FcitxInstanceGetCurrentIC(instance))
-        FcitxInstanceUpdateCurrentIM(instance, false);
+    if (ic == FcitxInstanceGetCurrentIC(instance)) {
+        FcitxInstanceUpdateCurrentIM(instance, false, true);
+    }
 }
 
 /* the "force" to this function is used when the list changed and index is not valid */
-boolean FcitxInstanceUpdateCurrentIM(FcitxInstance* instance, boolean force) {
+boolean FcitxInstanceUpdateCurrentIM(FcitxInstance* instance, boolean force, boolean userSwitchIM) {
     FcitxInputContext* ic = FcitxInstanceGetCurrentIC(instance);
     if (!ic && !force)
         return false;
@@ -1483,7 +1502,7 @@ boolean FcitxInstanceUpdateCurrentIM(FcitxInstance* instance, boolean force) {
     }
 
     if (forceSwtich || targetIMIndex != instance->iIMIndex) {
-        FcitxInstanceSwitchIMInternal(instance, targetIMIndex, skipZero, updateGlobal);
+        FcitxInstanceSwitchIMInternal(instance, targetIMIndex, skipZero, updateGlobal, userSwitchIM);
         return true;
     }
     else
@@ -1519,7 +1538,7 @@ void FcitxInstanceEnableIM(FcitxInstance* instance, FcitxInputContext* ic, boole
         break;
     }
 
-    FcitxInstanceUpdateCurrentIM(instance, false);
+    FcitxInstanceUpdateCurrentIM(instance, false, false);
     instance->input->keyReleased = KR_OTHER;
 }
 
@@ -1634,7 +1653,7 @@ void FcitxInstanceChangeIMStateWithKey(FcitxInstance* instance, FcitxInputContex
         break;
     }
 
-    FcitxInstanceUpdateCurrentIM(instance, false);
+    FcitxInstanceUpdateCurrentIM(instance, false, !withSwitchKey);
 }
 
 /**
@@ -1658,10 +1677,7 @@ void FcitxInstanceChangeIMStateInternal(FcitxInstance* instance, FcitxInputConte
     FcitxInputContext2* ic2 = (FcitxInputContext2*) ic;
     ic2->switchBySwitchKey = withSwitchKey;
     if (ic == instance->CurrentIC) {
-        if (objectState == IS_ACTIVE) {
-            FcitxInstanceResetInput(instance);
-        } else {
-            FcitxInstanceResetInput(instance);
+        if (objectState != IS_ACTIVE) {
             FcitxUICloseInputWindow(instance);
         }
     }
@@ -2003,7 +2019,7 @@ void FcitxInstanceUpdateIMList(FcitxInstance* instance)
 
     utarray_free(imList);
 
-    FcitxInstanceUpdateCurrentIM(instance, true);
+    FcitxInstanceUpdateCurrentIM(instance, true, false);
     FcitxInstanceProcessUpdateIMListHook(instance);
 
     if (instance->globalIMName)

@@ -360,7 +360,11 @@ INPUT_RETURN_VALUE DoTableInput(void* arg, FcitxKeySym sym, unsigned int state)
 
     FcitxCandidateWordSetChooseAndModifier(candList, table->strChoose,
                                            GetTableMod(table));
-    FcitxCandidateWordSetPageSize(candList, config->iMaxCandWord);
+    if (table->bUseAlternativeCandidateWordNumber) {
+        FcitxCandidateWordSetPageSize(candList, table->iCandidateWordNumber);
+    } else {
+        FcitxCandidateWordSetPageSize(candList, config->iMaxCandWord);
+    }
 
     if (table != tbl->curLoadedTable && tbl->curLoadedTable) {
         FreeTableDict(tbl->curLoadedTable);
@@ -959,6 +963,7 @@ INPUT_RETURN_VALUE TableGetCandWords(void* arg)
     FcitxInstance *instance = tbl->owner;
     FcitxInputState *input = FcitxInstanceGetInputState(instance);
     FcitxCandidateWordList* candList = FcitxInputStateGetCandidateList(input);
+    FcitxCandidateWordSetLayoutHint(candList, table->layoutHint);
 
     if (FcitxInputStateGetRawInputBuffer(input)[0] == '\0')
         return IRV_TO_PROCESS;
