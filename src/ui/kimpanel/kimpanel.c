@@ -214,13 +214,26 @@ FCITX_DEFINE_PLUGIN(fcitx_kimpanel_ui, ui, FcitxUI) = {
     NULL
 };
 
+#define INDICATOR_KEYBOARD_PREFIX "@indicator-keyboard-"
+#define INDICATOR_KEYBOARD_LENGTH (strlen(INDICATOR_KEYBOARD_PREFIX))
+
+static inline boolean
+isUnity()
+{
+    return fcitx_utils_strcmp0(getenv("XDG_CURRENT_DESKTOP"), "Unity") == 0;
+}
 
 static void SetIMMenu(FcitxIM *pim, char** prop)
 {
+    char layout[] = INDICATOR_KEYBOARD_PREFIX "Xx";
     const char *icon = "";
     if (strncmp(pim->uniqueName, "fcitx-keyboard-",
                 strlen("fcitx-keyboard-")) != 0) {
         icon = pim->strIconName;
+    } else if (isUnity()) {
+        layout[INDICATOR_KEYBOARD_LENGTH] = toupper(pim->langCode[0]);
+        layout[INDICATOR_KEYBOARD_LENGTH + 1] = tolower(pim->langCode[1]);
+        icon = layout;
     }
     boolean result = CheckAddPrefix(&icon);
     fcitx_utils_alloc_cat_str(*prop, "/Fcitx/im/", pim->uniqueName, ":",
@@ -230,6 +243,7 @@ static void SetIMMenu(FcitxIM *pim, char** prop)
 
 static void SetIMIcon(FcitxInstance* instance, char** prop)
 {
+    char layout[] = INDICATOR_KEYBOARD_PREFIX "Xx";
     const char* icon;
     char* imname;
     char* description;
@@ -240,24 +254,23 @@ static void SetIMIcon(FcitxInstance* instance, char** prop)
         icon = "kbd";
         imname = _("No input window");
         description = _("No input window");
-    }
-    else if (FcitxInstanceGetCurrentStatev2(instance) == IS_ACTIVE) {
+    } else if (FcitxInstanceGetCurrentStatev2(instance) == IS_ACTIVE) {
         FcitxIM* im = FcitxInstanceGetCurrentIM(instance);
         if (im) {
-#if 0
-            if (strncmp(im->uniqueName, "fcitx-keyboard-", strlen("fcitx-keyboard-")) == 0) {
-                icon = "";
-                if (*im->langCode) {
-                    strncpy(temp, im->langCode, LANGCODE_LENGTH);
-                    imname = temp;
-                    imname[0] = toupper(imname[0]);
+            if (strncmp(im->uniqueName, "fcitx-keyboard-",
+                        strlen("fcitx-keyboard-")) == 0) {
+                if (isUnity()) {
+                    layout[INDICATOR_KEYBOARD_LENGTH] =
+                        toupper(im->langCode[0]);
+                    layout[INDICATOR_KEYBOARD_LENGTH + 1] =
+                        tolower(im->langCode[1]);
+                    icon = layout;
+                } else {
+                    icon = "";
                 }
-                else {
-                    imname = im->uniqueName + strlen("fcitx-keyboard");
-                }
+                imname = im->uniqueName + strlen("fcitx-keyboard-");
             }
             else
-#endif
             {
                 icon = im->strIconName;
                 imname = im->strName;
