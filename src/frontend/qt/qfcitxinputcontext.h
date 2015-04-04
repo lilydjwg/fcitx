@@ -29,6 +29,7 @@
 #include <QApplication>
 #include <QWeakPointer>
 
+#include <xkbcommon/xkbcommon-compose.h>
 #include "fcitx-qt/fcitxqtinputcontextproxy.h"
 #include "fcitx-qt/fcitxqtinputmethodproxy.h"
 #include "fcitx-config/hotkey.h"
@@ -83,7 +84,32 @@ public:
 
 
 #define FCITX_IDENTIFIER_NAME "fcitx"
-#define FCITX_MAX_COMPOSE_LEN 7
+
+
+
+struct XkbContextDeleter
+{
+    static inline void cleanup(struct xkb_context* pointer)
+    {
+        if (pointer) xkb_context_unref(pointer);
+    }
+};
+
+struct XkbComposeTableDeleter
+{
+    static inline void cleanup(struct xkb_compose_table* pointer)
+    {
+        if (pointer) xkb_compose_table_unref(pointer);
+    }
+};
+
+struct XkbComposeStateDeleter
+{
+    static inline void cleanup(struct xkb_compose_state* pointer)
+    {
+        if (pointer) xkb_compose_state_unref(pointer);
+    }
+};
 
 class QFcitxInputContext : public QInputContext
 {
@@ -157,8 +183,6 @@ private:
     void createICData(QWidget* w);
 
     FcitxQtInputMethodProxy* m_improxy;
-    uint m_compose_buffer[FCITX_MAX_COMPOSE_LEN + 1];
-    int m_n_compose;
     QString m_preedit;
     QString m_commitPreedit;
     FcitxQtFormattedPreeditList m_preeditList;
@@ -167,6 +191,9 @@ private:
     bool m_syncMode;
     FcitxQtConnection* m_connection;
     QHash<WId, FcitxQtICData*> m_icMap;
+    QScopedPointer<struct xkb_context, XkbContextDeleter> m_xkbContext;
+    QScopedPointer<struct xkb_compose_table, XkbComposeTableDeleter>  m_xkbComposeTable;
+    QScopedPointer<struct xkb_compose_state, XkbComposeStateDeleter> m_xkbComposeState;
 };
 
 #endif //__FCITX_INPUT_CONTEXT_H_
