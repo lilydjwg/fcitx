@@ -74,6 +74,16 @@ get_locale()
     return locale;
 }
 
+struct xkb_context* _xkb_context_new_helper()
+{
+    struct xkb_context* context = xkb_context_new(XKB_CONTEXT_NO_FLAGS);
+    if (context) {
+        xkb_context_set_log_level(context, XKB_LOG_LEVEL_CRITICAL);
+    }
+
+    return context;
+}
+
 typedef QInputMethodEvent::Attribute QAttribute;
 
 QFcitxInputContext::QFcitxInputContext()
@@ -82,18 +92,15 @@ QFcitxInputContext::QFcitxInputContext()
       m_useSurroundingText(false),
       m_syncMode(true),
       m_connection(new FcitxQtConnection(this)),
-      m_xkbContext(xkb_context_new(XKB_CONTEXT_NO_FLAGS)),
+      m_xkbContext(_xkb_context_new_helper()),
       m_xkbComposeTable(m_xkbContext ? xkb_compose_table_new_from_locale(m_xkbContext.data(), get_locale(), XKB_COMPOSE_COMPILE_NO_FLAGS) : 0),
       m_xkbComposeState(m_xkbComposeTable ? xkb_compose_state_new(m_xkbComposeTable.data(), XKB_COMPOSE_STATE_NO_FLAGS) : 0)
 {
-    const char* locale = getenv("LC_ALL");
-    if (!locale)
-        locale = getenv("LC_CTYPE");
-    if (!locale)
-        locale = getenv("LANG");
-    if (!locale)
-        locale = "C";
     FcitxQtFormattedPreedit::registerMetaType();
+
+    if (m_xkbContext) {
+        xkb_context_set_log_level(m_xkbContext.data(), XKB_LOG_LEVEL_CRITICAL);
+    }
 
     connect(m_connection, SIGNAL(connected()), this, SLOT(connected()));
     connect(m_connection, SIGNAL(disconnected()), this, SLOT(cleanUp()));
@@ -173,6 +180,10 @@ void QFcitxInputContext::reset()
     FcitxQtInputContextProxy* proxy = validIC();
     if (proxy)
         proxy->Reset();
+
+    if (m_xkbComposeState) {
+        xkb_compose_state_reset(m_xkbComposeState.data());
+    }
 }
 
 void QFcitxInputContext::update()
@@ -435,16 +446,17 @@ bool QFcitxInputContext::x11FilterEvent(QWidget* keywidget, XEvent* event)
         return false;
 
     FcitxQtICData* data = m_icMap.value(keywidget->effectiveWinId());
-    if (!data)
-        return false;
 
     //if (keywidget != focusWidget())
     //    return false;
 
-    if (keywidget->inputMethodHints() & (Qt::ImhExclusiveInputMask | Qt::ImhHiddenText))
-        addCapacity(data, CAPACITY_PASSWORD);
-    else
-        removeCapacity(data, CAPACITY_PASSWORD);
+    if (data) {
+        if (keywidget->inputMethodHints() & (Qt::ImhExclusiveInputMask | Qt::ImhHiddenText)) {
+            addCapacity(data, CAPACITY_PASSWORD);
+        } else {
+            removeCapacity(data, CAPACITY_PASSWORD);
+        }
+    }
 
     if (Q_UNLIKELY(event->xkey.state & FcitxKeyState_IgnoredMask))
         return false;
@@ -773,7 +785,7 @@ QFcitxInputContext::processCompose(uint keyval, uint state, FcitxKeyEventType ev
 
     enum xkb_compose_status status = xkb_compose_state_get_status(xkbComposeState);
     if (status == XKB_COMPOSE_NOTHING) {
-        return 0;
+        return false;
     } else if (status == XKB_COMPOSE_COMPOSED) {
         char buffer[] = {'\0', '\0', '\0', '\0', '\0', '\0', '\0'};
         int length = xkb_compose_state_get_utf8(xkbComposeState, buffer, sizeof(buffer));

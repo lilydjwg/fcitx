@@ -56,10 +56,12 @@ _find_file() {
     eval "${2}"'=()'
     while IFS= read -r -d '' "${1}"; do
         array_push "${2}" "${!1}"
-    done < <(find "${@:3}" -print0)
+    done < <(find "${@:3}" -print0 2> /dev/null)
 }
 
 find_file() {
+    # Avoid variable name conflict (Not that anyone is using the internal
+    # variable name though...)
     if [[ ${1} = __find_file_line ]]; then
         _find_file __find_file_line2 "$@"
     else
@@ -771,6 +773,8 @@ check_system() {
         write_eval "$(_ 'Desktop environment is ${1}.')" \
             "$(code_inline "${DE}")"
     fi
+    write_order_list "$(_ 'Bash Version:')"
+    write_quote_str "BASH_VERSION='${BASH_VERSION}'"
 }
 
 check_env() {
