@@ -812,11 +812,17 @@ fcitx_im_context_focus_in(GtkIMContext *context)
 
     fcitxcontext->has_focus = true;
 
+    /*
+     * Do not call gtk_im_context_focus_out() here.
+     * This might workaround some chrome issue
+     */
+#if 0
     if (_focus_im_context != NULL) {
         g_assert (_focus_im_context != context);
         gtk_im_context_focus_out (_focus_im_context);
         g_assert (_focus_im_context == NULL);
     }
+#endif
 
     if (fcitx_client_is_valid(fcitxcontext->client)) {
         fcitx_client_focus_in(fcitxcontext->client);
@@ -911,10 +917,17 @@ _set_cursor_location_internal(FcitxIMContext *fcitxcontext)
     }
 
     area = fcitxcontext->area;
+    int scale = 1;
+    FCITX_UNUSED(scale);
+#if GTK_CHECK_VERSION (3, 10, 0)
+    scale = gdk_window_get_scale_factor(fcitxcontext->client_window);
+#endif
+
     if (area.x == -1 && area.y == -1 && area.width == 0 && area.height == 0) {
 #if GTK_CHECK_VERSION (2, 91, 0)
         area.x = 0;
-        area.y += gdk_window_get_height(fcitxcontext->client_window);
+        int scale = 1;
+        area.y += gdk_window_get_height(fcitxcontext->client_window) * scale;
 #else
         gint w, h;
         gdk_drawable_get_size(fcitxcontext->client_window, &w, &h);
@@ -931,8 +944,8 @@ _set_cursor_location_internal(FcitxIMContext *fcitxcontext)
     {
         int rootx, rooty;
         gdk_window_get_origin(fcitxcontext->client_window, &rootx, &rooty);
-        area.x = rootx + area.x;
-        area.y = rooty + area.y;
+        area.x += rootx * scale;
+        area.y += rooty * scale;
     }
 #endif
 
