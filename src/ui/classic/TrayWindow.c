@@ -48,7 +48,7 @@ void TrayWindowInit(TrayWindow *trayWindow)
     Display *dpy = classicui->dpy;
     int iScreen = classicui->iScreen;
     char   strWindowName[] = "Fcitx Tray Window";
-    if (!classicui->bUseTrayIcon || classicui->isSuspend)
+    if (!classicui->bUseTrayIcon || classicui->isSuspend || classicui->notificationItemAvailable)
         return;
 
     if (trayWindow->window == None && trayWindow->dockWindow != None) {
@@ -229,9 +229,7 @@ boolean TrayEventHandler(void *arg, XEvent* event)
             && trayWindow->dockWindow == None) {
             trayWindow->dockWindow = event->xclient.data.l[2];
             TrayWindowRelease(trayWindow);
-            if (!classicui->notificationItemAvailable && !classicui->isSuspend) {
-                TrayWindowInit(trayWindow);
-            }
+            TrayWindowInit(trayWindow);
             return true;
         }
         break;
@@ -285,6 +283,14 @@ boolean TrayEventHandler(void *arg, XEvent* event)
             if (trayWindow->dockWindow != None) {
                 TrayWindowInit(trayWindow);
             }
+            return true;
+        }
+        break;
+    case PropertyNotify:
+        if (event->xproperty.atom == trayWindow->atoms[ATOM_VISUAL] &&
+            event->xproperty.window == trayWindow->dockWindow) {
+            TrayWindowRelease(trayWindow);
+            TrayWindowInit(trayWindow);
             return true;
         }
         break;
