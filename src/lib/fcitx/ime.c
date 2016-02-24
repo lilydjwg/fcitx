@@ -465,6 +465,7 @@ void FcitxInstanceRegisterIMv2(FcitxInstance *instance,
     entry->UpdateSurroundingText = iface.UpdateSurroundingText;
     entry->DoReleaseInput = iface.DoReleaseInput;
     entry->OnClose = iface.OnClose;
+    entry->GetSubModeName = iface.GetSubModeName;
     entry->klass = imclass;
     entry->iPriority = priority;
     if (langCode)
@@ -588,7 +589,7 @@ INPUT_RETURN_VALUE _DoTrigger(FcitxInstance* instance)
 {
     if (FcitxInstanceGetCurrentState(instance) == IS_INACTIVE) {
         FcitxInstanceChangeIMState(instance, instance->CurrentIC);
-        FcitxInstanceShowInputSpeed(instance);
+        FcitxInstanceShowInputSpeed(instance, false);
     } else {
         FcitxInstanceCloseIM(instance, instance->CurrentIC);
     }
@@ -649,7 +650,7 @@ INPUT_RETURN_VALUE _DoSwitch(FcitxInstance* instance)
         }
     }
     FcitxInstanceChangeIMStateWithKey(instance, instance->CurrentIC, true);
-    FcitxInstanceShowInputSpeed(instance);
+    FcitxInstanceShowInputSpeed(instance, false);
 
     return retVal;
 }
@@ -1122,7 +1123,7 @@ void FcitxInstanceSwitchIMByIndex(FcitxInstance* instance, int index)
         if (ic)
             FcitxInstanceSetLocalIMName(instance, ic, NULL);
         FcitxInstanceSwitchIMInternal(instance, index, true, true, true);
-        FcitxInstanceShowInputSpeed(instance);
+        FcitxInstanceShowInputSpeed(instance, false);
 
         if (FcitxInstanceGetCurrentState(instance) != IS_ACTIVE) {
             FcitxInstanceEnableIM(instance, FcitxInstanceGetCurrentIC(instance), false);
@@ -1751,18 +1752,20 @@ void HideInputSpeed(void* arg)
     FcitxUICloseInputWindow(instance);
 }
 
-void FcitxInstanceShowInputSpeed(FcitxInstance* instance)
+void FcitxInstanceShowInputSpeed(FcitxInstance* instance, boolean force)
 {
     FcitxInputState* input = instance->input;
 
     if (!instance->initialized)
         return;
 
-    if (!instance->config->bShowInputWindowTriggering)
-        return;
+    if (!force) {
+        if (!instance->config->bShowInputWindowTriggering)
+            return;
 
-    if (FcitxInstanceGetCurrentState(instance) != IS_ACTIVE && instance->config->bShowInputWindowOnlyWhenActive)
-        return;
+        if (FcitxInstanceGetCurrentState(instance) != IS_ACTIVE && instance->config->bShowInputWindowOnlyWhenActive)
+            return;
+    }
 
     if (FcitxMessagesGetMessageCount(input->msgAuxUp)
         || FcitxMessagesGetMessageCount(input->msgAuxDown)
@@ -1786,6 +1789,11 @@ void FcitxInstanceShowInputSpeed(FcitxInstance* instance)
     if (im) {
         FcitxMessagesAddMessageStringsAtLast(input->msgAuxUp, MSG_TIPS,
                                              im->strName);
+        const char* subModeName = im->GetSubModeName ? im->GetSubModeName(im->klass) : NULL;
+        if (subModeName) {
+            FcitxMessagesAddMessageStringsAtLast(input->msgAuxUp, MSG_TIPS, " - ",
+                                                 subModeName);
+        }
     }
 
     //显示打字速度
@@ -2107,5 +2115,10 @@ INPUT_RETURN_VALUE FcitxStandardKeyBlocker(FcitxInputState* input, FcitxKeySym k
         return IRV_TO_PROCESS;
 }
 
+FCITX_EXPORT_API
+void FcitxInstanceShowCurrentIMInfo(FcitxInstance* instance)
+{
+    FcitxInstanceShowInputSpeed(instance, true);
+}
 
 // kate: indent-mode cstyle; space-indent on; indent-width 0;
