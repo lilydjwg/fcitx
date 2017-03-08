@@ -44,6 +44,10 @@
 #include "xkb.h"
 #include "xkb-internal.h"
 #include "rules.h"
+#ifdef _ENABLE_DBUS
+#include "module/xkbdbus/fcitx-xkbdbus.h"
+#endif
+
 
 #ifndef XKB_RULES_XML_FILE
 #define XKB_RULES_XML_FILE "/usr/share/X11/xkb/rules/evdev.xml"
@@ -609,7 +613,18 @@ FcitxXkbSetLayoutByName(FcitxXkb *xkb, const char *layout, const char *variant, 
     if (index < 0) {
         return false;
     }
-    XkbLockGroup(xkb->dpy, XkbUseCoreKbd, index);
+#ifdef _ENABLE_DBUS
+    // xkbdbus should be gnone at this point, don't touch the code.
+    if (FcitxInstanceGetIsDestroying(xkb->owner)) {
+        XkbLockGroup(xkb->dpy, XkbUseCoreKbd, index);
+        return false;
+    }
+    FcitxAddon *addon = FcitxAddonsGetAddonByName(FcitxInstanceGetAddons(xkb->owner), "fcitx-xkbdbus");
+    if (!addon || !addon->addonInstance || !FcitxXkbDBusLockGroupByHelper(xkb->owner, index))
+#endif
+    {
+        XkbLockGroup(xkb->dpy, XkbUseCoreKbd, index);
+    }
     return true;
 }
 
