@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2017-07-08 09:02-0700\n"
-"PO-Revision-Date: 2017-07-08 15:48+0000\n"
+"POT-Creation-Date: 2017-07-09 17:02-0700\n"
+"PO-Revision-Date: 2017-07-09 23:35+0000\n"
 "Last-Translator: Bon Keun Seo <scobyseo@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/fcitx/fcitx/language/ko/)\n"
 "Language: ko\n"
@@ -38,7 +38,7 @@ msgstr "${1}은 ${2}로 설정되었습니다."
 
 #: data/script/fcitx-diagnose.sh:514
 msgid "${1} not found."
-msgstr "${1} 찾지못함."
+msgstr "${1}이 없습니다."
 
 #: data/script/fcitx-diagnose.sh:927
 msgid "${1} works properly."
@@ -111,19 +111,19 @@ msgstr "/분, 사용 시간:"
 
 #: src/module/autoeng/fcitx-autoeng.desc:31
 msgid "0 for commit immediately, -1 for keep all words"
-msgstr "즉시 commit을 원하면 0, 모든 단어를 유지하기 원하면 -1"
+msgstr "즉시 입력을 원하면 0, 모든 단어를 유지하기 원하면 -1"
 
 #: src/module/unicode/charselectdata.c:249
 msgid "<Low Surrogate>"
-msgstr ""
+msgstr "<하위 확장코드>"
 
 #: src/module/unicode/charselectdata.c:245
 msgid "<Non Private Use High Surrogate>"
-msgstr ""
+msgstr "<비 개인용 상위 확장코드>"
 
 #: src/module/unicode/charselectdata.c:247
 msgid "<Private Use High Surrogate>"
-msgstr ""
+msgstr "<개인용 상위 확장코드>"
 
 #: src/module/unicode/charselectdata.c:251
 msgid "<Private Use>"
@@ -137,31 +137,31 @@ msgstr "<할당 안됨>"
 msgid ""
 "A different value from the global one may be useful when using horizontal "
 "candidate list"
-msgstr ""
+msgstr "수평 후보 목록 사용 시 전역값과는 다른 값이 필요할 수 있습니다."
 
 #: src/im/pinyin/fcitx-pinyin.desc:7
 msgid "ABC"
-msgstr "ABC"
+msgstr "지능ABC"
 
 #: data/config.desc:26
 msgid "ALT Both"
-msgstr "양쪽 ALT"
+msgstr "양쪽 Alt"
 
 #: data/config.desc:20
 msgid "ALT_L_SHIFT"
-msgstr "ALT_L_SHIFT"
+msgstr "Alt+왼쪽 시프트"
 
 #: data/config.desc:21
 msgid "ALT_R_SHIFT"
-msgstr "ALT_R_SHIFT"
+msgstr "Alt+오른쪽 시프트"
 
 #: data/config.desc:75
 msgid "ALT_SHIFT"
-msgstr "ALT_SHIFT"
+msgstr "Alt+Shift"
 
 #: data/config.desc:77
 msgid "ALT_SUPER"
-msgstr "ALT_SUPER"
+msgstr "Alt+Super"
 
 #: data/config.desc:49
 msgid "Activate input method"
@@ -205,7 +205,7 @@ msgstr "Fcitx를 위한 Lua 스크립스 지원 추가"
 
 #: src/im/table/fcitx-table.desc:4
 msgid "Add Phrase"
-msgstr "Phrase 추가"
+msgstr "문구 추가"
 
 #: src/module/unicode/fcitx-unicode.conf.in:4
 msgid "Add Unicode Typing Support"
@@ -220,7 +220,7 @@ msgstr "사용자 사전에 현재 입력 버퍼 추가"
 #: data/addon.desc:45 data/addon.desc:50 data/addon.desc:55 data/addon.desc:64
 #: data/addon.desc:69 data/addon.desc:74 data/addon.desc:79
 msgid "Addon"
-msgstr "애드온"
+msgstr "부가기능"
 
 #: src/lib/fcitx/addon.c:138
 #, c-format
@@ -246,17 +246,17 @@ msgstr "조정 순서"
 #: src/im/pinyin/fcitx-pinyin.desc:59 src/im/pinyin/fcitx-pinyin.desc:68
 #: src/im/pinyin/fcitx-pinyin.desc:77 src/im/table/table.desc:24
 msgid "AdjustFast"
-msgstr ""
+msgstr "빠른 조절"
 
 #: src/im/pinyin/fcitx-pinyin.desc:60 src/im/pinyin/fcitx-pinyin.desc:69
 #: src/im/pinyin/fcitx-pinyin.desc:78 src/im/table/table.desc:25
 msgid "AdjustFreq"
-msgstr ""
+msgstr "조절빈도"
 
 #: src/im/pinyin/fcitx-pinyin.desc:58 src/im/pinyin/fcitx-pinyin.desc:67
 #: src/im/pinyin/fcitx-pinyin.desc:76 src/im/table/table.desc:23
 msgid "AdjustNo"
-msgstr ""
+msgstr "조절안함"
 
 #: data/config.desc:170
 msgid "All"
@@ -299,11 +299,11 @@ msgstr "Alt"
 
 #: src/im/table/table.desc:193
 msgid "Alternative Next Page Key"
-msgstr "다른 다음 페이지 키"
+msgstr "대체 다음 페이지 키"
 
 #: src/im/table/table.desc:188
 msgid "Alternative Prev Page Key"
-msgstr "다른 이전 페이지 키"
+msgstr "대체 이전 페이지 키"
 
 #: src/module/quickphrase/fcitx-quickphrase.desc:13
 msgid "Alternative Trigger Key for QuickPhrase"
@@ -326,7 +326,7 @@ msgstr "%1을(를) 지우시겠습니까?"
 
 #: data/addon.desc:67
 msgid "Argument for InputMethod Register"
-msgstr ""
+msgstr "InputMethod 등록을 위한 매개변수"
 
 #: src/module/spell/fcitx-spell.desc:6
 msgid "Aspell"
@@ -350,7 +350,7 @@ msgstr "자동 문장 생성"
 #: src/module/autoeng/fcitx-autoeng.desc:26
 #: src/module/autoeng/fcitx-autoeng.desc:34
 msgid "Auto English"
-msgstr "자동 영어"
+msgstr "자동 영어 입력"
 
 #: src/module/autoeng/fcitx-autoeng.conf.in:3
 msgid "Auto English Mode"
@@ -358,7 +358,7 @@ msgstr "자동 영어 모드"
 
 #: src/module/autoeng/fcitx-autoeng.conf.in:9
 msgid "Auto English Trigger Word"
-msgstr "자동 영어 트리거 단어"
+msgstr "자동 영어 발동 단어"
 
 #: src/im/table/table.desc:88
 msgid "Auto Phrase"
@@ -370,11 +370,11 @@ msgstr "자동 문구 길이"
 
 #: src/im/table/table.desc:103
 msgid "Auto Phrase Phrase"
-msgstr "자동 문장"
+msgstr "자동 문구 문구"
 
 #: src/im/table/table.desc:49
 msgid "Auto Send Candidate Word"
-msgstr "후보 단어 자동 보내기"
+msgstr "후보 단어 자동 입력"
 
 #: src/lib/fcitx-config/fcitx-config.c:1180
 #: src/lib/fcitx-config/fcitx-config.c:1187
@@ -415,7 +415,7 @@ msgstr "오른쪽아래"
 
 #: data/config.desc:22
 msgid "CTRL Both"
-msgstr "양쪽 CTRL"
+msgstr "양쪽 Ctrl"
 
 #: data/config.desc:74
 msgid "CTRL_SHIFT"
@@ -431,7 +431,7 @@ msgstr "imWindow를 만들 수 없음"
 
 #: src/module/punc/punc.c:410
 msgid "Can't open punc file."
-msgstr "기호 파일을 열 수 없음"
+msgstr "부호 파일을 열 수 없음"
 
 #: src/module/remote/remote.c:70
 #, c-format
@@ -616,7 +616,7 @@ msgstr "두 번째 및 세 번째 후보 단어 선택"
 #: src/module/clipboard/fcitx-clipboard.desc:35
 #: src/module/quickphrase/fcitx-quickphrase.desc:16
 msgid "Choose key modifier"
-msgstr ""
+msgstr "변환 키 선택"
 
 #: src/im/table/table.c:713
 msgid "Choose the phrase to be deleted, Press Escape to Cancel"
@@ -684,11 +684,11 @@ msgstr "가상 키보드 닫기"
 
 #: src/im/table/table.desc:15
 msgid "Code Table File"
-msgstr "코드 테이블 파일"
+msgstr "코드 표 파일"
 
 #: src/im/table/table.desc:7
 msgid "Code Table Name"
-msgstr "코드 테이블 이름"
+msgstr "코드 표 이름"
 
 #: src/im/table/table.c:1399
 msgid "Code is "
@@ -717,7 +717,7 @@ msgstr "코드는 "
 #: src/im/table/table.desc:212 src/im/table/table.desc:217
 #: src/im/table/table.desc:222
 msgid "CodeTable"
-msgstr "코드 테이블"
+msgstr "코드 표"
 
 #: src/ui/classic/skin.desc:257
 msgid "Color of Cursor"
@@ -729,11 +729,11 @@ msgstr "주석"
 
 #: src/im/table/table.desc:203
 msgid "Commit and pass when invalid key of this table pressed"
-msgstr ""
+msgstr "이 표의 유효하지 않은 키가 눌렸을 때 입력완료 후 넘김"
 
 #: src/im/table/table.desc:208
 msgid "Commit key for select first candidate"
-msgstr ""
+msgstr "첫 후보를 고르는 입력완료 키"
 
 #: src/im/table/table.desc:213
 msgid "Commit string when there is no match"
@@ -741,11 +741,11 @@ msgstr "일치하는 것이 없으면 입력완료"
 
 #: data/config.desc:198
 msgid "Commit when toggle state"
-msgstr "상태가 토글 될 때 커밋"
+msgstr "상태가 전환되면 입력완료"
 
 #: src/im/keyboard/fcitx-keyboard.desc:4
 msgid "Commit with extra space when choose candidate word"
-msgstr ""
+msgstr "단어 후보 선택 시 추가 공백 넣기"
 
 #: data/script/fcitx-diagnose.sh:996
 msgid "Config GUI for gtk${1} not found."
@@ -783,7 +783,7 @@ msgstr "현재 입력기 설정"
 #: src/lib/fcitx-config/fcitx-config.c:894
 #, c-format
 msgid "Configure group name error: line %d"
-msgstr "그룹 이름 설정 에러 : 라인 %d"
+msgstr "그룹 이름 설정 오류 : 라인 %d"
 
 #: tools/gui/quickphrase-editor/editor.cpp:334
 msgid "Confirm deletion"
@@ -791,7 +791,7 @@ msgstr "지우기 확인"
 
 #: src/module/quickphrase/fcitx-quickphrase.conf.in:4
 msgid "Conveniently Input English or User-Defined Simple Table"
-msgstr ""
+msgstr "영어나 사용자 정의 단순 표를 손쉽게 입력"
 
 #: src/module/chttrans/fcitx-chttrans.conf.in:4
 msgid "Convert Simplified Chinese To Traditional Chinese"
@@ -886,11 +886,11 @@ msgstr "기본값"
 
 #: data/config.desc:180
 msgid "Default Input Method State"
-msgstr "디폴트 입력기 상태"
+msgstr "기본 입력기 상태"
 
 #: src/im/pinyin/fcitx-pinyin.desc:13
 msgid "Default Shuangpin Schema"
-msgstr "기본 Shuangpin Schema"
+msgstr "기본 Shuangpin 스키마"
 
 #: src/module/spell/fcitx-spell.desc:11
 msgid "Default Spell Hint Backends Order"
@@ -975,12 +975,12 @@ msgstr "철자 힌트 보이지 않기"
 
 #: src/im/table/table.desc:29
 msgid "Do not sort word with code less than this level"
-msgstr ""
+msgstr "이 수준보다 낮은 코드로 단어는 고르지 않음"
 
 #: src/lib/fcitx-utils/desktop-parse.c:602
 #, c-format
 msgid "Duplicate entry %s in group %s,@ line %d, override previous one."
-msgstr ""
+msgstr "중복된 항목 %s이 그룹 %s, 행 %d에 있어, 이전 값을 덮어씁니다."
 
 #: src/lib/fcitx-utils/desktop-parse.c:562
 #, c-format
@@ -1008,7 +1008,7 @@ msgstr "비어있음"
 
 #: src/im/table/table.desc:156
 msgid "Enable"
-msgstr "활성"
+msgstr "활성화"
 
 #: data/config.desc:63
 msgid "Enable Hotkey to scroll Between Input Method"
@@ -1040,7 +1040,7 @@ msgstr "영어 모드 아이콘"
 
 #: src/lib/fcitx-config/fcitx-config.c:400
 msgid "Enum Option is invalid, take it as string"
-msgstr "Enum 옵션이 유호하지 않습니다, 문자열을 가짐 "
+msgstr "Enum 옵션이 유효하지 않고, 문자열을 가짐 "
 
 #: src/lib/fcitx-config/fcitx-config.c:376
 msgid "Enum option duplicated."
@@ -1080,7 +1080,7 @@ msgstr "Erbi"
 
 #: data/script/fcitx-diagnose.sh:811
 msgid "Error occurs when running ${1}. Please check your locale settings."
-msgstr "${1} 을 수행하는 중 에러가 발생하였습니다. 지역화 설정을 확인하세요."
+msgstr "${1} 을 수행하는 중 오류가 발생하였습니다. 지역화 설정을 확인하세요."
 
 #: tools/gui/quickphrase-editor/editor.cpp:343
 #, kde-format
@@ -1098,7 +1098,7 @@ msgstr ""
 
 #: src/ui/cairostuff/font.c:46
 msgid "Error: Load fontconfig failed"
-msgstr "에러: fontconfig 불러오기 실패"
+msgstr "오류: fontconfig 불러오기 실패"
 
 #: src/ui/classic/fcitx-skin-installer.sh:76
 msgid "Error: skin failed to install"
@@ -1138,7 +1138,7 @@ msgstr "${1}의 출력 내용에서 fcitx를 찾을 수 없음"
 
 #: data/addon.desc:72
 msgid "Fallback UI Addon"
-msgstr "대체 UI 애드온"
+msgstr "대체 UI 부가기능"
 
 #: src/ui/kimpanel/kimpanel.c:397 data/fcitx-autostart.desktop.in:2
 #: data/fcitx.desktop.in:2
@@ -1226,7 +1226,7 @@ msgstr "첫 번째 후보 색"
 
 #: src/im/table/table.desc:198
 msgid "First Candidate Display as Preedit"
-msgstr ""
+msgstr "사전 편집을 첫 후보로 표시"
 
 #: src/im/pinyin/fcitx-pinyin.desc:140
 msgid "Fix misstype gn/ng"
@@ -1234,7 +1234,7 @@ msgstr "잘못된 gn/ng 고치기"
 
 #: src/im/pinyin/fcitx-pinyin.desc:145
 msgid "Fix misstype v/u like jv, qv, xv, yv"
-msgstr ""
+msgstr "jv, qv, xv, yv 등의 잘못된 v/ 고치지"
 
 #: src/im/pinyin/fcitx-pinyin.desc:18
 msgid "Fix preedit cursor at head"
@@ -1242,15 +1242,15 @@ msgstr "사전편집 커서를 앞에 고정"
 
 #: src/ui/classic/fcitx-classic-ui.desc:23
 msgid "Font"
-msgstr "폰트"
+msgstr "글꼴"
 
 #: src/ui/classic/fcitx-classic-ui.desc:33
 msgid "Font Locale to display"
-msgstr "보이기위한 폰트 로케일"
+msgstr "표시할 글꼴 로케일"
 
 #: src/ui/classic/fcitx-classic-ui.desc:16
 msgid "Font Size"
-msgstr "폰트 크기"
+msgstr "글꼴 크기"
 
 #: src/ui/classic/skin.desc:28
 msgid "Font sizes respect dpi setting"
@@ -1369,67 +1369,67 @@ msgstr "프론트엔드 설정:"
 #: src/module/fullwidthchar/fullwidthchar.c:114
 #: src/module/fullwidthchar/fullwidthchar.c:191
 msgid "Full width Character"
-msgstr "전자"
+msgstr "전각 문자"
 
 #: src/module/punc/punc.c:148 src/module/punc/punc.c:567
 msgid "Full width punct"
-msgstr "전자 기호"
+msgstr "전각 부호"
 
 #: src/module/punc/punc.c:586
 msgid "Full width punctuations are used."
-msgstr "전자 기호입력 사용중."
+msgstr "전각 부호 사용중."
 
 #: src/module/vk/vk.c:52
 msgid "Fullwidth"
-msgstr "전자"
+msgstr "전각"
 
 #: src/module/fullwidthchar/fcitx-fullwidth-char.conf.in:3
 msgid "Fullwidth Character"
-msgstr "전자"
+msgstr "전각 문자"
 
 #: src/im/pinyin/fcitx-pinyin.desc:85
 msgid "Fuzzy an and ang"
-msgstr ""
+msgstr "퍼지 an - ang"
 
 #: src/im/pinyin/fcitx-pinyin.desc:115
 msgid "Fuzzy c and ch"
-msgstr ""
+msgstr "퍼지 c - ch"
 
 #: src/im/pinyin/fcitx-pinyin.desc:90
 msgid "Fuzzy en and eng"
-msgstr ""
+msgstr "퍼지 en - eng"
 
 #: src/im/pinyin/fcitx-pinyin.desc:120
 msgid "Fuzzy f and h"
-msgstr ""
+msgstr "퍼지 f - h"
 
 #: src/im/pinyin/fcitx-pinyin.desc:95
 msgid "Fuzzy ian and iang"
-msgstr ""
+msgstr "퍼지 ian - iang"
 
 #: src/im/pinyin/fcitx-pinyin.desc:100
 msgid "Fuzzy in and ing"
-msgstr ""
+msgstr "퍼지 in - ing"
 
 #: src/im/pinyin/fcitx-pinyin.desc:125
 msgid "Fuzzy l and n"
-msgstr ""
+msgstr "퍼지 l - n"
 
 #: src/im/pinyin/fcitx-pinyin.desc:105
 msgid "Fuzzy ou and u"
-msgstr ""
+msgstr "퍼지 ou - u"
 
 #: src/im/pinyin/fcitx-pinyin.desc:130
 msgid "Fuzzy s and sh"
-msgstr ""
+msgstr "퍼지 s - sh"
 
 #: src/im/pinyin/fcitx-pinyin.desc:110
 msgid "Fuzzy uan and uang"
-msgstr ""
+msgstr "퍼지 uan - uang"
 
 #: src/im/pinyin/fcitx-pinyin.desc:135
 msgid "Fuzzy z and zh"
-msgstr ""
+msgstr "퍼지 z - zh"
 
 #: data/config.desc:211
 msgid "Give the tips of Phrase"
@@ -1449,7 +1449,7 @@ msgstr "전역 입력기 선택 키"
 #: src/module/imselector/fcitx-imselector.desc:51
 #: src/module/imselector/fcitx-imselector.desc:56
 msgid "GlobalSelector"
-msgstr ""
+msgstr "전역 선택"
 
 #: src/module/quickphrase/fcitx-quickphrase.desc:7
 msgid "Grave"
@@ -1474,7 +1474,7 @@ msgstr "GTK 입력 모듈 파일:"
 #: src/module/fullwidthchar/fullwidthchar.c:114
 #: src/module/fullwidthchar/fullwidthchar.c:191
 msgid "Half width Character"
-msgstr "반자"
+msgstr "반각 문자"
 
 #: data/script/fcitx-diagnose.sh:702
 msgid "Hall of Shame for Linux IME Support"
@@ -1513,11 +1513,11 @@ msgstr "단축키"
 
 #: src/module/pinyin-enhance/fcitx-pinyin-enhance.desc:30
 msgid "Hotkey for Inputing Character From Phrase"
-msgstr ""
+msgstr "상용구 입력키"
 
 #: src/module/pinyin-enhance/fcitx-pinyin-enhance.desc:35
 msgid "Hotkey for switching to Inputing Character From Phrase mode"
-msgstr ""
+msgstr "상용구 입력모드 해제"
 
 #: src/im/pinyin/fcitx-pinyin.desc:43
 msgid "Hotkey of Adding Frequent Word"
@@ -1545,7 +1545,7 @@ msgstr "IM: %s 열기 실패 (%s)"
 #: src/module/imselector/fcitx-imselector.desc:6
 #: src/module/imselector/fcitx-imselector.desc:11
 msgid "IMSelector"
-msgstr ""
+msgstr "입력기 선택"
 
 #: src/im/table/table.desc:11
 msgid "Icon Name"
@@ -1553,7 +1553,7 @@ msgstr "아이콘 이름"
 
 #: data/inputmethod.desc:11
 msgid "IconName"
-msgstr ""
+msgstr "아이콘 이름"
 
 #: data/script/fcitx-diagnose.sh:691
 msgid ""
@@ -1585,7 +1585,7 @@ msgstr "공백 선택 무시"
 
 #: src/im/table/table.desc:223
 msgid "Ignore some Punctuation, if it is empty, then ignore all punctuation"
-msgstr ""
+msgstr "비어있으면 일부 문장부호를 무시한 후 모든 문장부호를 무시"
 
 #: data/config.desc:56
 msgid "Inactivate Input Method"
@@ -1687,7 +1687,7 @@ msgstr "잘못된 부가기능 설정 파일 ${1}."
 #: src/lib/fcitx-utils/desktop-parse.c:592
 #, c-format
 msgid "Invalid entry line @ line %d %s"
-msgstr ""
+msgstr "유효하지 않은 항목행 @ 행 %d %s"
 
 #: tools/gui/quickphrase-editor/editor.cpp:285
 msgid "Invalid filename"
@@ -1710,7 +1710,7 @@ msgstr "가타카나"
 msgid ""
 "Keep current buffer when there is no match item and input length is equal "
 "code length"
-msgstr ""
+msgstr "일치하는 항목이 없고 입력 문자수가 코드 길이와 같을 때 현재 버퍼 유지"
 
 #: src/im/table/fcitx-table.desc:1 src/im/table/fcitx-table.desc:6
 #: src/im/table/fcitx-table.desc:11 src/im/table/fcitx-table.desc:16
@@ -1740,7 +1740,7 @@ msgstr "자판 배열"
 
 #: src/im/table/table.desc:166
 msgid "Keyboard Layout to be used"
-msgstr "사용되는 키보드 레이아웃"
+msgstr "사용되는 키보드 배열"
 
 #: data/script/fcitx-diagnose.sh:787
 msgid "Keyboard Layout:"
@@ -1768,23 +1768,23 @@ msgstr "kimpanel 프로세스:"
 
 #: data/config.desc:24
 msgid "L_ALT"
-msgstr ""
+msgstr "왼쪽 Alt"
 
 #: data/config.desc:19
 msgid "L_CTRL"
-msgstr ""
+msgstr "오른쪽 Ctrl"
 
 #: data/config.desc:18
 msgid "L_SHIFT"
-msgstr ""
+msgstr "왼쪽 시프트"
 
 #: data/inputmethod.desc:19
 msgid "LangCode"
-msgstr ""
+msgstr "언어코드"
 
 #: src/im/table/table.desc:151
 msgid "Language Code for this table"
-msgstr "이 테이블을 위한 언어 코드"
+msgstr "이 표를 위한 언어 코드"
 
 #: src/module/vk/vk.c:51
 msgid "Latin"
@@ -1792,11 +1792,11 @@ msgstr "로마자"
 
 #: src/module/punc/punc.c:149 src/module/punc/punc.c:568
 msgid "Latin punct"
-msgstr "로마자 기호"
+msgstr "로마자 부호"
 
 #: src/module/punc/punc.c:587
 msgid "Latin punctuations are used."
-msgstr "로마자 기호입력 사용중."
+msgstr "로마자 부호 입력 사용중."
 
 #: src/lib/fcitx-qt/fcitxqtkeysequencewidget.cpp:314
 msgid "Left"
@@ -1820,7 +1820,7 @@ msgstr "저장할 클립보드 히스토리의 길이"
 
 #: src/im/table/table.desc:28
 msgid "Level of simple code"
-msgstr ""
+msgstr "단순 코드의 수준"
 
 #: data/addon.desc:31
 msgid "Library"
@@ -1833,7 +1833,7 @@ msgstr "부가기능 설정 파일을 로드함 : %s"
 
 #: src/im/table/tabledict.c:341
 msgid "Load Autophrase OK"
-msgstr "Autophrase 로딩 OK"
+msgstr "자동 문구 로딩 OK"
 
 #: src/im/table/tabledict.c:248
 msgid "Load Table Dict OK"
@@ -1841,7 +1841,7 @@ msgstr "표 사전 로딩 OK"
 
 #: src/im/table/tabledict.c:285
 msgid "Loading Autophrase."
-msgstr "Autophrase 로딩"
+msgstr "자동 문구 로딩"
 
 #: src/im/table/tabledict.c:41
 msgid "Loading Table Dict"
@@ -1861,7 +1861,7 @@ msgstr "지역 입력기 선택 키"
 #: src/module/imselector/fcitx-imselector.desc:96
 #: src/module/imselector/fcitx-imselector.desc:101
 msgid "LocalSelector"
-msgstr ""
+msgstr "지역 선택"
 
 #: data/script/fcitx-diagnose.sh:802
 msgid "Locale:"
@@ -1877,7 +1877,7 @@ msgstr "로고 아이콘"
 
 #: src/im/table/fcitx-table.desc:24
 msgid "Lookup Pinyin"
-msgstr ""
+msgstr "병음 검색"
 
 #: src/im/pinyin/fcitx-pinyin.desc:5
 msgid "MS"
@@ -1927,7 +1927,7 @@ msgstr "철자 힌트 리스트의 최고 길이"
 
 #: src/module/autoeng/fcitx-autoeng.desc:23
 msgid "Maximum length of spell hint list for Auto English"
-msgstr "자동 영어를 위한 철자 힌트 리스트의 최고 길이"
+msgstr "자동 영어 입력을 위한 철자 힌트 리스트의 최고 길이"
 
 #: src/module/pinyin-enhance/fcitx-pinyin-enhance.desc:24
 msgid "Maximum length of spell hint list for Pinyin Enhance"
@@ -1939,15 +1939,15 @@ msgstr "Quick Phrase를 위한 철자 힌트 리스트의 최고 길이"
 
 #: src/module/pinyin-enhance/fcitx-pinyin-enhance.desc:55
 msgid "Maximum results from stroke input."
-msgstr ""
+msgstr "필획 입력 가능한 최대 길이"
 
 #: src/module/autoeng/fcitx-autoeng.desc:30
 msgid "Maximum words number kept in preedit"
-msgstr ""
+msgstr "ᅟ"
 
 #: src/ui/classic/fcitx-classic-ui.desc:28
 msgid "Menu Font"
-msgstr "메뉴 폰트"
+msgstr "메뉴 글꼴"
 
 #: src/ui/classic/skin.desc:23
 msgid "Menu Font Size"
@@ -1959,7 +1959,7 @@ msgstr "오래된 파일 경로를 새로운 곳으로 이전하기"
 
 #: src/module/pinyin-enhance/fcitx-pinyin-enhance.desc:46
 msgid "Minimum input length to trigger stroke input (set to -1 to disable)"
-msgstr ""
+msgstr "필획 입력 기능이 시작되는 최소 입력 문자 수 (끄기: -1)"
 
 #: src/im/keyboard/fcitx-keyboard.desc:25
 msgid "Minimum length to trigger word hint"
@@ -1968,15 +1968,15 @@ msgstr "단어 힌트 발생 문자열 최소 길이"
 #: src/im/table/table.desc:59
 msgid ""
 "Minimum length trigger auto send candidate when there will be no candidate"
-msgstr ""
+msgstr "후보가 없을 것 같을 때 후보 단어를 자동 입력하기 위한 최저 문자수"
 
 #: src/im/table/table.desc:54
 msgid "Minimum length trigger auto send candidate word when only one candidate"
-msgstr ""
+msgstr "하나의 후보만 있을 때 후보 단어를 자동 입력하기 위한 최저 문자수"
 
 #: src/lib/fcitx-config/fcitx-config.c:410
 msgid "Missing type, take it as string"
-msgstr "타입이 누락됨, 문자열을 가짐 "
+msgstr "형식이 누락되어 문자열로 취급함 "
 
 #: data/addon.desc:20
 msgid "Module"
@@ -2048,7 +2048,7 @@ msgstr "리마인드 없음"
 #: src/lib/fcitx-utils/desktop-parse.c:586
 #, c-format
 msgid "Non-comment doesn't belongs to any group @ %d %s"
-msgstr ""
+msgstr "주석이 아닌 문자가 어떤 그룹에도 속하지 않음 @ %d %s"
 
 #: src/im/keyboard/fcitx-keyboard.desc:11 src/im/table/table.desc:145
 #: src/module/autoeng/fcitx-autoeng.desc:6
@@ -2081,7 +2081,7 @@ msgstr "OpenCC"
 #: src/lib/fcitx-config/fcitx-config.c:1136
 #, c-format
 msgid "Option %s is Invalid, Use Default Value %s"
-msgstr "옵션 %s은 잘못되었습니다, 디폴트 값을 사용하세요 %s"
+msgstr "옵션 %s은 잘못되었습니다, 기본 값 %s을 사용"
 
 #: src/lib/fcitx-config/fcitx-config.c:1144
 #, c-format
@@ -2090,7 +2090,7 @@ msgstr "옵션 %s은 잘못되었습니다."
 
 #: src/im/table/table.desc:34
 msgid "Order of Code Table"
-msgstr "코드 테이블의 순서"
+msgstr "코드 표의 순서"
 
 #: src/ui/classic/skin.desc:57
 msgid "Other Color"
@@ -2139,7 +2139,7 @@ msgstr "부모"
 
 #: data/config.desc:171
 msgid "PerProgram"
-msgstr ""
+msgstr "프로그램별"
 
 #: tools/gui/quickphrase-editor/model.cpp:58
 msgid "Phrase"
@@ -2188,7 +2188,7 @@ msgstr "병음 매직 일련번호가 일치하지 않음"
 
 #: src/im/table/table.desc:44
 msgid "Pinyin Key"
-msgstr "Pinyin 키"
+msgstr "병음 키"
 
 #: src/im/table/table.c:621
 msgid "Pinyin: "
@@ -2196,7 +2196,7 @@ msgstr "병음:"
 
 #: src/im/pinyin/fcitx-pinyin.desc:9
 msgid "PinyinJiaJia"
-msgstr ""
+msgstr "병음가가(PinyinJiaJia)"
 
 #: data/script/fcitx-diagnose.sh:890
 msgid "Please check ${1} for how to install fcitx."
@@ -2227,11 +2227,11 @@ msgstr ""
 
 #: src/ui/classic/skin.desc:265
 msgid "Position or offset of LookupTable"
-msgstr ""
+msgstr "LookupTable의 위치"
 
 #: src/ui/classic/skin.desc:261
 msgid "Position or offset of Preedit"
-msgstr ""
+msgstr "Preedit의 위치"
 
 #: src/module/spell/fcitx-spell.desc:14
 msgid "Possible Providers: presage, custom, enchant (separate with comma)"
@@ -2282,7 +2282,7 @@ msgstr "우선순위"
 
 #: data/addon.desc:48
 msgid "Priority of addon"
-msgstr "애드온의 우선순위"
+msgstr "부가기능의 우선순위"
 
 #: data/profile.desc:1 data/profile.desc:6 data/profile.desc:11
 #: data/profile.desc:16 data/profile.desc:21 data/profile.desc:26
@@ -2295,7 +2295,7 @@ msgstr "프로그램"
 
 #: src/im/table/table.desc:113
 msgid "Prompt Table Code"
-msgstr "프롬프트 테이블 코드"
+msgstr "표 코드 묻기"
 
 #: data/profile.desc:12
 msgid "Prompt the phrases after input"
@@ -2307,15 +2307,15 @@ msgstr "Fcitx에서 병음입력 추가기능 제공"
 
 #: src/module/dbus/fcitx-dbus.conf.in:4
 msgid "Provides DBus Support (Used by other Addon)"
-msgstr "DBus 지원 제공 (다른 애드온에 의해 사용)"
+msgstr "DBus 지원 제공 (다른 부가기능에 의해 사용)"
 
 #: src/module/freedesktop-notify/fcitx-freedesktop-notify.conf.in:4
 msgid "Provides Freedesktop.org Notification Support (Used by other Addon)"
-msgstr "Freedesktop.org 알림 지원 제공 (다른 애드온에 의해 사용)"
+msgstr "Freedesktop.org 알림 지원 제공 (다른 부가기능에 의해 사용)"
 
 #: src/module/fullwidthchar/fcitx-fullwidth-char.conf.in:4
 msgid "Provides Fullwidth Character Input Support"
-msgstr "전자 입력 지원 제공"
+msgstr "전각 문자 입력 기능 제공"
 
 #: src/frontend/xim/fcitx-xim.conf.in:4
 msgid "Provides XIM support"
@@ -2323,11 +2323,11 @@ msgstr "XIM 지원 제공"
 
 #: src/module/punc/fcitx-punc.conf.in:4
 msgid "Punctuation Conversion Support"
-msgstr "문장기호 변환 지원"
+msgstr "문장부호 변환 지원"
 
 #: src/module/punc/punc.c:585 src/module/punc/fcitx-punc.conf.in:3
 msgid "Punctuation Support"
-msgstr "기호입력 지원"
+msgstr "부호 입력 지원"
 
 #: data/script/fcitx-diagnose.sh:1171
 msgid "Qt IM module files:"
@@ -2339,7 +2339,7 @@ msgstr "상용구 편집기"
 
 #: src/module/quickphrase/fcitx-quickphrase.conf.in:9
 msgid "Quick Phrase List"
-msgstr "퀵 문장 리스트"
+msgstr "상용구 리스트"
 
 #: src/module/quickphrase/quickphrase.c:378
 msgid "Quick Phrase: "
@@ -2351,7 +2351,7 @@ msgstr "상용구:"
 #: src/module/quickphrase/fcitx-quickphrase.desc:25
 #: src/module/quickphrase/fcitx-quickphrase.desc:31
 msgid "QuickPhrase"
-msgstr ""
+msgstr "상용구"
 
 #: src/module/quickphrase/fcitx-quickphrase.conf.in:3
 msgid "Quickphrase"
@@ -2367,15 +2367,15 @@ msgstr "Fcitx를 위한 Quwei 입력기"
 
 #: data/config.desc:25
 msgid "R_ALT"
-msgstr ""
+msgstr "오른쪽 Alt"
 
 #: data/config.desc:16
 msgid "R_CTRL"
-msgstr ""
+msgstr "오른쪽 Ctrl"
 
 #: data/config.desc:17
 msgid "R_SHIFT"
-msgstr ""
+msgstr "오른쪽 시프트"
 
 #: tools/gui/quickphrase-editor/editor.cpp:70
 msgid "Refresh List"
@@ -2452,11 +2452,11 @@ msgstr "오른쪽 Super"
 msgid ""
 "Roughly the same length with this number of english letters, the actual "
 "length depends on the font and the content"
-msgstr ""
+msgstr "글꼴이나 내용에 따라 달라지지만, 다음 영어 문자 수와 유사한 길이가 됨"
 
 #: src/im/pinyin/fcitx-pinyin.desc:71
 msgid "Rule of Candidate Phrase Order"
-msgstr "후보 문장 순서 룰"
+msgstr "후보 문구 순서 규칙"
 
 #: src/im/pinyin/fcitx-pinyin.desc:62
 msgid "Rule of Candidate Word Order"
@@ -2476,7 +2476,7 @@ msgstr "러시아어"
 
 #: data/config.desc:23
 msgid "SHIFT Both"
-msgstr "양쪽 SHIFT"
+msgstr "양쪽 시프트"
 
 #: src/im/pinyin/fcitx-pinyin.desc:38
 msgid "Save Auto Created Phrase"
@@ -2484,7 +2484,7 @@ msgstr "자동 생성 문장 저장"
 
 #: src/im/table/table.desc:108
 msgid "Save Auto Phrase"
-msgstr "문구 자동 저장"
+msgstr "자동 문구 저장"
 
 #: tools/gui/quickphrase-editor/editor.cpp:131
 msgid "Save Changes"
@@ -2496,7 +2496,7 @@ msgstr "클립보드 기록 파일에 저장"
 
 #: src/im/table/tabledict.c:372
 msgid "Save dict error"
-msgstr "사전 저장 에러"
+msgstr "사전 저장 오류"
 
 #: data/config.desc:136
 msgid "Saving All Config and Input History"
@@ -2532,7 +2532,7 @@ msgstr "선택하여 붙여넣기"
 
 #: data/addon.desc:60
 msgid "Self"
-msgstr ""
+msgstr "자신"
 
 #: src/module/quickphrase/fcitx-quickphrase.desc:6
 msgid "Semicolon"
@@ -2540,7 +2540,7 @@ msgstr "세미콜론"
 
 #: src/im/table/table.desc:64
 msgid "Send Raw Preedit"
-msgstr ""
+msgstr "수정되지 않은 문자열 입력"
 
 #: data/config.desc:199
 msgid "Send typed raw text if Switch to inactive Mode"
@@ -2591,7 +2591,7 @@ msgstr "Shuang Pin 스키마"
 
 #: src/im/pinyin/py.c:121 src/im/pinyin/shuangpin.conf.in:3
 msgid "Shuangpin"
-msgstr ""
+msgstr "Shuangpin"
 
 #: src/im/pinyin/fcitx-pinyin.conf.in:4
 msgid "Simple Pinyin support for Fcitx"
@@ -2633,7 +2633,7 @@ msgstr "스킨 버전"
 #: src/ui/classic/skin.desc:51 src/ui/classic/skin.desc:55
 #: src/ui/classic/skin.desc:59 src/ui/classic/skin.desc:63
 msgid "SkinFont"
-msgstr "스킨폰트"
+msgstr "스킨글꼴"
 
 #: src/ui/classic/skin.desc:1 src/ui/classic/skin.desc:5
 #: src/ui/classic/skin.desc:9 src/ui/classic/skin.desc:13
@@ -2749,7 +2749,7 @@ msgstr "상태 패널 위치 Y"
 
 #: src/module/pinyin-enhance/fcitx-pinyin-enhance.desc:47
 msgid "Stroke input trigger length"
-msgstr ""
+msgstr "필획 입력 문자 수"
 
 #: data/addon.desc:53
 msgid "Sub Configuration for Module"
@@ -2777,7 +2777,7 @@ msgstr "내장 사전 전환"
 
 #: data/config.desc:114
 msgid "Switch Full Width Punc Mode"
-msgstr "Full Width Punc 모드 전환"
+msgstr "전각 부호 모드 전환"
 
 #: src/module/imselector/fcitx-imselector.desc:54
 #: src/module/imselector/fcitx-imselector.desc:99
@@ -2826,7 +2826,7 @@ msgstr "세번째 입력기 전환"
 
 #: data/config.desc:108
 msgid "Switching Full Width Character Mode"
-msgstr "Full Width Character 모드 전환"
+msgstr "전각 문자 모드 전환"
 
 #: data/config.desc:102
 msgid "Switching Remind Mode"
@@ -2843,7 +2843,7 @@ msgstr "기호"
 
 #: src/im/table/table.desc:131
 msgid "Symbol File"
-msgstr "심블 파일"
+msgstr "심볼 파일"
 
 #: data/script/fcitx-diagnose.sh:743
 msgid "System Info:"
@@ -2916,12 +2916,12 @@ msgstr ""
 
 #: src/module/punc/punc.c:150 src/module/punc/punc.c:569
 msgid "Toggle Full Width Punctuation"
-msgstr "전자 기호 전환"
+msgstr "전각 부호 전환"
 
 #: src/module/fullwidthchar/fullwidthchar.c:115
 #: src/module/fullwidthchar/fullwidthchar.c:192
 msgid "Toggle Half/Full width Character"
-msgstr "반자/전자 전환"
+msgstr "반각/전각 전환"
 
 #: src/ui/kimpanel/kimpanel.c:778
 msgid "Toggle Input Method"
@@ -2929,7 +2929,7 @@ msgstr "입력기 전환"
 
 #: src/lib/fcitx/instance.c:287 src/lib/fcitx/instance.c:555
 msgid "Toggle Remind"
-msgstr "리마인드 토글"
+msgstr "리마인드 젼환"
 
 #: src/module/chttrans/chttrans.c:152 src/module/chttrans/chttrans.c:198
 msgid "Toggle Simp/Trad Chinese Conversion"
@@ -2949,7 +2949,7 @@ msgstr "단어 힌트 전환"
 
 #: src/module/autoeng/AutoEng.c:557
 msgid "Too long item for AutoEng"
-msgstr "자동 영어를 위한 아이템이 너무 길음"
+msgstr "자동 영어 입력을 위한 항목이 너무 길음"
 
 #: src/ui/classic/skin.desc:129 src/ui/classic/skin.desc:235
 #: src/ui/classic/skin.desc:365
@@ -3006,7 +3006,7 @@ msgstr "타입"
 
 #: data/config.desc:186
 msgid "Type half width Punc After a Number"
-msgstr "숫자 뒤에 반자 문장기호 입력"
+msgstr "숫자 뒤에 반각 문장부호 입력"
 
 #: data/addon.desc:21
 msgid "UI"
@@ -3035,12 +3035,12 @@ msgstr "테이블을 위한 유일한 이름"
 
 #: data/inputmethod.desc:3
 msgid "UniqueName"
-msgstr ""
+msgstr "고유명칭"
 
 #: src/lib/fcitx-config/fcitx-config.c:406
 #, c-format
 msgid "Unknown type, take it as string: %s"
-msgstr "알 수 없는 타입, 문자열을 가짐 : %s"
+msgstr "알 수 없는 형식, 문자열로 취급함: %s"
 
 #: src/lib/fcitx-qt/fcitxqtkeysequencewidget.cpp:402
 msgid "Unsupported Key"
@@ -3052,19 +3052,19 @@ msgstr "모든 행에 <Keyword> <Phrase> 형식을 사용합니다."
 
 #: src/im/table/table.desc:171
 msgid "Use Alternative Candidate Word Number"
-msgstr ""
+msgstr "대체 후보 단어 수 사용"
 
 #: src/im/table/table.desc:183
 msgid "Use Alternative Key for paging"
-msgstr ""
+msgstr "페이지 이동을 위한 대체 키 사용"
 
 #: src/im/pinyin/fcitx-pinyin.desc:28
 msgid "Use Complete Pinyin"
-msgstr "Complete Pinyin 사용"
+msgstr "온전한 병음 사용"
 
 #: src/im/table/table.desc:161
 msgid "Use Custom Prompt String defined in table"
-msgstr ""
+msgstr "표에 정의된 사용자 질의 문자열 사용"
 
 #: src/ui/classic/skin.desc:167
 msgid "Use Custom text icon color"
@@ -3072,7 +3072,7 @@ msgstr "사용자 문자열 아이콘 색 사용"
 
 #: data/profile.desc:2
 msgid "Use Full Width Character"
-msgstr "전자 사용"
+msgstr "전각 문자 사용"
 
 #: src/im/keyboard/fcitx-keyboard.conf.in:4
 msgid "Use Keyboard Layout as Input Method"
@@ -3084,11 +3084,11 @@ msgstr "매칭 키 사용"
 
 #: src/frontend/xim/fcitx-xim.desc:4
 msgid "Use On The Spot Style for XIM (Cannot change during running)"
-msgstr ""
+msgstr "XIM의 스팟 스타일에 사용 (동작 중에 바꿀 수 없음)"
 
 #: src/im/table/table.desc:39
 msgid "Use Pinyin"
-msgstr "Pinyin 사용"
+msgstr "병음 사용"
 
 #: data/addon.desc:77
 msgid "Use RTLD_LOCAL to load library"
@@ -3128,7 +3128,7 @@ msgstr "기본 배열로 리스트안에 첫번째 키보드 입력기를 사용
 
 #: src/module/remote/fcitx-remote-module.conf.in:4
 msgid "Used by fcitx-remote to change Fcitx state from console"
-msgstr ""
+msgstr "콘솔에서 Fcitx 상태를 변경하기 위해 fcitx-remote 사용"
 
 #: src/module/pinyin-enhance/fcitx-pinyin-enhance.desc:5
 msgid "Useful when you hardly ever use abbreviated pinyin."
@@ -3251,7 +3251,7 @@ msgstr "XMODIFIERS가 설정되지 않음"
 
 #: src/im/pinyin/fcitx-pinyin.desc:10
 msgid "XiaoHe"
-msgstr "XiaoHe"
+msgstr "작은학(XiaoHe)"
 
 #: src/frontend/xim/fcitx-xim.desc:1
 msgid "Xim"
@@ -3371,11 +3371,11 @@ msgstr ""
 
 #: src/im/pinyin/fcitx-pinyin.desc:8
 msgid "Zhongwenzhixing"
-msgstr "Zhongwenzhixing"
+msgstr "중문의 성(Zhongwenzhixing)"
 
 #: src/im/pinyin/fcitx-pinyin.desc:6
 msgid "Ziguang"
-msgstr "Ziguang"
+msgstr "자광(Ziguang)"
 
 #: src/im/table/data/zrm.conf.in:3 src/im/pinyin/fcitx-pinyin.desc:4
 msgid "Ziranma"
@@ -3396,7 +3396,7 @@ msgstr "분, 문자 수:"
 #: src/lib/fcitx-config/fcitx-config.c:1200
 #, c-format
 msgid "no default option for %s/%s"
-msgstr "%s/%s을 위한 디폴트 옵션 없음"
+msgstr "%s/%s을 위한 기본 옵션 없음"
 
 #: src/ui/cairostuff/font.c:121
 msgid "no valid font."
