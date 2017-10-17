@@ -20,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2017-10-15 21:02-0700\n"
-"PO-Revision-Date: 2017-10-16 03:03+0000\n"
+"POT-Creation-Date: 2017-10-16 22:02-0700\n"
+"PO-Revision-Date: 2017-10-17 04:04+0000\n"
 "Last-Translator: csslayer <wengxt@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/fcitx/fcitx/"
 "language/zh_TW/)\n"
@@ -159,7 +159,7 @@ msgstr "作用"
 
 #: src/ui/classic/skin.desc:387
 msgid "Active Menu Color"
-msgstr "使用中功能表項目的顏色"
+msgstr ""
 
 #: src/ui/classic/skin.desc:61
 msgid "Active Menu Item Character Color"
@@ -2548,7 +2548,7 @@ msgstr "緩衝區佈景"
 
 #: src/ui/classic/skin.desc:409 src/ui/classic/skin.desc:414
 msgid "SkinKeyboard"
-msgstr "鍵盤佈景"
+msgstr ""
 
 #: src/ui/classic/skin.desc:67 src/ui/classic/skin.desc:71
 #: src/ui/classic/skin.desc:75 src/ui/classic/skin.desc:79
@@ -2574,7 +2574,7 @@ msgstr "主工具列佈景"
 #: src/ui/classic/skin.desc:389 src/ui/classic/skin.desc:393
 #: src/ui/classic/skin.desc:401
 msgid "SkinMenu"
-msgstr "選單佈景"
+msgstr ""
 
 #: src/ui/classic/skin.desc:307 src/ui/classic/skin.desc:311
 msgid "SkinTrayIcon"
@@ -2582,7 +2582,7 @@ msgstr "系統匣小圖示佈景"
 
 #: src/ui/classic/skin.desc:391
 msgid "Space Line Color"
-msgstr "空白行顏色"
+msgstr ""
 
 #: src/module/quickphrase/quickphrase.c:247
 #, c-format
@@ -3056,7 +3056,7 @@ msgstr "虛擬鍵盤"
 
 #: src/ui/classic/skin.desc:411
 msgid "Virtual Keyboard Image"
-msgstr "虛擬鍵盤圖示"
+msgstr ""
 
 #: src/module/vk/vk.c:154
 msgid "Virtual Keyboard State"

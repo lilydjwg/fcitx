@@ -43,12 +43,13 @@ public:
     QString service() const;
 
 signals:
-    void availibilityChanged(bool);
+    void availabilityChanged(bool);
 
 private slots:
     void dbusDisconnected();
     void socketFileChanged();
-    void imChanged(const QString &service, const QString &oldOwner, const QString &newOwner);
+    void imChanged(const QString &service, const QString &oldOwner,
+                   const QString &newOwner);
 
 private:
     QString address();
@@ -57,7 +58,7 @@ private:
     void createConnection();
     void cleanUpConnection();
     void setAvailability(bool availability);
-    void updateAvailbility();
+    void updateAvailability();
 
     QFileSystemWatcher *m_fsWatcher;
     QDBusServiceWatcher *m_serviceWatcher;
@@ -70,4 +71,4 @@ private:
     bool m_watched = false;
 };
 
-#endif  // FCITXWATCHER_H_
+#endif // FCITXWATCHER_H_

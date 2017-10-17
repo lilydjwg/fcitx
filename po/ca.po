@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2017-10-15 21:02-0700\n"
-"PO-Revision-Date: 2017-10-16 03:03+0000\n"
+"POT-Creation-Date: 2017-10-16 22:02-0700\n"
+"PO-Revision-Date: 2017-10-17 04:04+0000\n"
 "Last-Translator: csslayer <wengxt@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/fcitx/fcitx/language/ca/)\n"
 "Language: ca\n"
@@ -148,7 +148,7 @@ msgstr "Actiu"
 
 #: src/ui/classic/skin.desc:387
 msgid "Active Menu Color"
-msgstr "Color del menú actiu"
+msgstr ""
 
 #: src/ui/classic/skin.desc:61
 msgid "Active Menu Item Character Color"
@@ -2594,7 +2594,7 @@ msgstr "Barra d'entrada de l'aparença"
 
 #: src/ui/classic/skin.desc:409 src/ui/classic/skin.desc:414
 msgid "SkinKeyboard"
-msgstr "Teclat de l'aparença"
+msgstr ""
 
 #: src/ui/classic/skin.desc:67 src/ui/classic/skin.desc:71
 #: src/ui/classic/skin.desc:75 src/ui/classic/skin.desc:79
@@ -2620,7 +2620,7 @@ msgstr "Barra principal de l'aparença"
 #: src/ui/classic/skin.desc:389 src/ui/classic/skin.desc:393
 #: src/ui/classic/skin.desc:401
 msgid "SkinMenu"
-msgstr "Menú de l'aparença"
+msgstr ""
 
 #: src/ui/classic/skin.desc:307 src/ui/classic/skin.desc:311
 msgid "SkinTrayIcon"
@@ -2628,7 +2628,7 @@ msgstr "Icona de la safata de l'aparença"
 
 #: src/ui/classic/skin.desc:391
 msgid "Space Line Color"
-msgstr "Color de la línia d'espai"
+msgstr ""
 
 #: src/module/quickphrase/quickphrase.c:247
 #, c-format
@@ -3116,7 +3116,7 @@ msgstr "Teclat virtual"
 
 #: src/ui/classic/skin.desc:411
 msgid "Virtual Keyboard Image"
-msgstr "Imatge del teclat virtual"
+msgstr ""
 
 #: src/module/vk/vk.c:154
 msgid "Virtual Keyboard State"

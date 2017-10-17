@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2017-10-15 21:02-0700\n"
-"PO-Revision-Date: 2017-10-16 03:03+0000\n"
+"POT-Creation-Date: 2017-10-16 22:02-0700\n"
+"PO-Revision-Date: 2017-10-17 04:04+0000\n"
 "Last-Translator: csslayer <wengxt@gmail.com>\n"
 "Language-Team: Danish (http://www.transifex.com/fcitx/fcitx/language/da/)\n"
 "Language: da\n"
@@ -146,7 +146,7 @@ msgstr "Aktiv"
 
 #: src/ui/classic/skin.desc:387
 msgid "Active Menu Color"
-msgstr "Farve for aktiv menu"
+msgstr ""
 
 #: src/ui/classic/skin.desc:61
 msgid "Active Menu Item Character Color"
@@ -1631,7 +1631,7 @@ msgstr "Tast"
 
 #: src/ui/classic/skin.desc:416
 msgid "Key Color On Virtual Keyboard"
-msgstr "Farve for tast på virtuelt tastatur"
+msgstr ""
 
 #: src/im/keyboard/keyboard.c:359 src/im/keyboard/keyboard.c:376
 #: src/im/keyboard/keyboard.c:424 src/im/keyboard/keyboard.c:437
@@ -2530,7 +2530,7 @@ msgstr "Skin-inputlinje"
 
 #: src/ui/classic/skin.desc:409 src/ui/classic/skin.desc:414
 msgid "SkinKeyboard"
-msgstr "Skin-tastatur"
+msgstr ""
 
 #: src/ui/classic/skin.desc:67 src/ui/classic/skin.desc:71
 #: src/ui/classic/skin.desc:75 src/ui/classic/skin.desc:79
@@ -2556,7 +2556,7 @@ msgstr "Skin-hovedlinje"
 #: src/ui/classic/skin.desc:389 src/ui/classic/skin.desc:393
 #: src/ui/classic/skin.desc:401
 msgid "SkinMenu"
-msgstr "Skin-menu"
+msgstr ""
 
 #: src/ui/classic/skin.desc:307 src/ui/classic/skin.desc:311
 msgid "SkinTrayIcon"
@@ -2564,7 +2564,7 @@ msgstr "Skin-bakkeikon"
 
 #: src/ui/classic/skin.desc:391
 msgid "Space Line Color"
-msgstr "Farve for mellemrumslinje"
+msgstr ""
 
 #: src/module/quickphrase/quickphrase.c:247
 #, c-format
@@ -3034,7 +3034,7 @@ msgstr "Virtuelt tastatur"
 
 #: src/ui/classic/skin.desc:411
 msgid "Virtual Keyboard Image"
-msgstr "Billede for virtuelt tastatur"
+msgstr ""
 
 #: src/module/vk/vk.c:154
 msgid "Virtual Keyboard State"
