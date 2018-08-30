@@ -1363,6 +1363,7 @@ void FcitxInstanceReloadAddonConfig(FcitxInstance *instance, const char* addonna
                 case AC_FRONTEND:
                     if (addon->frontend->ReloadConfig)
                         addon->frontend->ReloadConfig(addon->addonInstance);
+                    break;
                 case AC_INPUTMETHOD:
                     /* imclass and imclass2 are in same union, only check one of them */
                     if (addon->imclass) {
