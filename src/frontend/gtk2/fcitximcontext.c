@@ -55,6 +55,19 @@
 #define NEW_GDK_WINDOW_GET_DISPLAY
 #endif
 
+#if GTK_CHECK_VERSION(3, 6, 0)
+
+static const FcitxCapacityFlags purpose_related_capacity =
+    CAPACITY_ALPHA | CAPACITY_DIGIT | CAPACITY_NUMBER | CAPACITY_DIALABLE |
+    CAPACITY_URL | CAPACITY_EMAIL | CAPACITY_PASSWORD;
+
+static const FcitxCapacityFlags hints_related_capacity =
+    CAPACITY_SPELLCHECK | CAPACITY_NO_SPELLCHECK | CAPACITY_WORD_COMPLETION |
+    CAPACITY_LOWERCASE | CAPACITY_UPPERCASE | CAPACITY_UPPERCASE_WORDS |
+    CAPACITY_UPPERCASE_SENTENCES | CAPACITY_NO_ON_SCREEN_KEYBOARD;
+
+#endif
+
 struct _FcitxIMContext {
     GtkIMContext parent;
 
@@ -781,7 +794,7 @@ static void _fcitx_im_context_update_formatted_preedit_cb(FcitxClient *im,
 #else
                     GtkStyle *style = gtk_widget_get_style(widget);
                     fg = style->text[GTK_STATE_SELECTED];
-                    bg = style->bg[GTK_STATE_SELECTED];
+                    bg = style->base[GTK_STATE_SELECTED];
 #endif
                 }
             }
