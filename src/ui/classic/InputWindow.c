@@ -498,10 +498,11 @@ void InputWindowPaint(FcitxXlibWindow* window, cairo_t* c)
     FcitxCairoTextContext* ctc = FcitxCairoTextContextCreate(c);
     int dpi = sc->skinFont.respectDPI? classicui->dpi : 0;
     FcitxCairoTextContextSet(ctc, window->owner->font, window->owner->fontSize > 0 ? window->owner->fontSize : sc->skinFont.fontSize, dpi);
+    int text_h = FcitxCairoTextContextStringHeightAll(ctc);
 
     int i;
     for (i = 0; i < FcitxMessagesGetMessageCount(msgup) ; i++) {
-        FcitxCairoTextContextOutputString(ctc, strUp[i], posUpX[i], posUpY[i], &sc->skinFont.fontColor[FcitxMessagesGetMessageType(msgup, i) % 7]);
+        FcitxCairoTextContextOutputStringH(ctc, strUp[i], posUpX[i], posUpY[i], text_h, &sc->skinFont.fontColor[FcitxMessagesGetMessageType(msgup, i) % 7]);
         if (strUp[i] != FcitxMessagesGetMessageString(msgup, i))
             free(strUp[i]);
     }
@@ -524,7 +525,7 @@ void InputWindowPaint(FcitxXlibWindow* window, cairo_t* c)
         }
         cairo_set_source_rgba(c, color.r, color.g, color.b, alpha);
 
-        FcitxCairoTextContextOutputString(ctc, strDown[i], posDownX[i], posDownY[i], NULL);
+        FcitxCairoTextContextOutputStringH(ctc, strDown[i], posDownX[i], posDownY[i], text_h, NULL);
         if (strDown[i] != FcitxMessagesGetMessageString(msgdown, i))
             free(strDown[i]);
     }

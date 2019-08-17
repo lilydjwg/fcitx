@@ -34,6 +34,8 @@ void FcitxCairoTextContextStringSizeStrict(FcitxCairoTextContext* ctc, const cha
 int FcitxCairoTextContextStringWidth(FcitxCairoTextContext* ctc, const char *str);
 int FcitxCairoTextContextFontHeight(FcitxCairoTextContext* ctc);
 void FcitxCairoTextContextOutputString(FcitxCairoTextContext* ctc, const char *str, int x, int y, FcitxConfigColor* color);
+int FcitxCairoTextContextStringHeightAll(FcitxCairoTextContext* ctc);
+void FcitxCairoTextContextOutputStringH(FcitxCairoTextContext* ctc, const char *str, int x, int y, int h, FcitxConfigColor* color);
 
 #endif
 // kate: indent-mode cstyle; space-indent on; indent-width 0;

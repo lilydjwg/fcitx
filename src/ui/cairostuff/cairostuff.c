@@ -211,4 +211,41 @@ FcitxCairoTextContextOutputString(FcitxCairoTextContext* ctc, const char* str, i
     cairo_restore(ctc->cr);
 }
 
+int FcitxCairoTextContextStringHeightAll(FcitxCairoTextContext* ctc)
+{
+#ifdef _ENABLE_PANGO
+    int ret;
+    PangoRectangle rect;
+    pango_layout_set_text(ctc->pangoLayout, "Aa中", -1);
+    pango_layout_get_size(ctc->pangoLayout, NULL, &ret);
+#endif
+    return ret;
+}
+
+void
+FcitxCairoTextContextOutputStringH(FcitxCairoTextContext* ctc, const char* str, int x, int y, int h, FcitxConfigColor* color)
+{
+    if (!str || str[0] == 0)
+        return;
+    if (!fcitx_utf8_check_string(str))
+        return;
+    cairo_save(ctc->cr);
+    if (color) {
+        cairo_set_source_rgb(ctc->cr, color->r, color->g, color->b);
+    }
+#ifdef _ENABLE_PANGO
+    pango_layout_set_text(ctc->pangoLayout, str, -1);
+    int th;
+    pango_layout_get_size(ctc->pangoLayout, NULL, &th);
+    int h_diff = h - th;
+
+    cairo_move_to(ctc->cr, x, y + (double) h_diff / PANGO_SCALE);
+    pango_cairo_show_layout(ctc->cr, ctc->pangoLayout);
+#else
+    int             height = FcitxCairoTextContextFontHeight(ctc);
+    cairo_move_to(ctc->cr, x, y + height);
+    cairo_show_text(ctc->cr, str);
+#endif
+    cairo_restore(ctc->cr);
+}
 // kate: indent-mode cstyle; space-indent on; indent-width 0;
