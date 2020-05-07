@@ -666,6 +666,7 @@ FcitxInputContext* FcitxInstanceGetCurrentIC(FcitxInstance* instance)
     return instance->CurrentIC;
 }
 
+FCITX_EXPORT_API
 boolean FcitxInstanceGetHideAlways(FcitxInstance* instance)
 {
     return instance->profile->bHideMore;
