@@ -191,12 +191,6 @@ void* FcitxNotificationItemCreate(FcitxInstance* instance)
 
         notificationitem->conn = conn;
 
-        DBusObjectPathVTable fcitxIPCVTable = {NULL, &FcitxNotificationItemEventHandler, NULL, NULL, NULL, NULL };
-        if (!dbus_connection_register_object_path(notificationitem->conn, NOTIFICATION_ITEM_DEFAULT_OBJ, &fcitxIPCVTable, notificationitem)) {
-            FcitxLog(ERROR, "No memory");
-            break;
-        }
-
         if (!FcitxDBusMenuCreate(notificationitem)) {
             FcitxLog(ERROR, "No memory");
             break;
@@ -261,7 +255,9 @@ void FcitxNotificationItemDestroy(void* arg)
 {
     FcitxNotificationItem* notificationitem = (FcitxNotificationItem*) arg;
     if (notificationitem->conn) {
-        dbus_connection_unregister_object_path(notificationitem->conn, NOTIFICATION_ITEM_DEFAULT_OBJ);
+        if (notificationitem->callback) {
+            dbus_connection_unregister_object_path(notificationitem->conn, NOTIFICATION_ITEM_DEFAULT_OBJ);
+        }
         dbus_connection_unregister_object_path(notificationitem->conn, "/MenuBar");
     }
     notificationitem->ids = MenuIdSetClear(notificationitem->ids);
@@ -587,6 +583,9 @@ boolean FcitxNotificationItemEnable(FcitxNotificationItem* notificationitem, Fci
         FcitxLog(ERROR, "This should not happen, please report bug.");
         return false;
     }
+
+    DBusObjectPathVTable fcitxIPCVTable = {NULL, &FcitxNotificationItemEventHandler, NULL, NULL, NULL, NULL };
+    dbus_connection_register_object_path(notificationitem->conn, NOTIFICATION_ITEM_DEFAULT_OBJ, &fcitxIPCVTable, notificationitem);
     notificationitem->callback = callback;
     notificationitem->data = data;
     asprintf(&notificationitem->serviceName, "org.kde.StatusNotifierItem-%u-%d", getpid(), ++notificationitem->index);
@@ -612,6 +611,9 @@ boolean FcitxNotificationItemEnable(FcitxNotificationItem* notificationitem, Fci
 
 void FcitxNotificationItemDisable(FcitxNotificationItem* notificationitem)
 {
+    if (notificationitem->callback) {
+        dbus_connection_unregister_object_path(notificationitem->conn, NOTIFICATION_ITEM_DEFAULT_OBJ);
+    }
     notificationitem->callback = NULL;
     notificationitem->data = NULL;
 
