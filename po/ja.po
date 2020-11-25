@@ -20,14 +20,14 @@
 # csslayer <wengxt@gmail.com>, 2013,2015
 # csslayer <wengxt@gmail.com>, 2013
 # usingsystem8 <yuta.ooka@gmail.com>, 2013
-# yyc1992 <yyc1992@gmail.com>, 2015
-# yyc1992 <yyc1992@gmail.com>, 2015
+# Yichao Yu <yyc1992@gmail.com>, 2015
+# Yichao Yu <yyc1992@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: fcitx\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2020-05-08 10:12-0700\n"
-"PO-Revision-Date: 2020-05-08 17:05+0000\n"
+"POT-Creation-Date: 2020-11-25 10:43+0100\n"
+"PO-Revision-Date: 2020-11-25 09:39+0000\n"
 "Last-Translator: csslayer <wengxt@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/fcitx/fcitx/language/ja/)\n"
 "Language: ja\n"
@@ -2686,10 +2686,12 @@ msgid "Switch Full Width Punc Mode"
 msgstr "全角句読点モードに切り替え"
 
 #: src/module/chttrans/chttrans.c:151 src/module/chttrans/chttrans.c:197
+#: src/module/chttrans/chttrans.c:244
 msgid "Switch to Simplified Chinese"
 msgstr ""
 
 #: src/module/chttrans/chttrans.c:152 src/module/chttrans/chttrans.c:198
+#: src/module/chttrans/chttrans.c:245
 msgid "Switch to Traditional Chinese"
 msgstr ""
 
@@ -2838,6 +2840,7 @@ msgid "Toggle Remind"
 msgstr "リマインドの切り替え"
 
 #: src/module/chttrans/chttrans.c:153 src/module/chttrans/chttrans.c:199
+#: src/module/chttrans/chttrans.c:246
 msgid "Toggle Simp/Trad Chinese Conversion"
 msgstr "中国語の簡体字/繁体字の変換の切り替え"
 
